@@ -1,19 +1,23 @@
 {
   "meta": {
     "name": "Graphe des théorèmes",
-    "version": "0.2.0",
+    "version": "0.2.2",
     "created": "2026-11-23",
     "language": "fr",
     "description": "Chaque nœud est un ensemble de fonctions, chaque arête est un théorème : inclusion (A ⊆ B) ou non-inclusion avec contre-exemple (A ⊄ B).",
     "colorCode": {
       "analyse réelle": "rose pastel",
-      "arithmétique": "orange pastel"
+      "arithmétique": "orange pastel",
+      "algèbre générale": "jaune orangé",
+      "algèbre linéaire": "vert pastel",
+      "théorie des ensembles": "bleu clair",
+      "analyse complexe": "marron pastel"
     },
     "semantics": {
       "node": "un ensemble, nommé précisément (ex. : Fonctions réelles continues)",
       "inclusion": "arête blanche fine A → B : le théorème affirme A ⊆ B",
       "anti": "arête pointillée : A ⊄ B, prouvé par un contre-exemple explicite",
-      "nodeSize": "taille du cercle proportionnelle au nombre d'arêtes qui en partent",
+      "nodeSize": "taille du cercle proportionnelle au nombre d'arêtes qui y arrivent",
       "depth": [
         "définitoire",
         "immédiat",
