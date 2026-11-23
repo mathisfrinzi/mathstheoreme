@@ -1,7 +1,7 @@
 {
   "meta": {
     "name": "Graphe des théorèmes",
-    "version": "0.7.0",
+    "version": "0.9.0",
     "created": "2026-11-23",
     "language": "fr",
     "description": "Chaque nœud est un ensemble (de fonctions, d'entiers, de matrices…), chaque arête est un théorème : inclusion (A ⊆ B) ou non-inclusion avec contre-exemple (A ⊄ B).",
@@ -28,7 +28,10 @@
       "théorie des groupes": "beige",
       "théorie des ordres": "marine ardoise",
       "analyse des équations différentielles": "orange foncé",
-      "analyse de séries": "bordeaux clair"
+      "analyse de séries": "bordeaux clair",
+      "théorie de Galois": "brun orangé",
+      "géométrie affine": "olive",
+      "théorie des anneaux": "acajou"
     },
     "semantics": {
       "node": "un ensemble, nommé précisément (ex. : Fonctions réelles continues)",
@@ -2116,6 +2119,286 @@
       "description": "Les fonctions f = u + iv de classe C¹ dont u et v satisfont les équations de Cauchy-Riemann.",
       "example": "x² − y² + 2ixy, c’est-à-dire f(z) = z²",
       "notes": ""
+    },
+    {
+      "id": "CYL1",
+      "label": "Groupes",
+      "family": "groupes",
+      "domain": "théorie des groupes",
+      "property": "\\{\\, (G, \\cdot) \\mid \\text{loi associative, neutre, tout élément inversible} \\,\\}",
+      "description": "Tous les groupes, finis ou infinis, abéliens ou non.",
+      "example": "le groupe additif des entiers, le groupe symétrique des permutations de trois lettres",
+      "notes": "Le nœud ambiant de la théorie des groupes, jusqu'à ce que Cayley le réduise à des groupes de permutations."
+    },
+    {
+      "id": "CYL2",
+      "label": "Groupes plongeables dans un groupe symétrique",
+      "family": "groupes",
+      "domain": "théorie des groupes",
+      "property": "\\{\\, G : \\exists\\, E,\\ G \\text{ isomorphe à un sous-groupe de } \\mathfrak{S}(E) \\,\\}",
+      "description": "Les groupes qui se réalisent comme groupes de permutations d'un ensemble.",
+      "example": "le groupe de Klein, vu comme permutations de ses quatre éléments",
+      "notes": "Sans le théorème de Cayley, nul ne pouvait jurer que ce ne fût pas une restriction."
+    },
+    {
+      "id": "CSO1",
+      "label": "Suites réelles convergentes",
+      "family": "suites",
+      "domain": "analyse des suites réelles",
+      "property": "\\{\\, (u_n)_{n \\ge 1} : \\exists\\, \\ell \\in \\mathbb{R},\\ u_n \\to \\ell \\,\\}",
+      "description": "Les suites de réels qui tendent vers une limite finie.",
+      "example": "la suite des inverses des entiers positifs, vers 0",
+      "notes": "Les théorèmes de stabilité de la limite vivent ici ; les moyennes de Cesàro en héritent."
+    },
+    {
+      "id": "CSO2",
+      "label": "Suites à moyennes de Cesàro convergentes",
+      "family": "suites",
+      "domain": "analyse des suites réelles",
+      "property": "\\{\\, (u_n) : \\sigma_n = \\frac{u_1 + \\cdots + u_n}{n} \\text{ converge} \\,\\}",
+      "description": "Les suites dont les moyennes arithmétiques partielles convergent.",
+      "example": "la suite alternée 1, 0, 1, 0… : ses moyennes tendent vers 1/2",
+      "notes": "Le support du procédé de sommation de Cesàro, qui régularise la série de Grandi."
+    },
+    {
+      "id": "CVA1",
+      "label": "Points sur les côtés à produit des rapports 1",
+      "family": "triangles",
+      "domain": "géométrie euclidienne",
+      "property": "\\{\\, (A,B,C,D,E,F) : \\frac{\\overline{BD}}{\\overline{DC}} \\cdot \\frac{\\overline{CE}}{\\overline{EA}} \\cdot \\frac{\\overline{AF}}{\\overline{FB}} = 1 \\,\\}",
+      "description": "Les configurations d'un point par côté d'un triangle dont le produit orienté des trois rapports vaut 1.",
+      "example": "les trois milieux des côtés : chaque rapport vaut 1, les céviennes sont les médianes",
+      "notes": "Le signe orienté sépare Céva (produit 1, concourantes) de Ménélaüs (produit -1, alignés)."
+    },
+    {
+      "id": "CVA2",
+      "label": "Configurations à céviennes concourantes",
+      "family": "triangles",
+      "domain": "géométrie euclidienne",
+      "property": "\\{\\, (A,B,C,D,E,F) : (AD), (BE), (CF) \\text{ concourantes} \\,\\}",
+      "description": "Les triangles munis de trois céviennes passant par un même point.",
+      "example": "les médianes au centre de gravité, les hauteurs à l'orthocentre",
+      "notes": "Une cévienne par sommet, un point qui les ordonne : les concurrences de la géométrie du triangle."
+    },
+    {
+      "id": "CAA1",
+      "label": "Points sur les côtés à produit des rapports 1",
+      "family": "triangles",
+      "domain": "géométrie affine",
+      "property": "\\{\\, (A,B,C,D,E,F) \\text{ d'un plan affine} : \\frac{\\overline{BD}}{\\overline{DC}} \\cdot \\frac{\\overline{CE}}{\\overline{EA}} \\cdot \\frac{\\overline{AF}}{\\overline{FB}} = 1 \\,\\}",
+      "description": "Même condition, mais dans un plan affine : ni longueurs ni angles, seulement des rapports orientés portés par les côtés.",
+      "example": "les milieux des côtés d'un triangle, dans n'importe quel plan affine",
+      "notes": "Les rapports orientés le long d'une droite sont affinement bien définis : Thalès sans la règle graduée."
+    },
+    {
+      "id": "CAA2",
+      "label": "Configurations à céviennes concourantes ou parallèles",
+      "family": "triangles",
+      "domain": "géométrie affine",
+      "property": "\\{\\, (A,B,C,D,E,F) : (AD), (BE), (CF) \\text{ concourantes ou parallèles} \\,\\}",
+      "description": "Les configurations dont les trois céviennes se rejoignent, éventuellement à l'infini.",
+      "example": "trois droites parallèles traversant les côtés d'un triangle",
+      "notes": "Trois parallèles se rejoignent en un point à l'infini : le plan projectif affleure."
+    },
+    {
+      "id": "SFG1",
+      "label": "Groupes réalisables comme groupes de Galois sur ℚ",
+      "family": "galois",
+      "domain": "théorie de Galois",
+      "property": "\\{\\, G \\text{ fini} : \\exists\\, L/\\mathbb{Q} \\text{ galoisienne de groupe } \\mathrm{Gal}(L/\\mathbb{Q}) \\simeq G \\,\\}",
+      "description": "Les groupes finis qui apparaissent comme groupe de Galois d'une extension finie des rationnels.",
+      "example": "le groupe cyclique d'ordre 2, via tout polynôme quadratique irréductible",
+      "notes": "Le problème inverse de Galois demande si tout groupe fini y vit : ouvert."
+    },
+    {
+      "id": "AXC1",
+      "label": "Familles non vides d'ensembles non vides",
+      "family": "familles d'ensembles",
+      "domain": "théorie des ensembles",
+      "property": "\\{\\, (A_i)_{i \\in I} : I \\ne \\varnothing,\\ \\forall i,\\ A_i \\ne \\varnothing \\,\\}",
+      "description": "Les familles indexées où chaque ensemble est non vide, l'ensemble d'indices étant non vide.",
+      "example": "la famille des singletons des réels, indexée par les réels",
+      "notes": "Le terrain de l'axiome du choix : une infinité de tiroirs non vides, une infinité d'objets à saisir."
+    },
+    {
+      "id": "AXC2",
+      "label": "Familles admettant une fonction de choix",
+      "family": "familles d'ensembles",
+      "domain": "théorie des ensembles",
+      "property": "\\{\\, (A_i)_{i \\in I} : \\exists\\, f : I \\to \\bigcup_i A_i,\\ \\forall i,\\ f(i) \\in A_i \\,\\}",
+      "description": "Les familles sur lesquelles un choix simultané d'un élément par ensemble existe.",
+      "example": "une famille de singletons : la fonction de choix n'a qu'une possibilité",
+      "notes": "Le produit des ensembles de la famille est non vide exactement ici."
+    },
+    {
+      "id": "CHD1",
+      "label": "Fonctions continues sur un segment sans entiers",
+      "family": "continuité",
+      "domain": "analyse réelle",
+      "property": "\\{\\, f : [a,b] \\to \\mathbb{R} \\text{ continue},\\ [a,b] \\cap \\mathbb{Z} = \\varnothing \\,\\}",
+      "description": "Les fonctions continues sur un segment fermé qui ne contient aucun entier.",
+      "example": "n'importe quelle fonction continue sur le segment allant de 1/4 à 3/4",
+      "notes": "L'écart aux entiers est la condition vitale : en un entier, un polynôme à coefficients entiers prend une valeur entière."
+    },
+    {
+      "id": "CHD2",
+      "label": "Limites uniformes de polynômes à coefficients entiers",
+      "family": "polynômes",
+      "domain": "analyse réelle",
+      "property": "\\{\\, f : \\exists\\, (P_n) \\subset \\mathbb{Z}[X],\\ P_n \\to f \\text{ uniformément sur le segment} \\,\\}",
+      "description": "Les fonctions approchables à toute précision par des polynômes à coefficients entiers.",
+      "example": "les polynômes à coefficients entiers eux-mêmes, limites de la suite constante",
+      "notes": "Weierstrass donne la densité à coefficients réels ; ici la contrainte est drastique, les coefficients sont entiers."
+    },
+    {
+      "id": "EMB1",
+      "label": "Suites décroissantes de compacts non vides",
+      "family": "suites de compacts",
+      "domain": "topologie",
+      "property": "\\{\\, (K_n) : \\forall n,\\ K_{n+1} \\subseteq K_n,\\ K_n \\text{ compact non vide} \\,\\}",
+      "description": "Les suites emboîtées de parties compactes, toutes non vides.",
+      "example": "les segments emboîtés de longueur 1/n dans la droite réelle, contenant 0",
+      "notes": "L'emboîtement fabrique de la finitude : chaque compact resserre le suivant."
+    },
+    {
+      "id": "EMB2",
+      "label": "Suites à intersection non vide",
+      "family": "suites de compacts",
+      "domain": "topologie",
+      "property": "\\{\\, (K_n) : \\bigcap_n K_n \\ne \\varnothing \\,\\}",
+      "description": "Les suites de parties dont tous les étages partagent au moins un point.",
+      "example": "toute suite dont chaque partie contient un même point fixé",
+      "notes": "Pour les suites emboîtées de compacts, l'intersection est même compacte."
+    },
+    {
+      "id": "CCB1",
+      "label": "Couples d'ensembles",
+      "family": "couples d'ensembles",
+      "domain": "théorie des ensembles",
+      "property": "\\{\\, (A, B) : A, B \\text{ ensembles} \\,\\}",
+      "description": "Tous les couples d'ensembles, sans condition.",
+      "example": "le couple des entiers et des réels",
+      "notes": "Le nœud ambiant de la comparaison des cardinaux ; Cantor-Bernstein traite le cas mutuellement injectable."
+    },
+    {
+      "id": "CCB2",
+      "label": "Couples comparables par injection",
+      "family": "couples d'ensembles",
+      "domain": "théorie des ensembles",
+      "property": "\\{\\, (A, B) : A \\hookrightarrow B \\text{ ou } B \\hookrightarrow A \\,\\}",
+      "description": "Les couples dont l'un des deux ensembles s'injecte dans l'autre.",
+      "example": "le couple des entiers et des réels : les entiers s'injectent dans les réels",
+      "notes": "Hartogs construit sans l'axiome du choix un ordinal qui ne s'injecte pas dans A."
+    },
+    {
+      "id": "TCH1",
+      "label": "Couples d'idéaux étrangers",
+      "family": "anneaux",
+      "domain": "algèbre générale",
+      "property": "\\{\\, (\\mathfrak{a}, \\mathfrak{b}) \\text{ d'un anneau commutatif } R : \\mathfrak{a} + \\mathfrak{b} = R \\,\\}",
+      "description": "Les couples d'idéaux comaximaux d'un même anneau commutatif : leur somme est l'anneau entier.",
+      "example": "dans l'anneau des entiers, les idéaux des multiples de 2 et des multiples de 3",
+      "notes": "Étrangers signifie comaximaux : le neutre se décompose en une somme a + b."
+    },
+    {
+      "id": "TCH2",
+      "label": "Couples à quotient isomorphe au produit",
+      "family": "anneaux",
+      "domain": "algèbre générale",
+      "property": "\\{\\, (\\mathfrak{a}, \\mathfrak{b}) : R/(\\mathfrak{a} \\cap \\mathfrak{b}) \\simeq R/\\mathfrak{a} \\times R/\\mathfrak{b} \\,\\}",
+      "description": "Les couples d'idéaux dont le quotient par l'intersection éclate en un produit de quotients.",
+      "example": "modulo le produit de deux entiers premiers entre eux, les deux congruences se lisent indépendamment",
+      "notes": "Les congruences se scindent : raisonner modulo, c'est raisonner composante par composante."
+    },
+    {
+      "id": "ANR1",
+      "label": "Anneaux commutatifs",
+      "family": "anneaux",
+      "domain": "théorie des anneaux",
+      "property": "\\{\\, (A, +, \\times) \\mid \\text{anneau unitaire}, \\ \\forall a, b \\in A,\\ ab = ba \\,\\}",
+      "description": "Les anneaux unitaires dont la multiplication commute ; terrain de l'arithmétique généralisée (divisibilité, idéaux).",
+      "example": "ℤ, ℤ/6ℤ, ℝ[X]",
+      "notes": "Point d'ancrage de la chaîne des anneaux (v0.9.0) : intègres, factoriels, principaux, euclidiens."
+    },
+    {
+      "id": "ANR2",
+      "label": "Anneaux intègres",
+      "family": "anneaux",
+      "domain": "théorie des anneaux",
+      "property": "\\{\\, A \\mid \\text{anneau commutatif unitaire}, \\ ab = 0 \\Rightarrow a = 0 \\ \\text{ ou } \\ b = 0 \\,\\}",
+      "description": "Anneaux commutatifs sans diviseurs de zéro : on peut simplifier par tout élément non nul.",
+      "example": "ℤ, ℝ[X], ℤ[√−5]",
+      "notes": "L'intégrité garantit que ac = bc avec c non nul donne a = b, comme la simplification d'une équation dans ℤ."
+    },
+    {
+      "id": "ANR3",
+      "label": "Anneaux factoriels",
+      "family": "anneaux",
+      "domain": "théorie des anneaux",
+      "property": "\\{\\, A \\mid \\text{intègre}, \\ \\text{tout élément non nul non inversible est produit d'irréductibles, unique à l'ordre et aux unités près} \\,\\}",
+      "description": "Anneaux intègres où tout élément non nul non inversible se décompose de façon unique en facteurs irréductibles.",
+      "example": "ℤ, ℝ[X], ℤ[X]",
+      "notes": "La généralisation du théorème fondamental de l'arithmétique ; ℤ[√−5] est le cas d'échec classique."
+    },
+    {
+      "id": "ANR4",
+      "label": "Anneaux principaux",
+      "family": "anneaux",
+      "domain": "théorie des anneaux",
+      "property": "\\{\\, A \\mid \\text{intègre}, \\ \\text{tout idéal de } A \\text{ est engendré par un seul élément} \\,\\}",
+      "description": "Anneaux intègres dont tous les idéaux sont principaux : l'arithmétique y repose sur le pgcd.",
+      "example": "ℤ, ℝ[X] (et tout anneau euclidien)",
+      "notes": "L'identité de Bézout y est la règle : le pgcd de a et b s'écrit au + bv, résolvant les équations diophantiennes."
+    },
+    {
+      "id": "ANR5",
+      "label": "Anneaux euclidiens",
+      "family": "anneaux",
+      "domain": "théorie des anneaux",
+      "property": "\\{\\, A \\mid \\text{intègre}, \\ \\exists \\varphi : A \\setminus \\{0\\} \\to \\mathbb{N}, \\ \\forall a, b \\neq 0,\\ \\exists q, r :\\ a = b q + r,\\ r = 0 \\text{ ou } \\varphi(r) < \\varphi(b) \\,\\}",
+      "description": "Anneaux intègres avec division euclidienne : on y divise comme dans ℤ ou ℝ[X].",
+      "example": "ℤ (valeur absolue), ℝ[X] (degré)",
+      "notes": "Le stathme peut être le degré, la norme ou la valeur absolue ; l'algorithme d'Euclide y fabrique les pgcd."
+    },
+    {
+      "id": "KOR1",
+      "label": "Corps (anneaux où l'on divise)",
+      "family": "corps",
+      "domain": "théorie des corps",
+      "property": "\\{\\, (K, +, \\times) \\mid \\text{anneau commutatif unitaire non nul où tout élément non nul est inversible} \\,\\}",
+      "description": "Les corps : anneaux où l'on peut diviser par tout élément non nul.",
+      "example": "ℚ, ℝ, ℂ, 𝔽_p",
+      "notes": "Noeud générique des corps, demandé en v0.9.0 ; les corps réels clos, formellement réels, ordonnables et à clôture algébrique finie en sont des sous-familles."
+    },
+    {
+      "id": "ABG1",
+      "label": "Groupes abéliens",
+      "family": "groupes",
+      "domain": "théorie des groupes",
+      "property": "\\{\\, (G, \\cdot) \\mid \\text{groupe}, \\ \\forall a, b \\in G,\\ ab = ba \\,\\}",
+      "description": "Groupes dont la loi est commutative, nommés d'après Abel.",
+      "example": "(ℤ, +), (ℚ*, ×)",
+      "notes": "La commutation permet de réordonner les produits à loisir et de les écrire comme des sommes."
+    },
+    {
+      "id": "GCY1",
+      "label": "Groupes cycliques",
+      "family": "groupes",
+      "domain": "théorie des groupes",
+      "property": "\\{\\, (G, \\cdot) \\mid \\exists g \\in G,\\ G = \\langle g \\rangle = \\{ g^n \\mid n \\in \\mathbb{Z} \\} \\,\\}",
+      "description": "Groupes engendrés par un seul élément ; les briques des groupes abéliens finis.",
+      "example": "(ℤ/nℤ, +), racines n-ièmes de l'unité",
+      "notes": "un groupe cyclique est un quotient de (ℤ, +) ; il est déterminé, à isomorphisme près, par son seul ordre."
+    },
+    {
+      "id": "PRX1",
+      "label": "Polynômes réels",
+      "family": "polynômes",
+      "domain": "algèbre générale",
+      "property": "\\mathbb{R}[X] = \\{\\, a_n X^n + \\cdots + a_1 X + a_0 \\mid n \\in \\mathbb{N},\\ a_0, \\ldots, a_n \\in \\mathbb{R} \\,\\}",
+      "description": "Les polynômes à coefficients réels, vus comme objets algébriques : addition, multiplication, degré, division euclidienne.",
+      "example": "X² + √2 X + 1",
+      "notes": "Outil algébrique central : ℝ[X] est un anneau euclidien (stathme = degré). Sur ℝ infini, le polynôme formel coïncide avec sa fonction."
     }
   ],
   "edges": [
@@ -4182,6 +4465,314 @@
       "depth": "classique",
       "domain": "analyse complexe",
       "id": "e198"
+    },
+    {
+      "from": "CYL1",
+      "to": "CYL2",
+      "kind": "inclusion",
+      "theorem": "Théorème de Cayley",
+      "statement": "Tout groupe \\( G \\) agit fidèlement sur lui-même par translations à gauche : à \\( a \\in G \\), associer la permutation \\( x \\mapsto ax \\) définit un morphisme injectif \\( G \\hookrightarrow \\mathfrak{S}(G) \\). Un groupe abstrait est un groupe de permutations déguisé ; le graphe de Cayley en est l'illustration géométrique. Arthur Cayley, 1854.",
+      "depth": "classique",
+      "domain": "théorie des groupes",
+      "id": "e199"
+    },
+    {
+      "from": "CSO1",
+      "to": "CSO2",
+      "kind": "inclusion",
+      "theorem": "Théorème de Cesàro",
+      "statement": "Si \\( u_n \\to \\ell \\), alors les moyennes \\( \\sigma_n = \\frac{u_1 + \\cdots + u_n}{n} \\) convergent vers \\( \\ell \\) : la moyenne des écarts \\( u_i - \\ell \\) est écrasée par le facteur \\( 1/n \\). Démontré dès Cauchy, il porte le nom de Cesàro, père des procédés de sommation ; c'est le cas particulier du quotient dans le théorème de Stolz-Cesàro.",
+      "depth": "classique",
+      "domain": "analyse des suites réelles",
+      "id": "e200"
+    },
+    {
+      "from": "CSO2",
+      "to": "CSO1",
+      "kind": "anti",
+      "theorem": "La réciproque de Cesàro tombe",
+      "statement": "Converger en moyenne de Cesàro n'entraîne pas converger : la sommation régularise des suites qui divergent.",
+      "depth": "facile",
+      "domain": "analyse des suites réelles",
+      "id": "e201",
+      "counterexample": "\\( u_n = (-1)^n \\) : la suite oscille entre \\( -1 \\) et \\( 1 \\), mais \\( |\\sigma_n| \\le 1/n \\), donc \\( \\sigma_n \\to 0 \\) ; à la série de Grandi \\( 1 - 1 + 1 - \\cdots \\), Cesàro attribue ainsi la valeur \\( 1/2 \\)."
+    },
+    {
+      "from": "CVA1",
+      "to": "CVA2",
+      "kind": "inclusion",
+      "theorem": "Théorème de Céva",
+      "statement": "Soit \\( D \\in (BC) \\), \\( E \\in (CA) \\), \\( F \\in (AB) \\), hors des sommets. Les céviennes \\( (AD) \\), \\( (BE) \\), \\( (CF) \\) sont concourantes si et seulement si \\( \\frac{\\overline{BD}}{\\overline{DC}} \\cdot \\frac{\\overline{CE}}{\\overline{EA}} \\cdot \\frac{\\overline{AF}}{\\overline{FB}} = 1 \\) (rapports orientés). Giovanni Céva, 1678 ; changer le produit en \\( -1 \\) donne Ménélaüs : \\( D \\), \\( E \\), \\( F \\) alignés.",
+      "depth": "classique",
+      "domain": "géométrie euclidienne",
+      "id": "e202"
+    },
+    {
+      "from": "CAA1",
+      "to": "CAA2",
+      "kind": "inclusion",
+      "theorem": "Céva affine",
+      "statement": "Dans un plan affine, le produit orienté \\( \\frac{\\overline{BD}}{\\overline{DC}} \\cdot \\frac{\\overline{CE}}{\\overline{EA}} \\cdot \\frac{\\overline{AF}}{\\overline{FB}} \\) vaut \\( 1 \\) si et seulement si les trois céviennes sont concourantes ou parallèles. Le cas parallèle, invisible dans le triangle fermé, apparaît dès qu'on referme le plan projectivement ; la preuve ne mobilise que Thalès, aucune longueur, aucun angle.",
+      "depth": "classique",
+      "domain": "géométrie affine",
+      "id": "e203"
+    },
+    {
+      "from": "BNS2",
+      "to": "SFG1",
+      "kind": "inclusion",
+      "theorem": "Théorème de Chafarevitch",
+      "statement": "Tout groupe fini résoluble est le groupe de Galois d'une extension finie de \\( \\mathbb{Q} \\). Chafarevitch, 1954 : la théorie du corps de classes démonte la tour résoluble étage par étage. Au-delà du résoluble, le problème inverse de Galois reste ouvert.",
+      "depth": "profond",
+      "domain": "théorie de Galois",
+      "id": "e204"
+    },
+    {
+      "from": "AXC1",
+      "to": "AXC2",
+      "kind": "inclusion",
+      "theorem": "Axiome du choix",
+      "statement": "Toute famille d'ensembles non vides indexée par un ensemble non vide admet une fonction de choix \\( i \\mapsto f(i) \\in A_i \\) : le produit \\( \\prod_{i \\in I} A_i \\) est non vide. Énoncé par Zermelo en 1904, indépendant de ZF : consistant (Gödel 1938), sa négation aussi (Cohen 1963, médaille Fields 1966). Équivalent au lemme de Zorn, au théorème de Zermelo (tout ensemble est bien ordonnable) et à la comparabilité cardinale (voir l'autre arête).",
+      "depth": "fondamental",
+      "domain": "théorie des ensembles",
+      "id": "e205"
+    },
+    {
+      "from": "CHD1",
+      "to": "CHD2",
+      "kind": "inclusion",
+      "theorem": "Théorème de Chudnovsky",
+      "statement": "Soit \\( f : [a,b] \\to \\mathbb{R} \\) continue, avec \\( [a,b] \\cap \\mathbb{Z} = \\varnothing \\). Il existe une suite de polynômes à coefficients entiers qui converge uniformément vers \\( f \\) sur \\( [a,b] \\). L'hypothèse sur le segment est nécessaire : si un entier \\( n \\) vivait dans \\( [a,b] \\), tout \\( P \\in \\mathbb{Z}[X] \\) y vaudrait \\( P(n) \\in \\mathbb{Z} \\), et la limite uniforme devrait prendre une valeur entière en \\( n \\).",
+      "depth": "profond",
+      "domain": "analyse réelle",
+      "id": "e206"
+    },
+    {
+      "from": "EMB1",
+      "to": "EMB2",
+      "kind": "inclusion",
+      "theorem": "Théorème des compacts emboîtés",
+      "statement": "Une suite décroissante de compacts non vides a une intersection non vide (et compacte) : si \\( \\bigcap_n K_n = \\varnothing \\), les ouverts \\( K_1 \\setminus K_n \\) recouvrent \\( K_1 \\), une extraction finie donne \\( K_1 \\subseteq K_1 \\setminus K_{N+1} \\), contredisant \\( K_{N+1} \\ne \\varnothing \\). Corollaire élémentaire : les segments emboîtés de \\( \\mathbb{R} \\) se partagent toujours un point.",
+      "depth": "classique",
+      "domain": "topologie",
+      "id": "e207"
+    },
+    {
+      "from": "CCB1",
+      "to": "CCB2",
+      "kind": "inclusion",
+      "theorem": "Comparabilité cardinale",
+      "statement": "De tous ensembles \\( A \\) et \\( B \\), l'un s'injecte dans l'autre : avec Cantor-Bernstein, la relation « s'injecte dans » devient un ordre total sur les cardinaux. C'est un théorème de ZFC mais un énoncé équivalent à l'axiome du choix (Hartogs, 1915) : sans lui, des cardinaux incomparables surgissent. Comparer, c'est déjà choisir.",
+      "depth": "fondamental",
+      "domain": "théorie des ensembles",
+      "id": "e208"
+    },
+    {
+      "from": "TCH1",
+      "to": "TCH2",
+      "kind": "inclusion",
+      "theorem": "Théorème chinois",
+      "statement": "Dans un anneau commutatif \\( R \\), si \\( \\mathfrak{a} + \\mathfrak{b} = R \\) (idéaux étrangers), alors \\( x \\mapsto (x \\bmod \\mathfrak{a},\\ x \\bmod \\mathfrak{b}) \\) est un isomorphisme \\( R/(\\mathfrak{a} \\cap \\mathfrak{b}) \\simeq R/\\mathfrak{a} \\times R/\\mathfrak{b} \\). Version des congruences : si \\( n \\) et \\( m \\) sont premiers entre eux, le système \\( x \\equiv a \\pmod{n} \\), \\( x \\equiv b \\pmod{m} \\) a une unique solution modulo \\( nm \\) : l'astuce du Sunzi Suanjing (IIIe-Ve siècle) pour compter les objets par paquets.",
+      "depth": "classique",
+      "domain": "algèbre générale",
+      "id": "e209"
+    },
+    {
+      "from": "ANR5",
+      "to": "ANR4",
+      "kind": "inclusion",
+      "theorem": "Un anneau euclidien est principal",
+      "statement": "Soit \\( I \\) un idéal non nul d'un anneau euclidien \\( A \\) : choisir \\( b \\in I \\setminus \\{0\\} \\) de stathme minimal. Pour \\( a \\in I \\), la division euclidienne \\( a = b q + r \\) donne \\( r = a - b q \\in I \\) avec \\( r = 0 \\) ou \\( \\varphi(r) < \\varphi(b) \\) ; la minimalité de \\( b \\) force \\( r = 0 \\), donc \\( I = (b) \\). Toute la puissance d'Euclide tient dans un stathme.",
+      "depth": "classique",
+      "domain": "théorie des anneaux",
+      "id": "e210"
+    },
+    {
+      "from": "ANR4",
+      "to": "ANR3",
+      "kind": "inclusion",
+      "theorem": "Un anneau principal est factoriel",
+      "statement": "Dans un anneau principal \\( A \\), Bézout donne la primalité des irréductibles : si \\( p \\mid ab \\) et \\( p \\nmid a \\), écrire \\( 1 = u p + v a \\) dans l'idéal \\( (p, a) \\), multiplier par \\( b \\) : \\( b = u p b + v a b \\) est divisible par \\( p \\). Existence de la décomposition (chaque idéal est engendré par un élément d'où la chaîne ascendante) et unicité (lemme de primalité) : \\( A \\) est factoriel, comme \\( \\mathbb{Z} \\) et \\( \\mathbb{R}[X] \\).",
+      "depth": "classique",
+      "domain": "théorie des anneaux",
+      "id": "e211"
+    },
+    {
+      "from": "ANR3",
+      "to": "ANR2",
+      "kind": "inclusion",
+      "theorem": "Un anneau factoriel est intègre",
+      "statement": "L'inclusion est définitoire : la factorisation unique n'a de sens que dans un anneau intègre, où un produit nul force un facteur nul.",
+      "depth": "définitoire",
+      "domain": "théorie des anneaux",
+      "id": "e212"
+    },
+    {
+      "from": "ANR2",
+      "to": "ANR1",
+      "kind": "inclusion",
+      "theorem": "Un anneau intègre est commutatif",
+      "statement": "L'inclusion est définitoire : la définition retenue réserve l'intégrité aux anneaux commutatifs unitaires, sans diviseurs de zéro.",
+      "depth": "définitoire",
+      "domain": "théorie des anneaux",
+      "id": "e213"
+    },
+    {
+      "from": "ANR1",
+      "to": "ANR2",
+      "kind": "anti",
+      "theorem": "Un anneau commutatif non intègre",
+      "statement": "Communiquer ne suffit pas : des anneaux commutatifs portent des diviseurs de zéro qui ruinent la simplification.",
+      "counterexample": "\\( \\mathbb{Z}/6\\mathbb{Z} \\) : \\( 2 \\times 3 = 6 = 0 \\) alors que \\( 2 \\neq 0 \\) et \\( 3 \\neq 0 \\). Deux diviseurs de zéro dans un anneau commutatif ; tout \\( \\mathbb{Z}/n\\mathbb{Z} \\) avec \\( n \\) non premier fait de même.",
+      "depth": "immédiat",
+      "domain": "théorie des anneaux",
+      "id": "e214"
+    },
+    {
+      "from": "ANR2",
+      "to": "ANR3",
+      "kind": "anti",
+      "theorem": "Un anneau intègre non factoriel",
+      "statement": "L'unique factorisation est un théorème, pas une évidence : intègre n'entraîne pas factoriel.",
+      "counterexample": "\\( \\mathbb{Z}[\\sqrt{-5}] \\) : \\( 6 = 2 \\cdot 3 = (1 + \\sqrt{-5})(1 - \\sqrt{-5}) \\), deux décompositions en facteurs irréductibles distinctes. La norme \\( N(a + b \\sqrt{-5}) = a^2 + 5 b^2 \\) montre que \\( 2 \\), \\( 3 \\) et \\( 1 \\pm \\sqrt{-5} \\) (normes 4, 9, 6) sont irréductibles : aucune des deux lignes ne se raffine.",
+      "depth": "classique",
+      "domain": "théorie des anneaux",
+      "id": "e215"
+    },
+    {
+      "from": "ANR3",
+      "to": "ANR4",
+      "kind": "anti",
+      "theorem": "Un anneau factoriel non principal",
+      "statement": "La factorisation unique ne dit rien des idéaux : factoriel n'entraîne pas principal.",
+      "counterexample": "\\( \\mathbb{Z}[X] \\), factoriel par le théorème de Gauss : l'idéal \\( (2, X) \\) des polynômes à coefficient constant pair n'est pas principal. Si \\( (2, X) = (P) \\), alors \\( P \\mid 2 \\), donc \\( P = \\pm 1 \\) ou \\( \\pm 2 \\) ; \\( \\pm 2 \\) est exclu car \\( 2 \\nmid X \\), et \\( \\pm 1 \\) donnerait \\( (2, X) = \\mathbb{Z}[X] \\), or \\( \\mathbb{Z}[X]/(2, X) \\simeq \\mathbb{Z}/2\\mathbb{Z} \\neq 0 \\).",
+      "depth": "classique",
+      "domain": "théorie des anneaux",
+      "id": "e216"
+    },
+    {
+      "from": "ANR4",
+      "to": "ANR5",
+      "kind": "anti",
+      "theorem": "Un anneau principal non euclidien",
+      "statement": "Euclide est plus exigeant qu'il n'y paraît : il existe des anneaux principaux où aucune division avec reste décroissant n'est possible.",
+      "counterexample": "\\( \\mathbb{Z}\\left[\\frac{1 + \\sqrt{-19}}{2}\\right] \\), anneau d'entiers de \\( \\mathbb{Q}(\\sqrt{-19}) \\) : principal, mais aucune division euclidienne n'y est possible (Motzkin, 1949, premier exemple explicite du genre). Les anneaux de Heegner \\( d = -43, -67, -163 \\) le sont aussi.",
+      "depth": "profond",
+      "domain": "théorie des anneaux",
+      "id": "e217"
+    },
+    {
+      "from": "KOR1",
+      "to": "ANR2",
+      "kind": "inclusion",
+      "theorem": "Un corps est intègre",
+      "statement": "Si \\( ab = 0 \\) dans un corps et \\( a \\neq 0 \\), alors \\( b = a^{-1} a b = a^{-1} 0 = 0 \\) : aucun diviseur de zéro. Tout élément non nul étant inversible, la seule obstruction à l'intégrité disparaît.",
+      "depth": "immédiat",
+      "domain": "théorie des corps",
+      "id": "e218"
+    },
+    {
+      "from": "ANR2",
+      "to": "KOR1",
+      "kind": "anti",
+      "theorem": "Un anneau intègre qui n'est pas un corps",
+      "statement": "Simplifier n'est pas diviser : intègre n'entraîne pas corps.",
+      "counterexample": "\\( \\mathbb{Z} \\) : intègre, mais \\( 2 \\) n'y a pas d'inverse ; si \\( 2 k = 1 \\) avec \\( k \\in \\mathbb{Z} \\), le membre de gauche est pair et le membre de droite impair.",
+      "depth": "classique",
+      "domain": "théorie des anneaux",
+      "id": "e219"
+    },
+    {
+      "from": "ANR4",
+      "to": "HLB1",
+      "kind": "inclusion",
+      "theorem": "Un anneau principal est noethérien",
+      "statement": "Chaque idéal d'un anneau principal est engendré par un seul élément, donc tout idéal y est de type fini : c'est exactement le critère noethérien. La chaîne euclidien, principal, noethérien raccorde les anneaux au reste du graphe (côté polynômes, la base d'Hilbert prolonge noethérien).",
+      "depth": "immédiat",
+      "domain": "théorie des anneaux",
+      "id": "e220"
+    },
+    {
+      "from": "HLB2",
+      "to": "HLB1",
+      "kind": "inclusion",
+      "theorem": "Réciproque de la base d'Hilbert",
+      "statement": "Si \\( A[X] \\) est noethérien, alors \\( A \\cong A[X]/(X) \\) l'est aussi : tout quotient d'un anneau noethérien est noethérien (les idéaux du quotient se relèvent en idéaux de type fini). La réciproque réplique flèche pour flèche à la base d'Hilbert \\( A \\) noethérien entraîne \\( A[X] \\) noethérien ; les deux ensembles se répondent en double flèche.",
+      "depth": "facile",
+      "domain": "algèbre générale",
+      "id": "e221"
+    },
+    {
+      "from": "ABG1",
+      "to": "CYL1",
+      "kind": "inclusion",
+      "theorem": "Définition",
+      "statement": "L'inclusion est définitoire : un groupe abélien est un groupe dont la loi commute ; elle installe les groupes abéliens dans le graphe.",
+      "depth": "définitoire",
+      "domain": "théorie des groupes",
+      "id": "e222"
+    },
+    {
+      "from": "GCY1",
+      "to": "ABG1",
+      "kind": "inclusion",
+      "theorem": "Un groupe cyclique est abélien",
+      "statement": "Les puissances d'un même générateur commutent : \\( g^m g^n = g^{m+n} = g^n g^m \\). Un groupe engendré par un seul élément est donc abélien ; la réciproque cède (le groupe de Klein répond).",
+      "depth": "facile",
+      "domain": "théorie des groupes",
+      "id": "e223"
+    },
+    {
+      "from": "CYL1",
+      "to": "ABG1",
+      "kind": "anti",
+      "theorem": "Un groupe non abélien",
+      "statement": "Dès six éléments, les permutations cessent de commuter : un groupe n'est pas toujours abélien.",
+      "counterexample": "\\( \\mathfrak{S}_3 \\), les permutations de \\( \\{1, 2, 3\\} \\) : \\( (1\\,2)(1\\,3) = (1\\,3\\,2) \\) mais \\( (1\\,3)(1\\,2) = (1\\,2\\,3) \\). Tout groupe d'ordre strictement inférieur à 6 est abélien.",
+      "depth": "immédiat",
+      "domain": "théorie des groupes",
+      "id": "e224"
+    },
+    {
+      "from": "ABG1",
+      "to": "GCY1",
+      "kind": "anti",
+      "theorem": "Un groupe abélien non cyclique",
+      "statement": "Abélien ne veut pas dire engendré par un seul élément : certains groupes commutatifs n'ont pas de générateur unique.",
+      "counterexample": "\\( \\mathbb{Z}/2\\mathbb{Z} \\times \\mathbb{Z}/2\\mathbb{Z} \\), le groupe de Klein : abélien, quatre éléments, chacun vérifie \\( x^2 = e \\), donc n'engendre que \\( \\{e, x\\} \\) : aucun élément ne génère tout le groupe.",
+      "depth": "facile",
+      "domain": "théorie des groupes",
+      "id": "e225"
+    },
+    {
+      "from": "CQG2",
+      "to": "CQG1",
+      "kind": "inclusion",
+      "theorem": "Réciproque du théorème de Cauchy",
+      "statement": "Si un groupe fini contient un élément \\( x \\) d'ordre \\( p \\), le sous-groupe \\( \\langle x \\rangle \\) engendré a exactement \\( p \\) éléments, et le théorème de Lagrange conclut \\( p \\mid |G| \\). La réciproque immédiate du théorème de Cauchy tombe du même coup que Lagrange.",
+      "depth": "immédiat",
+      "domain": "théorie des groupes",
+      "id": "e226"
+    },
+    {
+      "from": "KF2",
+      "to": "KF3",
+      "kind": "inclusion",
+      "theorem": "Un corps réel clos est formellement réel",
+      "statement": "Un corps réel clos porte un ordre unique dont les éléments positifs sont exactement les carrés : une somme de carrés y est positive, et \\( -1 \\) est négatif. Réel clos entraîne donc formellement réel, et même ordonnable par cascade (Artin-Schreier donne le reste du chemin).",
+      "depth": "classique",
+      "domain": "théorie des corps",
+      "id": "e227"
+    },
+    {
+      "from": "PRX1",
+      "to": "P",
+      "kind": "inclusion",
+      "theorem": "Polynômes réels et fonctions polynomiales coïncident",
+      "statement": "L'évaluation \\( P \\mapsto (x \\mapsto P(x)) \\) est injective de \\( \\mathbb{R}[X] \\) dans les fonctions : un polynôme non nul de degré \\( n \\) a au plus \\( n \\) racines et ne peut s'annuler partout sur \\( \\mathbb{R} \\) infini ; sur les fonctions polynomiales, elle est surjective par définition. Sur un corps infini, l'objet formel et l'objet fonctionnel coïncident ; sur un corps fini l'identification cède : \\( X^p - X \\) s'annule partout sur \\( \\mathbb{F}_p \\).",
+      "depth": "classique",
+      "domain": "algèbre générale",
+      "id": "e228"
     }
   ]
 }
