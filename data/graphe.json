@@ -1,16 +1,19 @@
 {
   "meta": {
     "name": "Graphe des théorèmes",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "created": "2026-11-23",
     "language": "fr",
-    "domain": "analyse réelle — fonctions ℝ → ℝ",
-    "description": "Chaque nœud est un ensemble de fonctions, chaque arête est un théorème : inclusion (A ⊆ B), équivalence (A = B) ou non-inclusion avec contre-exemple (A ⊄ B).",
+    "description": "Chaque nœud est un ensemble de fonctions, chaque arête est un théorème : inclusion (A ⊆ B) ou non-inclusion avec contre-exemple (A ⊄ B).",
+    "colorCode": {
+      "analyse réelle": "rose pastel",
+      "arithmétique": "orange pastel"
+    },
     "semantics": {
-      "node": "un ensemble A = { f : P(f) }",
-      "inclusion": "arête pleine A → B : le théorème affirme A ⊆ B",
-      "equivalence": "arête verte double : A = B",
-      "anti": "arête rouge pointillée : A ⊄ B, prouvé par un contre-exemple explicite",
+      "node": "un ensemble, nommé précisément (ex. : Fonctions réelles continues)",
+      "inclusion": "arête blanche fine A → B : le théorème affirme A ⊆ B",
+      "anti": "arête pointillée : A ⊄ B, prouvé par un contre-exemple explicite",
+      "nodeSize": "taille du cercle proportionnelle au nombre d'arêtes qui en partent",
       "depth": [
         "définitoire",
         "immédiat",
@@ -18,219 +21,220 @@
         "classique",
         "fondamental",
         "profond"
-      ]
+      ],
+      "notes": "Le type « équivalence » est prévu par le format mais aucune arête d'équivalence n'est encore tracée : la logique des équivalences sera établie par Mathis."
     }
   },
   "nodes": [
     {
       "id": "C",
-      "label": "Continues",
+      "label": "Fonctions réelles continues",
       "family": "continuité",
-      "domain": "analyse réelle — fonctions ℝ → ℝ",
-      "property": "C = { f : ℝ → ℝ | f est continue en tout point de ℝ }",
+      "domain": "analyse réelle",
+      "property": "\\{\\, f : \\mathbb{R} \\to \\mathbb{R} \\mid f \\text{ continue en tout point de } \\mathbb{R} \\,\\}",
       "description": "Les fonctions continues de ℝ dans ℝ.",
       "example": "x ↦ x²",
-      "notes": "Point de départ du graphe, demandé par Mathis. Le théorème des valeurs intermédiaires et celui de Heine portent sur cet ensemble."
+      "notes": "Nœud de départ du graphe."
     },
     {
       "id": "F",
-      "label": "Toutes les fonctions",
+      "label": "Fonctions réelles",
       "family": "univers",
-      "domain": "analyse réelle — fonctions ℝ → ℝ",
-      "property": "F = ℝ^ℝ = { f : ℝ → ℝ }",
-      "description": "L'ensemble de toutes les fonctions de ℝ dans ℝ : l'ensemble ambiant dans lequel vivent tous les nœuds de ce graphe.",
-      "example": "x ↦ 1 si x ∈ ℚ, sinon 0 (fonction de Dirichlet) : continue nulle part",
-      "notes": "Nœud univers, le plus grand de tous : tout le reste du graphe vit là-dedans."
+      "domain": "analyse réelle",
+      "property": "\\mathbb{R}^{\\mathbb{R}} = \\{\\, f : \\mathbb{R} \\to \\mathbb{R} \\,\\}",
+      "description": "Toutes les fonctions de ℝ dans ℝ : l'ensemble ambiant.",
+      "example": "x ↦ 1 si x ∈ ℚ, sinon 0 (fonction de Dirichlet)",
+      "notes": ""
+    },
+    {
+      "id": "FC",
+      "label": "Fonctions continues",
+      "family": "continuité",
+      "domain": "analyse réelle",
+      "property": "\\{\\, f \\text{ continue, d'ensemble de définition quelconque} \\,\\}",
+      "description": "Toutes les fonctions continues, sans fixer le domaine.",
+      "example": "x ↦ sin(x) restreinte à [0, π]",
+      "notes": ""
     },
     {
       "id": "UC",
-      "label": "Uniformément continues",
+      "label": "Fonctions uniformément continues",
       "family": "continuité",
-      "domain": "analyse réelle — fonctions ℝ → ℝ",
-      "property": "UC = { f : ∀ ε > 0, ∃ δ > 0, ∀ x, y : |x − y| < δ ⟹ |f(x) − f(y)| < ε }",
-      "description": "Fonctions uniformément continues sur ℝ tout entier : le δ peut être choisi indépendamment du point.",
+      "domain": "analyse réelle",
+      "property": "\\{\\, f : \\forall \\varepsilon > 0,\\ \\exists \\delta > 0,\\ \\forall x, y : |x - y| < \\delta \\Rightarrow |f(x) - f(y)| < \\varepsilon \\,\\}",
+      "description": "Fonctions uniformément continues sur ℝ tout entier.",
       "example": "x ↦ x",
-      "notes": "Différence cruciale avec C : sur ℝ (non compact), la continuité n'implique pas l'uniforme continuité."
-    },
-    {
-      "id": "UCSEG",
-      "label": "Unif. cont. par segment",
-      "family": "continuité",
-      "domain": "analyse réelle — fonctions ℝ → ℝ",
-      "property": "UCSEG = { f : f est uniformément continue sur chaque segment [a, b] }",
-      "description": "Fonctions uniformément continues sur chaque segment (mais pas nécessairement sur ℝ entier).",
-      "example": "x ↦ x²",
-      "notes": "Par Heine, cet ensemble est exactement l'ensemble C des continues."
+      "notes": ""
     },
     {
       "id": "L",
-      "label": "Lipschitziennes",
+      "label": "Fonctions lipschitziennes",
       "family": "dérivabilité",
-      "domain": "analyse réelle — fonctions ℝ → ℝ",
-      "property": "L = { f : ∃ k ≥ 0, ∀ x, y : |f(x) − f(y)| ≤ k |x − y| }",
-      "description": "Fonctions k-lipschitziennes sur ℝ : un contrôle linéaire uniforme de l'oscillation.",
+      "domain": "analyse réelle",
+      "property": "\\{\\, f : \\exists k \\ge 0,\\ \\forall x, y : |f(x) - f(y)| \\le k\\,|x - y| \\,\\}",
+      "description": "Fonctions k-lipschitziennes sur ℝ.",
       "example": "x ↦ |x| (constante 1)",
-      "notes": "Lipschitz ne veut pas dire dérivable : |x| est le contre-exemple standard."
+      "notes": ""
     },
     {
       "id": "DBR",
-      "label": "Dérivée bornée",
+      "label": "Fonctions dérivables à dérivée bornée",
       "family": "dérivabilité",
-      "domain": "analyse réelle — fonctions ℝ → ℝ",
-      "property": "DBR = { f : f dérivable sur ℝ et f' bornée }",
+      "domain": "analyse réelle",
+      "property": "\\{\\, f \\text{ dérivable sur } \\mathbb{R} \\text{ et } f' \\text{ bornée} \\,\\}",
       "description": "Fonctions dérivées partout avec une dérivée bornée sur ℝ.",
       "example": "x ↦ sin(x)",
-      "notes": "Le TAF en fait un sous-ensemble des lipschitziennes."
+      "notes": ""
     },
     {
       "id": "D",
-      "label": "Dérivables",
+      "label": "Fonctions dérivables",
       "family": "dérivabilité",
-      "domain": "analyse réelle — fonctions ℝ → ℝ",
-      "property": "D = { f : ∀ a ∈ ℝ, f'(a) = lim(x→a) (f(x) − f(a)) / (x − a) existe }",
+      "domain": "analyse réelle",
+      "property": "\\{\\, f : \\forall a \\in \\mathbb{R},\\ f'(a) = \\lim_{x \\to a} \\frac{f(x) - f(a)}{x - a} \\text{ existe} \\,\\}",
       "description": "Fonctions dérivables en tout point de ℝ.",
       "example": "x ↦ x³",
-      "notes": "Une dérivée peut exister partout et être discontinue : voir le nœud DER."
+      "notes": ""
     },
     {
       "id": "DEC",
-      "label": "Dériv. sauf dénombrable",
+      "label": "Dérivables sauf sur un dénombrable",
       "family": "dérivabilité",
-      "domain": "analyse réelle — fonctions ℝ → ℝ",
-      "property": "DEC = { f : l'ensemble des points où f n'est pas dérivable est au plus dénombrable }",
+      "domain": "analyse réelle",
+      "property": "\\{\\, f : \\{ x : f \\text{ non dérivable en } x \\} \\text{ est au plus dénombrable} \\,\\}",
       "description": "Fonctions dérivables sauf sur un ensemble au plus dénombrable de points.",
       "example": "x ↦ |x| (un seul point de non-dérivabilité)",
-      "notes": "Attention : « dénombrable » est plus fin que « négligeable » ; voir la fonction de Cantor."
+      "notes": ""
     },
     {
       "id": "DER",
-      "label": "Dérivées",
+      "label": "Fonctions dérivées",
       "family": "dérivabilité",
-      "domain": "analyse réelle — fonctions ℝ → ℝ",
-      "property": "DER = { g : ∃ f ∈ D, g = f' }",
-      "description": "Les fonctions qui sont la dérivée d'une fonction dérivable : l'image de D par l'opérateur de dérivation.",
+      "domain": "analyse réelle",
+      "property": "\\{\\, g : \\exists f \\text{ dérivable},\\ g = f' \\,\\}",
+      "description": "Les fonctions qui sont la dérivée d'une fonction dérivable.",
       "example": "x ↦ x (dérivée de x ↦ x²/2)",
-      "notes": "Exemple de construction d'un nouvel ensemble à partir d'un autre, ici D par l'opérateur f ↦ f'. Contient des fonctions discontinues."
+      "notes": "Ensemble construit à partir des fonctions dérivables par l'opérateur f ↦ f'. Contient des fonctions discontinues."
     },
     {
       "id": "C1",
-      "label": "C¹",
+      "label": "Fonctions de classe C¹",
       "family": "dérivabilité",
-      "domain": "analyse réelle — fonctions ℝ → ℝ",
-      "property": "C1 = { f : f' existe et f' ∈ C }",
-      "description": "Fonctions de classe C¹ : dérivables à dérivée continue.",
+      "domain": "analyse réelle",
+      "property": "\\{\\, f \\text{ dérivable, de dérivée continue} \\,\\}",
+      "description": "Fonctions de classe C¹.",
       "example": "x ↦ sin(x)",
       "notes": ""
     },
     {
       "id": "P",
-      "label": "Polynômes",
+      "label": "Fonctions polynomiales",
       "family": "dérivabilité",
-      "domain": "analyse réelle — fonctions ℝ → ℝ",
-      "property": "P = ℝ[X] = { f : f(x) = aₙxⁿ + ⋯ + a₁x + a₀, un polynôme }",
+      "domain": "analyse réelle",
+      "property": "\\mathbb{R}[X] = \\{\\, f : f(x) = a_n x^n + \\cdots + a_1 x + a_0 \\,\\}",
       "description": "Les fonctions polynomiales.",
       "example": "x ↦ x²",
-      "notes": "Encore mieux : C^∞, et même analytiques."
+      "notes": "Même C^∞ et analytiques."
     },
     {
       "id": "AFF",
-      "label": "Affines",
+      "label": "Fonctions affines",
       "family": "dérivabilité",
-      "domain": "analyse réelle — fonctions ℝ → ℝ",
-      "property": "AFF = { x ↦ ax + b : a, b ∈ ℝ }",
-      "description": "Les fonctions affines : droites.",
+      "domain": "analyse réelle",
+      "property": "\\{\\, x \\mapsto ax + b : a, b \\in \\mathbb{R} \\,\\}",
+      "description": "Les fonctions affines.",
       "example": "x ↦ 2x + 3",
-      "notes": "Les plus simples : lipschitziennes avec pour constante la pente."
+      "notes": ""
     },
     {
       "id": "M",
-      "label": "Monotones",
+      "label": "Fonctions monotones",
       "family": "monotonie",
-      "domain": "analyse réelle — fonctions ℝ → ℝ",
-      "property": "M = { f : croissante sur ℝ ou décroissante sur ℝ }",
-      "description": "Fonctions monotones sur ℝ (au sens large).",
+      "domain": "analyse réelle",
+      "property": "\\{\\, f : f \\text{ croissante sur } \\mathbb{R} \\text{ ou décroissante sur } \\mathbb{R} \\,\\}",
+      "description": "Fonctions monotones sur ℝ.",
       "example": "x ↦ x",
-      "notes": "Une fonction monotone peut être discontinue, mais seulement d'un dénombrable de fois."
+      "notes": ""
     },
     {
       "id": "CNV",
-      "label": "Convexes",
+      "label": "Fonctions convexes",
       "family": "continuité",
-      "domain": "analyse réelle — fonctions ℝ → ℝ",
-      "property": "CNV = { f : ∀ x, y, ∀ t ∈ [0,1] : f(tx + (1−t)y) ≤ t f(x) + (1−t) f(y) }",
+      "domain": "analyse réelle",
+      "property": "\\{\\, f : \\forall x, y,\\ \\forall t \\in [0,1] : f(tx + (1-t)y) \\le t f(x) + (1-t) f(y) \\,\\}",
       "description": "Fonctions convexes sur ℝ.",
       "example": "x ↦ eˣ",
-      "notes": "En dimension finie, convexité rime avec continuité ; c'est faux en dimension infinie."
+      "notes": ""
     },
     {
       "id": "B",
-      "label": "Bornées",
+      "label": "Fonctions réelles bornées",
       "family": "monotonie",
-      "domain": "analyse réelle — fonctions ℝ → ℝ",
-      "property": "B = { f : ∃ M, ∀ x : |f(x)| ≤ M }",
+      "domain": "analyse réelle",
+      "property": "\\{\\, f : \\exists M,\\ \\forall x \\in \\mathbb{R} : |f(x)| \\le M \\,\\}",
       "description": "Fonctions bornées sur ℝ tout entier.",
       "example": "x ↦ sin(x)",
       "notes": ""
     },
     {
       "id": "MB",
-      "label": "Monot. et bornées",
+      "label": "Fonctions monotones et bornées",
       "family": "monotonie",
-      "domain": "analyse réelle — fonctions ℝ → ℝ",
-      "property": "MB = M ∩ B",
-      "description": "Fonctions monotones et bornées : un ensemble-construit, intersection de M et B.",
+      "domain": "analyse réelle",
+      "property": "\\{\\, f \\text{ monotone et bornée sur } \\mathbb{R} \\,\\}",
+      "description": "Ensemble-construit : intersection des monotones et des bornées.",
       "example": "x ↦ arctan(x)",
-      "notes": "Nœud construit à partir de deux autres : c'est l'opération d'intersection sur le graphe."
+      "notes": "Nœud construit à partir de deux autres ensembles."
     },
     {
       "id": "LIM",
-      "label": "Limites en ±∞",
+      "label": "Fonctions à limites finies en ±∞",
       "family": "monotonie",
-      "domain": "analyse réelle — fonctions ℝ → ℝ",
-      "property": "LIM = { f : lim(x→+∞) f(x) et lim(x→−∞) f(x) existent et sont finies }",
+      "domain": "analyse réelle",
+      "property": "\\{\\, f : \\lim_{x \\to +\\infty} f(x) \\text{ et } \\lim_{x \\to -\\infty} f(x) \\text{ existent et sont finies} \\,\\}",
       "description": "Fonctions admettant des limites finies aux deux infinis.",
       "example": "x ↦ arctan(x)",
       "notes": ""
     },
     {
       "id": "IVP",
-      "label": "Valeurs interm.",
+      "label": "Fonctions de Darboux",
       "family": "valeurs",
-      "domain": "analyse réelle — fonctions ℝ → ℝ",
-      "property": "IVP = { f : l'image par f de tout intervalle est un intervalle }",
-      "description": "Les fonctions de Darboux : celles qui prennent toutes les valeurs intermédiaires.",
+      "domain": "analyse réelle",
+      "property": "\\{\\, f : f(I) \\text{ est un intervalle pour tout intervalle } I \\,\\}",
+      "description": "Les fonctions qui prennent toutes les valeurs intermédiaires.",
       "example": "x ↦ sin(1/x) (f(0) = 0)",
-      "notes": "Contient toutes les continues (TVI) et toutes les dérivées (Darboux), mais aussi des fonctions discontinues."
+      "notes": ""
     },
     {
       "id": "CARDE",
-      "label": "Discontinuités dénombr.",
+      "label": "Fonctions à discontinuités dénombrables",
       "family": "intégrabilité",
-      "domain": "analyse réelle — fonctions ℝ → ℝ",
-      "property": "CARDE = { f : l'ensemble des points de discontinuité de f est au plus dénombrable }",
+      "domain": "analyse réelle",
+      "property": "\\{\\, f : \\{ x : f \\text{ discontinue en } x \\} \\text{ est au plus dénombrable} \\,\\}",
       "description": "Fonctions discontinues seulement en un nombre au plus dénombrable de points.",
-      "example": "x ↦ 1_{x>0} (échelon d'Heaviside) : une seule discontinuité",
+      "example": "x ↦ 1_{x>0} (échelon d'Heaviside)",
       "notes": ""
     },
     {
       "id": "PC",
-      "label": "Continues par morceaux",
+      "label": "Fonctions continues par morceaux",
       "family": "intégrabilité",
-      "domain": "analyse réelle — fonctions ℝ → ℝ",
-      "property": "PC = { f : sur chaque segment [a,b], f est continue par morceaux (un nombre fini de discontinuités de première espèce) }",
+      "domain": "analyse réelle",
+      "property": "\\{\\, f : \\text{sur chaque segment, un nombre fini de discontinuités de première espèce} \\,\\}",
       "description": "Fonctions continues par morceaux sur chaque segment.",
       "example": "x ↦ 1_{x>0}",
       "notes": ""
     },
     {
       "id": "RSEG",
-      "label": "Riemann-intégrables",
+      "label": "Fonctions Riemann-intégrables sur tout segment",
       "family": "intégrabilité",
-      "domain": "analyse réelle — fonctions ℝ → ℝ",
-      "property": "RSEG = { f : f est Riemann-intégrable sur chaque segment [a, b] }",
+      "domain": "analyse réelle",
+      "property": "\\{\\, f : \\forall [a, b] \\subset \\mathbb{R},\\ f \\text{ Riemann-intégrable sur } [a, b] \\,\\}",
       "description": "Fonctions Riemann-intégrables sur chaque segment.",
       "example": "x ↦ 1_{x>0}",
-      "notes": "Critère de Riemann : bornée et discontinue seulement sur un ensemble négligeable."
+      "notes": ""
     }
   ],
   "edges": [
@@ -239,49 +243,67 @@
       "to": "IVP",
       "kind": "inclusion",
       "theorem": "Théorème des valeurs intermédiaires",
-      "statement": "Si f est continue sur [a, b], son image contient tout l'intervalle [f(a), f(b)] : pour toute valeur c comprise entre f(a) et f(b), il existe x ∈ [a, b] tel que f(x) = c. L'image de tout intervalle est donc un intervalle.",
+      "statement": "Si \\( f \\) est continue sur \\( [a, b] \\), son image contient tout l'intervalle \\( [f(a), f(b)] \\) : pour toute valeur \\( c \\) comprise entre \\( f(a) \\) et \\( f(b) \\), il existe \\( x \\in [a, b] \\) tel que \\( f(x) = c \\).",
       "depth": "fondamental",
       "strict": true,
-      "strictnessExample": "x ↦ sin(1/x) (f(0)=0) possède la propriété des valeurs intermédiaires sans être continue en 0.",
+      "strictnessExample": "x ↦ sin(1/x) (f(0) = 0) prend toutes les valeurs intermédiaires sans être continue en 0.",
       "id": "e1"
+    },
+    {
+      "from": "C",
+      "to": "F",
+      "kind": "inclusion",
+      "theorem": "Définition",
+      "statement": "Une fonction réelle continue est en particulier une fonction de ℝ dans ℝ.",
+      "depth": "définitoire",
+      "id": "e2"
+    },
+    {
+      "from": "C",
+      "to": "FC",
+      "kind": "inclusion",
+      "theorem": "Définition",
+      "statement": "Une fonction réelle continue est une fonction continue.",
+      "depth": "définitoire",
+      "id": "e3"
     },
     {
       "from": "D",
       "to": "C",
       "kind": "inclusion",
       "theorem": "Une fonction dérivable est continue",
-      "statement": "Si f est dérivable en a, l'existence de f'(a) = lim(x→a) (f(x) − f(a)) / (x − a) impose lim(x→a) f(x) = f(a).",
+      "statement": "Si \\( f \\) est dérivable en \\( a \\), l'existence de \\( f'(a) = \\lim_{x \\to a} \\frac{f(x) - f(a)}{x - a} \\) impose \\( \\lim_{x \\to a} f(x) = f(a) \\).",
       "depth": "classique",
       "strict": true,
       "strictnessExample": "x ↦ |x| est continue sans être dérivable en 0.",
-      "id": "e2"
+      "id": "e4"
     },
     {
       "from": "C1",
       "to": "D",
       "kind": "inclusion",
       "theorem": "Définition de C¹",
-      "statement": "Une fonction de classe C¹ est dérivable, avec une dérivée continue.",
+      "statement": "Une fonction de classe C¹ est dérivable, de dérivée continue.",
       "depth": "définitoire",
-      "id": "e3"
+      "id": "e5"
     },
     {
       "from": "C1",
       "to": "C",
       "kind": "inclusion",
-      "theorem": "Par le théorème précédent",
-      "statement": "Une fonction C¹ est dérivable donc continue (composée de deux lignes du graphe).",
+      "theorem": "Chaîne définition + théorème",
+      "statement": "Une fonction C¹ est dérivable donc continue.",
       "depth": "immédiat",
-      "id": "e4"
+      "id": "e6"
     },
     {
       "from": "P",
       "to": "C1",
       "kind": "inclusion",
       "theorem": "Les polynômes sont lisses",
-      "statement": "Un polynôme est dérivable avec une dérivée polynomiale donc continue : il est C¹, et même C^∞.",
+      "statement": "Un polynôme est indéfiniment dérivable, à dérivées encore polynomiales donc continues : il est C¹, et même C^∞.",
       "depth": "définitoire",
-      "id": "e5"
+      "id": "e7"
     },
     {
       "from": "AFF",
@@ -290,16 +312,16 @@
       "theorem": "Définition",
       "statement": "Une fonction affine x ↦ ax + b est un polynôme de degré au plus 1.",
       "depth": "définitoire",
-      "id": "e6"
+      "id": "e8"
     },
     {
       "from": "AFF",
       "to": "L",
       "kind": "inclusion",
       "theorem": "Définition",
-      "statement": "|f(x) − f(y)| = |a| |x − y| : une fonction affine est lipschitzienne, de constante |a|.",
+      "statement": "Pour \\( f(x) = ax + b \\) : \\( |f(x) - f(y)| = |a|\\,|x - y| \\), lipschitzienne de constante \\( |a| \\).",
       "depth": "définitoire",
-      "id": "e7"
+      "id": "e9"
     },
     {
       "from": "DBR",
@@ -308,54 +330,35 @@
       "theorem": "Définition",
       "statement": "Une fonction à dérivée bornée est en particulier dérivable.",
       "depth": "définitoire",
-      "id": "e8"
+      "id": "e10"
     },
     {
       "from": "DBR",
       "to": "L",
       "kind": "inclusion",
       "theorem": "Théorème des accroissements finis (TAF)",
-      "statement": "Si f est dérivable sur ℝ et |f'| ≤ k, alors pour tous x, y, le TAF donne un c entre x et y tel que |f(x) − f(y)| = |f'(c)| |x − y| ≤ k |x − y| : f est lipschitzienne.",
+      "statement": "Si \\( f \\) est dérivable et \\( |f'| \\le k \\), alors pour tous \\( x, y \\) le TAF fournit \\( c \\) entre \\( x \\) et \\( y \\) tel que \\( |f(x) - f(y)| = |f'(c)|\\,|x - y| \\le k\\,|x - y| \\).",
       "depth": "fondamental",
       "strict": true,
       "strictnessExample": "x ↦ |x| est lipschitzienne sans être dérivable en 0.",
-      "id": "e9"
+      "id": "e11"
     },
     {
       "from": "L",
       "to": "UC",
       "kind": "inclusion",
-      "theorem": "Module d'incrément",
-      "statement": "Pour ε > 0, prendre δ = ε / k : si |x − y| < δ, alors |f(x) − f(y)| ≤ k |x − y| < ε. Une fonction k-lipschitzienne est uniformément continue, avec un δ indépendant du point.",
+      "theorem": "Module uniforme",
+      "statement": "Pour un k-lipschitzien, \\( \\delta = \\varepsilon / k \\) convient en tout point : le contrôle est déjà uniforme.",
       "depth": "immédiat",
-      "id": "e10"
+      "id": "e12"
     },
     {
       "from": "UC",
       "to": "C",
       "kind": "inclusion",
       "theorem": "Définition",
-      "statement": "L'uniforme continuité sur ℝ implique la continuité en tout point (le δ uniforme convient pour tout point).",
+      "statement": "L'uniforme continuité sur ℝ implique la continuité en tout point.",
       "depth": "immédiat",
-      "id": "e11"
-    },
-    {
-      "from": "UC",
-      "to": "UCSEG",
-      "kind": "inclusion",
-      "theorem": "Évident",
-      "statement": "Une fonction uniformément continue sur ℝ est uniformément continue sur chaque segment.",
-      "depth": "immédiat",
-      "id": "e12"
-    },
-    {
-      "from": "C",
-      "to": "UCSEG",
-      "kind": "equivalence",
-      "theorem": "Théorème de Heine",
-      "statement": "Une fonction continue sur ℝ est uniformément continue sur chaque segment [a, b] (Heine : continue sur un compact implique uniformément continue). Réciproquement, l'uniforme continuité sur chaque segment implique la continuité. Donc C = UCSEG exactement.",
-      "depth": "fondamental",
-      "notes": "L'égalité est fausse si on remplace « chaque segment » par « ℝ tout entier » : ℝ n'est pas compact.",
       "id": "e13"
     },
     {
@@ -363,7 +366,7 @@
       "to": "RSEG",
       "kind": "inclusion",
       "theorem": "Continues ⇒ intégrables",
-      "statement": "Une fonction continue est bornée et Riemann-intégrable sur chaque segment : l'uniforme continuité (Heine) sur le compact contrôle l'oscillation donc les sommes de Riemann.",
+      "statement": "Sur chaque segment, une fonction continue y est bornée et Riemann-intégrable : l'uniforme continuité sur le compact contrôle l'oscillation des sommes de Riemann.",
       "depth": "classique",
       "id": "e14"
     },
@@ -372,7 +375,7 @@
       "to": "RSEG",
       "kind": "inclusion",
       "theorem": "Monotone ⇒ intégrable (Riemann)",
-      "statement": "Une fonction monotone sur [a, b] (à valeurs bornées) y est Riemann-intégrable : le critère de Darboux est vérifié car l'oscillation sur une subdivision contrastée est contrôlée par la variation totale.",
+      "statement": "Une fonction monotone est Riemann-intégrable sur chaque segment : le critère de Darboux est vérifié, la variation totale contrôle l'oscillation sur une subdivision.",
       "depth": "classique",
       "id": "e15"
     },
@@ -381,7 +384,7 @@
       "to": "RSEG",
       "kind": "inclusion",
       "theorem": "Par morceaux ⇒ intégrable",
-      "statement": "Une fonction continue par morceaux sur un segment est Riemann-intégrable : on découpe le segment au niveau des discontinuités et on intègre morceau par morceau.",
+      "statement": "Sur chaque segment, on découpe au niveau des discontinuités et on intègre morceau par morceau.",
       "depth": "classique",
       "id": "e16"
     },
@@ -390,7 +393,7 @@
       "to": "CARDE",
       "kind": "inclusion",
       "theorem": "Discontinuités d'une fonction monotone",
-      "statement": "Une fonction monotone n'a que des discontinuités de première espèce, et il y en a au plus une infinité dénombrable : chaque saut contient dans son image un intervalle ouvert, et ces intervalles sont deux à deux disjoints, donc chacun contient un rationnel distinct.",
+      "statement": "Les discontinuités d'une fonction monotone sont des sauts deux à deux disjoints ; chacun contient un rationnel distinct : il y en a au plus une infinité dénombrable.",
       "depth": "classique",
       "id": "e17"
     },
@@ -399,7 +402,7 @@
       "to": "CARDE",
       "kind": "inclusion",
       "theorem": "Définition",
-      "statement": "Au plus un nombre fini de discontinuités par segment : au plus dénombrable en tout (réunion dénombrable d'ensembles finis).",
+      "statement": "Un nombre fini de discontinuités par segment, et dénombrablement de segments : au plus dénombrable en tout.",
       "depth": "immédiat",
       "id": "e18"
     },
@@ -408,7 +411,7 @@
       "to": "C",
       "kind": "inclusion",
       "theorem": "Convexe ⇒ continue",
-      "statement": "Une fonction convexe sur un intervalle ouvert de ℝ est continue : sur tout sous-intervalle, elle est coincée entre deux fonctions affines (les cordes), ce qui borde son oscillation.",
+      "statement": "Sur tout intervalle ouvert, une fonction convexe est coincée entre deux de ses cordes affines : l'oscillation sur un sous-intervalle est bornée, d'où la continuité.",
       "depth": "classique",
       "notes": "Mieux : localement lipschitzienne. L'analogue est faux en dimension infinie.",
       "id": "e19"
@@ -418,7 +421,7 @@
       "to": "DEC",
       "kind": "inclusion",
       "theorem": "Dérivée d'une fonction convexe",
-      "statement": "Une fonction convexe admet des dérivées à gauche et à droite (croissantes), égales sauf en au plus un nombre dénombrable de points (les « angles » de la courbe).",
+      "statement": "Une fonction convexe admet des dérivées latérales croissantes, égales sauf en au plus un ensemble dénombrable de points (les « angles » de la courbe).",
       "depth": "classique",
       "id": "e20"
     },
@@ -427,9 +430,9 @@
       "to": "IVP",
       "kind": "inclusion",
       "theorem": "Théorème de Darboux",
-      "statement": "Une dérivée, même discontinue, satisfait la propriété des valeurs intermédiaires : si g = f' pour un certain f dérivable, alors g prend toute valeur comprise entre deux de ses valeurs.",
+      "statement": "Une dérivée, même discontinue, satisfait la propriété des valeurs intermédiaires : si \\( g = f' \\), alors \\( g \\) prend toute valeur comprise entre deux de ses valeurs.",
       "depth": "profond",
-      "notes": "C'est pourquoi une dérivée ne peut jamais sauter : la discontinuité d'une dérivée est obligatoirement d'oscillation.",
+      "notes": "Une dérivée ne peut donc jamais sauter : sa discontinuité est obligatoirement oscillante.",
       "id": "e21"
     },
     {
@@ -437,10 +440,10 @@
       "to": "LIM",
       "kind": "inclusion",
       "theorem": "Théorème de la limite monotone",
-      "statement": "Une fonction croissante et majorée admet une limite finie en +∞ (les sections croissantes convergent vers leur borne supérieure) ; de même en −∞. Donc une fonction monotone bornée admet des limites finies aux deux infinis.",
+      "statement": "Une fonction croissante majorée converge vers sa borne supérieure : \\( \\lim_{x \\to +\\infty} f(x) = \\sup f \\). Une fonction monotone bornée admet donc des limites finies aux deux infinis.",
       "depth": "fondamental",
       "strict": true,
-      "strictnessExample": "x ↦ sin(x) / (1 + x²) tend vers 0 aux deux infinis sans être monotone.",
+      "strictnessExample": "x ↦ sin(x)/(1 + x²) tend vers 0 aux deux infinis sans être monotone.",
       "id": "e22"
     },
     {
@@ -448,7 +451,7 @@
       "to": "M",
       "kind": "inclusion",
       "theorem": "Définition",
-      "statement": "MB = M ∩ B : une fonction monotone et bornée est monotone.",
+      "statement": "Un ensemble-construit est inclus dans ses composants.",
       "depth": "définitoire",
       "id": "e23"
     },
@@ -457,18 +460,9 @@
       "to": "B",
       "kind": "inclusion",
       "theorem": "Définition",
-      "statement": "MB = M ∩ B : une fonction monotone et bornée est bornée.",
+      "statement": "Un ensemble-construit est inclus dans ses composants.",
       "depth": "définitoire",
       "id": "e24"
-    },
-    {
-      "from": "LIM",
-      "to": "B",
-      "kind": "inclusion",
-      "theorem": "Limites ⇒ bornée",
-      "statement": "Si f admet une limite finie ℓ (resp. ℓ') en +∞ (resp. −∞), alors f est proche de ℓ en dehors d'un segment, et bornée sur ce segment (fonction continue non requise : un segment suffit pour borner l'oscillation), donc f est bornée sur ℝ.",
-      "depth": "facile",
-      "id": "e25"
     },
     {
       "from": "C",
@@ -478,7 +472,7 @@
       "statement": "La continuité n'implique pas la monotonie.",
       "depth": "facile",
       "counterexample": "x ↦ sin(x) : continue et oscillante.",
-      "id": "e26"
+      "id": "e25"
     },
     {
       "from": "C",
@@ -487,28 +481,28 @@
       "theorem": "Une continue non lipschitzienne",
       "statement": "La continuité n'implique pas la condition de Lipschitz.",
       "depth": "classique",
-      "counterexample": "x ↦ √|x| : continue sur ℝ, mais (f(h) − f(0)) / h = 1/√h → +∞ quand h → 0⁺ : aucune constante de Lipschitz ne fonctionne près de 0.",
-      "id": "e27"
+      "counterexample": "x ↦ √|x| : continue, mais (f(h) − f(0))/h = 1/√h → +∞ : aucune constante de Lipschitz ne fonctionne près de 0.",
+      "id": "e26"
     },
     {
       "from": "C",
       "to": "UC",
       "kind": "anti",
       "theorem": "Une continue non uniformément continue",
-      "statement": "La continuité sur ℝ tout entier n'implique pas l'uniforme continuité (ℝ n'est pas compact).",
+      "statement": "La continuité sur ℝ tout entier n'implique pas l'uniforme continuité.",
       "depth": "classique",
-      "counterexample": "x ↦ x² : |x² − y²| = |x + y| |x − y|, qui devient grand même pour un petit écart |x − y| fixé quand x et y grandissent : aucun δ ne convient pour tous les points à la fois.",
-      "id": "e28"
+      "counterexample": "x ↦ x² : |x² − y²| = |x + y|·|x − y| devient grand même pour un petit écart fixé quand x et y grandissent.",
+      "id": "e27"
     },
     {
       "from": "C",
       "to": "B",
       "kind": "anti",
       "theorem": "Une continue non bornée",
-      "statement": "La continuité n'implique pas la bornitude sur ℝ entier.",
+      "statement": "La continuité n'implique pas la bornitude sur ℝ.",
       "depth": "facile",
       "counterexample": "x ↦ x : continue et non bornée.",
-      "id": "e29"
+      "id": "e28"
     },
     {
       "from": "L",
@@ -518,7 +512,7 @@
       "statement": "La condition de Lipschitz n'implique pas la dérivabilité.",
       "depth": "facile",
       "counterexample": "x ↦ |x| : 1-lipschitzienne, non dérivable en 0.",
-      "id": "e30"
+      "id": "e29"
     },
     {
       "from": "L",
@@ -528,7 +522,7 @@
       "statement": "Lipschitz n'implique pas bornée sur ℝ.",
       "depth": "facile",
       "counterexample": "x ↦ x : 1-lipschitzienne, non bornée.",
-      "id": "e31"
+      "id": "e30"
     },
     {
       "from": "D",
@@ -537,8 +531,8 @@
       "theorem": "Une dérivable non lipschitzienne",
       "statement": "La dérivabilité n'implique pas la condition de Lipschitz.",
       "depth": "classique",
-      "counterexample": "f(x) = x² sin(1/x²), f(0) = 0 : dérivable partout, mais f'(x) = 2x sin(1/x²) − (2/x) cos(1/x²) est non bornée près de 0.",
-      "id": "e32"
+      "counterexample": "f(x) = x² sin(1/x²), f(0) = 0 : dérivable partout, de dérivée \\( f'(x) = 2x\\sin(1/x^2) - (2/x)\\cos(1/x^2) \\) non bornée près de 0.",
+      "id": "e31"
     },
     {
       "from": "D",
@@ -547,8 +541,8 @@
       "theorem": "Une dérivée qui explose",
       "statement": "La dérivabilité n'implique pas une dérivée bornée.",
       "depth": "classique",
-      "counterexample": "Même exemple : f(x) = x² sin(1/x²), f(0) = 0, de dérivée non bornée près de 0.",
-      "id": "e33"
+      "counterexample": "Même exemple : x² sin(1/x²), de dérivée non bornée près de 0.",
+      "id": "e32"
     },
     {
       "from": "M",
@@ -558,28 +552,28 @@
       "statement": "La monotonie n'implique pas la continuité.",
       "depth": "facile",
       "counterexample": "L'échelon d'Heaviside x ↦ 1_{x>0} : croissante, discontinue en 0.",
-      "id": "e34"
+      "id": "e33"
     },
     {
       "from": "M",
       "to": "DEC",
       "kind": "anti",
       "theorem": "Fonction de Cantor",
-      "statement": "Une fonction monotone (même continue !) peut ne pas être dérivable sur un ensemble non dénombrable de points.",
+      "statement": "Une fonction monotone, même continue, peut ne pas être dérivable sur un ensemble non dénombrable de points.",
       "depth": "profond",
-      "counterexample": "La fonction de Cantor–Lebesgue (« l'escalier du diable ») : croissante, continue sur [0,1] (prolongée constantes sur ℝ), non dérivable sur une partie non dénombrable de l'ensemble de Cantor.",
-      "notes": "Il reste vrai (Lebesgue, plus profond) qu'une fonction monotone est dérivable en dehors d'un ensemble négligeable : « négligeable (mesure nulle) » est plus faible que « au plus dénombrable ». L'ensemble de Cantor est la frontière exacte entre les deux.",
-      "id": "e35"
+      "counterexample": "L'escalier du diable (fonction de Cantor–Lebesgue) : croissante, continue, non dérivable sur une partie non dénombrable de l'ensemble de Cantor.",
+      "notes": "Lebesgue : monotone ⇒ dérivable sauf sur un ensemble négligeable, mais « négligeable » est plus fin que « au plus dénombrable » : l'ensemble de Cantor en est exactement la frontière.",
+      "id": "e34"
     },
     {
       "from": "DER",
       "to": "C",
       "kind": "anti",
       "theorem": "Une dérivée discontinue",
-      "statement": "Une fonction qui est une dérivée n'est pas nécessairement continue (mais elle ne peut pas sauter : voir Darboux).",
+      "statement": "Une fonction qui est une dérivée n'est pas nécessairement continue (mais ne peut pas sauter : Darboux).",
       "depth": "profond",
-      "counterexample": "g(x) = 2x sin(1/x) − cos(1/x), g(0) = 0 : c'est la dérivée de f(x) = x² sin(1/x) (f(0) = 0), discontinue en 0.",
-      "id": "e36"
+      "counterexample": "g(x) = 2x sin(1/x) − cos(1/x), g(0) = 0 : la dérivée de f(x) = x² sin(1/x), discontinue en 0.",
+      "id": "e35"
     },
     {
       "from": "IVP",
@@ -588,8 +582,8 @@
       "theorem": "Une Darboux non continue",
       "statement": "La propriété des valeurs intermédiaires n'implique pas la continuité.",
       "depth": "classique",
-      "counterexample": "x ↦ sin(1/x) avec f(0) = 0 : l'image de tout intervalle contenant 0 est [−1, 1] tout entier, mais l'image d'un intervalle est toujours un intervalle : la propriété des valeurs intermédiaires est satisfaite, f est pourtant discontinue en 0.",
-      "id": "e37"
+      "counterexample": "x ↦ sin(1/x) avec f(0) = 0 : l'image de tout intervalle contenant 0 est [−1, 1], mais f est discontinue en 0.",
+      "id": "e36"
     },
     {
       "from": "RSEG",
@@ -599,27 +593,27 @@
       "statement": "L'intégrabilité au sens de Riemann sur chaque segment n'implique pas la continuité.",
       "depth": "facile",
       "counterexample": "L'échelon d'Heaviside est Riemann-intégrable sur chaque segment, discontinue en 0.",
-      "id": "e38"
+      "id": "e37"
     },
     {
       "from": "UC",
       "to": "L",
       "kind": "anti",
       "theorem": "Une uniformément continue non lipschitzienne",
-      "statement": "L'uniforme continuité n'implique pas la condition de Lipschitz (elle tolère des dérivées qui explosent lentement).",
+      "statement": "L'uniforme continuité n'implique pas la condition de Lipschitz.",
       "depth": "classique",
-      "counterexample": "x ↦ √|x| : uniformément continue sur ℝ (croissance sous-linéaire, dérivée qui explose mais de moins en moins), sans constante de Lipschitz possible près de 0.",
-      "id": "e39"
+      "counterexample": "x ↦ √|x| : uniformément continue, sans constante de Lipschitz possible près de 0.",
+      "id": "e38"
     },
     {
       "from": "P",
       "to": "AFF",
       "kind": "anti",
       "theorem": "Un polynôme non affine",
-      "statement": "Presque tous les polynômes ne sont pas affines : le degré est un échelon.",
+      "statement": "Presque tous les polynômes ne sont pas affines.",
       "depth": "définitoire",
       "counterexample": "x ↦ x².",
-      "id": "e40"
+      "id": "e39"
     },
     {
       "from": "B",
@@ -629,7 +623,7 @@
       "statement": "La bornitude n'implique pas l'existence de limites aux infinis.",
       "depth": "facile",
       "counterexample": "x ↦ sin(x) : bornée, sans limite en +∞.",
-      "id": "e41"
+      "id": "e40"
     }
   ]
 }
