@@ -1,7 +1,7 @@
 {
   "meta": {
     "name": "Graphe des théorèmes",
-    "version": "0.16.5",
+    "version": "0.18.0",
     "created": "2026-11-23",
     "language": "fr",
     "description": "Chaque nœud est un ensemble (de fonctions, d'entiers, de matrices…), chaque arête est un théorème : inclusion (A ⊆ B) ou non-inclusion avec contre-exemple (A ⊄ B).",
@@ -3511,6 +3511,676 @@
       "description": "L'espace de Sobolev W^{1,2}(ℝ) : les fonctions L² dont la dérivée faible est L².",
       "example": "e^{-x²} : la fonction et sa dérivée faible sont L²",
       "notes": "Membre concret de l'échelle « Espaces de Sobolev » et espace de Hilbert (v0.16.3)."
+    },
+    {
+      "id": "UCT",
+      "label": "Fonctions uniformément continues sur tout segment",
+      "family": "continuité",
+      "domain": "analyse réelle",
+      "property": "\\{\\, f : \\forall [a,b],\\ f|_{[a,b]} \\text{ uniformément continue} \\,\\}",
+      "description": "Les fonctions uniformément continues sur chacun de leurs segments (pas forcément sur ℝ tout entier).",
+      "example": "x ↦ x² (uniformément continue sur chaque segment, pas sur ℝ)",
+      "notes": "Étage local de la tour de Heine : le confort de l'uniforme, garanti segment par segment (v0.17.0)."
+    },
+    {
+      "id": "ATJ",
+      "label": "Fonctions atteignant leurs bornes sur tout segment",
+      "family": "bornes",
+      "domain": "analyse réelle",
+      "property": "\\{\\, f : \\forall [a,b],\\ \\exists x_m, x_M \\in [a,b] : f(x_m) = \\inf_{[a,b]} f,\\ f(x_M) = \\sup_{[a,b]} f \\,\\}",
+      "description": "Fonctions dont la borne inférieure et la borne supérieure sont atteintes sur chaque segment.",
+      "example": "x ↦ sin(x)",
+      "notes": "Le théorème des bornes atteintes, exigé segment par segment (v0.17.0)."
+    },
+    {
+      "id": "INJ",
+      "label": "Fonctions continues injectives sur un intervalle",
+      "family": "valeurs",
+      "domain": "analyse réelle",
+      "property": "\\{\\, f : I \\to \\mathbb{R},\\ I \\text{ intervalle},\\ f \\text{ continue et injective sur } I \\,\\}",
+      "description": "Les injections continues définies sur un intervalle de ℝ.",
+      "example": "x ↦ eˣ",
+      "notes": "Une injection continue sur un intervalle est déjà très rigide (v0.17.0)."
+    },
+    {
+      "id": "REG",
+      "label": "Fonctions réglées",
+      "family": "régularité réelle",
+      "domain": "analyse réelle",
+      "property": "\\{\\, f : \\forall [a,b],\\ \\exists (e_n) \\text{ en escalier},\\ e_n \\to f \\text{ uniformément sur } [a,b] \\,\\}",
+      "description": "Les limites uniformes de fonctions en escalier, segment par segment.",
+      "example": "x ↦ |x| ; l'échelon d'Heaviside",
+      "notes": "Le socle discret de l'intégration (v0.17.0)."
+    },
+    {
+      "id": "CWF",
+      "label": "Fonctions continues sur un fermé de ℝ",
+      "family": "continuité",
+      "domain": "analyse réelle",
+      "property": "\\{\\, f : F \\to \\mathbb{R},\\ F \\text{ fermé de } \\mathbb{R},\\ f \\text{ continue} \\,\\}",
+      "description": "Les fonctions continues définies sur une partie fermée de ℝ.",
+      "example": "l'identité sur [1, +∞[",
+      "notes": "Le décor du théorème de prolongement de Tietze (v0.17.0)."
+    },
+    {
+      "id": "PRC",
+      "label": "Fonctions prolongeables en une fonction continue sur ℝ",
+      "family": "continuité",
+      "domain": "analyse réelle",
+      "property": "\\{\\, f : F \\to \\mathbb{R},\\ F \\text{ fermé},\\ \\exists g \\text{ continue sur } \\mathbb{R} : g|_F = f \\,\\}",
+      "description": "Les fonctions définies sur un fermé qui se prolongent en une fonction continue sur ℝ tout entier.",
+      "example": "f(n) = n sur ℤ, prolongée par l'identité",
+      "notes": "Tietze en dit que toutes les continues sur fermé s'y retrouvent (v0.17.0)."
+    },
+    {
+      "id": "SCI",
+      "label": "Fonctions semi-continues inférieurement",
+      "family": "bornes",
+      "domain": "analyse réelle",
+      "property": "\\{\\, f : \\forall x,\\ \\liminf_{y \\to x} f(y) \\ge f(x) \\,\\}",
+      "description": "Les fonctions dont la valeur en chaque point est bien placée sous les valeurs voisines.",
+      "example": "l'indicatrice des irrationnels",
+      "notes": "La demi-continuité : le confort d'une borne, sans l'intégrité de la continuité (v0.17.0)."
+    },
+    {
+      "id": "ABI",
+      "label": "Fonctions atteignant leur borne inférieure sur tout segment",
+      "family": "bornes",
+      "domain": "analyse réelle",
+      "property": "\\{\\, f : \\forall [a,b],\\ \\exists x_m \\in [a,b] : f(x_m) = \\inf_{[a,b]} f \\,\\}",
+      "description": "Fonctions qui touchent leur fond sur chaque segment.",
+      "example": "x ↦ x (l'inf de [0,1] est atteint en 0)",
+      "notes": "Le pacte de la semi-continuité : une sci touche toujours le fond (v0.17.0)."
+    },
+    {
+      "id": "CCH",
+      "label": "Fonctions Cauchy-continues",
+      "family": "continuité",
+      "domain": "analyse réelle",
+      "property": "\\{\\, f : \\text{toute suite de Cauchy } (x_n) \\text{ est envoyée sur une suite } (f(x_n)) \\text{ de Cauchy} \\,\\}",
+      "description": "Les fonctions qui respectent les suites de Cauchy.",
+      "example": "x ↦ x²",
+      "notes": "L'uniformité, vue du côté de Cauchy (v0.17.0)."
+    },
+    {
+      "id": "DERO",
+      "label": "Dérivées bornées",
+      "family": "dérivabilité",
+      "domain": "analyse réelle",
+      "property": "\\{\\, g : \\exists f \\text{ dérivable},\\ g = f',\\ \\exists M : |g| \\le M \\,\\}",
+      "description": "Les dérivées (de fonctions dérivables) qui restent bornées.",
+      "example": "x ↦ sin(x) (dérivée de x ↦ −cos x)",
+      "notes": "Une dérivée bornée n'est pas toujours Riemann-intégrable : Volterra (v0.17.0)."
+    },
+    {
+      "id": "CANT",
+      "label": "Escaliers singuliers",
+      "family": "monotonie",
+      "domain": "analyse réelle",
+      "property": "\\{\\, f \\text{ croissante continue} : f' = 0 \\text{ presque partout} \\,\\}",
+      "description": "Les fonctions croissantes continues qui ne bougent presque jamais mais montent quand même.",
+      "example": "l'escalier de Cantor (prolongé constant hors de [0,1])",
+      "notes": "La star des contre-exemples : singulier, continu, croissant, jamais constant (v0.17.0)."
+    },
+    {
+      "id": "ACN",
+      "label": "Fonctions absolument continues sur tout segment",
+      "family": "régularité réelle",
+      "domain": "analyse réelle",
+      "property": "\\{\\, f : \\forall [a,b],\\ \\forall \\varepsilon > 0,\\ \\exists \\delta > 0 : \\text{intervalles disjoints de longueur totale} < \\delta \\Rightarrow \\text{oscillations totales} < \\varepsilon \\,\\}",
+      "description": "Les fonctions absolument continues sur chaque segment.",
+      "example": "x ↦ x²",
+      "notes": "La vraie classe du théorème fondamental : AC = les primitives (v0.17.0)."
+    },
+    {
+      "id": "ACZ",
+      "label": "Fonctions absolument continues à dérivée nulle p.p.",
+      "family": "régularité réelle",
+      "domain": "théorie de la mesure",
+      "property": "\\{\\, f \\in \\mathrm{AC} : f' = 0 \\text{ presque partout} \\,\\}",
+      "description": "Le croisement de l'absolue continuité et de la nullité presque partout.",
+      "example": "les constantes (et elles seules, c'est le théorème)",
+      "notes": "L'aiguillage qui dit presque partout + absolument continu égal exactement nul (v0.17.0)."
+    },
+    {
+      "id": "DNC",
+      "label": "Fonctions dérivables à dérivée nulle partout",
+      "family": "dérivabilité",
+      "domain": "analyse réelle",
+      "property": "\\{\\, f \\text{ dérivable} : f' = 0 \\,\\}",
+      "description": "Les fonctions dérivables immobiles.",
+      "example": "les constantes",
+      "notes": "L'échelon strict du théorème des dérivées nulles (v0.17.0)."
+    },
+    {
+      "id": "SYM",
+      "label": "Fonctions à dérivée symétrique finie",
+      "family": "dérivabilité",
+      "domain": "analyse réelle",
+      "property": "\\{\\, f : \\forall x,\\ \\lim_{h \\to 0} \\frac{f(x+h) - f(x-h)}{2h} \\text{ existe} \\,\\}",
+      "description": "Les fonctions dont la dérivée symétrique existe partout.",
+      "example": "x ↦ |x| (dérivée symétrique nulle en 0)",
+      "notes": "La dérivée des pauvres : elle existe plus souvent que la vraie (v0.17.0)."
+    },
+    {
+      "id": "DCX",
+      "label": "Fonctions dérivables à dérivée croissante",
+      "family": "dérivabilité",
+      "domain": "analyse réelle",
+      "property": "\\{\\, f \\text{ dérivable} : f' \\text{ croissante} \\,\\}",
+      "description": "Les fonctions dérivables dont la dérivée ne redescend jamais.",
+      "example": "x ↦ x²",
+      "notes": "Le masque de la convexité sous condition de dérivabilité (v0.17.0)."
+    },
+    {
+      "id": "DLR",
+      "label": "Fonctions à dérivées latérales partout",
+      "family": "dérivabilité",
+      "domain": "analyse réelle",
+      "property": "\\{\\, f : \\forall x,\\ f'_g(x) \\text{ et } f'_d(x) \\text{ existent} \\,\\}",
+      "description": "Les fonctions qui admettent des pentes à gauche et à droite en chaque point.",
+      "example": "x ↦ |x| (−1 et 1 en 0)",
+      "notes": "Le confort directionnel des convexes (v0.17.0)."
+    },
+    {
+      "id": "LLH",
+      "label": "Fonctions localement lipschitziennes",
+      "family": "dérivabilité",
+      "domain": "analyse réelle",
+      "property": "\\{\\, f : \\forall x,\\ \\exists r, k : |f(y) - f(z)| \\le k|y - z| \\text{ sur } ]x - r, x + r[ \\,\\}",
+      "description": "Les fonctions lipschitziennes dans un voisinage de chaque point.",
+      "example": "x ↦ x²",
+      "notes": "La régularité des convexes et des solutions d'équations différentielles ordinaires (v0.17.0)."
+    },
+    {
+      "id": "LCV",
+      "label": "Fonctions log-convexes",
+      "family": "convexité",
+      "domain": "analyse réelle",
+      "property": "\\{\\, f > 0 : \\ln f \\text{ convexe} \\,\\}",
+      "description": "Les fonctions positives dont le logarithme est convexe.",
+      "example": "x ↦ e^{x²}",
+      "notes": "Plus forte que la convexité : c'est la fermeture de Bohr-Mollerup (v0.17.0)."
+    },
+    {
+      "id": "SMB",
+      "label": "Suites monotones bornées",
+      "family": "suites",
+      "domain": "analyse des suites réelles",
+      "property": "\\{\\, (u_n) \\text{ croissante ou décroissante} : \\exists m, M : m \\le u_n \\le M \\,\\}",
+      "description": "Les suites monotones qui restent encadrées.",
+      "example": "u_n = (1 + 1/n)^n (croissante bornée)",
+      "notes": "Le théorème de la limite monotone en personne (v0.17.0)."
+    },
+    {
+      "id": "ADJ",
+      "label": "Suites adjacentes",
+      "family": "suites",
+      "domain": "analyse des suites réelles",
+      "property": "\\{\\, (u_n) \\text{ croissante} : \\exists (v_n) \\text{ décroissante},\\ v_n - u_n \\to 0 \\,\\}",
+      "description": "Les suites croissantes serrées par une décroissante dont l'écart tend vers 0.",
+      "example": "les encadrements de e : u_n = Σ 1/k! serrée par v_n = u_n + 1/(n·n!)",
+      "notes": "Le théorème des suites adjacentes : deux tours qui se rejoignent (v0.17.0)."
+    },
+    {
+      "id": "CAUR",
+      "label": "Suites de Cauchy réelles",
+      "family": "suites",
+      "domain": "analyse des suites réelles",
+      "property": "\\{\\, (u_n) : \\forall \\varepsilon > 0,\\ \\exists N,\\ \\forall p,q > N : |u_p - u_q| < \\varepsilon \\,\\}",
+      "description": "Les suites dont les termes se resserrent indéfiniment.",
+      "example": "les décimales successives de √2",
+      "notes": "Le critère de Cauchy : ℝ est complet (v0.17.0)."
+    },
+    {
+      "id": "RCL",
+      "label": "Suites récurrentes linéaires stables",
+      "family": "suites",
+      "domain": "analyse des suites réelles",
+      "property": "\\{\\, (u_n) : u_n = a_1 u_{n-1} + \\cdots + a_k u_{n-k},\\ \\text{racines du polynôme caractéristique de module} < 1 \\,\\}",
+      "description": "Les suites récurrentes dont la mémoire initiale s'évapore.",
+      "example": "u_n = u_{n-1}/2 (vers 0)",
+      "notes": "La stabilité des récurrences : les racines petites effacent les débuts (v0.17.0)."
+    },
+    {
+      "id": "ABS",
+      "label": "Séries absolument convergentes",
+      "family": "séries",
+      "domain": "analyse de séries",
+      "property": "\\{\\, (a_n) : \\sum_n |a_n| < \\infty \\,\\}",
+      "description": "Les séries dont la valeur absolue se laisse sommer.",
+      "example": "Σ 1/n²",
+      "notes": "L'absolu, la morale des séries : Riemann y greffe la commutativité (v0.17.0)."
+    },
+    {
+      "id": "COMM",
+      "label": "Séries commutativement convergentes",
+      "family": "séries",
+      "domain": "analyse de séries",
+      "property": "\\{\\, (a_n) : \\text{toute réarrangée } \\sum a_{\\sigma(n)} \\text{ converge} \\,\\}",
+      "description": "Les séries qui convergent quel que soit l'ordre des termes.",
+      "example": "Σ 1/n²",
+      "notes": "Riemann : c'est exactement l'absolu (v0.17.0)."
+    },
+    {
+      "id": "CMP",
+      "label": "Séries à termes positifs dominées par une série convergente",
+      "family": "séries",
+      "domain": "analyse de séries",
+      "property": "\\{\\, (a_n) \\ge 0 : \\exists (b_n),\\ a_n \\le b_n,\\ \\sum b_n \\text{ converge} \\,\\}",
+      "description": "Les séries positives prises en tenaille par une série convergente.",
+      "example": "Σ 1/(n² + n), dominée par Σ 1/n²",
+      "notes": "La comparaison, l'outil n°1 des séries (v0.17.0)."
+    },
+    {
+      "id": "ALTG",
+      "label": "Séries alternées décroissantes",
+      "family": "séries",
+      "domain": "analyse de séries",
+      "property": "\\{\\, (a_n) \\downarrow 0 : \\text{on considère } \\sum (-1)^n a_n \\,\\}",
+      "description": "Les séries alternées dont le terme général décroît vers 0.",
+      "example": "Σ (−1)^n/n",
+      "notes": "Leibniz : l'alternance pardonne la lenteur (v0.17.0)."
+    },
+    {
+      "id": "RAC",
+      "label": "Séries à limite radicielle < 1",
+      "family": "séries",
+      "domain": "analyse de séries",
+      "property": "\\{\\, (a_n) : \\limsup |a_n|^{1/n} < 1 \\,\\}",
+      "description": "Les séries dont la racine n-ième reste loin de 1.",
+      "example": "Σ 1/2^n",
+      "notes": "La règle de Cauchy en limsup : plus fine que d'Alembert (v0.17.0)."
+    },
+    {
+      "id": "AD1",
+      "label": "Séries à sommes partielles bornées et terme monotone vers 0",
+      "family": "séries",
+      "domain": "analyse de séries",
+      "property": "\\{\\, (a_n b_n) : |\\sum_{k \\le n} a_k| \\le M,\\ b_n \\downarrow 0 \\,\\}",
+      "description": "La classe d'Abel-Dirichlet : oscillations bornées amorties.",
+      "example": "Σ (−1)^n/n",
+      "notes": "Abel-Dirichlet : le lemme des oscillations regroupées (v0.17.0)."
+    },
+    {
+      "id": "TAU1",
+      "label": "Séries Cesàro-sommables à terme o(1/n)",
+      "family": "séries",
+      "domain": "analyse de séries",
+      "property": "\\{\\, (a_n) : \\text{les moyennes de Cesàro convergent et } a_n = o(1/n) \\,\\}",
+      "description": "Les séries dont les moyennes convergent et dont le terme descend plus vite que 1/n.",
+      "example": "Σ 1/n^{3/2}",
+      "notes": "Tauber (1897) : le petit o rachète les moyennes (v0.17.0)."
+    },
+    {
+      "id": "BER1",
+      "label": "Séries de Bertrand convergentes",
+      "family": "séries",
+      "domain": "analyse de séries",
+      "property": "\\{\\, (a_n) : a_n = 1/(n^\\alpha (\\ln n)^\\beta),\\ \\alpha > 1 \\text{ ou } \\alpha = 1,\\ \\beta > 1 \\,\\}",
+      "description": "La moitié convergente de la frontière de Bertrand.",
+      "example": "Σ 1/(n (ln n)²)",
+      "notes": "La frontière fine entre convergence et divergence (v0.17.0)."
+    },
+    {
+      "id": "BER2",
+      "label": "Séries de Bertrand divergentes",
+      "family": "séries",
+      "domain": "analyse de séries",
+      "property": "\\{\\, (a_n) : a_n = 1/(n^\\alpha (\\ln n)^\\beta),\\ \\alpha < 1 \\text{ ou } \\alpha = 1,\\ \\beta \\le 1 \\,\\}",
+      "description": "La moitié divergente de la frontière de Bertrand.",
+      "example": "Σ 1/(n ln n)",
+      "notes": "L'autre côté de la frontière (v0.17.0)."
+    },
+    {
+      "id": "VAR1",
+      "label": "Fonctions à variation bornée sur tout segment",
+      "family": "régularité réelle",
+      "domain": "analyse réelle",
+      "property": "\\{\\, f : \\forall [a,b],\\ V(f,[a,b]) = \\sup \\sum |f(x_{i+1}) - f(x_i)| < \\infty \\,\\}",
+      "description": "Les fonctions dont l'oscillation totale sur chaque segment est finie.",
+      "example": "x ↦ x ; l'échelon d'Heaviside",
+      "notes": "Le continent de Jordan : décomposables en deux montées (v0.17.0)."
+    },
+    {
+      "id": "W11",
+      "label": "Fonctions W^{1,1} sur le segment",
+      "family": "régularité réelle",
+      "domain": "théorie de la mesure",
+      "property": "\\{\\, f \\in L^1([a,b]) : \\exists g \\in L^1,\\ \\forall \\varphi \\text{ test},\\ \\int f \\varphi' = -\\int g \\varphi \\,\\}",
+      "description": "Le premier étage de l'échelle de Sobolev en dimension 1.",
+      "example": "x ↦ x²",
+      "notes": "L'énoncé faible de l'absolue continuité (v0.17.0)."
+    },
+    {
+      "id": "PRI",
+      "label": "Primitives de Riemann-intégrables",
+      "family": "intégrabilité",
+      "domain": "analyse réelle",
+      "property": "\\{\\, F : \\exists g \\text{ Riemann-intégrable},\\ F(x) = F(a) + \\int_a^x g \\,\\}",
+      "description": "Les primitives au sens fort : intégrales indéfinies de Riemann-intégrables.",
+      "example": "x ↦ x = 0 + ∫₀ˣ 1",
+      "notes": "La moitié constructive du théorème fondamental (v0.17.0)."
+    },
+    {
+      "id": "L1J",
+      "label": "Fonctions Lebesgue-intégrables sur tout segment",
+      "family": "intégrabilité",
+      "domain": "théorie de la mesure",
+      "property": "\\{\\, f : \\forall [a,b],\\ \\int_{[a,b]} |f| \\, d\\lambda < \\infty \\,\\}",
+      "description": "Les fonctions sommables au sens de Lebesgue sur chaque segment.",
+      "example": "x ↦ 1/√x sur ]0, 1]",
+      "notes": "Le cadre moderne de l'intégration, segment par segment (v0.17.0)."
+    },
+    {
+      "id": "DRB",
+      "label": "Fonctions Darboux-intégrables",
+      "family": "intégrabilité",
+      "domain": "analyse réelle",
+      "property": "\\{\\, f \\text{ bornée sur } [a,b] : \\underline{\\text{\\int}}_{a}^{b} f = \\overline{\\text{\\int}}_{a}^{b} f \\,\\}",
+      "description": "Les fonctions dont les intégrales de Darboux inférieure et supérieure coïncident.",
+      "example": "les réglées",
+      "notes": "La présentation encadrée de Riemann (v0.17.0)."
+    },
+    {
+      "id": "DMC",
+      "label": "Différences de fonctions croissantes",
+      "family": "monotonie",
+      "domain": "analyse réelle",
+      "property": "\\{\\, f : \\exists g, h \\text{ croissantes},\\ f = g - h \\,\\}",
+      "description": "Les fonctions décomposables en deux montées.",
+      "example": "x ↦ sin(x) sur [0, 4π]",
+      "notes": "La caractérisation de Jordan de la variation bornée (v0.17.0)."
+    },
+    {
+      "id": "CFT",
+      "label": "Fonctions à coefficients de Fourier tendant vers 0",
+      "family": "analyse de Fourier",
+      "domain": "analyse harmonique",
+      "property": "\\{\\, f : \\int f(t) \\cos(nt) \\, dt \\to 0 \\text{ et } \\int f(t) \\sin(nt) \\, dt \\to 0 \\,\\}",
+      "description": "Les fonctions dont les coefficients de Fourier s'éteignent.",
+      "example": "toutes les intégrables (c'est le lemme)",
+      "notes": "Le lemme de Riemann-Lebesgue, en classe de fonctions (v0.17.0)."
+    },
+    {
+      "id": "IAC",
+      "label": "Intégrales impropres absolument convergentes",
+      "family": "intégrabilité",
+      "domain": "analyse réelle",
+      "property": "\\{\\, f \\text{ sur } [a, +\\infty[ : \\int_a^{+\\infty} |f| < \\infty \\,\\}",
+      "description": "Les intégrales généralisées qui convergent en valeur absolue.",
+      "example": "∫₁^{+∞} 1/x²",
+      "notes": "L'absolu, version impropre (v0.17.0)."
+    },
+    {
+      "id": "IGC",
+      "label": "Intégrales impropres convergentes",
+      "family": "intégrabilité",
+      "domain": "analyse réelle",
+      "property": "\\{\\, f \\text{ sur } [a, +\\infty[ : \\lim_{x \\to +\\infty} \\int_a^x f \\text{ existe} \\,\\}",
+      "description": "Les intégrales généralisées convergentes (sans condition d'absolu).",
+      "example": "∫₀^{+∞} sin t / t",
+      "notes": "La convergence fragile des intégrales (v0.17.0)."
+    },
+    {
+      "id": "H12",
+      "label": "Fonctions höldériennes d'exposant 1/2",
+      "family": "régularité réelle",
+      "domain": "analyse réelle",
+      "property": "\\{\\, f : \\exists C,\\ |f(x) - f(y)| \\le C \\sqrt{|x - y|} \\,\\}",
+      "description": "Le milieu de l'échelle de Hölder.",
+      "example": "x ↦ √x sur [0, +∞[",
+      "notes": "L'exposant signature de Sobolev H¹ en dimension 1 (v0.17.0)."
+    },
+    {
+      "id": "H14",
+      "label": "Fonctions höldériennes d'exposant 1/4",
+      "family": "régularité réelle",
+      "domain": "analyse réelle",
+      "property": "\\{\\, f : \\exists C,\\ |f(x) - f(y)| \\le C |x - y|^{1/4} \\,\\}",
+      "description": "Un cran en dessous dans l'échelle de Hölder.",
+      "example": "x ↦ |x|^{1/4} sur [0, 1]",
+      "notes": "L'échelle s'élargit quand l'exposant rétrécit (v0.17.0)."
+    },
+    {
+      "id": "ZLH",
+      "label": "Fonctions log-lipschitziennes",
+      "family": "régularité réelle",
+      "domain": "analyse réelle",
+      "property": "\\{\\, f : \\exists C,\\ |f(x) - f(y)| \\le C |x - y| \\, |\\ln |x - y|| \\,\\}",
+      "description": "Un petit logarithme de mieux que Hölder.",
+      "example": "x ↦ x ln(1/x) près de 0",
+      "notes": "Le seuil juste au-dessus de tous les Hölder (v0.17.0)."
+    },
+    {
+      "id": "C1A",
+      "label": "Fonctions de classe C^{1,1/2}",
+      "family": "régularité réelle",
+      "domain": "analyse réelle",
+      "property": "\\{\\, f \\in C^1 : f' \\text{ } 1/2\\text{-höldérienne} \\,\\}",
+      "description": "Les fonctions C¹ dont la dérivée est elle-même höldérienne.",
+      "example": "x ↦ ∫₀ˣ √|t| dt",
+      "notes": "Le premier étage C^{k,α} de la salle des hauteurs (v0.17.0)."
+    },
+    {
+      "id": "H1S",
+      "label": "Fonctions H¹ sur le segment",
+      "family": "espaces de Hilbert",
+      "domain": "théorie de la mesure",
+      "property": "\\{\\, f \\in L^2([a,b]) : f' \\text{ faible} \\in L^2([a,b]) \\,\\}",
+      "description": "Le premier étage de l'échelle de Sobolev, en version Hilbert sur un segment.",
+      "example": "les fonctions C¹ sur [a,b]",
+      "notes": "Le cadre variationnel des équations différentielles faibles (v0.17.0)."
+    },
+    {
+      "id": "LP0S",
+      "label": "Fonctions L^∞ sur le segment",
+      "family": "espaces de Banach",
+      "domain": "théorie de la mesure",
+      "property": "\\{\\, f : \\exists M,\\ |f| \\le M \\text{ presque partout sur } [a,b] \\,\\}",
+      "description": "Les fonctions essentiellement bornées sur un segment.",
+      "example": "toute fonction continue sur [a,b]",
+      "notes": "Le sommet de l'échelle L^p sur un segment (v0.17.0)."
+    },
+    {
+      "id": "LP1S",
+      "label": "Fonctions L¹ sur le segment",
+      "family": "espaces de Banach",
+      "domain": "théorie de la mesure",
+      "property": "\\{\\, f : \\int_{[a,b]} |f| \\, d\\lambda < \\infty \\,\\}",
+      "description": "Les fonctions sommables sur un segment.",
+      "example": "x ↦ 1/√x sur ]0, 1]",
+      "notes": "L'étage p = 1 sur un segment (v0.17.0)."
+    },
+    {
+      "id": "LP2S",
+      "label": "Fonctions L² sur le segment",
+      "family": "espaces de Banach",
+      "domain": "théorie de la mesure",
+      "property": "\\{\\, f : \\int_{[a,b]} |f|^2 \\, d\\lambda < \\infty \\,\\}",
+      "description": "Le carré sommable sur un segment.",
+      "example": "x ↦ x^{-1/3} sur ]0, 1]",
+      "notes": "Le préféré de la géométrie hilbertienne, sur un segment (v0.17.0)."
+    },
+    {
+      "id": "BAF1",
+      "label": "Fonctions de classe de Baire 1",
+      "family": "régularité réelle",
+      "domain": "analyse réelle",
+      "property": "\\{\\, f : \\exists (f_n) \\text{ continues},\\ f_n \\to f \\text{ simplement} \\,\\}",
+      "description": "Les limites simples de suites de fonctions continues.",
+      "example": "les dérivées, les monotones, les indicatrices de fermés",
+      "notes": "Le premier étage de la hiérarchie de Baire (v0.17.0)."
+    },
+    {
+      "id": "CGD",
+      "label": "Fonctions continues en chaque point d'un Gδ dense",
+      "family": "continuité",
+      "domain": "analyse réelle",
+      "property": "\\{\\, f : \\{x : f \\text{ continue en } x\\} \\supseteq \\text{un } G_\\delta \\text{ dense} \\,\\}",
+      "description": "Les fonctions presque continues : leur ensemble de points de continuité contient un Gδ dense.",
+      "example": "les dérivées, la fonction de Thomae",
+      "notes": "La carte de localisation des discontinuités de Baire 1 (v0.17.0)."
+    },
+    {
+      "id": "THO",
+      "label": "Fonctions de Thomae",
+      "family": "intégrabilité",
+      "domain": "théorie de la mesure",
+      "property": "\\{\\, t : t(p/q) = 1/q \\text{ (fraction réduite)},\\ t(x) = 0 \\text{ si } x \\notin \\mathbb{Q} \\,\\}",
+      "description": "La fonction pop-corn : nulle aux irrationnels, petite aux rationnels.",
+      "example": "t(1/2) = 1/2, t(1/3) = 1/3, t(√2) = 0",
+      "notes": "Intégrable et discontinue exactement sur les rationnels (v0.17.0)."
+    },
+    {
+      "id": "DWI",
+      "label": "Indicatrices de parties denses d'intérieur vide",
+      "family": "intégrabilité",
+      "domain": "théorie de la mesure",
+      "property": "\\{\\, 1_P : P \\text{ dense d'intérieur vide dans } [a,b] \\,\\}",
+      "description": "Les indicatrices des parties épaisses en densité, vides en intérieur.",
+      "example": "l'indicatrice de ℚ ∩ [0,1] (Dirichlet)",
+      "notes": "La pathologie de Dirichlet : continue nulle part (v0.17.0)."
+    },
+    {
+      "id": "CPER",
+      "label": "Fonctions 2π-périodiques continues",
+      "family": "analyse de Fourier",
+      "domain": "analyse harmonique",
+      "property": "\\{\\, f \\in \\mathcal{C}(\\mathbb{R}) : f(x + 2\\pi) = f(x) \\,\\}",
+      "description": "Les fonctions continues qui vivent sur le cercle.",
+      "example": "x ↦ cos(x)",
+      "notes": "Le terrain naturel de la série de Fourier (v0.17.0)."
+    },
+    {
+      "id": "FJS",
+      "label": "Fonctions approchées par leurs moyennes de Fejér",
+      "family": "analyse de Fourier",
+      "domain": "analyse harmonique",
+      "property": "\\{\\, f : \\text{les moyennes de Fejér } \\sigma_N(f) \\to f \\text{ uniformément} \\,\\}",
+      "description": "Les fonctions ressemblant à la moyenne de leurs polynômes trigonométriques partiels.",
+      "example": "les 2π-périodiques continues",
+      "notes": "Fejér : la sommation en moyenne réussit là où Fourier échoue (v0.17.0)."
+    },
+    {
+      "id": "NDV",
+      "label": "Fonctions dérivables en au moins un point",
+      "family": "dérivabilité",
+      "domain": "analyse réelle",
+      "property": "\\{\\, f : \\exists x,\\ f'(x) \\text{ existe} \\,\\}",
+      "description": "Les fonctions possédant au moins une tangente.",
+      "example": "x ↦ |x| (mais les continues n'y sont presque jamais toutes)",
+      "notes": "Le barème plancher de la dérivabilité (v0.17.0)."
+    },
+    {
+      "id": "H11",
+      "label": "Fonctions höldériennes d'exposant 1",
+      "family": "régularité réelle",
+      "domain": "analyse réelle",
+      "property": "\\{\\, f : \\exists C,\\ |f(x) - f(y)| \\le C\\,|x - y| \\,\\}",
+      "description": "Les fonctions höldériennes d'exposant 1 : exactement les lipschitziennes.",
+      "example": "x ↦ x",
+      "notes": "Cas limite de l'échelle de Hölder : au-delà de l'exposant 1, seules les constantes vérifient la condition sur ℝ."
+    },
+    {
+      "id": "W1I",
+      "label": "Fonctions W^{1,∞} sur le segment",
+      "family": "régularité réelle",
+      "domain": "théorie de la mesure",
+      "property": "\\{\\, f \\in L^\\infty([a,b]) : \\exists g \\in L^\\infty,\\ \\forall \\varphi \\text{ test},\\ \\int f \\varphi' = -\\int g \\varphi \\,\\}",
+      "description": "Fonctions bornées sur [a, b] à dérivée faible essentiellement bornée.",
+      "example": "x ↦ |x| sur [-1, 1]",
+      "notes": "Le premier espace de Sobolev à exposant infini."
+    },
+    {
+      "id": "LCS",
+      "label": "Fonctions lipschitziennes sur le segment",
+      "family": "régularité réelle",
+      "domain": "analyse réelle",
+      "property": "\\{\\, f : [a,b] \\to \\mathbb{R} \\mid \\exists k,\\ \\forall x, y \\in [a,b] : |f(x) - f(y)| \\le k\\,|x - y| \\,\\}",
+      "description": "Les fonctions lipschitziennes d'un segment [a, b] dans ℝ.",
+      "example": "x ↦ x²",
+      "notes": "Sur un segment, lipschitzienne coïncide avec W^{1,∞}."
+    },
+    {
+      "id": "W21",
+      "label": "Fonctions W^{2,1} sur le segment",
+      "family": "régularité réelle",
+      "domain": "théorie de la mesure",
+      "property": "\\{\\, f \\in L^1([a,b]) : \\exists g \\in L^1,\\ \\forall \\varphi \\text{ test},\\ \\int f \\varphi'' = \\int g \\varphi \\,\\}",
+      "description": "Fonctions intégrables sur [a, b] à dérivée seconde faible intégrable.",
+      "example": "x ↦ x²",
+      "notes": "Sur un segment, ces fonctions sont en particulier de classe C¹ (Sobolev-Morrey)."
+    },
+    {
+      "id": "INT1",
+      "label": "Fonctions L¹ et L² sur le segment",
+      "family": "espaces de Banach",
+      "domain": "théorie de la mesure",
+      "property": "\\{\\, f : \\int_{[a,b]} |f| \\, d\\lambda < \\infty \\ \\text{ et } \\ \\int_{[a,b]} |f|^2 \\, d\\lambda < \\infty \\,\\}",
+      "description": "L'intersection de L¹ et L² sur un segment.",
+      "example": "x ↦ 1",
+      "notes": "L'interpolation y place ces fonctions dans tous les L^p pour 1 ≤ p ≤ 2, mais pas dans L^∞."
+    },
+    {
+      "id": "LPP",
+      "label": "Fonctions dans tous les L^p sur le segment",
+      "family": "espaces de Banach",
+      "domain": "théorie de la mesure",
+      "property": "\\{\\, f : \\forall p \\in [1, +\\infty[,\\ \\int_{[a,b]} |f|^p \\, d\\lambda < \\infty \\,\\}",
+      "description": "Les fonctions de [a, b] qui appartiennent à tous les L^p, p réel ≥ 1.",
+      "example": "x ↦ 1",
+      "notes": "Contient strictement L^∞ : le logarithme y vit aussi."
+    },
+    {
+      "id": "FSM",
+      "label": "Fonctions à points de discontinuité Fσ maigres",
+      "family": "continuité",
+      "domain": "analyse réelle",
+      "property": "\\{\\, f : \\{ x : f \\text{ discontinue en } x \\} \\text{ est un } F_\\sigma \\text{ maigre} \\,\\}",
+      "description": "Fonctions dont l'ensemble des points de discontinuité est un Fσ maigre.",
+      "example": "l'échelon d'Heaviside (discontinue en 0 seulement)",
+      "notes": "Les fonctions de Baire 1 en font partie ; l'indicatrice des rationaux est discontinue partout, donc hors de la classe."
+    },
+    {
+      "id": "SFR",
+      "label": "Suites de fonctions réelles",
+      "family": "suites",
+      "domain": "analyse réelle",
+      "property": "\\{\\, (f_n)_{n \\ge 1} : \\forall n,\\ f_n \\text{ est une fonction réelle} \\,\\}",
+      "description": "Les suites dont chaque terme est une fonction réelle.",
+      "example": "f_n : x ↦ x/n",
+      "notes": "Univers du théorème de Dini et de la convergence uniforme."
+    },
+    {
+      "id": "SUC",
+      "label": "Suites croissantes de fonctions continues sur un segment",
+      "family": "suites",
+      "domain": "analyse réelle",
+      "property": "\\{\\, (f_n) : \\forall n,\\ f_n \\text{ continue sur } [a,b],\\ \\forall x : f_n(x) \\le f_{n+1}(x) \\,\\}",
+      "description": "Suites croissant point par point, à termes continus sur un segment.",
+      "example": "f_n : x ↦ x^n sur [0, 1]",
+      "notes": "L'hypothèse de croissance du théorème de Dini."
+    },
+    {
+      "id": "SCS",
+      "label": "Suites croissantes de continues convergeant simplement vers une continue",
+      "family": "suites",
+      "domain": "analyse réelle",
+      "property": "\\{\\, (f_n) : f_n \\text{ continue sur } [a,b],\\ f_n \\le f_{n+1},\\ \\exists f \\text{ continue} : f_n \\to f \\text{ simplement} \\,\\}",
+      "description": "Les hypothèses complètes du théorème de Dini : croissance, continuité des termes, convergence simple vers une limite continue.",
+      "example": "f_n : x ↦ (1 - 1/n)·x",
+      "notes": "Le théorème de Dini y transforme la convergence simple en convergence uniforme."
+    },
+    {
+      "id": "UNF",
+      "label": "Suites de fonctions convergeant uniformément",
+      "family": "suites",
+      "domain": "analyse réelle",
+      "property": "\\{\\, (f_n) : \\exists f,\\ \\sup_x |f_n(x) - f(x)| \\to 0 \\,\\}",
+      "description": "Les suites de fonctions qui convergent uniformément.",
+      "example": "f_n : x ↦ x/n",
+      "notes": "La convergence uniforme préserve la continuité ; c'est la conclusion du théorème de Dini."
     }
   ],
   "edges": [
@@ -8359,6 +9029,1104 @@
       "statement": "Une famille indexée d'espaces compacts est un ensemble de couples : inclusion définitoire. Raccord refait en v0.16.4, après relecture de Mathis — le continent des familles est ensembliste.",
       "depth": "définitoire",
       "domain": "topologie"
+    },
+    {
+      "from": "C",
+      "to": "UCT",
+      "kind": "equivalence",
+      "theorem": "Théorème de Heine (sur tout segment)",
+      "statement": "Une fonction est continue sur ℝ si et seulement si elle est uniformément continue sur chacun de ses segments : le sens direct est le théorème de Heine, le sens retour est définitoire.",
+      "depth": "classique",
+      "id": "e680",
+      "domain": "analyse réelle"
+    },
+    {
+      "from": "INJ",
+      "to": "BJ3",
+      "kind": "equivalence",
+      "theorem": "Théorème des injections continues",
+      "statement": "Une fonction continue injective sur un intervalle est strictement monotone, et réciproquement toute continue strictement monotone est injective.",
+      "depth": "classique",
+      "id": "e681",
+      "domain": "analyse réelle"
+    },
+    {
+      "from": "DNC",
+      "to": "D7",
+      "kind": "equivalence",
+      "theorem": "Théorème des dérivées nulles",
+      "statement": "Une fonction dérivable à dérivée nulle partout est constante, et réciproquement.",
+      "depth": "classique",
+      "id": "e682",
+      "domain": "analyse réelle"
+    },
+    {
+      "from": "CAUR",
+      "to": "CSO1",
+      "kind": "equivalence",
+      "theorem": "Complétude de ℝ (critère de Cauchy)",
+      "statement": "Une suite réelle converge si et seulement si elle est de Cauchy : c'est la complétude de la droite réelle.",
+      "depth": "fondamental",
+      "id": "e683",
+      "domain": "analyse des suites réelles"
+    },
+    {
+      "from": "ABS",
+      "to": "COMM",
+      "kind": "equivalence",
+      "theorem": "Théorème de réarrangement de Riemann",
+      "statement": "Une série converge absolument si et seulement si toutes ses réarrangées convergent.",
+      "depth": "fondamental",
+      "id": "e684",
+      "domain": "analyse de séries"
+    },
+    {
+      "from": "DRB",
+      "to": "RSEG",
+      "kind": "equivalence",
+      "theorem": "Théorème de Darboux",
+      "statement": "Une fonction bornée sur un segment est Darboux-intégrable si et seulement si elle est Riemann-intégrable : les deux constructions donnent la même intégrale.",
+      "depth": "classique",
+      "id": "e685",
+      "domain": "analyse réelle"
+    },
+    {
+      "from": "ACN",
+      "to": "W11",
+      "kind": "equivalence",
+      "theorem": "Théorème AC = W^{1,1}",
+      "statement": "Sur un segment, être absolument continue, c'est être dans le premier espace de Sobolev W^{1,1} : la dérivée faible coïncide avec la dérivée classique presque partout.",
+      "depth": "classique",
+      "id": "e686",
+      "domain": "théorie de la mesure"
+    },
+    {
+      "from": "VAR1",
+      "to": "DMC",
+      "kind": "equivalence",
+      "theorem": "Théorème de Jordan",
+      "statement": "Une fonction est à variation bornée sur tout segment si et seulement si elle est différence de deux fonctions croissantes.",
+      "depth": "classique",
+      "id": "e687",
+      "domain": "analyse réelle"
+    },
+    {
+      "from": "D4",
+      "to": "DCX",
+      "kind": "equivalence",
+      "theorem": "Théorème de caractérisation des convexes dérivables",
+      "statement": "Une fonction dérivable est convexe si et seulement si sa dérivée est croissante.",
+      "depth": "classique",
+      "id": "e688",
+      "domain": "analyse réelle"
+    },
+    {
+      "from": "C",
+      "to": "ATJ",
+      "kind": "inclusion",
+      "theorem": "Théorème des bornes atteintes (Heine-Weierstrass)",
+      "statement": "Sur tout segment, une fonction continue est bornée et atteint sa borne inférieure et sa borne supérieure.",
+      "depth": "classique",
+      "id": "e689",
+      "domain": "analyse réelle"
+    },
+    {
+      "from": "REG",
+      "to": "RSEG",
+      "kind": "inclusion",
+      "theorem": "Théorème des réglées",
+      "statement": "Toute fonction réglée est Riemann-intégrable sur chaque segment : bornée, et discontinue en au plus un nombre dénombrable de points.",
+      "depth": "classique",
+      "id": "e690",
+      "domain": "analyse réelle"
+    },
+    {
+      "from": "REG",
+      "to": "CARDE",
+      "kind": "inclusion",
+      "theorem": "Discontinuités des réglées",
+      "statement": "Une fonction réglée n'a qu'un nombre au plus dénombrable de discontinuités, toutes de première espèce.",
+      "depth": "classique",
+      "id": "e691",
+      "domain": "analyse réelle"
+    },
+    {
+      "from": "CWF",
+      "to": "PRC",
+      "kind": "inclusion",
+      "theorem": "Théorème de prolongement de Tietze (cas réel)",
+      "statement": "Toute fonction continue sur un fermé de ℝ se prolonge en une fonction continue sur ℝ tout entier.",
+      "depth": "classique",
+      "id": "e692",
+      "domain": "analyse réelle"
+    },
+    {
+      "from": "CWF",
+      "to": "FMC",
+      "kind": "inclusion",
+      "theorem": "Continues sur fermé, continues au sens métrique",
+      "statement": "Une fonction continue sur un fermé de ℝ est une fonction continue entre espaces métriques.",
+      "depth": "définitoire",
+      "id": "e693",
+      "domain": "analyse réelle"
+    },
+    {
+      "from": "SCI",
+      "to": "ABI",
+      "kind": "inclusion",
+      "theorem": "Théorème de la borne inférieure atteinte",
+      "statement": "Sur tout segment, une fonction semi-continue inférieurement atteint sa borne inférieure.",
+      "depth": "classique",
+      "id": "e694",
+      "domain": "analyse réelle"
+    },
+    {
+      "from": "SCI",
+      "to": "BAF1",
+      "kind": "inclusion",
+      "theorem": "Semi-continuités de Baire 1",
+      "statement": "Toute fonction semi-continue inférieurement est limite simple de fonctions continues : elle est de classe de Baire 1.",
+      "depth": "classique",
+      "id": "e695",
+      "domain": "analyse réelle"
+    },
+    {
+      "from": "ATJ",
+      "to": "ABI",
+      "kind": "inclusion",
+      "theorem": "Définition",
+      "statement": "Atteindre ses deux bornes sur chaque segment, c'est en particulier atteindre sa borne inférieure.",
+      "depth": "définitoire",
+      "id": "e696",
+      "domain": "analyse réelle"
+    },
+    {
+      "from": "M",
+      "to": "ABI",
+      "kind": "inclusion",
+      "theorem": "Borne inférieure des monotones",
+      "statement": "Sur tout segment, une fonction croissante atteint sa borne inférieure en l'extrémité gauche, une décroissante en l'extrémité droite.",
+      "depth": "immédiat",
+      "id": "e697",
+      "domain": "analyse réelle"
+    },
+    {
+      "from": "UC",
+      "to": "CCH",
+      "kind": "inclusion",
+      "theorem": "Uniforme et Cauchy",
+      "statement": "Toute fonction uniformément continue préserve les suites de Cauchy.",
+      "depth": "classique",
+      "id": "e698",
+      "domain": "analyse réelle"
+    },
+    {
+      "from": "CNV",
+      "to": "LLH",
+      "kind": "inclusion",
+      "theorem": "Convexités localement lipschitziennes",
+      "statement": "Toute fonction convexe est localement lipschitzienne.",
+      "depth": "classique",
+      "id": "e699",
+      "domain": "analyse réelle"
+    },
+    {
+      "from": "CNV",
+      "to": "DLR",
+      "kind": "inclusion",
+      "theorem": "Dérivées latérales des convexes",
+      "statement": "Toute fonction convexe admet en chaque point intérieur une dérivée à gauche et une dérivée à droite.",
+      "depth": "classique",
+      "id": "e700",
+      "domain": "analyse réelle"
+    },
+    {
+      "from": "LCV",
+      "to": "CNV",
+      "kind": "inclusion",
+      "theorem": "Log-convexité et convexité",
+      "statement": "Toute fonction log-convexe est convexe.",
+      "depth": "immédiat",
+      "id": "e701",
+      "domain": "analyse réelle"
+    },
+    {
+      "from": "GAM1",
+      "to": "LCV",
+      "kind": "inclusion",
+      "theorem": "Définition",
+      "statement": "Une fonction gamma-like est log-convexe : c'est une clause de la définition de Bohr-Mollerup.",
+      "depth": "définitoire",
+      "id": "e702",
+      "domain": "analyse réelle"
+    },
+    {
+      "from": "D",
+      "to": "SYM",
+      "kind": "inclusion",
+      "theorem": "Définition de la dérivée symétrique",
+      "statement": "Toute fonction dérivable admet une dérivée symétrique, égale à sa dérivée.",
+      "depth": "définitoire",
+      "id": "e703",
+      "domain": "analyse réelle"
+    },
+    {
+      "from": "SMB",
+      "to": "CSO1",
+      "kind": "inclusion",
+      "theorem": "Théorème de la limite monotone",
+      "statement": "Toute suite monotone bornée converge.",
+      "depth": "classique",
+      "id": "e704",
+      "domain": "analyse des suites réelles"
+    },
+    {
+      "from": "ADJ",
+      "to": "CSO1",
+      "kind": "inclusion",
+      "theorem": "Théorème des suites adjacentes",
+      "statement": "Deux suites adjacentes convergent vers la même limite.",
+      "depth": "classique",
+      "id": "e705",
+      "domain": "analyse des suites réelles"
+    },
+    {
+      "from": "RCL",
+      "to": "CSO1",
+      "kind": "inclusion",
+      "theorem": "Théorème des suites récurrentes stables",
+      "statement": "Toute suite récurrente linéaire dont les racines caractéristiques sont de module < 1 converge.",
+      "depth": "classique",
+      "id": "e706",
+      "domain": "analyse des suites réelles"
+    },
+    {
+      "from": "BW2",
+      "to": "BW1",
+      "kind": "anti",
+      "theorem": "Contre-exemple des valeurs reprises",
+      "statement": "Une suite possédant une sous-suite convergente n'est pas toujours bornée.",
+      "depth": "immédiat",
+      "id": "e707",
+      "domain": "analyse des suites réelles",
+      "counterexample": "(0, 1, 0, 2, 0, 3, …) : possède la sous-suite convergente (0, 0, 0, …) sans être bornée"
+    },
+    {
+      "from": "COMM",
+      "to": "SRC",
+      "kind": "inclusion",
+      "theorem": "Définition",
+      "statement": "Une série commutativement convergente converge.",
+      "depth": "définitoire",
+      "id": "e708",
+      "domain": "analyse de séries"
+    },
+    {
+      "from": "CMP",
+      "to": "SRC",
+      "kind": "inclusion",
+      "theorem": "Règle de comparaison",
+      "statement": "Toute série à termes positifs dominée par une série convergente converge.",
+      "depth": "immédiat",
+      "id": "e709",
+      "domain": "analyse de séries"
+    },
+    {
+      "from": "ALTG",
+      "to": "SRC",
+      "kind": "inclusion",
+      "theorem": "Théorème des séries alternées (Leibniz)",
+      "statement": "Toute série alternée dont le terme général décroît vers 0 converge, et sa limite est encadrée par ses sommes partielles.",
+      "depth": "classique",
+      "id": "e710",
+      "domain": "analyse de séries"
+    },
+    {
+      "from": "RAC",
+      "to": "ABS",
+      "kind": "inclusion",
+      "theorem": "Règle de Cauchy (limite radicielle)",
+      "statement": "Toute série à limite radicielle < 1 converge absolument.",
+      "depth": "classique",
+      "id": "e711",
+      "domain": "analyse de séries"
+    },
+    {
+      "from": "AD1",
+      "to": "SRC",
+      "kind": "inclusion",
+      "theorem": "Théorème d'Abel-Dirichlet",
+      "statement": "Toute série produit d'un terme à sommes partielles bornées par un terme monotone vers 0 converge.",
+      "depth": "classique",
+      "id": "e712",
+      "domain": "analyse de séries"
+    },
+    {
+      "from": "TAU1",
+      "to": "SRC",
+      "kind": "inclusion",
+      "theorem": "Premier théorème de Tauber",
+      "statement": "Une série dont les moyennes de Cesàro convergent et dont le terme est un o(1/n) converge.",
+      "depth": "classique",
+      "id": "e713",
+      "domain": "analyse de séries"
+    },
+    {
+      "from": "BER1",
+      "to": "SRC",
+      "kind": "inclusion",
+      "theorem": "Séries de Bertrand convergentes",
+      "statement": "Les séries de Bertrand convergent dès que α > 1, ou α = 1 et β > 1.",
+      "depth": "classique",
+      "id": "e714",
+      "domain": "analyse de séries"
+    },
+    {
+      "from": "BER2",
+      "to": "SRD",
+      "kind": "inclusion",
+      "theorem": "Séries de Bertrand divergentes",
+      "statement": "Les séries de Bertrand divergent dès que α < 1, ou α = 1 et β ≤ 1.",
+      "depth": "classique",
+      "id": "e715",
+      "domain": "analyse de séries"
+    },
+    {
+      "from": "SRC",
+      "to": "ABS",
+      "kind": "anti",
+      "theorem": "Contre-exemple de la série harmonique alternée",
+      "statement": "Une série convergente n'est pas toujours absolument convergente.",
+      "depth": "classique",
+      "id": "e716",
+      "domain": "analyse de séries",
+      "counterexample": "Σ (−1)ⁿ/n : converge (Leibniz), mais Σ 1/n diverge"
+    },
+    {
+      "from": "RSEG",
+      "to": "L1J",
+      "kind": "inclusion",
+      "theorem": "Riemann dans Lebesgue",
+      "statement": "Toute fonction Riemann-intégrable sur chaque segment est Lebesgue-intégrable sur chaque segment, avec la même intégrale.",
+      "depth": "immédiat",
+      "id": "e717",
+      "domain": "théorie de la mesure"
+    },
+    {
+      "from": "L1J",
+      "to": "CFT",
+      "kind": "inclusion",
+      "theorem": "Lemme de Riemann-Lebesgue",
+      "statement": "Les coefficients de Fourier de toute fonction Lebesgue-intégrable tendent vers 0.",
+      "depth": "classique",
+      "id": "e718",
+      "domain": "analyse harmonique"
+    },
+    {
+      "from": "L1J",
+      "to": "ME2",
+      "kind": "inclusion",
+      "theorem": "Définition",
+      "statement": "Toute fonction Lebesgue-intégrable est mesurable.",
+      "depth": "définitoire",
+      "id": "e719",
+      "domain": "théorie de la mesure"
+    },
+    {
+      "from": "ACN",
+      "to": "VAR1",
+      "kind": "inclusion",
+      "theorem": "Absolument continues à variation bornée",
+      "statement": "Toute fonction absolument continue sur un segment est à variation bornée : sa variation y est l'intégrale de |f'|.",
+      "depth": "classique",
+      "id": "e720",
+      "domain": "théorie de la mesure"
+    },
+    {
+      "from": "M",
+      "to": "VAR1",
+      "kind": "inclusion",
+      "theorem": "Jordan : monotones à variation bornée",
+      "statement": "Toute fonction croissante est à variation bornée sur tout segment (de variation f(b) − f(a)).",
+      "depth": "classique",
+      "id": "e721",
+      "domain": "analyse réelle"
+    },
+    {
+      "from": "ACN",
+      "to": "C",
+      "kind": "inclusion",
+      "theorem": "Absolument continues continues",
+      "statement": "Toute fonction absolument continue est continue.",
+      "depth": "immédiat",
+      "id": "e722",
+      "domain": "analyse réelle"
+    },
+    {
+      "from": "VAR1",
+      "to": "ACN",
+      "kind": "anti",
+      "theorem": "Contre-exemple de l'escalier de Cantor",
+      "statement": "Une fonction à variation bornée n'est pas toujours absolument continue.",
+      "depth": "classique",
+      "id": "e723",
+      "domain": "théorie de la mesure",
+      "counterexample": "l'escalier de Cantor : croissante, continue, de variation 1 sur [0,1], mais dérive sans être absolument continue"
+    },
+    {
+      "from": "VAR1",
+      "to": "C",
+      "kind": "anti",
+      "theorem": "Contre-exemple de l'échelon d'Heaviside",
+      "statement": "Une fonction à variation bornée n'est pas toujours continue.",
+      "depth": "immédiat",
+      "id": "e724",
+      "domain": "analyse réelle",
+      "counterexample": "l'échelon d'Heaviside x ↦ 1_{x ≥ 0} : un saut, de variation 1, discontinue en 0"
+    },
+    {
+      "from": "PRI",
+      "to": "ACN",
+      "kind": "inclusion",
+      "theorem": "Théorème fondamental du calcul (partie 1)",
+      "statement": "Toute primitive d'une Riemann-intégrable est absolument continue sur les segments.",
+      "depth": "classique",
+      "id": "e725",
+      "domain": "analyse réelle"
+    },
+    {
+      "from": "ACN",
+      "to": "PRI",
+      "kind": "anti",
+      "theorem": "Contre-exemple de la primitive de Volterra",
+      "statement": "Une fonction absolument continue n'est pas toujours la primitive d'une Riemann-intégrable.",
+      "depth": "classique",
+      "id": "e726",
+      "domain": "théorie de la mesure",
+      "counterexample": "la primitive de Lebesgue de la dérivée de Volterra : absolument continue, mais de dérivée non Riemann-intégrable"
+    },
+    {
+      "from": "IAC",
+      "to": "IGC",
+      "kind": "inclusion",
+      "theorem": "Absolu inconditionnel de l'impropre",
+      "statement": "Toute intégrale impropre absolument convergente converge.",
+      "depth": "immédiat",
+      "id": "e727",
+      "domain": "analyse réelle"
+    },
+    {
+      "from": "IAC",
+      "to": "F",
+      "kind": "inclusion",
+      "theorem": "Définition",
+      "statement": "Une intégrale impropre absolument convergente est portée par une fonction réelle.",
+      "depth": "définitoire",
+      "id": "e728",
+      "domain": "analyse réelle"
+    },
+    {
+      "from": "IGC",
+      "to": "IAC",
+      "kind": "anti",
+      "theorem": "Contre-exemple de l'intégrale de Dirichlet",
+      "statement": "Une intégrale impropre convergente n'est pas toujours absolument convergente.",
+      "depth": "classique",
+      "id": "e729",
+      "domain": "analyse réelle",
+      "counterexample": "∫₀^{+∞} sin t / t dt : converge, mais ∫₀^{+∞} |sin t|/t dt diverge"
+    },
+    {
+      "from": "L",
+      "to": "H12",
+      "kind": "inclusion",
+      "theorem": "Lipschitz et Hölder",
+      "statement": "Toute fonction lipschitzienne sur un segment est höldérienne de tout exposant ≤ 1, en particulier 1/2.",
+      "depth": "immédiat",
+      "id": "e730",
+      "domain": "analyse réelle"
+    },
+    {
+      "from": "H12",
+      "to": "H14",
+      "kind": "inclusion",
+      "theorem": "Échelle de Hölder",
+      "statement": "Toute fonction höldérienne d'exposant 1/2 est höldérienne de tout exposant plus petit, en particulier 1/4 (sur un segment).",
+      "depth": "définitoire",
+      "id": "e731",
+      "domain": "analyse réelle"
+    },
+    {
+      "from": "H14",
+      "to": "H12",
+      "kind": "anti",
+      "theorem": "Contre-exemple de t^{1/4}",
+      "statement": "La tour de Hölder est stricte : l'exposant 1/4 ne remonte pas au 1/2.",
+      "depth": "immédiat",
+      "id": "e732",
+      "domain": "analyse réelle",
+      "counterexample": "t ↦ t^{1/4} sur [0,1] : |f(t) − f(0)| = t^{1/4} n'est pas dominée par C√t"
+    },
+    {
+      "from": "ZLH",
+      "to": "H12",
+      "kind": "inclusion",
+      "theorem": "Log-lipschitz et Hölder",
+      "statement": "Toute fonction log-lipschitzienne sur un segment est höldérienne de tout exposant < 1, en particulier 1/2.",
+      "depth": "immédiat",
+      "id": "e733",
+      "domain": "analyse réelle"
+    },
+    {
+      "from": "H12",
+      "to": "ZLH",
+      "kind": "anti",
+      "theorem": "Contre-exemple de t^{1/2}",
+      "statement": "Le log-lipschitz est strictement plus fort que le 1/2-höldérien.",
+      "depth": "immédiat",
+      "id": "e734",
+      "domain": "analyse réelle",
+      "counterexample": "t ↦ √t sur [0,1] : 1/2-höldérienne, mais |f(t) − f(0)| = √t n'est pas dominée par C t ln(1/t)"
+    },
+    {
+      "from": "C1A",
+      "to": "C1",
+      "kind": "inclusion",
+      "theorem": "Définition",
+      "statement": "Une fonction C^{1,1/2} est en particulier de classe C¹.",
+      "depth": "définitoire",
+      "id": "e735",
+      "domain": "analyse réelle"
+    },
+    {
+      "from": "C1",
+      "to": "C1A",
+      "kind": "anti",
+      "theorem": "Contre-exemple de la primitive de 1/ln",
+      "statement": "Une fonction C¹ n'a pas toujours une dérivée höldérienne.",
+      "depth": "classique",
+      "id": "e736",
+      "domain": "analyse réelle",
+      "counterexample": "la primitive de t ↦ 1/ln(1/t) (prolongée par 0) : C¹, mais la dérivée n'est pas 1/2-höldérienne près de 0"
+    },
+    {
+      "from": "H1S",
+      "to": "LP2S",
+      "kind": "inclusion",
+      "theorem": "Définition",
+      "statement": "Une fonction H¹ sur le segment est en particulier L² sur ce segment.",
+      "depth": "définitoire",
+      "id": "e737",
+      "domain": "théorie de la mesure"
+    },
+    {
+      "from": "H1S",
+      "to": "H12",
+      "kind": "inclusion",
+      "theorem": "Plongement de Sobolev-Morrey (dimension 1)",
+      "statement": "Toute fonction H¹ sur un segment est, après modification sur un négligeable, höldérienne d'exposant 1/2.",
+      "depth": "classique",
+      "id": "e738",
+      "domain": "théorie de la mesure"
+    },
+    {
+      "from": "LP2S",
+      "to": "LP1S",
+      "kind": "inclusion",
+      "theorem": "L² dans L¹ (sur un segment)",
+      "statement": "Sur un segment de mesure finie, toute fonction L² est L¹, par Cauchy-Schwarz.",
+      "depth": "immédiat",
+      "id": "e739",
+      "domain": "théorie de la mesure"
+    },
+    {
+      "from": "LP0S",
+      "to": "LP2S",
+      "kind": "inclusion",
+      "theorem": "L^∞ dans L²",
+      "statement": "Sur un segment de mesure finie, toute fonction essentiellement bornée est L².",
+      "depth": "immédiat",
+      "id": "e740",
+      "domain": "théorie de la mesure"
+    },
+    {
+      "from": "DER",
+      "to": "BAF1",
+      "kind": "inclusion",
+      "theorem": "Théorème de Baire sur les dérivées",
+      "statement": "Toute dérivée est de classe de Baire 1 : limite simple des quotients différentiels continus.",
+      "depth": "classique",
+      "id": "e741",
+      "domain": "analyse réelle"
+    },
+    {
+      "from": "VAR1",
+      "to": "BAF1",
+      "kind": "inclusion",
+      "theorem": "Jordan et Baire",
+      "statement": "Toute fonction à variation bornée est de classe de Baire 1, comme différence de deux Baire 1.",
+      "depth": "classique",
+      "id": "e742",
+      "domain": "analyse réelle"
+    },
+    {
+      "from": "BAF1",
+      "to": "CGD",
+      "kind": "inclusion",
+      "theorem": "Théorème de localisation des discontinuités",
+      "statement": "Les points de continuité d'une fonction de Baire 1 forment un Gδ dense.",
+      "depth": "classique",
+      "id": "e743",
+      "domain": "analyse réelle"
+    },
+    {
+      "from": "THO",
+      "to": "RSEG",
+      "kind": "inclusion",
+      "theorem": "Le pop-corn est intégrable",
+      "statement": "La fonction de Thomae est Riemann-intégrable sur tout segment.",
+      "depth": "classique",
+      "id": "e744",
+      "domain": "théorie de la mesure"
+    },
+    {
+      "from": "THO",
+      "to": "CARDE",
+      "kind": "inclusion",
+      "theorem": "Discontinuités du pop-corn",
+      "statement": "La fonction de Thomae est discontinue exactement aux rationnels, ensemble dénombrable.",
+      "depth": "immédiat",
+      "id": "e745",
+      "domain": "théorie de la mesure"
+    },
+    {
+      "from": "DWI",
+      "to": "RSEG",
+      "kind": "anti",
+      "theorem": "Contre-exemple de Dirichlet",
+      "statement": "L'indicatrice d'une partie dense d'intérieur vide n'est pas Riemann-intégrable.",
+      "depth": "classique",
+      "id": "e746",
+      "domain": "théorie de la mesure",
+      "counterexample": "l'indicatrice de ℚ ∩ [0,1] : bornée, mais discontinue partout, donc non Riemann-intégrable"
+    },
+    {
+      "from": "WRS2",
+      "to": "WRS1",
+      "kind": "inclusion",
+      "theorem": "Uniformité de la limite de Weierstrass",
+      "statement": "Toute limite uniforme de polynômes sur un segment est continue sur ce segment.",
+      "depth": "immédiat",
+      "id": "e747",
+      "domain": "analyse réelle"
+    },
+    {
+      "from": "CPER",
+      "to": "FJS",
+      "kind": "inclusion",
+      "theorem": "Théorème de Fejér",
+      "statement": "Toute fonction 2π-périodique continue est limite uniforme de ses moyennes de Fejér.",
+      "depth": "classique",
+      "id": "e748",
+      "domain": "analyse harmonique"
+    },
+    {
+      "from": "CPER",
+      "to": "C",
+      "kind": "inclusion",
+      "theorem": "Définition",
+      "statement": "Une fonction 2π-périodique continue est une fonction continue.",
+      "depth": "définitoire",
+      "id": "e749",
+      "domain": "analyse harmonique"
+    },
+    {
+      "from": "ACZ",
+      "to": "ACN",
+      "kind": "inclusion",
+      "theorem": "Définition",
+      "statement": "Une absolument continue à dérivée nulle p.p. est en particulier absolument continue.",
+      "depth": "définitoire",
+      "id": "e750",
+      "domain": "théorie de la mesure"
+    },
+    {
+      "from": "ACZ",
+      "to": "D7",
+      "kind": "inclusion",
+      "theorem": "Singulières invisibles",
+      "statement": "Une fonction absolument continue dont la dérivée est nulle presque partout est constante : avec l'AC, le presque partout suffit.",
+      "depth": "classique",
+      "id": "e751",
+      "domain": "théorie de la mesure"
+    },
+    {
+      "from": "CANT",
+      "to": "M",
+      "kind": "inclusion",
+      "theorem": "Définition",
+      "statement": "Un escalier singulier est en particulier croissant.",
+      "depth": "définitoire",
+      "id": "e752",
+      "domain": "analyse réelle"
+    },
+    {
+      "from": "CANT",
+      "to": "D7",
+      "kind": "anti",
+      "theorem": "Contre-exemple de l'escalier de Cantor",
+      "statement": "Une fonction à dérivée nulle presque partout n'est pas toujours constante.",
+      "depth": "fondamental",
+      "id": "e753",
+      "domain": "théorie de la mesure",
+      "counterexample": "l'escalier de Cantor : croissante, continue, dérivée nulle p.p., mais non constante"
+    },
+    {
+      "from": "CANT",
+      "to": "C",
+      "kind": "inclusion",
+      "theorem": "Escaliers continus",
+      "statement": "Un escalier singulier est continu.",
+      "depth": "définitoire",
+      "id": "e754",
+      "domain": "analyse réelle"
+    },
+    {
+      "from": "DERO",
+      "to": "DER",
+      "kind": "inclusion",
+      "theorem": "Définition",
+      "statement": "Une dérivée bornée est en particulier une dérivée.",
+      "depth": "définitoire",
+      "id": "e755",
+      "domain": "analyse réelle"
+    },
+    {
+      "from": "DERO",
+      "to": "B",
+      "kind": "inclusion",
+      "theorem": "Définition",
+      "statement": "Une dérivée bornée est en particulier bornée.",
+      "depth": "définitoire",
+      "id": "e756",
+      "domain": "analyse réelle"
+    },
+    {
+      "from": "DERO",
+      "to": "RSEG",
+      "kind": "anti",
+      "theorem": "Contre-exemple de Volterra",
+      "statement": "Une dérivée bornée n'est pas toujours Riemann-intégrable.",
+      "depth": "classique",
+      "id": "e757",
+      "domain": "analyse réelle",
+      "counterexample": "la dérivée de Volterra : bornée, mais discontinue sur un ensemble de mesure positive, donc non Riemann-intégrable"
+    },
+    {
+      "from": "INJ",
+      "to": "F",
+      "kind": "inclusion",
+      "theorem": "Définition",
+      "statement": "Une fonction continue injective sur un intervalle est une fonction réelle.",
+      "depth": "définitoire",
+      "id": "e758",
+      "domain": "analyse réelle"
+    },
+    {
+      "from": "ABI",
+      "to": "F",
+      "kind": "inclusion",
+      "theorem": "Définition",
+      "statement": "Une fonction atteignant sa borne inférieure sur tout segment est une fonction réelle.",
+      "depth": "définitoire",
+      "id": "e759",
+      "domain": "analyse réelle"
+    },
+    {
+      "from": "CCH",
+      "to": "F",
+      "kind": "inclusion",
+      "theorem": "Définition",
+      "statement": "Une fonction Cauchy-continue est une fonction réelle.",
+      "depth": "définitoire",
+      "id": "e760",
+      "domain": "analyse réelle"
+    },
+    {
+      "from": "SMB",
+      "to": "BW1",
+      "kind": "inclusion",
+      "theorem": "Définition",
+      "statement": "Une suite monotone bornée est en particulier bornée.",
+      "depth": "définitoire",
+      "id": "e761",
+      "domain": "analyse des suites réelles"
+    },
+    {
+      "from": "ADJ",
+      "to": "BW1",
+      "kind": "inclusion",
+      "theorem": "Suites adjacentes bornées",
+      "statement": "Chaque suite d'une paire adjacente est bornée : la croissante est majorée par la décroissante.",
+      "depth": "immédiat",
+      "id": "e762",
+      "domain": "analyse des suites réelles"
+    },
+    {
+      "from": "D",
+      "to": "NDV",
+      "kind": "inclusion",
+      "theorem": "Définition",
+      "statement": "Une fonction dérivable est dérivable en au moins un point.",
+      "depth": "définitoire",
+      "id": "e763",
+      "domain": "analyse réelle"
+    },
+    {
+      "from": "C",
+      "to": "NDV",
+      "kind": "anti",
+      "theorem": "Contre-exemple de Weierstrass",
+      "statement": "Une fonction continue n'est pas toujours dérivable, même en un seul point.",
+      "depth": "fondamental",
+      "id": "e764",
+      "domain": "analyse réelle",
+      "counterexample": "la fonction de Weierstrass x ↦ Σ aⁿ cos(bⁿx), b impair, 0 < a < 1, ab > 1 + 3π/2 : continue partout, dérivable nulle part"
+    },
+    {
+      "from": "L",
+      "to": "H11",
+      "kind": "equivalence",
+      "theorem": "Hölder 1 = Lipschitz",
+      "statement": "Être höldérienne d'exposant 1 et être lipschitzienne sont la même condition : \\( |f(x) - f(y)| \\le C\\,|x - y| \\) pour un certain C.",
+      "depth": "immédiat",
+      "id": "e765",
+      "domain": "analyse réelle"
+    },
+    {
+      "from": "CNV",
+      "to": "LCV",
+      "kind": "anti",
+      "theorem": "Une convexe non log-convexe",
+      "statement": "Une fonction convexe positive n'est pas toujours log-convexe.",
+      "depth": "classique",
+      "id": "e766",
+      "domain": "analyse réelle",
+      "counterexample": "x ↦ x² + 1 : convexe, mais son logarithme ln(x² + 1) est concave dès que |x| > 1."
+    },
+    {
+      "from": "SYM",
+      "to": "D",
+      "kind": "anti",
+      "theorem": "Une dérivée symétrique sans dérivée",
+      "statement": "L'existence en tout point de la dérivée symétrique n'implique pas la dérivabilité.",
+      "depth": "classique",
+      "id": "e767",
+      "domain": "analyse réelle",
+      "counterexample": "x ↦ |x| : dérivée symétrique nulle en 0, mais non dérivable en 0."
+    },
+    {
+      "from": "CAUR",
+      "to": "BW1",
+      "kind": "inclusion",
+      "theorem": "Une suite de Cauchy est bornée",
+      "statement": "Toute suite de Cauchy réelle est bornée : ses termes au-delà du rang N tiennent dans une boule de rayon ε autour de u_N, et les N premiers forment une partie finie.",
+      "depth": "facile",
+      "id": "e768",
+      "domain": "analyse des suites réelles"
+    },
+    {
+      "from": "C1A",
+      "to": "D1",
+      "kind": "anti",
+      "theorem": "Une C^{1,1/2} qui n'est pas C²",
+      "statement": "La dérivée d'une fonction de classe C^{1,1/2} peut exister sans être dérivable : C^{1,1/2} ⊄ C².",
+      "depth": "classique",
+      "id": "e769",
+      "domain": "analyse réelle",
+      "counterexample": "x ↦ |x|^{3/2} : de classe C^{1,1/2}, mais sa dérivée x ↦ (3/2)·sgn(x)·|x|^{1/2} n'est pas dérivable en 0."
+    },
+    {
+      "from": "W1I",
+      "to": "W11",
+      "kind": "inclusion",
+      "theorem": "Définition",
+      "statement": "Une fonction bornée à dérivée faible essentiellement bornée est en particulier intégrable avec sa dérivée faible.",
+      "depth": "définitoire",
+      "id": "e770",
+      "domain": "théorie de la mesure"
+    },
+    {
+      "from": "W1I",
+      "to": "LCS",
+      "kind": "equivalence",
+      "theorem": "W^{1,∞} égale Lipschitz sur le segment",
+      "statement": "Sur un segment [a, b], les fonctions à dérivée faible essentiellement bornée sont exactement les fonctions lipschitziennes : la borne essentielle de la dérivée donne la constante de Lipschitz, et réciproquement une fonction lipschitzienne est absolument continue à dérivée bornée par k.",
+      "depth": "classique",
+      "id": "e771",
+      "domain": "théorie de la mesure"
+    },
+    {
+      "from": "LCS",
+      "to": "LP0S",
+      "kind": "inclusion",
+      "theorem": "Définition",
+      "statement": "Une fonction lipschitzienne sur [a, b] y est bornée, donc essentiellement bornée.",
+      "depth": "définitoire",
+      "id": "e772",
+      "domain": "théorie de la mesure"
+    },
+    {
+      "from": "W21",
+      "to": "W11",
+      "kind": "inclusion",
+      "theorem": "Définition",
+      "statement": "Une fonction W^{2,1} sur [a, b] y est en particulier W^{1,1} : sa dérivée première faible est intégrable.",
+      "depth": "définitoire",
+      "id": "e773",
+      "domain": "théorie de la mesure"
+    },
+    {
+      "from": "INT1",
+      "to": "LP1S",
+      "kind": "inclusion",
+      "theorem": "Définition",
+      "statement": "Une fonction à la fois L¹ et L² sur [a, b] est en particulier L¹.",
+      "depth": "définitoire",
+      "id": "e774",
+      "domain": "théorie de la mesure"
+    },
+    {
+      "from": "INT1",
+      "to": "LP2S",
+      "kind": "inclusion",
+      "theorem": "Définition",
+      "statement": "Une fonction à la fois L¹ et L² sur [a, b] est en particulier L².",
+      "depth": "définitoire",
+      "id": "e775",
+      "domain": "théorie de la mesure"
+    },
+    {
+      "from": "INT1",
+      "to": "LP0S",
+      "kind": "anti",
+      "theorem": "Le logarithme : L¹ et L² sans L^∞",
+      "statement": "Être à la fois L¹ et L² sur un segment n'implique pas être essentiellement bornée.",
+      "depth": "classique",
+      "id": "e776",
+      "domain": "théorie de la mesure",
+      "counterexample": "x ↦ ln(1/x) sur ]0, 1] : intégrable, de carré intégrable, non essentiellement bornée."
+    },
+    {
+      "from": "LP1S",
+      "to": "LP2S",
+      "kind": "anti",
+      "theorem": "Une L¹ sur le segment qui n'est pas L²",
+      "statement": "Sur un segment, L² ⊆ L¹ mais l'inclusion inverse échoue.",
+      "depth": "classique",
+      "id": "e777",
+      "domain": "théorie de la mesure",
+      "counterexample": "x ↦ x^{-2/3} sur ]0, 1] : intégrable, mais de carré x ↦ x^{-4/3} non intégrable."
+    },
+    {
+      "from": "LP0S",
+      "to": "LPP",
+      "kind": "inclusion",
+      "theorem": "Interpolation : L^∞ est dans tous les L^p",
+      "statement": "Sur un segment de mesure finie, toute fonction essentiellement bornée appartient à tous les L^p : \\( \\int_{[a,b]} |f|^p \\le \\|f\\|_\\infty^{p-1} \\int_{[a,b]} |f| \\).",
+      "depth": "classique",
+      "id": "e778",
+      "domain": "théorie de la mesure"
+    },
+    {
+      "from": "LPP",
+      "to": "LP1S",
+      "kind": "inclusion",
+      "theorem": "Définition",
+      "statement": "Une fonction dans tous les L^p sur [a, b] est en particulier L¹.",
+      "depth": "définitoire",
+      "id": "e779",
+      "domain": "théorie de la mesure"
+    },
+    {
+      "from": "LPP",
+      "to": "LP2S",
+      "kind": "inclusion",
+      "theorem": "Définition",
+      "statement": "Une fonction dans tous les L^p sur [a, b] est en particulier L².",
+      "depth": "définitoire",
+      "id": "e780",
+      "domain": "théorie de la mesure"
+    },
+    {
+      "from": "FSM",
+      "to": "F",
+      "kind": "inclusion",
+      "theorem": "Définition",
+      "statement": "Une fonction dont les points de discontinuité forment un Fσ maigre est en particulier une fonction réelle.",
+      "depth": "définitoire",
+      "id": "e781",
+      "domain": "analyse réelle"
+    },
+    {
+      "from": "BAF1",
+      "to": "FSM",
+      "kind": "inclusion",
+      "theorem": "Baire 1 : discontinuités maigres",
+      "statement": "Les points de discontinuité d'une fonction de Baire 1 forment un Fσ maigre.",
+      "depth": "classique",
+      "id": "e782",
+      "domain": "analyse réelle"
+    },
+    {
+      "from": "SFR",
+      "to": "SUIT",
+      "kind": "inclusion",
+      "theorem": "Définition",
+      "statement": "Une suite de fonctions réelles est une suite.",
+      "depth": "définitoire",
+      "id": "e783",
+      "domain": "analyse des suites réelles"
+    },
+    {
+      "from": "SUC",
+      "to": "SFR",
+      "kind": "inclusion",
+      "theorem": "Définition",
+      "statement": "Une suite croissante de fonctions continues sur un segment est en particulier une suite de fonctions réelles.",
+      "depth": "définitoire",
+      "id": "e784",
+      "domain": "analyse réelle"
+    },
+    {
+      "from": "UNF",
+      "to": "SFR",
+      "kind": "inclusion",
+      "theorem": "Définition",
+      "statement": "Une suite de fonctions convergeant uniformément est en particulier une suite de fonctions réelles.",
+      "depth": "définitoire",
+      "id": "e785",
+      "domain": "analyse réelle"
+    },
+    {
+      "from": "SCS",
+      "to": "SUC",
+      "kind": "inclusion",
+      "theorem": "Définition",
+      "statement": "Une suite croissante convergeant simplement vers une fonction continue est en particulier croissante à termes continus.",
+      "depth": "définitoire",
+      "id": "e786",
+      "domain": "analyse réelle"
+    },
+    {
+      "from": "SCS",
+      "to": "UNF",
+      "kind": "inclusion",
+      "theorem": "Théorème de Dini",
+      "statement": "Une suite croissante de fonctions continues sur un segment [a, b] qui converge simplement vers une fonction continue y converge uniformément.",
+      "depth": "classique",
+      "id": "e787",
+      "domain": "analyse réelle"
     }
   ]
 }
