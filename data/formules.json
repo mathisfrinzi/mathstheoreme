@@ -1,7 +1,7 @@
 {
   "meta": {
     "name": "Graphe des formules",
-    "version": "0.1.0",
+    "version": "0.37.0",
     "created": "2026-11-24",
     "language": "fr",
     "description": "Le pendant du graphe des théorèmes pour les identités : chaque nœud-quantité est une valeur ou un objet bien défini, chaque nœud-formule (losange) une identité qui les relie, chaque arête « terme » disant quelle quantité intervient dans quelle formule.",
@@ -9,7 +9,8 @@
       "quantité": "nœud : une quantité ou un objet mathématique bien défini (périmètre, probabilité conditionnelle, somme de quatrièmes puissances…), avec sa compréhension et un exemple",
       "formule": "nœud losange : une identité ou formule fermée, avec ses conditions de validité, sa fiche MathWorld d'origine et son domaine (réutilise le code couleur du graphe des théorèmes)",
       "terme": "arête : la quantité intervient dans la formule ; une formule est en général n-aire (Bayes relie quatre quantités en tout)",
-      "notes": "Né en v0.32.0 après la typologie des non-tenues de la pioche MathWorld : les identités sont des égalités de chemins de calcul, pas des inclusions entre familles réutilisables ; elles vivent ici (discussion Banach–Saks, lauréat du filtre de réutilisabilité, étant resté au graphe des théorèmes)."
+      "notes": "Né en v0.32.0 après la typologie des non-tenues de la pioche MathWorld : les identités sont des égalités de chemins de calcul, pas des inclusions entre familles réutilisables ; elles vivent ici (discussion Banach–Saks, lauréat du filtre de réutilisabilité, étant resté au graphe des théorèmes).",
+      "objets": "champ d'une formule : les ensembles de data/graphe.json auxquels elle se rattache. Un clic sur l'un d'eux, ou sur l'un de ses sous-ensembles (inclusions et équivalences), ouvre la formule dans la fenêtre de gauche de la page."
     }
   },
   "nodes": [
@@ -243,6 +244,9 @@
       "kind": "formule",
       "label": "Binôme de Newton",
       "domain": "algèbre générale",
+      "objets": [
+        "ANR1"
+      ],
       "statement": "Pour \\( n \\in \\mathbb{N} \\) et \\( a, b \\) dans un anneau commutatif : \\( (a+b)^n = \\sum_{k=0}^{n} \\binom{n}{k} a^{n-k} b^k \\). La série binomiale générale étend l'exposant : \\( (1+x)^{\\alpha} = \\sum_{k=0}^{\\infty} \\binom{\\alpha}{k} x^k \\) pour α réel (aussi complexe) et \\( |x| < 1 \\) ; Newton (1676) avait le cas des exposants négatifs, Pascal (1666) la forme moderne du cas entier, Euclide (vers 300 av. J.-C.) le cas n = 2.",
       "source": "https://mathworld.wolfram.com/BinomialTheorem.html",
       "origin": "Binomial Theorem (MathWorld)",
@@ -253,6 +257,9 @@
       "kind": "formule",
       "label": "Binôme d'Abel (1826)",
       "domain": "algèbre générale",
+      "objets": [
+        "ANR1"
+      ],
       "statement": "Pour \\( n \\in \\mathbb{N} \\) et \\( x, y, z \\) avec x inversible : \\( \\frac{(x+y)^n}{x} = \\sum_{k=0}^{n} \\binom{n}{k} (x - kz)^{k-1} (y + kz)^{n-k} \\). En \\( z = 0 \\) on retrouve le binôme de Newton : les décalages kz s'évanouissent ; en \\( x = -y \\), la différence finie \\( \\Delta_z^n [y^{n-1}] \\) est nulle. Le binôme de Newton n'est qu'un cas particulier de cette identité plus générale (Abel, 1826).",
       "source": "https://mathworld.wolfram.com/AbelsBinomialTheorem.html",
       "origin": "Abels Binomial Theorem (MathWorld)"
@@ -262,6 +269,9 @@
       "kind": "formule",
       "label": "Théorème de Bayes (1763)",
       "domain": "théorie de la mesure",
+      "objets": [
+        "PROB"
+      ],
       "statement": "Pour des événements A, B avec \\( P(B) \\neq 0 \\) : \\( P(A \\mid B) = \\frac{P(B \\mid A)\\, P(A)}{P(B)} \\). Forme généralisée : si \\( B_1, \\dots, B_n \\) sont deux à deux disjoints, de probabilités non nulles, et recouvrent A, alors \\( P(B_i \\mid A) = \\frac{P(A \\mid B_i)\\, P(B_i)}{\\sum_j P(A \\mid B_j)\\, P(B_j)} \\) : la probabilité a posteriori d'une cause se lit sur la vraisemblance et les a priori.",
       "source": "https://mathworld.wolfram.com/BayesTheorem.html",
       "origin": "Bayes Theorem (MathWorld)"
@@ -271,6 +281,9 @@
       "kind": "formule",
       "label": "Théorème de Barbier (1860)",
       "domain": "géométrie euclidienne",
+      "objets": [
+        "CVX1"
+      ],
       "statement": "Toute courbe plane convexe de largeur constante w a pour périmètre \\( p = \\pi w \\) : toutes les courbes de largeur w ont le même périmètre qu'un cercle de diamètre w, sans être un cercle. La preuve passe par la formule du périmètre de Cauchy : \\( p = \\int_0^{\\pi} w(\\theta)\\, d\\theta \\), et pour une largeur constante \\( w(\\theta) = w \\), donc \\( p = \\pi w \\).",
       "source": "https://mathworld.wolfram.com/BarbiersTheorem.html",
       "origin": "Barbiers Theorem (MathWorld)",
@@ -281,6 +294,9 @@
       "kind": "formule",
       "label": "Théorème BEST (de Bruijn, van Aardenne-Ehrenfest, Smith, Tutte)",
       "domain": "théorie des graphes",
+      "objets": [
+        "GRAP"
+      ],
       "statement": "Soit G un digraphe fini fortement connexe avec \\( \\deg^+(v) = \\deg^-(v) \\) en chaque sommet (digraphe eulérien) et \\( t_w(G) \\) le nombre d'arborescences dont les arcs convergent vers w (donné par le matrix tree theorem orienté). Le nombre de circuits eulériens de G commençant par un arc prescrit sortant de w vaut \\( \\mathrm{ec}(G) = t_w(G) \\prod_v (\\deg^+(v) - 1)! \\) ; sans arc prescrit, le compte se multiplie par \\( \\deg^+(w) \\), avec normalisation pour les comptes modulo rotation. Sert aussi à compter les cycles hamiltoniens des itérés de line-digraphes.",
       "source": "https://mathworld.wolfram.com/BESTTheorem.html",
       "origin": "BEST Theorem (MathWorld)"
@@ -290,6 +306,9 @@
       "kind": "formule",
       "label": "Théorème de Bézout (courbes)",
       "domain": "algèbre générale",
+      "objets": [
+        "KOR1"
+      ],
       "statement": "Sur un corps algébriquement clos, deux courbes algébriques projectives planes de degrés m et n sans composante commune se rencontrent en exactement \\( mn \\) points, comptés avec multiplicité ; sans l'hypothèse d'absence de composante commune, elles ne peuvent pas se rencontrer en plus de \\( mn \\) points (Coolidge 1959, p. 10). Version polynômes : si P et Q n'ont pas de racine commune, il existe U, V tels que PU + QV = 1 ; version entiers (Séroul 2000) : pour a, b ∈ ℤ, il existe u, v tels que au + bv = pgcd(a, b).",
       "source": "https://mathworld.wolfram.com/BezoutsTheorem.html",
       "origin": "Bezouts Theorem (MathWorld)"
@@ -299,6 +318,9 @@
       "kind": "formule",
       "label": "Théorème de Bailey (1931)",
       "domain": "analyse réelle",
+      "objets": [
+        "GAM2"
+      ],
       "statement": "Pour m, n entiers positifs : \\( \\left[\\frac{\\Gamma(m + \\tfrac{1}{2})}{\\Gamma(m)}\\right]^2 \\sum_{k=0}^{n-1} \\frac{1}{m+k} \\left[\\frac{(2k-1)!!}{(2k)!!}\\right]^2 = \\left[\\frac{\\Gamma(n + \\tfrac{1}{2})}{\\Gamma(n)}\\right]^2 \\sum_{k=0}^{m-1} \\frac{1}{n+k} \\left[\\frac{(2k-1)!!}{(2k)!!}\\right]^2 \\). Les deux côtés croisés en m et n s'égalent : l'une des identités de Ramanujan démontrée par Bailey (1931), sur les sommes partielles des coefficients de la série hypergéométrique.",
       "source": "https://mathworld.wolfram.com/BaileysTheorem.html",
       "origin": "Baileys Theorem (MathWorld)"
@@ -308,6 +330,9 @@
       "kind": "formule",
       "label": "Théorème de Baranyai (1975)",
       "domain": "théorie des graphes",
+      "objets": [
+        "GRAP"
+      ],
       "statement": "Si k divise n, l'hypergraphe complet k-uniforme \\( K_n^k \\) sur n sommets se décompose en 1-facteurs : ses arêtes se partitionnent en classes dont chacune découpe les n sommets en n/k parties de cardinal k, deux à deux disjointes. Brouwer et Schrijver (1979) en donnent une preuve par le max-flow min-cut ; le théorème sert aussi au calcul du nombre de clique des graphes de Kneser.",
       "source": "https://mathworld.wolfram.com/BaranyaisTheorem.html",
       "origin": "Baranyais Theorem (MathWorld)"
@@ -317,6 +342,9 @@
       "kind": "formule",
       "label": "Théorème de Bhargava (1992, d'après Ramanujan)",
       "domain": "arithmétique",
+      "objets": [
+        "ZENT"
+      ],
       "statement": "Sur \\( u = (a, b, c) \\), notons \\( |u| = a + b + c \\) et \\( \\|u\\| = a^4 + b^4 + c^4 \\). Définissons \\( f(u) = (a(b-c),\\; b(c-a),\\; c(a-b)) \\) et \\( g(u) = (a^2b + b^2c + c^2a,\\; ab^2 + bc^2 + ca^2,\\; 3abc) \\). Si \\( |u| = 0 \\), les deux applications préservent le plan \\( a + b + c = 0 \\) et anticommutent : \\( f \\circ g = -\\, g \\circ f \\). C'est la clé de la composition itérée des formules de Ramanujan sur les sommes de quatrièmes puissances.",
       "source": "https://mathworld.wolfram.com/BhargavasTheorem.html",
       "origin": "Bhargavas Theorem (MathWorld)",
@@ -327,6 +355,9 @@
       "kind": "formule",
       "label": "Théorème des boîtes premières (Box-Packing)",
       "domain": "géométrie combinatoire",
+      "objets": [
+        "FIGU"
+      ],
       "statement": "Étant donné des configurations de boîtes, un ensemble de boîtes est dit premier s'il ne peut pas être construit à partir d'une ou plusieurs des configurations données ; le nombre d'ensembles premiers est toujours fini (Honsberger, Mathematical Gems II, p. 74 ; l'argument noethérien remonte à de Bruijn).",
       "source": "https://mathworld.wolfram.com/Box-PackingTheorem.html",
       "origin": "Box-Packing Theorem (MathWorld)",
@@ -337,9 +368,105 @@
       "kind": "formule",
       "label": "Théorème de Bradley (1994)",
       "domain": "analyse réelle",
+      "objets": [
+        "GAM2"
+      ],
       "statement": "Posons \\( S(\\alpha, \\beta, m, z) = m \\sum_{j=0}^{\\infty} \\frac{\\Gamma(\\beta + 1 + jz)\\, \\Gamma(m + j(z+1))}{\\Gamma(\\alpha + \\beta + 1 + j(z+1))\\, \\Gamma(m + jz + 1)} \\cdot \\frac{(\\alpha)_j}{j!} \\). Si \\( \\alpha = -k \\) est un entier négatif ou nul, la série s'arrête et, pour tout z complexe, \\( S = \\frac{\\Gamma(\\beta + 1 - m)}{\\Gamma(\\alpha + \\beta + 1 - m)} \\) : la valeur ne dépend plus de z. En \\( z = 0 \\) avec \\( \\mathrm{Re}(\\beta + 1 - m) > 0 \\), l'égalité vaut pour tout \\( \\alpha \\). C'est la réclamation de Ramanujan sur certaines séries hypergéométriques, établie par Bradley (Proc. Amer. Math. Soc. 121, 1994).",
       "source": "https://mathworld.wolfram.com/BradleysTheorem.html",
       "origin": "Bradleys Theorem (MathWorld)"
+    },
+    {
+      "id": "qBMP",
+      "kind": "quantité",
+      "label": "Coefficients binomiaux modulo p",
+      "domain": "arithmétique",
+      "property": "\\{\\, \\binom{n}{k} \\bmod p \\mid p \\text{ premier},\\ 0 \\le k \\le n \\,\\}",
+      "description": "Les coefficients binomiaux réduits modulo un nombre premier.",
+      "example": "\\binom{10}{3} = 120 \\equiv 0 \\pmod 5"
+    },
+    {
+      "id": "qBCH",
+      "kind": "quantité",
+      "label": "Produits de binomiaux des chiffres",
+      "domain": "arithmétique",
+      "property": "\\{\\, \\prod_{i} \\binom{n_i}{k_i} \\bmod p \\mid n = \\sum n_i p^i,\\ k = \\sum k_i p^i \\,\\}",
+      "description": "Le produit des coefficients binomiaux des chiffres de n et de k en base p, modulo p.",
+      "example": "10 = (2,0)_5 et 3 = (0,3)_5 : \\binom{2}{0}\\binom{0}{3} = 0"
+    },
+    {
+      "id": "qFPR",
+      "kind": "quantité",
+      "label": "Produits de deux formes x² + ny²",
+      "domain": "arithmétique",
+      "property": "\\{\\, (a^2 + n b^2)(c^2 + n d^2) \\mid a, b, c, d, n \\in \\mathbb{Z} \\,\\}",
+      "description": "Les produits de deux entiers représentés par la forme x² + ny².",
+      "example": "n = 1 : (1² + 2²)(2² + 3²) = 5 · 13 = 65"
+    },
+    {
+      "id": "qFCP",
+      "kind": "quantité",
+      "label": "Forme X² + nY² en (ac − nbd, ad + bc)",
+      "domain": "arithmétique",
+      "property": "\\{\\, (ac - nbd)^2 + n (ad + bc)^2 \\mid a, b, c, d, n \\in \\mathbb{Z} \\,\\}",
+      "description": "La même forme, évaluée au point composé des deux couples.",
+      "example": "n = 1, (a, b, c, d) = (1, 2, 2, 3) : (−4)² + 7² = 65"
+    },
+    {
+      "id": "qPGC",
+      "kind": "quantité",
+      "label": "Plus grand commun diviseur",
+      "domain": "arithmétique",
+      "property": "\\{\\, \\gcd(a, b) \\mid a, b \\in \\mathbb{Z} \\text{ non tous nuls} \\,\\}",
+      "description": "Le plus grand entier qui divise à la fois a et b.",
+      "example": "pgcd(12, 18) = 6"
+    },
+    {
+      "id": "qCMB",
+      "kind": "quantité",
+      "label": "Combinaisons entières au + bv",
+      "domain": "arithmétique",
+      "property": "\\{\\, a u + b v \\mid a, b, u, v \\in \\mathbb{Z} \\,\\}",
+      "description": "Les combinaisons à coefficients entiers de deux entiers a et b.",
+      "example": "12 · (−1) + 18 · 1 = 6"
+    },
+    {
+      "id": "f12",
+      "kind": "formule",
+      "label": "Théorème de Lucas (1878)",
+      "domain": "arithmétique",
+      "objets": [
+        "A2"
+      ],
+      "statement": "Pour \\( p \\) premier et \\( n, k \\in \\mathbb{N} \\) d'écritures \\( n = \\sum_i n_i p^i \\) et \\( k = \\sum_i k_i p^i \\) en base \\( p \\) : \\( \\binom{n}{k} \\equiv \\prod_i \\binom{n_i}{k_i} \\pmod p \\) (avec \\( \\binom{a}{b} = 0 \\) si \\( b > a \\)). En particulier \\( p \\) ne divise pas \\( \\binom{n}{k} \\) si et seulement si chaque chiffre de \\( k \\) est inférieur ou égal au chiffre correspondant de \\( n \\).",
+      "source": "https://mathworld.wolfram.com/LucasCorrespondenceTheorem.html",
+      "origin": "Lucas Correspondence Theorem (MathWorld)",
+      "notes": "Congruence entre quantités : reclassée depuis les contextes (v0.37.0), où elle était écrite comme une inclusion entre ensembles de couples pour p fixé."
+    },
+    {
+      "id": "f13",
+      "kind": "formule",
+      "label": "Identité de Brahmagupta",
+      "domain": "arithmétique",
+      "objets": [
+        "A1"
+      ],
+      "statement": "Pour tous entiers \\( a, b, c, d, n \\) : \\( (a^2 + n b^2)(c^2 + n d^2) = (ac - nbd)^2 + n (ad + bc)^2 \\). Conséquence : si deux entiers sont représentés par \\( x^2 + ny^2 \\), leur produit l'est aussi (Brahmagupta, VIIᵉ siècle ; Fibonacci pour \\( n = 1 \\)).",
+      "source": "https://mathworld.wolfram.com/BrahmaguptaIdentity.html",
+      "origin": "Brahmagupta Identity (MathWorld)",
+      "notes": "Identité entre quantités : reclassée depuis les contextes (v0.37.0)."
+    },
+    {
+      "id": "f14",
+      "kind": "formule",
+      "label": "Identité de Bézout",
+      "domain": "arithmétique",
+      "objets": [
+        "ZENT"
+      ],
+      "statement": "Pour deux entiers \\( a, b \\) non tous nuls, il existe des entiers \\( u, v \\) tels que \\( \\gcd(a, b) = au + bv \\). De façon équivalente, \\( a\\mathbb{Z} + b\\mathbb{Z} = \\gcd(a, b)\\,\\mathbb{Z} \\).",
+      "source": "https://mathworld.wolfram.com/BezoutsIdentity.html",
+      "origin": "Bézout's Identity (MathWorld)",
+      "notes": "Égalité entre quantités : reclassée depuis les contextes (v0.37.0). À ne pas confondre avec le théorème de Bézout sur les courbes (f06)."
     }
   ],
   "edges": [
@@ -503,6 +630,42 @@
       "id": "t27",
       "from": "qSRJ",
       "to": "f11",
+      "kind": "terme"
+    },
+    {
+      "id": "t28",
+      "from": "qBMP",
+      "to": "f12",
+      "kind": "terme"
+    },
+    {
+      "id": "t29",
+      "from": "qBCH",
+      "to": "f12",
+      "kind": "terme"
+    },
+    {
+      "id": "t30",
+      "from": "qFPR",
+      "to": "f13",
+      "kind": "terme"
+    },
+    {
+      "id": "t31",
+      "from": "qFCP",
+      "to": "f13",
+      "kind": "terme"
+    },
+    {
+      "id": "t32",
+      "from": "qPGC",
+      "to": "f14",
+      "kind": "terme"
+    },
+    {
+      "id": "t33",
+      "from": "qCMB",
+      "to": "f14",
       "kind": "terme"
     }
   ]

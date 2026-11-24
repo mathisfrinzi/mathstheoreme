@@ -1,17 +1,18 @@
 {
   "meta": {
     "name": "Contextes",
-    "version": "0.1.0",
+    "version": "0.37.0",
     "created": "2026-11-24",
     "language": "fr",
-    "description": "Un contexte est une liste d'ensembles du graphe des théorèmes (champ requires : un ensemble, ou n'importe lequel de ses sous-ensembles par inclusions ou équivalences, suffit à le déclencher). Quand il est actif, des objets contextuels apparaissent : des ensembles qui n'existent qu'une fois un objet du contexte fixé (les valeurs propres d'UNE matrice), avec leurs propres arêtes. Un nœud du graphe principal est un ensemble définissable sans contexte ; un objet contextuel ne l'est pas. Les arêtes ont le même format que celles de graphe.json ; from et to désignent un objet contextuel (id défini ici) ou un nœud de graphe.json."
+    "description": "Un contexte est une liste de variables (champ variables), chacune avec son domaine : les ensembles du graphe des théorèmes qui déclenchent le contexte sont listés dans requires (l'ensemble requis, ou n'importe lequel de ses sous-ensembles par inclusions ou équivalences, suffit). Convention : les variables d'un contexte sont quelconques. Un énoncé du contexte vaut pour toutes les valeurs admissibles des variables à la fois (un seul quantificateur ∀ extérieur) ; les hypothèses du théorème sont entièrement dans les domaines des variables. Les objets contextuels sont des applications des variables vers des ensembles (les valeurs propres d'UNE matrice) ; un nœud du graphe y est un ensemble constant. Types d'arêtes : inclusion (∀ valeurs, A ⊆ B), équivalence (A = B), partie, anti (non-inclusion : il existe des valeurs, données par le contre-exemple, pour lesquelles A ⊄ B), disjoint (∀ valeurs, A ∩ B = ∅), isomorphisme (A ≃ B pour la structure indiquée), conjecture. Les identités, congruences et estimations ne sont pas des arêtes : elles vivent dans data/formules.json. Les arêtes ont le même format que celles de graphe.json ; from et to désignent un objet contextuel (id défini ici) ou un nœud de graphe.json."
   },
   "contexts": [
     {
       "id": "CX1",
       "label": "Matrice carrée complexe",
-      "variable": "M",
-      "requires": ["L1"],
+      "requires": [
+        "L1"
+      ],
       "objects": [
         {
           "id": "CX1_SP",
@@ -64,6 +65,885 @@
           "strict": true,
           "strictnessExample": "M = [[0, 1], [0, 0]] : le spectre est {0}, mais la réunion des disques est le disque unité fermé tout entier.",
           "domain": "algèbre linéaire"
+        }
+      ],
+      "variables": [
+        {
+          "nom": "M",
+          "domaine": "matrice carrée complexe, de taille n ≥ 1 quelconque"
+        }
+      ]
+    },
+    {
+      "id": "CX2",
+      "label": "Polynôme réel unitaire de degré n",
+      "requires": [
+        "PRX1"
+      ],
+      "description": "Un polynôme unitaire réel de degré n à n racines réelles, dont les coefficients de degré n−1 et n−2 sont imposés.",
+      "objects": [
+        {
+          "id": "LR1",
+          "label": "Racines à coefficients imposés",
+          "domain": "analyse réelle",
+          "property": "\\{\\, x \\in \\mathbb{R} \\mid x \\text{ racine d'un polynôme unitaire réel de degré } n \\text{ à } n \\text{ racines réelles, avec } a_{n-1} \\text{ et } a_{n-2} \\text{ fixés} \\,\\}",
+          "description": "Union des racines des polynômes unitaires réels de degré n (fixé) ayant n racines réelles, dont les coefficients de degré n−1 et n−2 sont fixés (les autres libres).",
+          "example": "n = 2, coefficients 0 et −1 : le polynôme x² − 1, racines ±1",
+          "card": "aleph1"
+        },
+        {
+          "id": "LR2",
+          "label": "Segment de Laguerre",
+          "domain": "analyse réelle",
+          "property": "[u, v], \\text{ où } u \\text{ et } v \\text{ sont les racines du trinôme } n x^{2} + 2 a_{n-1} x + 2 (n-1) a_{n-2} - (n-2) a_{n-1}^{2}",
+          "description": "Le segment dont les extrémités sont les racines du trinôme de Laguerre construit sur les mêmes données (n et les deux coefficients fixés).",
+          "example": "n = 2, coefficients 0 et −1 : trinôme 2x² − 2, segment [−1, 1]",
+          "card": "aleph1"
+        }
+      ],
+      "edges": [
+        {
+          "from": "LR1",
+          "to": "LR2",
+          "kind": "inclusion",
+          "theorem": "Théorème de Laguerre (cas réel)",
+          "statement": "Si \\( P \\) est un polynôme unitaire réel de degré \\( n \\) à \\( n \\) racines réelles, toutes ses racines appartiennent au segment \\( [u, v] \\), où \\( u \\) et \\( v \\) sont les racines du trinôme \\( n x^{2} + 2 a_{n-1} x + 2 (n-1) a_{n-2} - (n-2) a_{n-1}^{2} \\).",
+          "depth": "classique",
+          "domain": "analyse réelle",
+          "id": "e122"
+        },
+        {
+          "from": "LR2",
+          "to": "SEG",
+          "kind": "inclusion",
+          "theorem": "« Segment de Laguerre » : toujours un segment",
+          "statement": "Le segment de Laguerre [u, v] est un segment de ℝ : chaînon du lot J.",
+          "depth": "définitoire",
+          "domain": "analyse réelle",
+          "id": "e554"
+        }
+      ],
+      "variables": [
+        {
+          "nom": "P",
+          "domaine": "polynôme unitaire réel de degré n ≥ 2 dont les n racines sont réelles ; aₙ₋₁ et aₙ₋₂ sont ses coefficients de degré n−1 et n−2"
+        }
+      ]
+    },
+    {
+      "id": "CX3",
+      "label": "Polynôme complexe f et un point z₀",
+      "requires": [
+        "X3"
+      ],
+      "description": "Un polynôme unitaire f à coefficients complexes, de degré n, et un point z₀ où f′ ne s'annule pas.",
+      "objects": [
+        {
+          "id": "ZL1",
+          "label": "Zéros d'un polynôme fixé",
+          "domain": "analyse complexe",
+          "property": "\\{\\, z \\in \\mathbb{C} \\mid f(z) = 0 \\,\\}",
+          "description": "L'ensemble des zéros du polynôme unitaire fixé f, à coefficients complexes, de degré n.",
+          "example": "pour f = 1 + z + z² : les deux racines, de module 1"
+        },
+        {
+          "id": "ZL2",
+          "label": "Extérieur du disque de Laguerre",
+          "domain": "analyse complexe",
+          "property": "\\{\\, z \\in \\mathbb{C} \\mid |z - z_{0}| > n \\left| \\frac{f(z_{0})}{f'(z_{0})} \\right| \\,\\}",
+          "description": "Le complémentaire du disque fermé centré en z₀ fixé (avec f '(z₀) non nul), de rayon n fois le rapport |f(z₀)/f '(z₀)|.",
+          "example": "f = 1 + z + z² et z₀ = 0 : l'extérieur du disque de rayon 2",
+          "card": "aleph1"
+        }
+      ],
+      "edges": [
+        {
+          "from": "ZL1",
+          "to": "ZL2",
+          "kind": "anti",
+          "theorem": "Théorème de Laguerre (cas complexe)",
+          "statement": "Au moins un zéro du polynôme unitaire \\( f \\), de degré \\( n \\), appartient au disque fermé centré en \\( z_{0} \\) et de rayon \\( n \\left| f(z_{0}) / f'(z_{0}) \\right| \\), dès que \\( f'(z_{0}) \\ne 0 \\) : les zéros ne sont donc pas tous extérieurs à ce disque.",
+          "depth": "classique",
+          "counterexample": "Pour \\( f = 1 + z + z^{2} \\), \\( z_{0} = 0 \\) : le zéro \\( \\zeta = \\frac{-1 + i \\sqrt{3}}{2} \\) vérifie \\( |\\zeta| = 1 \\le 2 = 2 \\left| f(0)/f'(0) \\right| \\).",
+          "domain": "analyse complexe",
+          "id": "e123"
+        },
+        {
+          "from": "ZL1",
+          "to": "CMLX",
+          "kind": "inclusion",
+          "theorem": "« Zéros d'un polynôme fixé » ⊆ ℂ",
+          "statement": "Un zéro d'un polynôme complexe est un nombre complexe : chaînon du lot J vers le nouveau hub ℂ.",
+          "depth": "immédiat",
+          "domain": "analyse complexe",
+          "id": "e552"
+        },
+        {
+          "from": "ZL2",
+          "to": "CMLX",
+          "kind": "inclusion",
+          "theorem": "« Extérieur du disque de Laguerre » ⊆ ℂ",
+          "statement": "Un point de l'extérieur du disque de Laguerre est un nombre complexe : \\( z \\in \\mathbb{C} \\) avec \\( |z - z_{0}| > n\\,|f(z_{0})/f'(z_{0})| \\).",
+          "depth": "immédiat",
+          "domain": "analyse complexe",
+          "id": "e597"
+        }
+      ],
+      "variables": [
+        {
+          "nom": "f",
+          "domaine": "polynôme unitaire complexe de degré n ≥ 1"
+        },
+        {
+          "nom": "z₀",
+          "domaine": "point de ℂ tel que f′(z₀) ≠ 0"
+        }
+      ]
+    },
+    {
+      "id": "CX4",
+      "label": "Groupe fini G",
+      "requires": [
+        "CYL1"
+      ],
+      "description": "Un groupe fini G : ses sous-groupes, ses parties, et les ensembles de nombres premiers attachés à G (diviseurs de l'ordre, éléments d'ordre premier, p-compléments).",
+      "objects": [
+        {
+          "id": "GR1",
+          "label": "Sous-groupes d'un groupe fini",
+          "domain": "algèbre générale",
+          "property": "\\{\\, H \\subseteq G \\mid H \\text{ sous-groupe du groupe fini fixé } (G, \\cdot) \\,\\}",
+          "description": "Les sous-groupes du groupe fini fixé G.",
+          "example": "dans (ℤ/6ℤ, +), le sous-groupe {0, 3}"
+        },
+        {
+          "id": "GR2",
+          "label": "Parties de cardinal divisant l'ordre",
+          "domain": "algèbre générale",
+          "property": "\\{\\, P \\subseteq G \\mid |P| \\text{ divise } |G| \\,\\}",
+          "description": "Parties du groupe fini fixé G dont le cardinal divise l'ordre de G.",
+          "example": "dans (ℤ/6ℤ, +), la partie {1, 2} de cardinal 2"
+        },
+        {
+          "id": "CQG1",
+          "label": "Premiers divisant l'ordre de G",
+          "domain": "théorie des groupes",
+          "property": "\\{\\, p \\in \\mathbb{P} \\mid p \\mid |G| \\,\\}",
+          "description": "Les nombres premiers qui divisent l'ordre du groupe fini G.",
+          "example": "dans (ℤ/6ℤ, +) : {2, 3}"
+        },
+        {
+          "id": "CQG2",
+          "label": "Premiers pour lesquels G a un élément d'ordre p",
+          "domain": "théorie des groupes",
+          "property": "\\{\\, p \\in \\mathbb{P} \\mid \\exists x \\in G,\\ x^{p} = e,\\ x \\neq e \\,\\}",
+          "description": "Les nombres premiers p tels que G contient un élément d'ordre p.",
+          "example": "dans (ℤ/6ℤ, +) : {2, 3}, par les éléments 3 et 2"
+        },
+        {
+          "id": "TRF1",
+          "label": "Premiers à p-Sylow central dans son normalisateur",
+          "domain": "théorie des groupes",
+          "property": "\\{\\, p \\in \\mathbb{P} \\mid \\exists P \\in \\mathrm{Syl}_p(G),\\ P \\le Z(N_G(P)) \\,\\}",
+          "description": "Les nombres premiers p pour lesquels un p-Sylow de G est contenu dans le centre de son normalisateur.",
+          "example": "dans un groupe abélien fini, tous les premiers : un p-Sylow est son propre normalisateur et central"
+        },
+        {
+          "id": "TRF2",
+          "label": "Premiers pour lesquels G a un p-complément normal",
+          "domain": "théorie des groupes",
+          "property": "\\{\\, p \\in \\mathbb{P} \\mid \\exists N \\trianglelefteq G,\\ \\gcd(|N|, p) = 1,\\ |G/N| \\text{ puissance de } p \\,\\}",
+          "description": "Les nombres premiers p pour lesquels G admet un sous-groupe distingué d'ordre premier à p et d'indice une puissance de p.",
+          "example": "dans un groupe abélien fini, tous les premiers"
+        }
+      ],
+      "edges": [
+        {
+          "from": "GR1",
+          "to": "GR2",
+          "kind": "inclusion",
+          "theorem": "Théorème de Lagrange sur les groupes",
+          "statement": "Le cardinal d'un sous-groupe d'un groupe fini divise l'ordre du groupe : \\( |H| \\) divise \\( |G| \\).",
+          "depth": "classique",
+          "domain": "algèbre générale",
+          "id": "e116"
+        },
+        {
+          "from": "GR2",
+          "to": "GR1",
+          "kind": "anti",
+          "theorem": "Un cardinal qui divise ne suffit pas",
+          "statement": "Une partie du groupe fini G dont le cardinal divise |G| n'est pas forcément un sous-groupe.",
+          "depth": "facile",
+          "counterexample": "Dans \\( (\\mathbb{Z}/6\\mathbb{Z}, +) \\) : la partie \\( \\{1, 2\\} \\) a deux éléments (2 divise 6), mais \\( 1 + 2 = 3 \\notin \\{1, 2\\} \\).",
+          "domain": "algèbre générale",
+          "id": "e117"
+        },
+        {
+          "from": "GR1",
+          "to": "CYL1",
+          "kind": "inclusion",
+          "theorem": "« Sous-groupes d'un groupe fini » : toujours un groupe",
+          "statement": "« Sous-groupes d'un groupe fini » est habité par des objets qui sont un groupe : inclusion définitoire du lot I, qui donne au graphe sa charpente.",
+          "depth": "définitoire",
+          "domain": "théorie des groupes",
+          "id": "e476"
+        },
+        {
+          "from": "GR2",
+          "to": "ZRM1",
+          "kind": "inclusion",
+          "theorem": "Inclusion dans la collection de tous les ensembles",
+          "statement": "Tout élément de « Parties de cardinal divisant l'ordre » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Parties de cardinal divisant l'ordre » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
+          "depth": "définitoire",
+          "domain": "théorie des ensembles",
+          "id": "e287"
+        },
+        {
+          "from": "CQG1",
+          "to": "CQG2",
+          "kind": "equivalence",
+          "theorem": "Théorème de Cauchy (groupes)",
+          "statement": "Un nombre premier \\( p \\) divise l'ordre du groupe fini \\( G \\) si et seulement si \\( G \\) contient un élément d'ordre \\( p \\). Le sens direct est le théorème de Cauchy : les \\( p \\)-uplets \\( (x_1, \\ldots, x_p) \\) de produit \\( e \\) sont en nombre multiple de \\( p \\) (rotation circulaire), et les uplets constants fournissent les éléments d'ordre \\( p \\). La réciproque est le sens facile du théorème de Lagrange. Dit sur les ensembles : les premiers divisant \\( |G| \\) sont exactement les premiers qui sont ordre d'un élément.",
+          "depth": "classique",
+          "domain": "théorie des groupes",
+          "id": "e188"
+        },
+        {
+          "from": "TRF1",
+          "to": "TRF2",
+          "kind": "inclusion",
+          "theorem": "Théorème du transfert (Burnside)",
+          "statement": "Si un p-Sylow \\( P \\) de \\( G \\) est inclus dans le centre de son normalisateur, alors \\( G \\) admet un p-complément normal : un sous-groupe distingué d'ordre premier à \\( p \\) et d'indice une puissance de \\( p \\) (Burnside, 1900). Le transfert, homomorphisme de \\( G \\) vers \\( P/P' \\) construit en sommant les exposants d'une transversale de \\( P \\), capte depuis tout le groupe ce que le p-Sylow contrôle localement : avec le théorème pᵃqᵇ du même Burnside et les théorèmes de Hall pour les groupes résolubles, c'est l'outil qui fait des Sylow une théorie du groupe entier.",
+          "depth": "profond",
+          "domain": "théorie des groupes",
+          "id": "e261"
+        },
+        {
+          "from": "CQG1",
+          "to": "A2",
+          "kind": "inclusion",
+          "theorem": "Les premiers divisant |G| sont des nombres premiers",
+          "statement": "Un nombre premier qui divise l'ordre de G est en particulier un nombre premier : l'objet est une partie de l'ensemble des nombres premiers.",
+          "depth": "définitoire",
+          "domain": "théorie des groupes",
+          "id": "CX4_e1"
+        },
+        {
+          "from": "TRF2",
+          "to": "A2",
+          "kind": "inclusion",
+          "theorem": "Les premiers à p-complément normal sont des nombres premiers",
+          "statement": "Un nombre premier p pour lequel G a un p-complément normal est en particulier un nombre premier.",
+          "depth": "définitoire",
+          "domain": "théorie des groupes",
+          "id": "CX4_e2"
+        }
+      ],
+      "variables": [
+        {
+          "nom": "G",
+          "domaine": "groupe fini"
+        }
+      ]
+    },
+    {
+      "id": "CX8",
+      "label": "Anneau commutatif R",
+      "requires": [
+        "ANR1"
+      ],
+      "description": "Un anneau commutatif R et deux idéaux étrangers 𝔞 et 𝔟 (𝔞 + 𝔟 = R).",
+      "objects": [
+        {
+          "id": "TCH1",
+          "label": "Anneau quotient R/(𝔞 ∩ 𝔟)",
+          "domain": "algèbre générale",
+          "property": "\\{\\, R/(\\mathfrak{a} \\cap \\mathfrak{b}) \\,\\}",
+          "description": "Le quotient de R par l'intersection des deux idéaux, vu comme un ensemble à un seul élément (cet anneau).",
+          "example": "R = ℤ, 𝔞 = 2ℤ, 𝔟 = 3ℤ : l'anneau ℤ/6ℤ"
+        },
+        {
+          "id": "TCH2",
+          "label": "Anneau produit R/𝔞 × R/𝔟",
+          "domain": "algèbre générale",
+          "property": "\\{\\, R/\\mathfrak{a} \\times R/\\mathfrak{b} \\,\\}",
+          "description": "Le produit des deux quotients, vu comme un ensemble à un seul élément (cet anneau).",
+          "example": "R = ℤ, 𝔞 = 2ℤ, 𝔟 = 3ℤ : l'anneau ℤ/2ℤ × ℤ/3ℤ"
+        }
+      ],
+      "edges": [
+        {
+          "from": "TCH1",
+          "to": "TCH2",
+          "kind": "isomorphisme",
+          "theorem": "Théorème chinois",
+          "statement": "Dans un anneau commutatif \\( R \\), si \\( \\mathfrak{a} + \\mathfrak{b} = R \\) (idéaux étrangers), alors \\( x \\mapsto (x \\bmod \\mathfrak{a},\\ x \\bmod \\mathfrak{b}) \\) est un isomorphisme \\( R/(\\mathfrak{a} \\cap \\mathfrak{b}) \\simeq R/\\mathfrak{a} \\times R/\\mathfrak{b} \\). Version des congruences : si \\( n \\) et \\( m \\) sont premiers entre eux, le système \\( x \\equiv a \\pmod{n} \\), \\( x \\equiv b \\pmod{m} \\) a une unique solution modulo \\( nm \\) : l'astuce du Sunzi Suanjing (IIIe-Ve siècle) pour compter les objets par paquets.",
+          "depth": "classique",
+          "domain": "algèbre générale",
+          "id": "e209",
+          "structure": "anneaux"
+        },
+        {
+          "from": "TCH2",
+          "to": "ANR1",
+          "kind": "inclusion",
+          "theorem": "« Anneau produit » : toujours un anneau commutatif",
+          "statement": "Un produit de quotients d'un anneau commutatif est un anneau commutatif : l'objet est une partie (un singleton) de l'ensemble des anneaux commutatifs.",
+          "depth": "définitoire",
+          "domain": "algèbre générale",
+          "id": "e543"
+        },
+        {
+          "from": "TCH1",
+          "to": "ANR1",
+          "kind": "inclusion",
+          "theorem": "« Anneau quotient » : toujours un anneau commutatif",
+          "statement": "Un quotient d'un anneau commutatif par un idéal est un anneau commutatif : l'objet est une partie (un singleton) de l'ensemble des anneaux commutatifs.",
+          "depth": "définitoire",
+          "domain": "algèbre générale",
+          "id": "CX8_e1"
+        }
+      ],
+      "variables": [
+        {
+          "nom": "R",
+          "domaine": "anneau commutatif unitaire"
+        },
+        {
+          "nom": "𝔞, 𝔟",
+          "domaine": "idéaux de R tels que 𝔞 + 𝔟 = R"
+        }
+      ]
+    },
+    {
+      "id": "CX9",
+      "label": "Couple de langages (A, B)",
+      "requires": [
+        "LANG"
+      ],
+      "description": "Deux langages A (sans le mot vide) et B fixés.",
+      "objects": [
+        {
+          "id": "LT1",
+          "label": "Solutions d'une équation de langage",
+          "domain": "théorie des langages",
+          "property": "\\{\\, X \\subseteq \\Sigma^* \\mid X = X \\cdot A \\cup B, \\ \\varepsilon \\notin A \\,\\}",
+          "description": "Les langages solutions de l'équation X = XA ∪ B, pour des langages A (sans le mot vide) et B fixés.",
+          "example": "X = {b, ab, aab, …} pour A = {a} et B = {b}",
+          "card": "aleph1"
+        },
+        {
+          "id": "LTB1",
+          "label": "Le langage B·A*",
+          "domain": "théorie des langages",
+          "property": "\\{\\, B \\cdot A^{*} \\,\\}",
+          "description": "Le langage B·A* (la concaténation de B et de l'étoile de A), vu comme un ensemble à un seul élément.",
+          "example": "A = {a}, B = {b} : {b a*} = {b, ba, baa, …}"
+        }
+      ],
+      "edges": [
+        {
+          "from": "LT1",
+          "to": "LTB1",
+          "kind": "equivalence",
+          "theorem": "Lemme d'Arden",
+          "statement": "Si \\( A \\) et \\( B \\) sont des langages sur \\( \\Sigma \\) avec \\( \\varepsilon \\notin A \\), l'équation de langage \\( X = X \\cdot A \\cup B \\) admet une unique solution, \\( X = B \\cdot A^* \\). Dit sur les ensembles : l'ensemble des solutions est exactement le singleton \\( \\{B \\cdot A^*\\} \\).",
+          "depth": "classique",
+          "domain": "théorie des langages",
+          "id": "e136"
+        },
+        {
+          "from": "LTB1",
+          "to": "LT2",
+          "kind": "inclusion",
+          "theorem": "« B·A* » : un langage de la forme BA*",
+          "statement": "Le langage B·A* est de la forme BA* : l'objet est une partie (un singleton) de l'ensemble des langages de cette forme.",
+          "depth": "définitoire",
+          "domain": "théorie des langages",
+          "id": "CX9_e1"
+        }
+      ],
+      "variables": [
+        {
+          "nom": "A",
+          "domaine": "langage sur un alphabet Σ, sans le mot vide"
+        },
+        {
+          "nom": "B",
+          "domaine": "langage sur Σ"
+        }
+      ]
+    },
+    {
+      "id": "CX10",
+      "label": "Extension cyclique L/K",
+      "requires": [
+        "KOR1"
+      ],
+      "description": "Une extension cyclique de corps L/K, de groupe engendré par σ.",
+      "objects": [
+        {
+          "id": "HTQ1",
+          "label": "Éléments de norme 1 d'une extension cyclique",
+          "domain": "théorie de Galois",
+          "property": "\\{\\, x \\in L^{*} \\mid N_{L/K}(x) = 1 \\,\\}",
+          "description": "Les éléments de norme 1 d'une extension cyclique L/K fixée (la norme est le produit des conjugués).",
+          "example": "dans ℂ/ℝ, le cercle unité : tout complexe de module 1",
+          "notes": "Le groupe de Galois de l'extension cyclique est engendré par un automorphisme σ.",
+          "card": "aleph0"
+        },
+        {
+          "id": "HTQ2",
+          "label": "Cobords de Hilbert",
+          "domain": "théorie de Galois",
+          "property": "\\{\\, x \\in L \\mid \\exists y \\in L^{*},\\ x = \\sigma(y)/y \\,\\}",
+          "description": "Les cobords : quotients σ(y)/y pour y inversible dans L, tous de norme 1.",
+          "example": "dans ℂ/ℝ, tout e^{2iθ} s'écrit σ(e^{iθ})/e^{iθ}",
+          "notes": "Un cobord est toujours de norme 1 ; le théorème 90 affirme la réciproque.",
+          "card": "aleph0"
+        }
+      ],
+      "edges": [
+        {
+          "from": "HTQ1",
+          "to": "HTQ2",
+          "kind": "equivalence",
+          "theorem": "Théorème 90 de Hilbert",
+          "statement": "Dans une extension cyclique \\( L/K \\) de groupe engendré par \\( \\sigma \\), tout élément de norme 1 est un cobord : \\( N_{L/K}(x) = 1 \\) si et seulement si \\( x = \\sigma(y)/y \\) pour un certain \\( y \\in L^{*} \\) (Hilbert, théorème 90 du Zahlbericht, 1897). Emmy Noether en donne la lecture cohomologique : le premier groupe de cohomologie du groupe de Galois à valeurs dans \\( L^{*} \\) est trivial, et Kummer s'appuie sur le théorème pour bâtir la théorie des extensions abéliennes d'exposant n.",
+          "depth": "classique",
+          "domain": "théorie de Galois",
+          "id": "e260"
+        },
+        {
+          "from": "HTQ2",
+          "to": "GELT",
+          "kind": "inclusion",
+          "theorem": "« Cobords de Hilbert » ⊆ éléments d'un groupe",
+          "statement": "Un cobord \\( \\sigma(y)/y \\) avec \\( y \\in L^{*} \\) est un élément du groupe multiplicatif \\( L^{*} \\) : c'est un élément d'un groupe.",
+          "depth": "immédiat",
+          "domain": "théorie de Galois",
+          "id": "e595"
+        }
+      ],
+      "variables": [
+        {
+          "nom": "L/K",
+          "domaine": "extension cyclique de corps"
+        },
+        {
+          "nom": "σ",
+          "domaine": "générateur du groupe de Galois de L/K"
+        }
+      ]
+    },
+    {
+      "id": "CX11",
+      "label": "Cercle du plan et arc AB",
+      "requires": [
+        "CER"
+      ],
+      "description": "Un cercle 𝒞 et deux de ses points A et B, qui déterminent un arc.",
+      "objects": [
+        {
+          "id": "GIA",
+          "label": "Angles inscrits interceptant un arc donné",
+          "domain": "géométrie euclidienne",
+          "property": "\\{\\, \\widehat{AMB} \\mid M \\in \\mathcal{C}, \\ \\widehat{AMB} \\text{ intercepte l'arc } AB \\,\\}",
+          "description": "Les angles inscrits dans le cercle fixé C, ouverts vers l'arc AB.",
+          "example": "tout angle de sommet sur le cercle, vu depuis l'arc AB",
+          "card": "aleph1"
+        },
+        {
+          "id": "GIM",
+          "label": "Moitiés de l'angle au centre correspondant",
+          "domain": "géométrie euclidienne",
+          "property": "\\{\\, \\text{angles mesurant } \\tfrac{1}{2}\\, \\widehat{AOB} \\mid O \\text{ centre de } \\mathcal{C} \\,\\}",
+          "description": "Les angles qui mesurent la moitié de l'angle au centre sous-tendant l'arc AB.",
+          "example": "45°, si l'angle au centre de l'arc AB vaut 90°",
+          "card": "aleph1"
+        },
+        {
+          "id": "GCA",
+          "label": "Couples d'angles interceptant le même arc",
+          "domain": "géométrie euclidienne",
+          "property": "\\{\\, (\\widehat{AOB}, \\widehat{AMB}) \\mid M \\in \\mathcal{C} \\,\\}",
+          "description": "Les couples (angle au centre, angle inscrit) d'un même cercle, interceptant le même arc.",
+          "example": "(90°, 45°) pour un même arc AB",
+          "card": "aleph1"
+        }
+      ],
+      "edges": [
+        {
+          "from": "GIA",
+          "to": "GIM",
+          "kind": "inclusion",
+          "theorem": "Théorème de l'angle inscrit",
+          "statement": "Dans un cercle, tout angle inscrit interceptant un arc donné mesure la moitié de l'angle au centre qui intercepte le même arc : \\( \\widehat{AMB} = \\tfrac{1}{2}\\, \\widehat{AOB} \\). Deux angles inscrits interceptant le même arc sont donc égaux.",
+          "depth": "classique",
+          "domain": "géométrie euclidienne",
+          "id": "e131"
+        },
+        {
+          "from": "GCA",
+          "to": "GCD",
+          "kind": "inclusion",
+          "theorem": "Théorème de l'angle au centre",
+          "statement": "Dans un cercle, la mesure de l'angle au centre est le double de la mesure de tout angle inscrit qui intercepte le même arc : \\( \\widehat{AOB} = 2\\, \\widehat{AMB} \\).",
+          "depth": "classique",
+          "domain": "géométrie euclidienne",
+          "id": "e132"
+        },
+        {
+          "from": "GIM",
+          "to": "REEL",
+          "kind": "inclusion",
+          "theorem": "La mesure d'un angle est un réel",
+          "statement": "Une moitié d'angle au centre est représentée par sa mesure : un nombre réel. Chaînon du lot J.",
+          "depth": "immédiat",
+          "domain": "géométrie euclidienne",
+          "id": "e550"
+        }
+      ],
+      "variables": [
+        {
+          "nom": "𝒞",
+          "domaine": "cercle du plan"
+        },
+        {
+          "nom": "A, B",
+          "domaine": "deux points distincts de 𝒞"
+        }
+      ]
+    },
+    {
+      "id": "CX12",
+      "label": "Triangle du plan (côté [AB])",
+      "requires": [
+        "GTR"
+      ],
+      "description": "Deux sommets A et B d'un triangle : les lieux de points définis à partir du côté [AB].",
+      "objects": [
+        {
+          "id": "GAR",
+          "label": "Lieux des points voyant [AB] sous un angle donné",
+          "domain": "géométrie euclidienne",
+          "property": "\\{\\, E_\\alpha \\mid E_\\alpha = \\{\\, M \\in \\mathbb{R}^2 : \\widehat{AMB} = \\alpha \\,\\}, \\ 0 < \\alpha < \\pi \\,\\}",
+          "description": "Les ensembles de points du plan d'où l'on voit un segment fixé sous un angle donné.",
+          "example": "l'ensemble des points d'où l'on voit [AB] sous 45°",
+          "card": "aleph1"
+        },
+        {
+          "id": "GAA",
+          "label": "Réunions de deux arcs de cercles passant par A et B",
+          "domain": "géométrie euclidienne",
+          "property": "\\{\\, \\gamma_1 \\cup \\gamma_2 \\mid \\gamma_1, \\gamma_2 \\text{ arcs de cercles d'extrémités } A \\text{ et } B \\,\\}",
+          "description": "Les lieux qui s'écrivent comme réunion de deux arcs de cercles joignant A et B.",
+          "example": "les deux arcs symétriques d'où l'on voit [AB] sous un angle fixé",
+          "card": "aleph1"
+        },
+        {
+          "id": "GAP",
+          "label": "Lieux à rapport de distances constant (k ≠ 1)",
+          "domain": "géométrie euclidienne",
+          "property": "\\{\\, \\{\\, M \\in \\mathbb{R}^2 : \\tfrac{MA}{MB} = k \\,\\} \\mid k > 0, \\ k \\neq 1 \\,\\}",
+          "description": "Les lieux des points dont le rapport des distances à A et B vaut une constante différente de 1.",
+          "example": "les points deux fois plus proches de A que de B (k = 1/2)",
+          "card": "aleph1"
+        },
+        {
+          "id": "GME",
+          "label": "Lieux à rapport de distances égal à 1",
+          "domain": "géométrie euclidienne",
+          "property": "\\{\\, \\{\\, M \\in \\mathbb{R}^2 : MA = MB \\,\\} \\mid A \\neq B \\,\\}",
+          "description": "Les lieux des points équidistants de deux points A et B : le cas k = 1 des lieux d'Apollonius.",
+          "example": "la médiatrice du segment [AB]",
+          "notes": "Cas limite du lieu d'Apollonius : pour k = 1, le lieu est une droite.",
+          "card": "aleph1"
+        }
+      ],
+      "edges": [
+        {
+          "from": "GAR",
+          "to": "GAA",
+          "kind": "inclusion",
+          "theorem": "Théorème de l'arc capable",
+          "statement": "Le lieu des points d'où l'on voit un segment \\( [AB] \\) sous un angle \\( \\alpha \\in\\, ]0, \\pi[ \\) est la réunion de deux arcs de cercles passant par \\( A \\) et \\( B \\) : les arcs capables de l'angle \\( \\alpha \\).",
+          "depth": "classique",
+          "domain": "géométrie euclidienne",
+          "id": "e133"
+        },
+        {
+          "from": "GAP",
+          "to": "CER",
+          "kind": "inclusion",
+          "theorem": "Cercles d'Apollonius",
+          "statement": "Pour \\( k > 0 \\), \\( k \\neq 1 \\), le lieu des points \\( M \\) vérifiant \\( \\tfrac{MA}{MB} = k \\) est un cercle, dit cercle d'Apollonius : celui de diamètre \\( [I, J] \\), où \\( I \\) et \\( J \\) divisent le segment \\( [AB] \\) au rapport \\( k \\), l'un à l'intérieur, l'autre à l'extérieur.",
+          "depth": "classique",
+          "domain": "géométrie euclidienne",
+          "id": "e134"
+        },
+        {
+          "from": "GME",
+          "to": "CER",
+          "kind": "disjoint",
+          "theorem": "Une médiatrice n'est pas un cercle",
+          "statement": "Pour \\( k = 1 \\), le lieu des points vérifiant \\( \\tfrac{MA}{MB} = k \\) est la médiatrice de \\( [AB] \\), une droite : elle n'est jamais un cercle. L'hypothèse \\( k \\neq 1 \\) d'Apollonius est donc nécessaire.",
+          "depth": "facile",
+          "domain": "géométrie euclidienne",
+          "id": "e135"
+        },
+        {
+          "from": "GAA",
+          "to": "FIGU",
+          "kind": "inclusion",
+          "theorem": "Les arcs capables sont des figures",
+          "statement": "Deux arcs de cercles passant par A et B : une figure du plan, dessinée à la règle et au compas.",
+          "depth": "définitoire",
+          "domain": "géométrie euclidienne",
+          "id": "e422"
+        },
+        {
+          "from": "GME",
+          "to": "FERM",
+          "kind": "inclusion",
+          "theorem": "La médiatrice est fermée",
+          "statement": "{M : MA = MB} est l'image réciproque du fermé {0} par l'application continue M ↦ d(A, M) − d(B, M) : toute médiatrice est une partie fermée.",
+          "depth": "facile",
+          "domain": "topologie",
+          "id": "e558"
+        }
+      ],
+      "variables": [
+        {
+          "nom": "A, B",
+          "domaine": "deux points distincts du plan (sommets d'un triangle)"
+        }
+      ]
+    },
+    {
+      "id": "CX13",
+      "label": "Triangle équilatéral",
+      "requires": [
+        "GTR"
+      ],
+      "description": "Un triangle équilatéral ABC fixé, de hauteur h.",
+      "objects": [
+        {
+          "id": "VIV1",
+          "label": "Points intérieurs du triangle équilatéral",
+          "domain": "géométrie euclidienne",
+          "property": "\\{\\, M \\mid M \\text{ strictement intérieur au triangle équilatéral } ABC \\text{ de côté } a \\,\\}",
+          "description": "Les points strictement intérieurs à un triangle équilatéral fixé, de hauteur h.",
+          "example": "le centre du triangle",
+          "notes": "Un triangle équilatéral fixé, dont chaque point intérieur voit les trois côtés.",
+          "card": "aleph1"
+        },
+        {
+          "id": "VIV2",
+          "label": "Points à somme des distances constante",
+          "domain": "géométrie euclidienne",
+          "property": "\\{\\, M \\mid d(M, AB) + d(M, BC) + d(M, CA) = h \\,\\}",
+          "description": "Les points du plan dont la somme des distances aux trois côtés du triangle équilatéral vaut sa hauteur.",
+          "example": "les trois sommets, tout point d'un côté, tout point intérieur",
+          "notes": "Un point extérieur au triangle donne une somme strictement plus grande : le triangle est exactement la ligne de niveau h.",
+          "card": "aleph1"
+        }
+      ],
+      "edges": [
+        {
+          "from": "VIV1",
+          "to": "VIV2",
+          "kind": "inclusion",
+          "theorem": "Théorème de Viviani",
+          "statement": "Dans un triangle équilatéral, la somme \\( d(M,AB) + d(M,BC) + d(M,CA) \\) des distances d'un point intérieur aux trois côtés est constante, égale à la hauteur \\( h \\) (Viviani, XVIIe siècle) : plus le point se rapproche d'un côté, autant il s'éloigne des deux autres. La preuve est un calcul d'aires : les trois triangles découpés depuis le point couvrent le grand triangle, chacun d'aire une demi-base multipliée par sa distance au côté opposé.",
+          "depth": "facile",
+          "domain": "géométrie euclidienne",
+          "id": "e251"
+        },
+        {
+          "from": "VIV2",
+          "to": "RN",
+          "kind": "inclusion",
+          "theorem": "Un point du plan est un n-uplet de réels",
+          "statement": "Un point M du plan est un couple de réels, donc un élément de ℝⁿ : chaînon du lot J.",
+          "depth": "immédiat",
+          "domain": "géométrie euclidienne",
+          "id": "e553"
+        }
+      ],
+      "variables": [
+        {
+          "nom": "ABC",
+          "domaine": "triangle équilatéral du plan, de hauteur h"
+        }
+      ]
+    },
+    {
+      "id": "CX14",
+      "label": "Espace probabilisé (Ω, 𝒜, P)",
+      "requires": [
+        "PROB"
+      ],
+      "description": "Un espace probabilisé fixé : les événements, les variables aléatoires et « presque sûrement » en dépendent.",
+      "objects": [
+        {
+          "id": "BC1",
+          "label": "Événements à probabilités sommables",
+          "domain": "théorie de la mesure",
+          "property": "\\{\\, (A_n) \\text{ événements de } (\\Omega, \\mathcal{A}, \\mathbb{P}) : \\sum_n \\mathbb{P}(A_n) < \\infty \\,\\}",
+          "description": "Les suites d'événements dont les probabilités forment une série convergente.",
+          "example": "A_n de probabilité 1/n² pour tout n",
+          "notes": "L'hypothèse du premier lemme de Borel-Cantelli (v0.22.0 écrasé, restauré v0.24.0)."
+        },
+        {
+          "id": "BC2",
+          "label": "Événements ne se produisant qu'un nombre fini de fois",
+          "domain": "théorie de la mesure",
+          "property": "\\{\\, (A_n) : \\mathbb{P}(\\limsup_n A_n) = 0 \\,\\}",
+          "description": "Les suites d'événements qui, presque sûrement, ne se produisent qu'un nombre fini de fois.",
+          "example": "les A_n de probabilité 1/n², presque sûrement tous sauf un nombre fini",
+          "notes": "limsup A_n est l'ensemble des issues où les A_n se produisent une infinité de fois."
+        },
+        {
+          "id": "BC3",
+          "label": "Événements indépendants à probabilités divergentes",
+          "domain": "théorie de la mesure",
+          "property": "\\{\\, (A_n) \\text{ événements mutuellement indépendants} : \\sum_n \\mathbb{P}(A_n) = \\infty \\,\\}",
+          "description": "Les suites d'événements indépendants dont les probabilités forment une série divergente.",
+          "example": "A_n = « le n-ième lancer d'un dé donne un six », de probabilité 1/6",
+          "notes": "L'hypothèse du second lemme de Borel-Cantelli (v0.22.0 écrasé, restauré v0.24.0)."
+        },
+        {
+          "id": "BC4",
+          "label": "Événements se produisant une infinité de fois",
+          "domain": "théorie de la mesure",
+          "property": "\\{\\, (A_n) : \\mathbb{P}(\\limsup_n A_n) = 1 \\,\\}",
+          "description": "Les suites d'événements qui, presque sûrement, se produisent une infinité de fois.",
+          "example": "un six une infinité de fois aux lancers répétés d'un dé"
+        },
+        {
+          "id": "PR1",
+          "label": "Moyennes empiriques de variables iid",
+          "domain": "théorie de la mesure",
+          "property": "\\{\\, \\left( \\bar{X}_{n} \\right)_{n} \\mid \\bar{X}_{n} = \\frac{1}{n} \\sum_{k=1}^{n} X_{k}, \\ (X_{k}) \\text{ indépendantes, de même loi, } \\mathbb{E}|X_{1}| < \\infty \\,\\}",
+          "description": "Suites de moyennes empiriques de variables aléatoires réelles indépendantes et identiquement distribuées, intégrables.",
+          "example": "la fréquence moyenne de « pile » dans une suite de lancers équilibrés"
+        },
+        {
+          "id": "PR2",
+          "label": "Suites convergeant presque sûrement",
+          "domain": "théorie de la mesure",
+          "property": "\\{\\, (Y_{n}) \\mid \\exists Y, \\ Y_{n} \\to Y \\text{ presque sûrement} \\,\\}",
+          "description": "Suites de variables aléatoires convergeant presque sûrement : en dehors d'un événement de probabilité nulle.",
+          "example": "une suite constante (Y_n = Y pour tout n)"
+        },
+        {
+          "id": "PR3",
+          "label": "Suites convergeant en probabilité",
+          "domain": "théorie de la mesure",
+          "property": "\\{\\, (Y_{n}) \\mid \\exists Y, \\ \\forall \\varepsilon > 0, \\ \\mathbb{P}(|Y_{n} - Y| > \\varepsilon) \\to 0 \\,\\}",
+          "description": "Suites de variables aléatoires convergeant en probabilité.",
+          "example": "Y_n valant 1 avec probabilité 1/n et 0 sinon : Y_n tend vers 0 en probabilité"
+        }
+      ],
+      "edges": [
+        {
+          "from": "BC1",
+          "to": "BC2",
+          "kind": "inclusion",
+          "theorem": "Premier lemme de Borel-Cantelli",
+          "statement": "Si Σ P(A_n) < ∞, alors P(limsup A_n) = 0 : presque sûrement, seuls un nombre fini des événements A_n se produisent.",
+          "depth": "classique",
+          "id": "e845",
+          "domain": "théorie de la mesure"
+        },
+        {
+          "from": "BC3",
+          "to": "BC4",
+          "kind": "inclusion",
+          "theorem": "Second lemme de Borel-Cantelli",
+          "statement": "Si les A_n sont mutuellement indépendants et Σ P(A_n) = ∞, alors P(limsup A_n) = 1 : presque sûrement, les événements A_n se produisent une infinité de fois.",
+          "depth": "classique",
+          "id": "e846",
+          "domain": "théorie de la mesure"
+        },
+        {
+          "from": "BC2",
+          "to": "SUIT",
+          "kind": "inclusion",
+          "theorem": "Définition",
+          "statement": "Une suite d'événements ne se produisant qu'un nombre fini de fois presque sûrement est toujours une suite.",
+          "depth": "définitoire",
+          "id": "e847",
+          "domain": "analyse des suites réelles"
+        },
+        {
+          "from": "BC4",
+          "to": "SUIT",
+          "kind": "inclusion",
+          "theorem": "Définition",
+          "statement": "Une suite d'événements se produisant une infinité de fois presque sûrement est toujours une suite.",
+          "depth": "définitoire",
+          "id": "e848",
+          "domain": "analyse des suites réelles"
+        },
+        {
+          "from": "PR1",
+          "to": "PR2",
+          "kind": "inclusion",
+          "theorem": "Loi forte des grands nombres (Kolmogorov, 1933)",
+          "statement": "Si les \\( X_{k} \\) sont indépendantes, de même loi, et \\( \\mathbb{E}|X_{1}| < \\infty \\), les moyennes empiriques convergent presque sûrement : \\( \\bar{X}_{n} \\to \\mathbb{E}(X_{1}) \\) presque sûrement. La clé de la preuve est l'inégalité maximale de Kolmogorov : \\( \\mathbb{P}\\left( \\max_{k \\le n} |S_{k}| \\ge t \\right) \\le \\mathrm{Var}(S_{n}) / t^{2} \\).",
+          "depth": "fondamental",
+          "domain": "théorie de la mesure",
+          "id": "e127"
+        },
+        {
+          "from": "PR1",
+          "to": "PR3",
+          "kind": "inclusion",
+          "theorem": "Loi faible des grands nombres (Khintchine, 1929)",
+          "statement": "Sous la seule hypothèse \\( \\mathbb{E}|X_{1}| < \\infty \\) (aucune variance exige), les moyennes empiriques convergent en probabilité vers l'espérance : \\( \\mathbb{P}\\left( \\left| \\bar{X}_{n} - \\mathbb{E}(X_{1}) \\right| > \\varepsilon \\right) \\to 0 \\).",
+          "depth": "classique",
+          "domain": "théorie de la mesure",
+          "id": "e128"
+        },
+        {
+          "from": "PR3",
+          "to": "PR2",
+          "kind": "anti",
+          "theorem": "En probabilité, pas encore presque sûr",
+          "statement": "La convergence en probabilité n'implique pas la convergence presque sûre.",
+          "depth": "facile",
+          "counterexample": "\\( (Y_{n}) \\) indépendantes avec \\( \\mathbb{P}(Y_{n} = 1) = 1/n \\) et \\( \\mathbb{P}(Y_{n} = 0) = 1 - 1/n \\) : \\( Y_{n} \\to 0 \\) en probabilité, mais par Borel–Cantelli \\( Y_{n} = 1 \\) une infinité de fois presque sûrement.",
+          "domain": "théorie de la mesure",
+          "id": "e129"
+        },
+        {
+          "from": "PR2",
+          "to": "SUIT",
+          "kind": "inclusion",
+          "theorem": "« Suites convergeant presque sûrement » : toujours une suite",
+          "statement": "« Suites convergeant presque sûrement » est habité par des objets qui sont une suite : chaînon du lot J, qui remplace le fourre-tout « Ensembles » par une hiérarchie lisible.",
+          "depth": "définitoire",
+          "domain": "analyse des suites réelles",
+          "id": "e534"
+        },
+        {
+          "from": "PR3",
+          "to": "SUIT",
+          "kind": "inclusion",
+          "theorem": "« Suites convergeant en probabilité » : toujours une suite",
+          "statement": "« Suites convergeant en probabilité » est habité par des objets qui sont une suite : chaînon du lot J, qui remplace le fourre-tout « Ensembles » par une hiérarchie lisible.",
+          "depth": "définitoire",
+          "domain": "analyse des suites réelles",
+          "id": "e535"
+        }
+      ],
+      "variables": [
+        {
+          "nom": "(Ω, 𝒜, P)",
+          "domaine": "espace probabilisé"
         }
       ]
     }
