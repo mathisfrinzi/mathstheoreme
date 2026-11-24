@@ -1,7 +1,7 @@
 {
   "meta": {
     "name": "Graphe des théorèmes",
-    "version": "0.18.0",
+    "version": "0.26.0",
     "created": "2026-11-23",
     "language": "fr",
     "description": "Chaque nœud est un ensemble (de fonctions, d'entiers, de matrices…), chaque arête est un théorème : inclusion (A ⊆ B) ou non-inclusion avec contre-exemple (A ⊄ B).",
@@ -32,12 +32,14 @@
       "théorie de Galois": "brun orangé",
       "géométrie affine": "olive",
       "théorie des anneaux": "acajou",
-      "analyse harmonique": "corail"
+      "analyse harmonique": "corail",
+      "analyse vectorielle": "vert d'eau"
     },
     "semantics": {
       "node": "un ensemble, nommé précisément (ex. : Fonctions réelles continues)",
       "inclusion": "arête verte = théorème d'inclusion A → B (A ⊆ B) ; arête blanche = inclusion définitoire (chaînon de charpente)",
       "anti": "arête rouge pointillée : A ⊄ B, prouvé par un contre-exemple explicite",
+      "partie": "arête orange : lien « partie de » — tout élément de A est une partie de B (A ⊆ 𝒫(B)) ; la première relie 𝒫(ℝ) à la droite réelle (v0.26.0)",
       "nodeSize": "taille du cercle proportionnelle au nombre de sous-ensembles contenus (v0.16.5) : fermeture transitive des inclusions et équivalences, suivies dans les deux sens, la même règle que le halo au clic ; une feuille fait 46 px, le plus gros nœud du graphe atteint 170 ; le texte s'adapte (retour à la ligne, police réduite) et le cercle ne grandit (jusqu'à ×1,8) que si le texte ne rentre pas autrement",
       "depth": [
         "définitoire",
@@ -3163,6 +3165,16 @@
       "notes": "Hub du lot I : sommet de la chaîne des nombres."
     },
     {
+      "id": "PDR",
+      "label": "Parties de ℝ",
+      "family": "ensembles",
+      "domain": "théorie des ensembles",
+      "property": "\\mathcal{P}(\\mathbb{R}) = \\{\\, A \\subseteq \\mathbb{R} \\,\\}",
+      "description": "L'ensemble des parties de la droite réelle.",
+      "example": "[0, 1], les rationnels, ℝ tout entier.",
+      "notes": "Hub du monde des parties de ℝ : les collections dont les éléments sont des parties de la droite (intervalles, segments, fermés, réunions de Cantor–Bendixson…) y trouvent leur parent commun."
+    },
+    {
       "id": "RN",
       "label": "N-uplets de réels ℝⁿ",
       "family": "ensembles",
@@ -4181,6 +4193,326 @@
       "description": "Les suites de fonctions qui convergent uniformément.",
       "example": "f_n : x ↦ x/n",
       "notes": "La convergence uniforme préserve la continuité ; c'est la conclusion du théorème de Dini."
+    },
+    {
+      "id": "FRN",
+      "label": "Fonctions de ℝⁿ dans ℝⁿ",
+      "family": "analyse vectorielle",
+      "domain": "analyse vectorielle",
+      "property": "\\{\\, f : \\exists\\, n \\ge 1,\\ f : \\mathbb{R}^n \\to \\mathbb{R}^n \\,\\}",
+      "description": "Les applications d'un espace euclidien dans lui-même : le cadre de l'analyse vectorielle (champs de vecteurs, gradients, divergences, jacobiennes).",
+      "example": "l'identité x ↦ x de ℝⁿ dans ℝⁿ",
+      "notes": "Nouveau domaine analyse vectorielle (vert d'eau, symbole ∇, v0.19.0). La boule chevelue et Brouwer s'y diront naturellement."
+    },
+    {
+      "id": "MEL",
+      "label": "Fonctions Lebesgue-mesurables",
+      "family": "intégrabilité",
+      "domain": "théorie de la mesure",
+      "property": "\\{\\, f : \\mathbb{R} \\to \\mathbb{R} \\mid \\forall B \\in \\mathcal{B}(\\mathbb{R}),\\ f^{-1}(B) \\text{ est Lebesgue-mesurable} \\,\\}",
+      "description": "Les fonctions réelles mesurables pour la tribu de Lebesgue, complétée de la tribu borélienne : strictement plus que les fonctions boréliennes.",
+      "example": "l'indicatrice des rationnels : ℚ est borélien de mesure nulle, tout est mesurable",
+      "notes": "Le critère de Lusin : sur [0, 1], mesurable ⟺ presque continue (e126 dans l'autre sens)."
+    },
+    {
+      "id": "BA2",
+      "label": "Fonctions de classe de Baire 2",
+      "family": "régularité réelle",
+      "domain": "analyse réelle",
+      "property": "\\{\\, f : \\exists\\, (f_n) \\text{ de classe de Baire 1},\\ f_n \\to f \\text{ simplement} \\,\\}",
+      "description": "Les limites simples de suites de fonctions de classe de Baire 1 : la deuxième marche de la hiérarchie de Baire.",
+      "example": "l'indicatrice des rationnels, double limite x ↦ (cos(n! π x))^{2m} : m puis n vers l'infini",
+      "notes": "Intermédiaire entre le lot du corpus et la hiérarchie de Baire générale (Baire α, v0.21.0 proposée)."
+    },
+    {
+      "id": "LP3S",
+      "label": "Fonctions L³ sur le segment",
+      "family": "espaces de Banach",
+      "domain": "théorie de la mesure",
+      "property": "\\{\\, f : \\int_{[a,b]} |f|^3 \\, d\\lambda < \\infty \\,\\}",
+      "description": "Les fonctions de puissance troisième intégrable sur le segment.",
+      "example": "x ↦ x^{1/5} sur [0, 1]",
+      "notes": "Maillon p = 3 de l'échelle des L^p sur le segment ; les croisements L¹ ⊄ L³ ⊄ L² complètent la grille."
+    },
+    {
+      "id": "W31",
+      "label": "Fonctions W^{3,1} sur le segment",
+      "family": "régularité réelle",
+      "domain": "théorie de la mesure",
+      "property": "\\{\\, f \\in L^1([a,b]) : \\exists g \\in L^1,\\ \\forall \\varphi \\text{ test},\\ \\int f \\varphi''' = -\\int g \\varphi \\,\\}",
+      "description": "Les fonctions à trois dérivées faibles intégrables sur le segment.",
+      "example": "x ↦ x⁴ sur [0, 1]",
+      "notes": "Prolongement de l'échelle de Sobolev entamée en v0.18.0 (W^{2,1} ⊆ W^{1,1})."
+    },
+    {
+      "id": "CFR",
+      "label": "Fonctions à coefficients de Fourier tendant vers zéro",
+      "family": "analyse de Fourier",
+      "domain": "analyse harmonique",
+      "property": "\\{\\, f : c_n(f) = \\int_{[0, 2\\pi]} f(x)\\, e^{-inx} \\, dx,\\ c_n(f) \\to 0 \\,\\}",
+      "description": "Les fonctions intégrables dont les coefficients de Fourier tendent vers zéro.",
+      "example": "x ↦ x sur [0, 2π], de coefficients décroissant en 1/n",
+      "notes": "Cible du lemme de Riemann-Lebesgue (v0.21.0)."
+    },
+    {
+      "id": "LH2",
+      "label": "Fonctions L^{1/2} sur le segment",
+      "family": "espaces de Banach",
+      "domain": "théorie de la mesure",
+      "property": "\\{\\, f : \\int_{[a,b]} |f|^{1/2} \\, d\\lambda < \\infty \\,\\}",
+      "description": "Les fonctions de racine intégrable sur le segment : premier exposant fractionnaire de l'échelle.",
+      "example": "x ↦ 1/√x sur ]0, 1]",
+      "notes": "Vraie échelle en dessous de 1 : L¹ ⊆ L^{1/2} ⊆ L^{1/3} sur un segment."
+    },
+    {
+      "id": "LH3",
+      "label": "Fonctions L^{1/3} sur le segment",
+      "family": "espaces de Banach",
+      "domain": "théorie de la mesure",
+      "property": "\\{\\, f : \\int_{[a,b]} |f|^{1/3} \\, d\\lambda < \\infty \\,\\}",
+      "description": "Les fonctions de racine cubique intégrable sur le segment.",
+      "example": "x ↦ x^{-1/x²} : intégrable en toute racine",
+      "notes": ""
+    },
+    {
+      "id": "H13",
+      "label": "Fonctions höldériennes d'exposant 1/3",
+      "family": "régularité réelle",
+      "domain": "analyse réelle",
+      "property": "\\{\\, f : \\exists C,\\ |f(x) - f(y)| \\le C |x - y|^{1/3} \\,\\}",
+      "description": "Les fonctions höldériennes d'exposant 1/3 : maillon entre les exposants 1/2 et 1/4.",
+      "example": "x ↦ \\sqrt[3]{x}",
+      "notes": "Ajouté en v0.21.0 avec ses deux chaînons ; e731 (H12 → H14 direct) retiré, devenu composé (règle 4)."
+    },
+    {
+      "id": "W12S",
+      "label": "Fonctions W^{1,2} sur le segment",
+      "family": "régularité réelle",
+      "domain": "théorie de la mesure",
+      "property": "\\{\\, f \\in L^2([a,b]) : \\exists g \\in L^2,\\ \\forall \\varphi \\text{ test},\\ \\int f \\varphi' = -\\int g \\varphi \\,\\}",
+      "description": "Les fonctions de carré intégrable à dérivée faible de carré intégrable.",
+      "example": "x ↦ x² sur [0, 1]",
+      "notes": "Identifiées aux H¹ sur le segment (v0.21.0)."
+    },
+    {
+      "id": "WP32",
+      "label": "Fonctions W^{1,3/2} sur le segment",
+      "family": "régularité réelle",
+      "domain": "théorie de la mesure",
+      "property": "\\{\\, f \\in L^{3/2}([a,b]) : \\exists g \\in L^{3/2},\\ \\forall \\varphi \\text{ test},\\ \\int f \\varphi' = -\\int g \\varphi \\,\\}",
+      "description": "Les fonctions de dérivée faible dans L^{3/2} : le cas p = 3/2 de Sobolev-Morrey.",
+      "example": "x ↦ x^{5/3} sur [0, 1]",
+      "notes": "1 − 1/p = 1/3 : retombe exactement sur les höldériennes d'exposant 1/3."
+    },
+    {
+      "id": "CNT",
+      "label": "Contractions",
+      "family": "continuité",
+      "domain": "topologie métrique",
+      "property": "\\{\\, f : (E, d) \\to (E, d) \\mid \\exists k < 1,\\ d(f(x), f(y)) \\le k\\, d(x, y) \\,\\}",
+      "description": "Les applications contractantes d'un espace métrique dans lui-même.",
+      "example": "x ↦ x/2 sur ℝ",
+      "notes": "L'hypothèse du théorème du point fixe de Banach (v0.21.0)."
+    },
+    {
+      "id": "PFU",
+      "label": "Applications à point fixe unique",
+      "family": "continuité",
+      "domain": "topologie métrique",
+      "property": "\\{\\, f : (E, d) \\to (E, d) \\mid \\exists\\, !\\, x,\\ f(x) = x \\,\\}",
+      "description": "Les applications d'un espace métrique dans lui-même admettant un unique point fixe.",
+      "example": "x ↦ 1 − x sur [0, 1] (point fixe 1/2)",
+      "notes": ""
+    },
+    {
+      "id": "CMI",
+      "label": "Suites dominées par une intégrable",
+      "family": "séries",
+      "domain": "analyse des suites réelles",
+      "property": "\\{\\, a \\ge 0 : \\exists f \\ge 0 \\text{ décroissante},\\ \\int_1^{+\\infty} f < \\infty,\\ \\forall n,\\ a_n \\le f(n) \\,\\}",
+      "description": "Les suites positives terme à terme dominées par une fonction décroissante intégrable.",
+      "example": "1/(n ln² n), dominée par 1/(x ln² x)",
+      "notes": "Le critère de comparaison série-intégrale (v0.21.0)."
+    },
+    {
+      "id": "BA3",
+      "label": "Fonctions de classe de Baire 3",
+      "family": "régularité réelle",
+      "domain": "analyse réelle",
+      "property": "\\{\\, f : \\exists\\, (f_n) \\text{ de classe de Baire 2},\\ f_n \\to f \\text{ simplement} \\,\\}",
+      "description": "Les limites simples de suites de fonctions de classe de Baire 2 : troisième marche de la hiérarchie.",
+      "example": "une double itérée de l'indicatrice des rationnels",
+      "notes": "L'anti « Baire 3 ⊄ Baire 2 » reste à exemplifier proprement (voir corpus, entrée 108)."
+    },
+    {
+      "id": "VD",
+      "label": "Fonctions vectorielles dérivables",
+      "family": "dérivabilité",
+      "domain": "analyse vectorielle",
+      "property": "\\{\\, f : E \\to F \\mid E, F \\text{ espaces vectoriels normés}, f \\text{ différentiable en tout point de } E \\,\\}",
+      "description": "Les fonctions différentiables en tout point, entre espaces vectoriels normés : la transposition des « Fonctions dérivables » du cas réel.",
+      "example": "x ↦ ‖x‖², de ℝ³ dans ℝ",
+      "notes": "La différentielle f'(a) est une application linéaire continue de E dans F, et non un nombre : c'est toute la subtilité du cas vectoriel."
+    },
+    {
+      "id": "VC1",
+      "label": "Fonctions vectorielles de classe C¹",
+      "family": "dérivabilité",
+      "domain": "analyse vectorielle",
+      "property": "\\{\\, f \\text{ différentiable} : a \\mapsto f'(a) \\text{ continue de } E \\text{ dans } \\mathcal{L}(E, F) \\,\\}",
+      "description": "Les fonctions différentiables dont la différentielle dépend continûment du point.",
+      "example": "x ↦ (‖x‖², x₁), de ℝ³ dans ℝ²",
+      "notes": ""
+    },
+    {
+      "id": "VDBR",
+      "label": "Fonctions vectorielles dérivables à dérivée bornée",
+      "family": "dérivabilité",
+      "domain": "analyse vectorielle",
+      "property": "\\{\\, f \\text{ différentiable} : \\exists k \\ge 0, \\forall a \\in E, \\|f'(a)\\|_{\\mathcal{L}(E,F)} \\le k \\,\\}",
+      "description": "Les fonctions différentiables dont la différentielle est bornée en norme d'opérateur.",
+      "example": "x ↦ sin(x₁), de ℝⁿ dans ℝ",
+      "notes": "C'est elles que l'inégalité des accroissements finis rend lipschitziennes : à valeurs vectorielles, l'égalité du TAF est fausse, l'inégalité suffit."
+    },
+    {
+      "id": "VDN",
+      "label": "Fonctions vectorielles dérivables à dérivée nulle",
+      "family": "dérivabilité",
+      "domain": "analyse vectorielle",
+      "property": "\\{\\, f \\text{ différentiable} : \\forall a \\in E, f'(a) = 0 \\,\\}",
+      "description": "Les fonctions différentiables dont la différentielle s'annule partout.",
+      "example": "x ↦ (1, 2), de ℝ dans ℝ²",
+      "notes": "Le théorème des dérivées nulles passe au cas vectoriel par l'inégalité des accroissements finis."
+    },
+    {
+      "id": "VCT",
+      "label": "Fonctions vectorielles constantes",
+      "family": "dérivabilité",
+      "domain": "analyse vectorielle",
+      "property": "\\{\\, f : \\exists c \\in F, \\forall x \\in E, f(x) = c \\,\\}",
+      "description": "Les fonctions constantes entre espaces vectoriels normés.",
+      "example": "x ↦ 0",
+      "notes": ""
+    },
+    {
+      "id": "VLP",
+      "label": "Fonctions vectorielles lipschitziennes",
+      "family": "dérivabilité",
+      "domain": "analyse vectorielle",
+      "property": "\\{\\, f : E \\to F \\mid \\exists k \\ge 0, \\forall x, y \\in E, \\|f(x) - f(y)\\|_F \\le k\\,\\|x - y\\|_E \\,\\}",
+      "description": "Les fonctions k-lipschitziennes entre espaces vectoriels normés.",
+      "example": "x ↦ ‖x‖, de ℝ³ dans ℝ (constante 1)",
+      "notes": ""
+    },
+    {
+      "id": "VCV",
+      "label": "Fonctions convexes de plusieurs variables",
+      "family": "convexité",
+      "domain": "analyse vectorielle",
+      "property": "\\{\\, f : \\mathbb{R}^n \\to \\mathbb{R} \\mid \\forall x, y, \\forall t \\in [0,1], f(tx + (1-t)y) \\le t\\,f(x) + (1-t)\\,f(y) \\,\\}",
+      "description": "Les fonctions convexes définies sur ℝⁿ tout entier, à valeurs réelles : la transposition des « Fonctions convexes » du cas réel.",
+      "example": "x ↦ ‖x‖², de ℝ² dans ℝ",
+      "notes": "La convexité exige des valeurs réelles (un seul ordre) ; les théorèmes du cas d'une variable s'étendent pour la plupart."
+    },
+    {
+      "id": "VCD",
+      "label": "Fonctions convexes différentiables",
+      "family": "convexité",
+      "domain": "analyse vectorielle",
+      "property": "\\{\\, f : \\mathbb{R}^n \\to \\mathbb{R} \\text{ convexe et différentiable} \\,\\}",
+      "description": "Les fonctions à la fois convexes et différentiables, de ℝⁿ dans ℝ.",
+      "example": "x ↦ ‖x‖²",
+      "notes": ""
+    },
+    {
+      "id": "VGM",
+      "label": "Fonctions différentiables à gradient monotone",
+      "family": "convexité",
+      "domain": "analyse vectorielle",
+      "property": "\\{\\, f : \\mathbb{R}^n \\to \\mathbb{R} \\text{ différentiable} : \\forall x, y, \\langle \\nabla f(x) - \\nabla f(y), x - y \\rangle \\ge 0 \\,\\}",
+      "description": "Les fonctions différentiables dont le gradient est un opérateur monotone.",
+      "example": "x ↦ ‖x‖² : son gradient x ↦ 2x est monotone",
+      "notes": "Le pendant vectoriel des « dérivables à dérivée croissante » (v0.17.0) : la monotonie remplace la croissance, faute d'ordre sur ℝⁿ."
+    },
+    {
+      "id": "BC1",
+      "label": "Événements à probabilités sommables",
+      "family": "probabilités",
+      "domain": "théorie de la mesure",
+      "property": "\\{\\, (A_n) \\text{ événements de } (\\Omega, \\mathcal{A}, \\mathbb{P}) : \\sum_n \\mathbb{P}(A_n) < \\infty \\,\\}",
+      "description": "Les suites d'événements dont les probabilités forment une série convergente.",
+      "example": "A_n de probabilité 1/n² pour tout n",
+      "notes": "L'hypothèse du premier lemme de Borel-Cantelli (v0.22.0 écrasé, restauré v0.24.0)."
+    },
+    {
+      "id": "BC2",
+      "label": "Événements ne se produisant qu'un nombre fini de fois",
+      "family": "probabilités",
+      "domain": "théorie de la mesure",
+      "property": "\\{\\, (A_n) : \\mathbb{P}(\\limsup_n A_n) = 0 \\,\\}",
+      "description": "Les suites d'événements qui, presque sûrement, ne se produisent qu'un nombre fini de fois.",
+      "example": "les A_n de probabilité 1/n², presque sûrement tous sauf un nombre fini",
+      "notes": "limsup A_n est l'ensemble des issues où les A_n se produisent une infinité de fois."
+    },
+    {
+      "id": "BC3",
+      "label": "Événements indépendants à probabilités divergentes",
+      "family": "probabilités",
+      "domain": "théorie de la mesure",
+      "property": "\\{\\, (A_n) \\text{ événements mutuellement indépendants} : \\sum_n \\mathbb{P}(A_n) = \\infty \\,\\}",
+      "description": "Les suites d'événements indépendants dont les probabilités forment une série divergente.",
+      "example": "A_n = « le n-ième lancer d'un dé donne un six », de probabilité 1/6",
+      "notes": "L'hypothèse du second lemme de Borel-Cantelli (v0.22.0 écrasé, restauré v0.24.0)."
+    },
+    {
+      "id": "BC4",
+      "label": "Événements se produisant une infinité de fois",
+      "family": "probabilités",
+      "domain": "théorie de la mesure",
+      "property": "\\{\\, (A_n) : \\mathbb{P}(\\limsup_n A_n) = 1 \\,\\}",
+      "description": "Les suites d'événements qui, presque sûrement, se produisent une infinité de fois.",
+      "example": "un six une infinité de fois aux lancers répétés d'un dé",
+      "notes": ""
+    },
+    {
+      "id": "ESC",
+      "label": "Fonctions en escalier sur tout segment",
+      "family": "régularité réelle",
+      "domain": "analyse réelle",
+      "property": "\\{\\, f : \\forall [a,b],\\ \\exists a_0 < \\dots < a_n,\\ \\forall i,\\ f \\text{ constante sur } ]a_i, a_{i+1}[ \\,\\}",
+      "description": "Les fonctions constantes par morceaux : le matériau discret de la définition des fonctions réglées.",
+      "example": "l'échelon d'Heaviside",
+      "notes": "« Fonctions réglées » est défini dès la v0.17.0 comme leurs limites uniformes : le nœud en était resté au matériau implicite."
+    },
+    {
+      "id": "LH4",
+      "label": "Fonctions L^{1/4} sur le segment",
+      "family": "espaces de Banach",
+      "domain": "théorie de la mesure",
+      "property": "\\{\\, f : \\int_{[a,b]} |f|^{1/4} \\, d\\lambda < \\infty \\,\\}",
+      "description": "Les fonctions de racine quatrième intégrable sur le segment.",
+      "example": "x ↦ x^{-7/2} sur ]0, 1]",
+      "notes": ""
+    },
+    {
+      "id": "H15",
+      "label": "Fonctions höldériennes d'exposant 1/5",
+      "family": "régularité réelle",
+      "domain": "analyse réelle",
+      "property": "\\{\\, f : \\exists C,\\ |f(x) - f(y)| \\le C |x - y|^{1/5} \\,\\}",
+      "description": "Les fonctions höldériennes d'exposant 1/5.",
+      "example": "x ↦ \\sqrt[5]{x}",
+      "notes": "Exactement 1 − 1/p pour p = 5/4 : la cible du plongement de Sobolev-Morrey correspondant."
+    },
+    {
+      "id": "WP54",
+      "label": "Fonctions W^{1,5/4} sur le segment",
+      "family": "régularité réelle",
+      "domain": "théorie de la mesure",
+      "property": "\\{\\, f \\in L^{5/4}([a,b]) : \\exists g \\in L^{5/4},\\ \\forall \\varphi \\text{ test},\\ \\int f \\varphi' = -\\int g \\varphi \\,\\}",
+      "description": "Les fonctions de dérivée faible dans L^{5/4}.",
+      "example": "x ↦ x^{9/4} sur [0, 1]",
+      "notes": ""
     }
   ],
   "edges": [
@@ -6879,10 +7211,10 @@
     },
     {
       "from": "CBD2",
-      "to": "ZRM1",
+      "to": "PDR",
       "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Réunions d'un parfait et d'un dénombrable » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Réunions d'un parfait et d'un dénombrable » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
+      "theorem": "Définition",
+      "statement": "Tout élément de « Réunions d'un parfait et d'un dénombrable » est une réunion P ∪ D ⊆ ℝ, donc une partie de ℝ : l'ensemble de Cantor–Bendixson vit dans « Parties de ℝ ». Le raccord direct au cercle-père devient composé (règle 4).",
       "depth": "définitoire",
       "domain": "théorie des ensembles",
       "id": "e337"
@@ -7248,16 +7580,6 @@
       "id": "e444"
     },
     {
-      "from": "RN",
-      "to": "EV",
-      "kind": "inclusion",
-      "theorem": "ℝⁿ est un espace vectoriel",
-      "statement": "\\( (\\mathbb{R}^n, +, \\cdot) \\), toutes dimensions : l'espace-nombre de l'analyse.",
-      "depth": "immédiat",
-      "domain": "algèbre linéaire",
-      "id": "e445"
-    },
-    {
       "from": "ANR1",
       "to": "ANE",
       "kind": "inclusion",
@@ -7539,10 +7861,10 @@
     },
     {
       "from": "INTR",
-      "to": "ZRM1",
+      "to": "PDR",
       "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Intervalles de ℝ » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Intervalles de ℝ » ⊆ Ensembles est une inclusion définitoire. Raccord du lot I : le hub rejoint le cercle-père du graphe.",
+      "theorem": "Définition",
+      "statement": "Tout élément de « Intervalles de ℝ » est un intervalle, donc une partie de ℝ : « Intervalles de ℝ » ⊆ « Parties de ℝ » est une inclusion définitoire. Le hub des parties de la droite remplace le raccord direct au cercle-père (règle 4).",
       "depth": "définitoire",
       "domain": "théorie des ensembles",
       "id": "e490"
@@ -7794,7 +8116,7 @@
       "theorem": "« Binômes non divisibles par p » ⊆ « Couples d'entiers »",
       "statement": "\\( (n, k) \\in \\mathbb{N}^2 \\subseteq \\mathbb{Z}^2 \\) : l'inclusion fine remplace le saut vers « Couples ». Requalifié en v0.16.3, à l'arrivée du nœud « Couples d'entiers » (règle 4 : chaînon le plus fin).",
       "depth": "définitoire",
-      "domain": "algèbre générale",
+      "domain": "arithmétique",
       "id": "e537"
     },
     {
@@ -7804,7 +8126,7 @@
       "theorem": "« Couples dont le produit est représentable » ⊆ « Couples d'entiers »",
       "statement": "Un couple d'entiers représentables par x² + ny² : Brahmagupta vit déjà dans ℤ². Requalifié en v0.16.3 — l'inclusion fine remplace « Couples » (règle 4).",
       "depth": "définitoire",
-      "domain": "algèbre générale",
+      "domain": "arithmétique",
       "id": "e538"
     },
     {
@@ -8879,46 +9201,6 @@
       "domain": "analyse de séries"
     },
     {
-      "id": "e665",
-      "from": "F",
-      "to": "EV",
-      "kind": "inclusion",
-      "theorem": "Les fonctions réelles forment un espace vectoriel",
-      "statement": "\\( \\mathbb{R}^{\\mathbb{R}} \\) : somme et produit par un scalaire, point à point — l'espace ambiant de l'analyse (v0.16.2).",
-      "depth": "immédiat",
-      "domain": "analyse réelle"
-    },
-    {
-      "id": "e666",
-      "from": "FNC",
-      "to": "EV",
-      "kind": "inclusion",
-      "theorem": "Les fonctions complexes forment un espace vectoriel",
-      "statement": "\\( \\mathbb{C}^{\\mathbb{C}} \\) : la même structure, point à point — l'ambiant de l'analyse complexe (v0.16.2).",
-      "depth": "immédiat",
-      "domain": "analyse complexe"
-    },
-    {
-      "id": "e667",
-      "from": "L1",
-      "to": "EV",
-      "kind": "inclusion",
-      "theorem": "Les matrices forment un espace vectoriel",
-      "statement": "\\( \\mathcal{M}_n(\\mathbb{C}) \\) taille par taille : somme et scalaire sans jamais mélanger deux dimensions — les matrices sont à la fois applications linéaires continues et espaces vectoriels (v0.16.2).",
-      "depth": "immédiat",
-      "domain": "algèbre linéaire"
-    },
-    {
-      "id": "e668",
-      "from": "BR1",
-      "to": "EV",
-      "kind": "inclusion",
-      "theorem": "Les suites réelles forment un espace vectoriel",
-      "statement": "\\( \\mathbb{R}^{\\mathbb{N}} \\) : somme et produit par un scalaire, terme à terme (v0.16.2).",
-      "depth": "immédiat",
-      "domain": "analyse des suites réelles"
-    },
-    {
       "id": "e669",
       "from": "CINT",
       "to": "COUP",
@@ -8945,36 +9227,6 @@
       "kind": "inclusion",
       "theorem": "« Fonctions L¹ réelles sur ℂ » ⊆ « Fonctions L¹ complexes sur ℂ »",
       "statement": "\\( \\mathbb{R} \\subseteq \\mathbb{C} \\) : une fonction à valeurs réelles est à valeurs complexes, et \\( |f| \\) n'y voit que du feu (v0.16.3).",
-      "depth": "immédiat",
-      "domain": "théorie de la mesure"
-    },
-    {
-      "id": "e672",
-      "from": "L1R",
-      "to": "EV",
-      "kind": "inclusion",
-      "theorem": "Les fonctions L¹ sur ℝ forment un espace vectoriel",
-      "statement": "\\( L^1(\\mathbb{R}) \\) : somme et produit par un scalaire, point à point — et \\( \\|f\\|_1 = \\int |f| \\) en fait même un espace de Banach (v0.16.3).",
-      "depth": "immédiat",
-      "domain": "théorie de la mesure"
-    },
-    {
-      "id": "e673",
-      "from": "L1CC",
-      "to": "EV",
-      "kind": "inclusion",
-      "theorem": "Les fonctions L¹ sur ℂ forment un espace vectoriel",
-      "statement": "\\( L^1(\\mathbb{C}) \\), le plan mesuré comme \\( \\mathbb{R}^2 \\) : somme et scalaire point à point (v0.16.3).",
-      "depth": "immédiat",
-      "domain": "théorie de la mesure"
-    },
-    {
-      "id": "e674",
-      "from": "L2R",
-      "to": "EV",
-      "kind": "inclusion",
-      "theorem": "Les fonctions L² sur ℝ forment un espace vectoriel",
-      "statement": "\\( L^2(\\mathbb{R}) \\) : somme et scalaire, avec le produit scalaire \\( \\langle f, g \\rangle = \\int_{\\mathbb{R}} f g \\) (v0.16.3).",
       "depth": "immédiat",
       "domain": "théorie de la mesure"
     },
@@ -9544,16 +9796,6 @@
       "statement": "Toute fonction lipschitzienne sur un segment est höldérienne de tout exposant ≤ 1, en particulier 1/2.",
       "depth": "immédiat",
       "id": "e730",
-      "domain": "analyse réelle"
-    },
-    {
-      "from": "H12",
-      "to": "H14",
-      "kind": "inclusion",
-      "theorem": "Échelle de Hölder",
-      "statement": "Toute fonction höldérienne d'exposant 1/2 est höldérienne de tout exposant plus petit, en particulier 1/4 (sur un segment).",
-      "depth": "définitoire",
-      "id": "e731",
       "domain": "analyse réelle"
     },
     {
@@ -10127,6 +10369,728 @@
       "depth": "classique",
       "id": "e787",
       "domain": "analyse réelle"
+    },
+    {
+      "from": "FRN",
+      "to": "FVEC",
+      "kind": "inclusion",
+      "theorem": "Définition",
+      "statement": "Une fonction de ℝⁿ dans ℝⁿ est une fonction vectorielle : ℝⁿ est un espace vectoriel normé de dimension finie.",
+      "depth": "définitoire",
+      "id": "e788",
+      "domain": "analyse vectorielle"
+    },
+    {
+      "from": "BU1",
+      "to": "FRN",
+      "kind": "anti",
+      "theorem": "Une sphère n'est pas un espace euclidien",
+      "statement": "Une fonction continue de Sⁿ dans ℝⁿ est définie sur la sphère seulement : elle n'est pas une fonction de ℝᵏ dans ℝᵏ.",
+      "depth": "immédiat",
+      "id": "e790",
+      "domain": "topologie algébrique",
+      "counterexample": "En n = 1, la hauteur du cercle f : S¹ → ℝ, f(x, y) = y : définie sur le cercle uniquement, sur aucun ℝᵏ tout entier."
+    },
+    {
+      "from": "MEL",
+      "to": "F",
+      "kind": "inclusion",
+      "theorem": "Définition",
+      "statement": "Une fonction Lebesgue-mesurable de ℝ dans ℝ est une fonction réelle.",
+      "depth": "définitoire",
+      "id": "e791",
+      "domain": "analyse réelle"
+    },
+    {
+      "from": "C",
+      "to": "MEL",
+      "kind": "inclusion",
+      "theorem": "Les fonctions continues sont mesurables",
+      "statement": "L'image réciproque d'un borélien par une fonction continue est un borélien, donc un Lebesgue-mesurable : toute fonction continue est Lebesgue-mesurable.",
+      "depth": "immédiat",
+      "id": "e792",
+      "domain": "théorie de la mesure"
+    },
+    {
+      "from": "L1R",
+      "to": "MEL",
+      "kind": "inclusion",
+      "theorem": "Définition",
+      "statement": "Les éléments de L¹ sur ℝ sont des classes de fonctions mesurables.",
+      "depth": "définitoire",
+      "id": "e793",
+      "domain": "théorie de la mesure"
+    },
+    {
+      "from": "L2R",
+      "to": "MEL",
+      "kind": "inclusion",
+      "theorem": "Définition",
+      "statement": "Les éléments de L² sur ℝ sont des classes de fonctions mesurables.",
+      "depth": "définitoire",
+      "id": "e794",
+      "domain": "théorie de la mesure"
+    },
+    {
+      "from": "L1CC",
+      "to": "FNC",
+      "kind": "inclusion",
+      "theorem": "Définition",
+      "statement": "Les fonctions L¹ complexes sur ℂ sont des classes de fonctions complexes de ℂ dans ℂ.",
+      "depth": "définitoire",
+      "id": "e795",
+      "domain": "analyse complexe"
+    },
+    {
+      "from": "CHD2",
+      "to": "WRS2",
+      "kind": "inclusion",
+      "theorem": "Un polynôme à coefficients entiers est en particulier un polynôme",
+      "statement": "ℤ[X] ⊆ ℝ[X] : toute limite uniforme de polynômes à coefficients entiers est une limite uniforme de polynômes.",
+      "depth": "immédiat",
+      "id": "e796",
+      "domain": "analyse réelle"
+    },
+    {
+      "from": "BAF1",
+      "to": "BA2",
+      "kind": "inclusion",
+      "theorem": "Définition",
+      "statement": "Une fonction de classe de Baire 1 est limite simple d'une suite constante de fonctions de Baire 1 : elle est de classe de Baire 2.",
+      "depth": "définitoire",
+      "id": "e797",
+      "domain": "analyse réelle"
+    },
+    {
+      "from": "BA2",
+      "to": "F",
+      "kind": "inclusion",
+      "theorem": "Définition",
+      "statement": "Une fonction de classe de Baire 2 de ℝ dans ℝ est une fonction réelle.",
+      "depth": "définitoire",
+      "id": "e798",
+      "domain": "analyse réelle"
+    },
+    {
+      "from": "BA2",
+      "to": "BAF1",
+      "kind": "anti",
+      "theorem": "Une Baire 2 qui n'est pas Baire 1",
+      "statement": "Toute limite simple de fonctions de Baire 1 n'est pas limite simple de fonctions continues.",
+      "depth": "classique",
+      "id": "e799",
+      "domain": "analyse réelle",
+      "counterexample": "L'indicatrice des rationnels : double limite de continues x ↦ (cos(n! π x))^{2m}, mais discontinue partout, donc pas Baire 1 (dont les discontinuités forment un Fσ maigre)."
+    },
+    {
+      "from": "LPP",
+      "to": "LP3S",
+      "kind": "inclusion",
+      "theorem": "Définition",
+      "statement": "Une fonction dans tous les L^p sur [a, b] est en particulier L³.",
+      "depth": "définitoire",
+      "id": "e800",
+      "domain": "théorie de la mesure"
+    },
+    {
+      "from": "LP3S",
+      "to": "LP2S",
+      "kind": "inclusion",
+      "theorem": "L³ dans L² (sur un segment)",
+      "statement": "Sur un segment de mesure finie, l'inégalité de Hölder donne ∫ |f|² ≤ (∫ |f|³)^{2/3} (b − a)^{1/3}.",
+      "depth": "classique",
+      "id": "e801",
+      "domain": "théorie de la mesure"
+    },
+    {
+      "from": "LP1S",
+      "to": "LP3S",
+      "kind": "anti",
+      "theorem": "Une L¹ qui n'est pas L³",
+      "statement": "Même sur un segment, L¹ ⊄ L³ : l'exposant 3 échoue là où le premier passe.",
+      "depth": "classique",
+      "id": "e802",
+      "domain": "théorie de la mesure",
+      "counterexample": "x ↦ x^{-3/4} sur ]0, 1] : intégrable, mais son cube x ↦ x^{-9/4} ne l'est pas."
+    },
+    {
+      "from": "LP2S",
+      "to": "LP3S",
+      "kind": "anti",
+      "theorem": "Une L² qui n'est pas L³",
+      "statement": "Même sur un segment, L² ⊄ L³.",
+      "depth": "classique",
+      "id": "e803",
+      "domain": "théorie de la mesure",
+      "counterexample": "x ↦ x^{-5/12} sur ]0, 1] : de carré x ↦ x^{-5/6} intégrable, mais de cube x ↦ x^{-5/4} non intégrable."
+    },
+    {
+      "from": "W31",
+      "to": "W21",
+      "kind": "inclusion",
+      "theorem": "Définition",
+      "statement": "Une fonction W^{3,1} sur [a, b] y est en particulier W^{2,1} : ses dérivées faibles jusqu'à l'ordre 2 sont intégrables.",
+      "depth": "définitoire",
+      "id": "e804",
+      "domain": "théorie de la mesure"
+    },
+    {
+      "from": "L1J",
+      "to": "CFR",
+      "kind": "inclusion",
+      "theorem": "Lemme de Riemann-Lebesgue",
+      "statement": "Tout Lebesgue-intégrable a des coefficients de Fourier qui tendent vers zéro : |∫ f e^{-inx}| ≤ ∫_{[0,2π]∖}|f| ε + M·mes(m petits) → formalisé classiquement ; c_n(f) → 0.",
+      "depth": "classique",
+      "id": "e805",
+      "domain": "analyse harmonique"
+    },
+    {
+      "from": "CFR",
+      "to": "F",
+      "kind": "inclusion",
+      "theorem": "Définition",
+      "statement": "Une fonction à coefficients de Fourier tendant vers zéro est une fonction réelle.",
+      "depth": "définitoire",
+      "id": "e806",
+      "domain": "analyse réelle"
+    },
+    {
+      "from": "LP1S",
+      "to": "LH2",
+      "kind": "inclusion",
+      "theorem": "L¹ dans L^{1/2} (sur un segment)",
+      "statement": "Sur un segment, l'inégalité de Hölder donne ∫ |f|^{1/2} ≤ (∫ |f|)^{1/2} (b − a)^{1/2}.",
+      "depth": "classique",
+      "id": "e807",
+      "domain": "théorie de la mesure"
+    },
+    {
+      "from": "LH2",
+      "to": "LP1S",
+      "kind": "anti",
+      "theorem": "Une L^{1/2} qui n'est pas L¹",
+      "statement": "Même sur un segment, L^{1/2} ⊄ L¹.",
+      "depth": "classique",
+      "id": "e808",
+      "domain": "théorie de la mesure",
+      "counterexample": "x ↦ x^{-3/2} sur ]0, 1] : de racine x ↦ x^{-3/4} intégrable, mais non intégrable elle-même."
+    },
+    {
+      "from": "LH2",
+      "to": "LH3",
+      "kind": "inclusion",
+      "theorem": "L^{1/2} dans L^{1/3} (sur un segment)",
+      "statement": "Sur un segment, ∫ |f|^{1/3} ≤ (∫ |f|^{1/2})^{2/3} (b − a)^{1/3}.",
+      "depth": "classique",
+      "id": "e809",
+      "domain": "théorie de la mesure"
+    },
+    {
+      "from": "LH3",
+      "to": "LH2",
+      "kind": "anti",
+      "theorem": "Une L^{1/3} qui n'est pas L^{1/2}",
+      "statement": "Même sur un segment, L^{1/3} ⊄ L^{1/2}.",
+      "depth": "classique",
+      "id": "e810",
+      "domain": "théorie de la mesure",
+      "counterexample": "x ↦ x^{-5/2} sur ]0, 1] : de racine cubique x ↦ x^{-5/6} intégrable, mais de racine x ↦ x^{-5/4} non intégrable."
+    },
+    {
+      "from": "H12",
+      "to": "H13",
+      "kind": "inclusion",
+      "theorem": "Échelle de Hölder",
+      "statement": "Sur un segment comme sur ℝ, 1/2 > 1/3 : être höldérienne d'exposant 1/2 implique l'être d'exposant 1/3.",
+      "depth": "immédiat",
+      "id": "e811",
+      "domain": "analyse réelle"
+    },
+    {
+      "from": "H13",
+      "to": "H14",
+      "kind": "inclusion",
+      "theorem": "Échelle de Hölder",
+      "statement": "1/3 > 1/4 : être höldérienne d'exposant 1/3 implique l'être d'exposant 1/4.",
+      "depth": "immédiat",
+      "id": "e812",
+      "domain": "analyse réelle"
+    },
+    {
+      "from": "H13",
+      "to": "H12",
+      "kind": "anti",
+      "theorem": "Une C^{0,1/3} qui n'est pas C^{0,1/2}",
+      "statement": "L'exposant 1/3 est strictement plus faible que le 1/2.",
+      "depth": "classique",
+      "id": "e813",
+      "domain": "analyse réelle",
+      "counterexample": "x ↦ x^{1/3} : höldérienne d'exposant 1/3 (concavité), mais x^{1/3}/|x|^{1/2} = x^{-1/6} → ∞ près de 0."
+    },
+    {
+      "from": "H14",
+      "to": "H13",
+      "kind": "anti",
+      "theorem": "Une C^{0,1/4} qui n'est pas C^{0,1/3}",
+      "statement": "L'exposant 1/4 est strictement plus faible que le 1/3.",
+      "depth": "classique",
+      "id": "e814",
+      "domain": "analyse réelle",
+      "counterexample": "x ↦ x^{1/4} : höldérienne d'exposant 1/4, mais x^{1/4}/|x|^{1/3} = x^{-1/12} → ∞ près de 0."
+    },
+    {
+      "from": "W12S",
+      "to": "H1S",
+      "kind": "equivalence",
+      "theorem": "H¹ = W^{1,2} (sur le segment)",
+      "statement": "Les fonctions H¹ sur le segment sont exactement les W^{1,2} : la dérivée faible de carré intégrable caractérise H¹.",
+      "depth": "définitoire",
+      "id": "e815",
+      "domain": "théorie de la mesure"
+    },
+    {
+      "from": "W12S",
+      "to": "W11",
+      "kind": "inclusion",
+      "theorem": "Définition",
+      "statement": "Sur un segment de mesure finie, la dérivée faible de carré intégrable est intégrable : une W^{1,2} est en particulier W^{1,1}.",
+      "depth": "définitoire",
+      "id": "e816",
+      "domain": "théorie de la mesure"
+    },
+    {
+      "from": "WP32",
+      "to": "H13",
+      "kind": "inclusion",
+      "theorem": "Plongement de Sobolev-Morrey (p = 3/2)",
+      "statement": "Sur un segment, toute fonction W^{1,3/2} est höldérienne d'exposant 1 − 1/p = 1/3.",
+      "depth": "classique",
+      "id": "e817",
+      "domain": "théorie de la mesure"
+    },
+    {
+      "from": "CNT",
+      "to": "PFU",
+      "kind": "inclusion",
+      "theorem": "Théorème du point fixe de Banach",
+      "statement": "Sur un espace métrique complet, une contraction admet un unique point fixe, atteint par itération (convergence de Picard).",
+      "depth": "classique",
+      "id": "e819",
+      "domain": "topologie métrique"
+    },
+    {
+      "from": "PFU",
+      "to": "CNT",
+      "kind": "anti",
+      "theorem": "Un point fixe unique sans contraction",
+      "statement": "Avoir un unique point fixe n'impose pas d'être contractante.",
+      "depth": "immédiat",
+      "id": "e820",
+      "domain": "topologie métrique",
+      "counterexample": "x ↦ −x sur [−1, 1] : unique point fixe 0, mais d(f(x), f(y)) = d(x, y), aucun k < 1."
+    },
+    {
+      "from": "CNT",
+      "to": "FMET",
+      "kind": "inclusion",
+      "theorem": "Définition",
+      "statement": "Une contraction est une fonction entre espaces métriques.",
+      "depth": "définitoire",
+      "id": "e821",
+      "domain": "topologie métrique"
+    },
+    {
+      "from": "PFU",
+      "to": "FMET",
+      "kind": "inclusion",
+      "theorem": "Définition",
+      "statement": "Une application à point fixe unique entre espaces métriques est une fonction entre espaces métriques.",
+      "depth": "définitoire",
+      "id": "e822",
+      "domain": "topologie métrique"
+    },
+    {
+      "from": "CMI",
+      "to": "SU2",
+      "kind": "inclusion",
+      "theorem": "Comparaison série-intégrale",
+      "statement": "Une suite positive dominée par une fonction décroissante intégrable a sa série convergente : Σ a_n ≤ Σ f(n) ≤ f(1) + ∫₁^∞ f.",
+      "depth": "classique",
+      "id": "e823",
+      "domain": "analyse des suites réelles"
+    },
+    {
+      "from": "BA2",
+      "to": "BA3",
+      "kind": "inclusion",
+      "theorem": "Définition",
+      "statement": "Une fonction de classe de Baire 2 est limite simple d'une suite constante de fonctions de classe de Baire 2 : elle est de classe de Baire 3.",
+      "depth": "définitoire",
+      "id": "e824",
+      "domain": "analyse réelle"
+    },
+    {
+      "from": "BA3",
+      "to": "F",
+      "kind": "inclusion",
+      "theorem": "Définition",
+      "statement": "Une fonction de classe de Baire 3 de ℝ dans ℝ est une fonction réelle.",
+      "depth": "définitoire",
+      "id": "e825",
+      "domain": "analyse réelle"
+    },
+    {
+      "from": "VC1",
+      "to": "VD",
+      "kind": "inclusion",
+      "theorem": "Définition de C¹ (cas vectoriel)",
+      "statement": "Une fonction de classe C¹ est, par définition, différentiable en tout point, avec une différentielle continue \\( a \\mapsto f'(a) \\).",
+      "depth": "définitoire",
+      "id": "e826",
+      "domain": "analyse vectorielle"
+    },
+    {
+      "from": "VDBR",
+      "to": "VD",
+      "kind": "inclusion",
+      "theorem": "Définition",
+      "statement": "Une fonction différentiable à différentielle bornée est en particulier différentiable.",
+      "depth": "définitoire",
+      "id": "e827",
+      "domain": "analyse vectorielle"
+    },
+    {
+      "from": "VD",
+      "to": "FC",
+      "kind": "inclusion",
+      "theorem": "Une fonction dérivable est continue (cas vectoriel)",
+      "statement": "Partout où la différentielle existe, \\( f(x) = f(a) + f'(a)(x-a) + o(\\|x - a\\|) \\) : le terme linéaire est borné sur la boule unité (il est continu) et le reste tend vers 0, donc \\( f \\) est continue en \\( a \\).",
+      "depth": "classique",
+      "id": "e828",
+      "domain": "analyse vectorielle",
+      "strict": true,
+      "strictnessExample": "t ↦ (|t|, 0), de ℝ dans ℝ² : continue partout, non dérivable en 0."
+    },
+    {
+      "from": "VDBR",
+      "to": "VLP",
+      "kind": "inclusion",
+      "theorem": "Inégalité des accroissements finis (cas vectoriel)",
+      "statement": "L'égalité \\( f(y) - f(x) = f'(c)(y - x) \\) est fausse à valeurs vectorielles (Rolle échoue : \\( t \\mapsto (\\cos t, \\sin t) \\) ferme une boucle sans que la dérivée s'annule), mais l'inégalité subsiste : si \\( \\|f'(a)\\| \\le k \\) partout, alors en intégrant \\( (f \\circ \\gamma)' \\) le long du segment \\( \\gamma(t) = (1-t)x + ty \\), \\( \\|f(y) - f(x)\\| \\le k\\,\\|y - x\\| \\).",
+      "depth": "fondamental",
+      "id": "e829",
+      "domain": "analyse vectorielle",
+      "strict": true,
+      "strictnessExample": "x ↦ ‖x‖, de ℝ³ dans ℝ : 1-lipschitzienne, non différentiable en 0."
+    },
+    {
+      "from": "VLP",
+      "to": "FC",
+      "kind": "inclusion",
+      "theorem": "Module uniforme (cas vectoriel)",
+      "statement": "Pour \\( \\varepsilon > 0 \\), \\( \\delta = \\varepsilon / k \\) convient : une lipschitzienne est continue, uniformément par rapport au point, quelle que soit la dimension.",
+      "depth": "immédiat",
+      "id": "e830",
+      "domain": "analyse vectorielle"
+    },
+    {
+      "from": "VDN",
+      "to": "VCT",
+      "kind": "equivalence",
+      "theorem": "Théorème des dérivées nulles (cas vectoriel)",
+      "statement": "Sur un espace vectoriel normé \\( E \\), une fonction différentiable de différentielle nulle partout est constante, et réciproquement : l'inégalité des accroissements finis appliquée au segment reliant \\( x \\) et \\( y \\) donne \\( \\|f(y) - f(x)\\| \\le 0 \\).",
+      "depth": "classique",
+      "id": "e831",
+      "domain": "analyse vectorielle"
+    },
+    {
+      "from": "VCT",
+      "to": "VD",
+      "kind": "inclusion",
+      "theorem": "Une constante vectorielle est différentiable",
+      "statement": "La fonction constante \\( f(x) = c \\) est différentiable partout, de différentielle nulle : \\( f(x) - f(a) - 0 = 0 \\) est bien \\( o(\\|x - a\\|) \\).",
+      "depth": "immédiat",
+      "id": "e832",
+      "domain": "analyse vectorielle"
+    },
+    {
+      "from": "VCD",
+      "to": "VCV",
+      "kind": "inclusion",
+      "theorem": "Définition",
+      "statement": "Une fonction convexe différentiable est en particulier convexe.",
+      "depth": "définitoire",
+      "id": "e833",
+      "domain": "analyse vectorielle"
+    },
+    {
+      "from": "VCD",
+      "to": "VD",
+      "kind": "inclusion",
+      "theorem": "« Fonctions convexes différentiables » ⊆ « Fonctions vectorielles dérivables »",
+      "statement": "Une fonction convexe différentiable est en particulier différentiable.",
+      "depth": "définitoire",
+      "id": "e834",
+      "domain": "analyse vectorielle"
+    },
+    {
+      "from": "VCV",
+      "to": "FC",
+      "kind": "inclusion",
+      "theorem": "Convexe ⇒ continue (plusieurs variables)",
+      "statement": "Toute fonction convexe sur \\( \\mathbb{R}^n \\) est continue : bornée par \\( M \\) sur une boule fermée de rayon \\( r \\) (paquets convexes des sommets d'un cube), elle y est \\( 2M/r \\)-lipschitzienne, donc continue — et même localement lipschitzienne.",
+      "depth": "classique",
+      "id": "e835",
+      "domain": "analyse vectorielle"
+    },
+    {
+      "from": "VCD",
+      "to": "VGM",
+      "kind": "equivalence",
+      "theorem": "Caractérisation des convexes différentiables (gradient monotone)",
+      "statement": "Une fonction différentiable sur \\( \\mathbb{R}^n \\) est convexe si et seulement si son gradient est monotone : \\( \\langle \\nabla f(x) - \\nabla f(y), x - y \\rangle \\ge 0 \\) pour tous \\( x, y \\) — le pendant exact de « dérivée croissante » du cas d'une variable.",
+      "depth": "classique",
+      "id": "e836",
+      "domain": "analyse vectorielle"
+    },
+    {
+      "from": "FRN",
+      "to": "VD",
+      "kind": "anti",
+      "theorem": "Une fonction de ℝⁿ dans ℝⁿ non différentiable",
+      "statement": "Toutes les applications d'un espace euclidien dans lui-même ne sont pas différentiables.",
+      "depth": "immédiat",
+      "id": "e837",
+      "domain": "analyse vectorielle",
+      "counterexample": "\\( f(x) = (|x_1|, 0, \\dots, 0) \\), de ℝⁿ dans ℝⁿ : continue, non différentiable sur l'hyperplan \\( x_1 = 0 \\)."
+    },
+    {
+      "from": "FC",
+      "to": "VD",
+      "kind": "anti",
+      "theorem": "Une continue vectorielle non dérivable",
+      "statement": "La continuité entre espaces vectoriels normés n'implique pas la différentiabilité.",
+      "depth": "classique",
+      "id": "e838",
+      "domain": "analyse vectorielle",
+      "counterexample": "t ↦ (|t|, 0), de ℝ dans ℝ² : continue partout ; en 0, les dérivées latérales valent (−1, 0) et (1, 0)."
+    },
+    {
+      "from": "VD",
+      "to": "VDBR",
+      "kind": "anti",
+      "theorem": "Une dérivée vectorielle qui explose",
+      "statement": "La différentielle d'une fonction différentiable n'est pas bornée en général.",
+      "depth": "classique",
+      "id": "e839",
+      "domain": "analyse vectorielle",
+      "counterexample": "t ↦ (t², 0), de ℝ dans ℝ² : \\( \\|f'(t)\\| = 2|t| \\), non borné sur ℝ."
+    },
+    {
+      "from": "VD",
+      "to": "VLP",
+      "kind": "anti",
+      "theorem": "Une dérivable vectorielle non lipschitzienne",
+      "statement": "La différentiabilité n'implique pas la condition de Lipschitz : la dérivée peut exploser.",
+      "depth": "classique",
+      "id": "e840",
+      "domain": "analyse vectorielle",
+      "counterexample": "t ↦ (t², 0), de ℝ dans ℝ² : \\( \\|f(t) - f(s)\\| / \\|t - s\\| = |t + s| \\), non borné."
+    },
+    {
+      "from": "VLP",
+      "to": "VD",
+      "kind": "anti",
+      "theorem": "Une lipschitzienne vectorielle non dérivable",
+      "statement": "La condition de Lipschitz n'implique pas la différentiabilité, même entre espaces de dimension finie.",
+      "depth": "facile",
+      "id": "e841",
+      "domain": "analyse vectorielle",
+      "counterexample": "x ↦ ‖x‖, de ℝ³ dans ℝ : 1-lipschitzienne, non différentiable à l'origine."
+    },
+    {
+      "from": "VCV",
+      "to": "VD",
+      "kind": "anti",
+      "theorem": "Une convexe de plusieurs variables non dérivable",
+      "statement": "En plusieurs variables comme en une, la convexité n'implique pas la différentiabilité.",
+      "depth": "facile",
+      "id": "e842",
+      "domain": "analyse vectorielle",
+      "counterexample": "\\( x \\mapsto \\|x\\| \\), de ℝ² dans ℝ : convexe, continue, non différentiable en \\( 0 \\)."
+    },
+    {
+      "from": "FC",
+      "to": "VCV",
+      "kind": "anti",
+      "theorem": "Une continue non convexe",
+      "statement": "La continuité n'implique pas la convexité, même en plusieurs variables.",
+      "depth": "facile",
+      "id": "e843",
+      "domain": "analyse vectorielle",
+      "counterexample": "\\( (x, y) \\mapsto xy \\), de ℝ² dans ℝ : continue, mais point selle — \\( \\frac{f(1,1) + f(-1,-1)}{2} = 1 > 0 = f(0,0) \\), ce que la convexité interdit."
+    },
+    {
+      "from": "DWI",
+      "to": "F",
+      "kind": "inclusion",
+      "theorem": "Définition",
+      "statement": "L'indicatrice d'une partie de ℝ, dense ou non, est une fonction réelle de ℝ dans ℝ.",
+      "depth": "définitoire",
+      "id": "e844",
+      "domain": "analyse réelle"
+    },
+    {
+      "from": "BC1",
+      "to": "BC2",
+      "kind": "inclusion",
+      "theorem": "Premier lemme de Borel-Cantelli",
+      "statement": "Si Σ P(A_n) < ∞, alors P(limsup A_n) = 0 : presque sûrement, seuls un nombre fini des événements A_n se produisent.",
+      "depth": "classique",
+      "id": "e845",
+      "domain": "théorie de la mesure"
+    },
+    {
+      "from": "BC3",
+      "to": "BC4",
+      "kind": "inclusion",
+      "theorem": "Second lemme de Borel-Cantelli",
+      "statement": "Si les A_n sont mutuellement indépendants et Σ P(A_n) = ∞, alors P(limsup A_n) = 1 : presque sûrement, les événements A_n se produisent une infinité de fois.",
+      "depth": "classique",
+      "id": "e846",
+      "domain": "théorie de la mesure"
+    },
+    {
+      "from": "BC2",
+      "to": "SUIT",
+      "kind": "inclusion",
+      "theorem": "Définition",
+      "statement": "Une suite d'événements ne se produisant qu'un nombre fini de fois presque sûrement est toujours une suite.",
+      "depth": "définitoire",
+      "id": "e847",
+      "domain": "analyse des suites réelles"
+    },
+    {
+      "from": "BC4",
+      "to": "SUIT",
+      "kind": "inclusion",
+      "theorem": "Définition",
+      "statement": "Une suite d'événements se produisant une infinité de fois presque sûrement est toujours une suite.",
+      "depth": "définitoire",
+      "id": "e848",
+      "domain": "analyse des suites réelles"
+    },
+    {
+      "from": "ESC",
+      "to": "REG",
+      "kind": "inclusion",
+      "theorem": "Définition",
+      "statement": "La suite constante e_n = f montre qu'une fonction en escalier est limite uniforme d'elle-même sur chaque segment : elle est réglée.",
+      "depth": "définitoire",
+      "id": "e849",
+      "domain": "analyse réelle"
+    },
+    {
+      "from": "LH3",
+      "to": "LH4",
+      "kind": "inclusion",
+      "theorem": "L^{1/3} dans L^{1/4} (sur un segment)",
+      "statement": "Sur un segment, l'inégalité de Hölder donne ∫ |f|^{1/4} ≤ (∫ |f|^{1/3})^{3/4} (b − a)^{1/4}.",
+      "depth": "classique",
+      "id": "e850",
+      "domain": "théorie de la mesure"
+    },
+    {
+      "from": "LH4",
+      "to": "LH3",
+      "kind": "anti",
+      "theorem": "Une L^{1/4} qui n'est pas L^{1/3}",
+      "statement": "Même sur un segment, L^{1/4} ⊄ L^{1/3}.",
+      "depth": "classique",
+      "id": "e851",
+      "domain": "théorie de la mesure",
+      "counterexample": "x ↦ x^{-7/2} sur ]0, 1] : de racine quatrième x ↦ x^{-7/8} intégrable, mais de racine cubique x ↦ x^{-7/6} non intégrable."
+    },
+    {
+      "from": "H14",
+      "to": "H15",
+      "kind": "inclusion",
+      "theorem": "Échelle de Hölder",
+      "statement": "1/4 > 1/5 : être höldérienne d'exposant 1/4 implique l'être d'exposant 1/5.",
+      "depth": "immédiat",
+      "id": "e852",
+      "domain": "analyse réelle"
+    },
+    {
+      "from": "H15",
+      "to": "H14",
+      "kind": "anti",
+      "theorem": "Une C^{0,1/5} qui n'est pas C^{0,1/4}",
+      "statement": "L'exposant 1/5 est strictement plus faible que le 1/4.",
+      "depth": "classique",
+      "id": "e853",
+      "domain": "analyse réelle",
+      "counterexample": "x ↦ x^{1/5} : höldérienne d'exposant 1/5, mais x^{1/5}/|x|^{1/4} = x^{-1/20} → ∞ près de 0."
+    },
+    {
+      "from": "WP54",
+      "to": "H15",
+      "kind": "inclusion",
+      "theorem": "Plongement de Sobolev-Morrey (p = 5/4)",
+      "statement": "Sur un segment, toute fonction W^{1,5/4} est höldérienne d'exposant 1 − 1/p = 1/5.",
+      "depth": "classique",
+      "id": "e854",
+      "domain": "théorie de la mesure"
+    },
+    {
+      "from": "WP54",
+      "to": "W12S",
+      "kind": "inclusion",
+      "theorem": "Définition",
+      "statement": "Sur un segment de mesure finie, une fonction de dérivée faible dans L^{5/4} a sa dérivée faible dans L² : une W^{1,5/4} est en particulier W^{1,2}.",
+      "depth": "définitoire",
+      "id": "e855",
+      "domain": "théorie de la mesure"
+    },
+    {
+      "from": "WP32",
+      "to": "WP54",
+      "kind": "inclusion",
+      "theorem": "Définition",
+      "statement": "Sur un segment de mesure finie, L^{3/2} ⊆ L^{5/4} (3/2 > 5/4) : une W^{1,3/2} est en particulier W^{1,5/4}.",
+      "depth": "définitoire",
+      "id": "e856",
+      "domain": "théorie de la mesure"
+    },
+    {
+      "from": "RN",
+      "to": "APP",
+      "kind": "inclusion",
+      "theorem": "Définition",
+      "statement": "Un n-uplet de réels est une application : (x₁, …, xₙ) est la fonction k ↦ x_k définie sur le segment initial {1, …, n} de ℕ, à valeurs dans ℝ.",
+      "depth": "définitoire",
+      "id": "e857",
+      "domain": "algèbre générale"
+    },
+    {
+      "from": "PDR",
+      "to": "REEL",
+      "kind": "partie",
+      "theorem": "Ensemble des parties",
+      "statement": "Tout élément de « Parties de ℝ » est une partie de ℝ : c'est le lien entre 𝒫(ℝ) et la droite réelle elle-même. Première arête orange (kind partie : A ⊆ 𝒫(B)).",
+      "depth": "définitoire",
+      "domain": "théorie des ensembles",
+      "id": "e858"
+    },
+    {
+      "from": "PDR",
+      "to": "ZRM1",
+      "kind": "inclusion",
+      "theorem": "Inclusion dans la collection de tous les ensembles",
+      "statement": "Tout élément de « Parties de ℝ » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Parties de ℝ » ⊆ Ensembles est une inclusion définitoire. Le hub des parties rejoint le cercle-père du graphe.",
+      "depth": "définitoire",
+      "domain": "théorie des ensembles",
+      "id": "e859"
     }
   ]
 }

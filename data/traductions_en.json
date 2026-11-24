@@ -10,6 +10,14 @@
    "theorem": "A continuous function that is not monotone",
    "statement": "Continuity does not imply monotonicity.",
    "counterexample": "x ↦ sin(x): continuous and oscillating."
+  },
+  "e858": {
+   "theorem": "Power set",
+   "statement": "Every element of « Parties de ℝ » is a subset of ℝ: this is the link between 𝒫(ℝ) and the real line itself. First orange edge (kind partie: A ⊆ 𝒫(B))."
+  },
+  "e859": {
+   "theorem": "Inclusion in the collection of all sets",
+   "statement": "Every subset of ℝ is a set: the power set lives in the ambient collection."
   }
  },
  "nodes": {
@@ -24,6 +32,10 @@
   "M": {
    "label": "Monotone functions",
    "property": "\\{\\, f : f \\text{ is nondecreasing on } \\mathbb{R} \\text{ or nonincreasing on } \\mathbb{R} \\,\\}"
+  },
+  "PDR": {
+   "label": "Subsets of ℝ",
+   "property": "\\mathcal{P}(\\mathbb{R}) = \\{\\, A \\subseteq \\mathbb{R} \\,\\}"
   }
  }
 }
