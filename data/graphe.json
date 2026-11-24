@@ -1,7 +1,7 @@
 {
   "meta": {
     "name": "Graphe des théorèmes",
-    "version": "0.12.0",
+    "version": "0.13.0",
     "created": "2026-11-23",
     "language": "fr",
     "description": "Chaque nœud est un ensemble (de fonctions, d'entiers, de matrices…), chaque arête est un théorème : inclusion (A ⊆ B) ou non-inclusion avec contre-exemple (A ⊄ B).",
@@ -2429,7 +2429,7 @@
       "property": "\\{\\, x \\mid x \\text{ est un ensemble} \\,\\}",
       "description": "Tous les ensembles : la collection ambiante de la théorie des ensembles, et le cercle-père du graphe.",
       "example": "∅, ℕ, ℝ",
-      "notes": "L'univers de tous les ensembles est une classe propre, pas un ensemble (Russell) : le nœud représente la collection entière, comme les couples d'ensembles voisins. Lot H (v0.12.0) : une arête définitoire part de chacun des 124 ensembles maximaux du graphe (ceux sans inclusion sortante) et du nœud CQG1 (seule composante où chaque cercle a une inclusion sortante : un cycle) ; les autres cercles y montent par transitivité, et le graphe devient connexe."
+      "notes": "L'univers de tous les ensembles est une classe propre, pas un ensemble (Russell) : le nœud représente la collection entière, comme les couples d'ensembles voisins. Lot H (v0.12.0) : une arête définitoire part de chacun des 124 ensembles maximaux du graphe (ceux sans inclusion sortante) et du nœud CQG1 (seule composante où chaque cercle a une inclusion sortante : un cycle) ; les autres cercles y montent par transitivité, et le graphe devient connexe. Lot I (v0.13.0) : une couche de hubs structurels (espaces, structures, nombres, figures, applications, suites, séries, couples, graphes) raccorde les îlots entre eux ; règle 4, les raccords du lot H devenus composés ont été retirés."
     },
     {
       "id": "ZRM2",
@@ -3020,6 +3020,276 @@
       "description": "Les idéaux de K qui deviennent principaux dans l'anneau des entiers du corps de classes de Hilbert H(K), la plus grande extension abélienne non ramifiée de K.",
       "example": "tout idéal entier d'un corps de nombres, après Furtwängler",
       "notes": "La principalisation : le groupe des classes mesure l'obstruction, le corps de classes la dissout."
+    },
+    {
+      "id": "TOPO",
+      "label": "Espaces topologiques",
+      "family": "ensembles",
+      "domain": "topologie",
+      "property": "\\{\\, (X, \\mathcal{T}) \\mid \\mathcal{T} \\subseteq \\mathcal{P}(X) \\text{ contenant } \\varnothing \\text{ et } X \\text{, stable par union et intersection finie} \\,\\}",
+      "description": "Les espaces topologiques : un ensemble muni de ses ouverts.",
+      "example": "ℝ avec ses ouverts ; tout espace métrique.",
+      "notes": "Hub du lot I : la topologie est le langage commun des espaces."
+    },
+    {
+      "id": "METR",
+      "label": "Espaces métriques",
+      "family": "ensembles",
+      "domain": "topologie métrique",
+      "property": "\\{\\, (X, d) \\mid d \\text{ distance sur } X \\,\\}",
+      "description": "Les ensembles munis d'une distance.",
+      "example": "(ℝ, |x − y|).",
+      "notes": "Hub du lot I ; la distance donne la topologie, la complétude vit ici."
+    },
+    {
+      "id": "PROB",
+      "label": "Espaces probabilistes",
+      "family": "ensembles",
+      "domain": "théorie de la mesure",
+      "property": "\\{\\, (\\Omega, \\mathcal{T}, P) \\mid P \\text{ mesure, } P(\\Omega) = 1 \\,\\}",
+      "description": "Les espaces mesurés de masse totale un.",
+      "example": "[0,1] équipé de Lebesgue.",
+      "notes": "Kolmogorov (1933) : la probabilité est une mesure."
+    },
+    {
+      "id": "MESB",
+      "label": "Espaces mesurables",
+      "family": "ensembles",
+      "domain": "théorie de la mesure",
+      "property": "\\{\\, (X, \\Sigma) \\mid \\Sigma \\text{ tribu sur } X \\,\\}",
+      "description": "Les ensembles munis d'une tribu, avant toute mesure.",
+      "example": "ℝ avec sa tribu borélienne.",
+      "notes": ""
+    },
+    {
+      "id": "MESU",
+      "label": "Espaces mesurés",
+      "family": "ensembles",
+      "domain": "théorie de la mesure",
+      "property": "\\{\\, (X, \\Sigma, \\mu) \\,\\}",
+      "description": "Tribu et mesure : le théâtre de l'intégration.",
+      "example": "ℝ et la mesure de Lebesgue.",
+      "notes": ""
+    },
+    {
+      "id": "EV",
+      "label": "Espaces vectoriels",
+      "family": "ensembles",
+      "domain": "algèbre linéaire",
+      "property": "\\{\\, (E, +, \\cdot) \\mid E \\text{ espace vectoriel sur un corps } K \\,\\}",
+      "description": "Les espaces vectoriels, sur un corps quelconque.",
+      "example": "ℝ³ ; les suites réelles.",
+      "notes": ""
+    },
+    {
+      "id": "EVN",
+      "label": "Espaces vectoriels normés",
+      "family": "ensembles",
+      "domain": "topologie vectorielle",
+      "property": "\\{\\, (E, \\|\\cdot\\|) \\,\\}",
+      "description": "Les espaces vectoriels munis d'une norme.",
+      "example": "(C([0,1]), ‖f‖∞).",
+      "notes": ""
+    },
+    {
+      "id": "BAN",
+      "label": "Espaces de Banach",
+      "family": "ensembles",
+      "domain": "topologie vectorielle",
+      "property": "\\{\\, (E, \\|\\cdot\\|) \\mid E \\text{ normé complet} \\,\\}",
+      "description": "Les normés complets : les suites de Cauchy s'y referment.",
+      "example": "ℓ¹, C([0,1]).",
+      "notes": ""
+    },
+    {
+      "id": "ANE",
+      "label": "Anneaux",
+      "family": "ensembles",
+      "domain": "théorie des anneaux",
+      "property": "\\{\\, (A, +, \\times) \\mid \\times \\text{ associatif et distributif} \\,\\}",
+      "description": "Tous les anneaux, commutatifs ou non.",
+      "example": "ℤ ; les matrices carrées.",
+      "notes": "Hub du lot I : la chaîne euclidien → principal → factoriel → intègre → commutatif s'y suspend."
+    },
+    {
+      "id": "ALGE",
+      "label": "Algèbres sur un corps",
+      "family": "ensembles",
+      "domain": "algèbre générale",
+      "property": "\\{\\, \\mathcal{A} \\mid \\mathcal{A} \\text{ espace vectoriel sur } K \\text{ muni d'un produit bilinéaire associatif} \\,\\}",
+      "description": "Les algèbres associatives sur un corps.",
+      "example": "M_n(ℂ) ; K[X].",
+      "notes": "Lot I : au sens associatif ; les algèbres de Lie (non associatives) restent à part."
+    },
+    {
+      "id": "NATL",
+      "label": "Entiers naturels ℕ",
+      "family": "ensembles",
+      "domain": "arithmétique",
+      "property": "\\mathbb{N} = \\{\\, 0, 1, 2, \\dots \\,\\}",
+      "description": "Le comptage : le plus ancien des ensembles de nombres.",
+      "example": "7.",
+      "notes": "Hub du lot I, maillon bas de la chaîne des nombres ; ℕ* en est le privé de zéro."
+    },
+    {
+      "id": "ZENT",
+      "label": "Entiers relatifs ℤ",
+      "family": "ensembles",
+      "domain": "arithmétique",
+      "property": "\\mathbb{Z}",
+      "description": "ℕ complété par les négatifs : le premier anneau.",
+      "example": "−3.",
+      "notes": ""
+    },
+    {
+      "id": "QRAT",
+      "label": "Nombres rationnels ℚ",
+      "family": "ensembles",
+      "domain": "arithmétique",
+      "property": "\\mathbb{Q} = \\{\\, p/q \\mid p \\in \\mathbb{Z}, q \\in \\mathbb{N}^* \\,\\}",
+      "description": "Les fractions : le corps des fractions de ℤ.",
+      "example": "22/7.",
+      "notes": ""
+    },
+    {
+      "id": "REEL",
+      "label": "Nombres réels ℝ",
+      "family": "ensembles",
+      "domain": "analyse réelle",
+      "property": "\\mathbb{R} \\text{ : complété de } \\mathbb{Q} \\text{ (bornes supérieures)}",
+      "description": "La droite numérique, complétude et continuité.",
+      "example": "√2, π.",
+      "notes": "Hub du lot I : sommet de la chaîne des nombres."
+    },
+    {
+      "id": "RN",
+      "label": "N-uplets de réels ℝⁿ",
+      "family": "ensembles",
+      "domain": "analyse réelle",
+      "property": "\\{\\, (x_1, \\dots, x_n) \\mid x_i \\in \\mathbb{R}, n \\in \\mathbb{N}^* \\,\\}",
+      "description": "Les ℝⁿ, toutes dimensions.",
+      "example": "(1, 2, 3).",
+      "notes": "ℝ² donne les couples de réels."
+    },
+    {
+      "id": "SEG",
+      "label": "Segments de ℝ",
+      "family": "ensembles",
+      "domain": "analyse réelle",
+      "property": "\\{\\, [a, b] \\mid a, b \\in \\mathbb{R}, a \\le b \\,\\}",
+      "description": "Les intervalles fermés bornés de la droite réelle.",
+      "example": "[0, 1].",
+      "notes": "Le théorème des bornes atteintes y vit."
+    },
+    {
+      "id": "INTR",
+      "label": "Intervalles de ℝ",
+      "family": "ensembles",
+      "domain": "analyse réelle",
+      "property": "\\{\\, I \\subseteq \\mathbb{R} \\mid I \\text{ partie convexe de } (\\mathbb{R}, \\le) \\,\\}",
+      "description": "Les parties connexes de la droite réelle.",
+      "example": "]0, 1[.",
+      "notes": ""
+    },
+    {
+      "id": "OUVR",
+      "label": "Parties ouvertes",
+      "family": "ensembles",
+      "domain": "topologie",
+      "property": "\\{\\, U \\mid U \\text{ ouvert d'un espace topologique} \\,\\}",
+      "description": "Les briques de toute topologie : réunions de boules.",
+      "example": "]0,1[ dans ℝ.",
+      "notes": "Lot I : demandées comme « espaces topologiques ouverts »."
+    },
+    {
+      "id": "FERM",
+      "label": "Parties fermées",
+      "family": "ensembles",
+      "domain": "topologie",
+      "property": "\\{\\, F \\mid X \\setminus F \\text{ ouvert} \\,\\}",
+      "description": "Les complémentaires d'ouverts.",
+      "example": "[0,1] dans ℝ.",
+      "notes": "Lot I : demandées comme « espaces topologiques fermés »."
+    },
+    {
+      "id": "APP",
+      "label": "Applications",
+      "family": "ensembles",
+      "domain": "algèbre générale",
+      "property": "\\{\\, f : X \\to Y \\mid X, Y \\text{ ensembles} \\,\\}",
+      "description": "Toutes les applications, entre tous les ensembles.",
+      "example": "x ↦ x².",
+      "notes": ""
+    },
+    {
+      "id": "SERI",
+      "label": "Séries",
+      "family": "ensembles",
+      "domain": "analyse de séries",
+      "property": "\\{\\, \\sum_{n} a_n \\mid (a_n) \\text{ à termes réels ou complexes} \\,\\}",
+      "description": "Toutes les séries, convergentes ou divergentes.",
+      "example": "1 + 1/2 + 1/4 + …",
+      "notes": ""
+    },
+    {
+      "id": "SUIT",
+      "label": "Suites",
+      "family": "ensembles",
+      "domain": "analyse des suites réelles",
+      "property": "\\{\\, (u_n)_{n \\in \\mathbb{N}} \\,\\}",
+      "description": "Toutes les suites : la variable discrète de l'analyse.",
+      "example": "1, −1, 1, −1, …",
+      "notes": ""
+    },
+    {
+      "id": "PAIR",
+      "label": "Paires",
+      "family": "ensembles",
+      "domain": "algèbre générale",
+      "property": "\\{\\, \\{a, b\\} \\mid a \\ne b \\,\\}",
+      "description": "Les ensembles à deux éléments : non ordonnés.",
+      "example": "{0, 1}.",
+      "notes": "Lot I : une paire est un ensemble ; le couple ordonné (x, y) vit dans le nœud voisin."
+    },
+    {
+      "id": "COUP",
+      "label": "Couples",
+      "family": "ensembles",
+      "domain": "algèbre générale",
+      "property": "\\{\\, (x, y) \\,\\}",
+      "description": "Les couples ordonnés : l'élément de base des produits cartésiens.",
+      "example": "(1, 2).",
+      "notes": ""
+    },
+    {
+      "id": "FIGU",
+      "label": "Figures géométriques",
+      "family": "ensembles",
+      "domain": "géométrie euclidienne",
+      "property": "\\{\\, \\text{parties du plan ou de l'espace, objets de la géométrie} \\,\\}",
+      "description": "Les figures : points, lignes, polygones, cercles, coniques.",
+      "example": "un triangle, un cercle.",
+      "notes": ""
+    },
+    {
+      "id": "POLY",
+      "label": "Polygones",
+      "family": "ensembles",
+      "domain": "géométrie euclidienne",
+      "property": "\\{\\, \\text{lacets fermés à nombre fini de côtés droits} \\,\\}",
+      "description": "Les figures bornées par des segments : triangles, quadrilatères, hexagones…",
+      "example": "un hexagone régulier.",
+      "notes": ""
+    },
+    {
+      "id": "GRAP",
+      "label": "Graphes",
+      "family": "ensembles",
+      "domain": "théorie des graphes",
+      "property": "\\{\\, (S, A) \\mid A \\subseteq \\{\\, \\{s, t\\} \\mid s, t \\in S \\,\\} \\,\\}",
+      "description": "Les graphes : des sommets et des arêtes, finis ou non.",
+      "example": "un cycle impair.",
+      "notes": ""
     }
   ],
   "edges": [
@@ -6097,16 +6367,6 @@
       "id": "e298"
     },
     {
-      "from": "KF4",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Corps ordonnables » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Corps ordonnables » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e299"
-    },
-    {
       "from": "MT2",
       "to": "ZRM1",
       "kind": "inclusion",
@@ -6177,16 +6437,6 @@
       "id": "e306"
     },
     {
-      "from": "BTY2",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Suites de Beatty partitionnant ℕ* » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Suites de Beatty partitionnant ℕ* » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e307"
-    },
-    {
       "from": "XZR",
       "to": "ZRM1",
       "kind": "inclusion",
@@ -6215,16 +6465,6 @@
       "depth": "définitoire",
       "domain": "théorie des ensembles",
       "id": "e310"
-    },
-    {
-      "from": "SU5",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Suites à ratio limite 1 » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Suites à ratio limite 1 » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e311"
     },
     {
       "from": "BZ2",
@@ -6285,16 +6525,6 @@
       "depth": "définitoire",
       "domain": "théorie des ensembles",
       "id": "e317"
-    },
-    {
-      "from": "BW2",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Suites admettant une sous-suite convergente » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Suites admettant une sous-suite convergente » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e318"
     },
     {
       "from": "BF2",
@@ -6587,16 +6817,6 @@
       "id": "e347"
     },
     {
-      "from": "CSO2",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Suites à moyennes de Cesàro convergentes » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Suites à moyennes de Cesàro convergentes » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e348"
-    },
-    {
       "from": "CVA2",
       "to": "ZRM1",
       "kind": "inclusion",
@@ -6615,16 +6835,6 @@
       "depth": "définitoire",
       "domain": "théorie des ensembles",
       "id": "e350"
-    },
-    {
-      "from": "SFG1",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Groupes réalisables comme groupes de Galois sur ℚ » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Groupes réalisables comme groupes de Galois sur ℚ » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e351"
     },
     {
       "from": "AXC2",
@@ -6755,16 +6965,6 @@
       "depth": "définitoire",
       "domain": "théorie des ensembles",
       "id": "e364"
-    },
-    {
-      "from": "WDT2",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Groupes finis nilpotents » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Groupes finis nilpotents » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e365"
     },
     {
       "from": "WIS2",
@@ -6957,16 +7157,6 @@
       "id": "e384"
     },
     {
-      "from": "TRF2",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Groupes à p-complément normal » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Groupes à p-complément normal » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e385"
-    },
-    {
       "from": "HCI2",
       "to": "ZRM1",
       "kind": "inclusion",
@@ -6985,6 +7175,1126 @@
       "depth": "définitoire",
       "domain": "théorie des ensembles",
       "id": "e387"
+    },
+    {
+      "from": "A1",
+      "to": "NATL",
+      "kind": "inclusion",
+      "theorem": "Les naturels non nuls forment ℕ*",
+      "statement": "\\( \\mathbb{N}^* = \\mathbb{N} \\setminus \\{0\\} \\) : les entiers naturels non nuls sont exactement les naturels privés de zéro. Première marche de la chaîne des nombres (lot I).",
+      "depth": "définitoire",
+      "domain": "arithmétique",
+      "id": "e388"
+    },
+    {
+      "from": "NATL",
+      "to": "ZENT",
+      "kind": "inclusion",
+      "theorem": "Plongement des naturels dans les relatifs",
+      "statement": "ℤ se construit par paires de naturels : \\( n \\mapsto (n, 0) \\). Zéro gagne son signe, l'anneau naît.",
+      "depth": "définitoire",
+      "domain": "arithmétique",
+      "id": "e389"
+    },
+    {
+      "from": "ZENT",
+      "to": "QRAT",
+      "kind": "inclusion",
+      "theorem": "Les relatifs sont des rationnels",
+      "statement": "ℚ est le corps des fractions de ℤ : tout entier \\( z \\) est la fraction \\( z/1 \\). La division devient possible.",
+      "depth": "définitoire",
+      "domain": "arithmétique",
+      "id": "e390"
+    },
+    {
+      "from": "QRAT",
+      "to": "REEL",
+      "kind": "inclusion",
+      "theorem": "Les rationnels sont des réels",
+      "statement": "ℝ, bornes supérieures de Dedekind ou suites de Cauchy de Méray et Cantor, prolonge ℚ sans trou : tout rationnel est réel, mais \\( \\sqrt{2} \\) n'est pas rationnel.",
+      "depth": "définitoire",
+      "domain": "analyse réelle",
+      "id": "e391"
+    },
+    {
+      "from": "IQ",
+      "to": "REEL",
+      "kind": "inclusion",
+      "theorem": "Les irrationnels sont réels",
+      "statement": "Les irrationnels quadratiques \\( \\sqrt{d} \\) vivent sur la droite réelle, hors du corps des rationnels.",
+      "depth": "définitoire",
+      "domain": "analyse réelle",
+      "id": "e392"
+    },
+    {
+      "from": "TRS",
+      "to": "REEL",
+      "kind": "inclusion",
+      "theorem": "Les transcendants sont réels",
+      "statement": "π, e et tous les transcendants sont d'abord des réels : la transcendance est une question d'équations, pas de nature d'ensemble.",
+      "depth": "définitoire",
+      "domain": "analyse réelle",
+      "id": "e393"
+    },
+    {
+      "from": "NZL1",
+      "to": "REEL",
+      "kind": "inclusion",
+      "theorem": "Les constructibles sont réels",
+      "statement": "La règle et le compas opèrent sur la droite réelle : tout nombre constructible est un nombre réel, Wantzel y trouve les degrés en puissance de 2.",
+      "depth": "définitoire",
+      "domain": "théorie algébrique des nombres",
+      "id": "e394"
+    },
+    {
+      "from": "VSC1",
+      "to": "QRAT",
+      "kind": "inclusion",
+      "theorem": "Les nombres de Bernoulli sont rationnels",
+      "statement": "De la série génératrice \\( x/(e^x - 1) \\) à von Staudt–Clausen : chaque nombre de Bernoulli est une fraction rationnelle, de dénominateur produit de premiers consécutifs.",
+      "depth": "facile",
+      "domain": "arithmétique",
+      "id": "e395"
+    },
+    {
+      "from": "CSO1",
+      "to": "BR1",
+      "kind": "inclusion",
+      "theorem": "Les suites convergentes sont réelles",
+      "statement": "Converger est une affaire de réels : une suite réelle convergente est en particulier une suite réelle.",
+      "depth": "définitoire",
+      "domain": "analyse des suites réelles",
+      "id": "e396"
+    },
+    {
+      "from": "BW1",
+      "to": "BR1",
+      "kind": "inclusion",
+      "theorem": "Les suites bornées de réels sont réelles",
+      "statement": "Bornées, réelles : l'inclusion la plus plate du lot, mais elle anime Bolzano–Weierstrass.",
+      "depth": "définitoire",
+      "domain": "analyse des suites réelles",
+      "id": "e397"
+    },
+    {
+      "from": "BR1",
+      "to": "SUIT",
+      "kind": "inclusion",
+      "theorem": "Les suites réelles sont des suites",
+      "statement": "ℝ^ℕ ⊆ toutes les suites : l'ambiant discret du côté analyse rejoint le concept général.",
+      "depth": "définitoire",
+      "domain": "analyse des suites réelles",
+      "id": "e398"
+    },
+    {
+      "from": "SU2",
+      "to": "SERI",
+      "kind": "inclusion",
+      "theorem": "Les séries convergentes sont des séries",
+      "statement": "Converger est un sort, pas une nature : l'objet reste une série.",
+      "depth": "définitoire",
+      "domain": "analyse de séries",
+      "id": "e399"
+    },
+    {
+      "from": "SU4",
+      "to": "SERI",
+      "kind": "inclusion",
+      "theorem": "Les séries divergentes sont des séries",
+      "statement": "Diverger n'exclut pas d'être une série : la famille divergente vit à côté de la convergente, même nature d'objet.",
+      "depth": "définitoire",
+      "domain": "analyse de séries",
+      "id": "e400"
+    },
+    {
+      "from": "CNU2",
+      "to": "SERI",
+      "kind": "inclusion",
+      "theorem": "Les séries à coefficients tous nuls sont des séries",
+      "statement": "La symphonie silencieuse de Cantor : tous les coefficients nuls, toujours une série, de la plus simple qui soit.",
+      "depth": "définitoire",
+      "domain": "analyse de séries",
+      "id": "e401"
+    },
+    {
+      "from": "F",
+      "to": "APP",
+      "kind": "inclusion",
+      "theorem": "Les fonctions réelles sont des applications",
+      "statement": "\\( \\mathbb{R}^{\\mathbb{R}} \\) est un morceau du concept général d'application : l'ensemble ambiant des fonctions réelles rejoint le hub.",
+      "depth": "définitoire",
+      "domain": "algèbre générale",
+      "id": "e402"
+    },
+    {
+      "from": "FC",
+      "to": "APP",
+      "kind": "inclusion",
+      "theorem": "Les fonctions vectorielles continues sont des applications",
+      "statement": "Continues entre espaces vectoriels normés, mais d'abord des applications.",
+      "depth": "définitoire",
+      "domain": "algèbre générale",
+      "id": "e403"
+    },
+    {
+      "from": "X2",
+      "to": "APP",
+      "kind": "inclusion",
+      "theorem": "Les fonctions entières sont des applications",
+      "statement": "Entières sur ℂ, mais d'abord des applications de ℂ dans ℂ.",
+      "depth": "définitoire",
+      "domain": "analyse complexe",
+      "id": "e404"
+    },
+    {
+      "from": "X6",
+      "to": "APP",
+      "kind": "inclusion",
+      "theorem": "Les fonctions continues ℂ → ℂ sont des applications",
+      "statement": "Continues de ℂ vers ℂ, mais d'abord des applications.",
+      "depth": "définitoire",
+      "domain": "analyse complexe",
+      "id": "e405"
+    },
+    {
+      "from": "X8",
+      "to": "APP",
+      "kind": "inclusion",
+      "theorem": "Les fonctions bornées ℂ → ℂ sont des applications",
+      "statement": "Bornées de ℂ vers ℂ, mais d'abord des applications.",
+      "depth": "définitoire",
+      "domain": "analyse complexe",
+      "id": "e406"
+    },
+    {
+      "from": "CNT1",
+      "to": "APP",
+      "kind": "inclusion",
+      "theorem": "Les applications dans l'ensemble des parties sont des applications",
+      "statement": "Viser l'ensemble des parties reste appliquer : Cantor en a fait sa diagonale.",
+      "depth": "définitoire",
+      "domain": "théorie des ensembles",
+      "id": "e407"
+    },
+    {
+      "from": "LN1",
+      "to": "APP",
+      "kind": "inclusion",
+      "theorem": "Les applications linéaires continues sont des applications",
+      "statement": "Linéaires et continues, mais d'abord des applications.",
+      "depth": "définitoire",
+      "domain": "topologie vectorielle",
+      "id": "e408"
+    },
+    {
+      "from": "L1",
+      "to": "APP",
+      "kind": "inclusion",
+      "theorem": "Les matrices sont des applications",
+      "statement": "Une matrice est une application linéaire donnée par ses colonnes : la reine, lue en coordonnées.",
+      "depth": "définitoire",
+      "domain": "algèbre linéaire",
+      "id": "e409"
+    },
+    {
+      "from": "GCA",
+      "to": "COUP",
+      "kind": "inclusion",
+      "theorem": "Les couples d'angles sont des couples",
+      "statement": "Un couple d'angles est un couple : \\( (\\alpha, \\beta) \\) avant d'intercepter le même arc.",
+      "depth": "définitoire",
+      "domain": "géométrie euclidienne",
+      "id": "e410"
+    },
+    {
+      "from": "BRI1",
+      "to": "COUP",
+      "kind": "inclusion",
+      "theorem": "Les couples représentables sont des couples",
+      "statement": "Représentables par \\( x^2 + ny^2 \\) ou non, les couples d'entiers restent des couples.",
+      "depth": "définitoire",
+      "domain": "arithmétique",
+      "id": "e411"
+    },
+    {
+      "from": "BTY1",
+      "to": "COUP",
+      "kind": "inclusion",
+      "theorem": "Les couples complémentaires sont des couples",
+      "statement": "Les couples irrationnels complémentaires de Beatty restent des couples, avant de partitionner ℕ*.",
+      "depth": "définitoire",
+      "domain": "théorie algébrique des nombres",
+      "id": "e412"
+    },
+    {
+      "from": "LU1",
+      "to": "COUP",
+      "kind": "inclusion",
+      "theorem": "Les couples d'entiers sont des couples",
+      "statement": "Les couples dominés chiffre à chiffre, ceux de Kummer : des couples d'entiers avant d'être divisibles.",
+      "depth": "définitoire",
+      "domain": "arithmétique",
+      "id": "e413"
+    },
+    {
+      "from": "GTR",
+      "to": "POLY",
+      "kind": "inclusion",
+      "theorem": "Les triangles sont des polygones",
+      "statement": "Trois côtés : le premier des polygones.",
+      "depth": "définitoire",
+      "domain": "géométrie euclidienne",
+      "id": "e414"
+    },
+    {
+      "from": "BRG1",
+      "to": "POLY",
+      "kind": "inclusion",
+      "theorem": "Les quadrilatères cycliques sont des polygones",
+      "statement": "Quatre sommets sur un cercle : un quadrilatère est un polygone, et Brahmagupta en donne l'aire.",
+      "depth": "définitoire",
+      "domain": "géométrie euclidienne",
+      "id": "e415"
+    },
+    {
+      "from": "BRH1",
+      "to": "POLY",
+      "kind": "inclusion",
+      "theorem": "Les hexagones sont des polygones",
+      "statement": "Six sommets, six côtés, circonscrits ou non : Brianchon veille dessus.",
+      "depth": "définitoire",
+      "domain": "géométrie euclidienne",
+      "id": "e416"
+    },
+    {
+      "from": "ZGL1",
+      "to": "POLY",
+      "kind": "inclusion",
+      "theorem": "Les polygones simples sont des polygones",
+      "statement": "Simples ou non, ceux de Zalgaller restent des polygones du plan.",
+      "depth": "définitoire",
+      "domain": "géométrie euclidienne",
+      "id": "e417"
+    },
+    {
+      "from": "WBG1",
+      "to": "POLY",
+      "kind": "inclusion",
+      "theorem": "Les polygones de même aire sont des polygones",
+      "statement": "Même aire ou non : un polygone est un polygone, Wallace–Bolyai–Gerwien y découpe.",
+      "depth": "définitoire",
+      "domain": "géométrie euclidienne",
+      "id": "e418"
+    },
+    {
+      "from": "WBG2",
+      "to": "POLY",
+      "kind": "inclusion",
+      "theorem": "Les polygones équidécomposables sont des polygones",
+      "statement": "Équidécomposables en rectangles ou triangles : des polygones avant d'être des aires.",
+      "depth": "définitoire",
+      "domain": "géométrie euclidienne",
+      "id": "e419"
+    },
+    {
+      "from": "POLY",
+      "to": "FIGU",
+      "kind": "inclusion",
+      "theorem": "Les polygones sont des figures",
+      "statement": "Droites ou courbes, bornées ou non : un polygone est une figure du plan.",
+      "depth": "définitoire",
+      "domain": "géométrie euclidienne",
+      "id": "e420"
+    },
+    {
+      "from": "CER",
+      "to": "FIGU",
+      "kind": "inclusion",
+      "theorem": "Les cercles sont des figures",
+      "statement": "Le cercle est la figure la plus ronde, limite des polygones réguliers d'Archimède.",
+      "depth": "définitoire",
+      "domain": "géométrie euclidienne",
+      "id": "e421"
+    },
+    {
+      "from": "GAA",
+      "to": "FIGU",
+      "kind": "inclusion",
+      "theorem": "Les arcs capables sont des figures",
+      "statement": "Deux arcs de cercles passant par A et B : une figure du plan, dessinée à la règle et au compas.",
+      "depth": "définitoire",
+      "domain": "géométrie euclidienne",
+      "id": "e422"
+    },
+    {
+      "from": "GAK",
+      "to": "RN",
+      "kind": "inclusion",
+      "theorem": "Les quadruplets d'Al-Kashi sont des n-uplets de réels",
+      "statement": "Un quadruplet vérifiant la loi d'Al-Kashi est un quadruplet de réels : côtés et angles vivent dans ℝ⁴.",
+      "depth": "définitoire",
+      "domain": "géométrie euclidienne",
+      "id": "e423"
+    },
+    {
+      "from": "BRK1",
+      "to": "GRAP",
+      "kind": "inclusion",
+      "theorem": "Les graphes de Brooks sont des graphes",
+      "statement": "Connexes, ni complets ni cycles impairs : la condition de Brooks précise une famille de graphes.",
+      "depth": "définitoire",
+      "domain": "théorie des graphes",
+      "id": "e424"
+    },
+    {
+      "from": "BRK3",
+      "to": "GRAP",
+      "kind": "inclusion",
+      "theorem": "Les cycles sont des graphes",
+      "statement": "Un cycle, impair ou non, est un graphe où chaque sommet est de degré deux.",
+      "depth": "définitoire",
+      "domain": "théorie des graphes",
+      "id": "e425"
+    },
+    {
+      "from": "BRK4",
+      "to": "GRAP",
+      "kind": "inclusion",
+      "theorem": "Les cliques sont des graphes",
+      "statement": "Une clique est un graphe complet : le cas extrême du théorème de Brooks.",
+      "depth": "définitoire",
+      "domain": "théorie des graphes",
+      "id": "e426"
+    },
+    {
+      "from": "METR",
+      "to": "TOPO",
+      "kind": "inclusion",
+      "theorem": "Topologie induite par une distance",
+      "statement": "Une distance \\( d \\) définit une topologie : les ouverts sont les réunions de boules \\( B(x, r) \\). Tout espace métrique est un espace topologique ; la réciproque est fausse (espaces non métrisables).",
+      "depth": "facile",
+      "domain": "topologie",
+      "id": "e427"
+    },
+    {
+      "from": "MT1",
+      "to": "METR",
+      "kind": "inclusion",
+      "theorem": "La complétude présuppose une distance",
+      "statement": "Être complet parle de suites de Cauchy : c'est le fait d'un espace métrique.",
+      "depth": "définitoire",
+      "domain": "topologie métrique",
+      "id": "e428"
+    },
+    {
+      "from": "KP1",
+      "to": "TOPO",
+      "kind": "inclusion",
+      "theorem": "La compacité présuppose une topologie",
+      "statement": "Recouvrements finis d'ouverts : être compact est le fait d'un espace topologique.",
+      "depth": "définitoire",
+      "domain": "topologie",
+      "id": "e429"
+    },
+    {
+      "from": "MT2",
+      "to": "TOPO",
+      "kind": "inclusion",
+      "theorem": "Être de Baire est topologique",
+      "statement": "Maigre, non maigre : la définition ne parle que d'ouverts et de dénombrables, c'est une propriété topologique.",
+      "depth": "définitoire",
+      "domain": "topologie",
+      "id": "e430"
+    },
+    {
+      "from": "KP2",
+      "to": "TOPO",
+      "kind": "inclusion",
+      "theorem": "La projection fermée est topologique",
+      "statement": "Que la projection \\( \\pi \\) envoie les fermés sur des fermés : une définition qui ne parle que de topologie.",
+      "depth": "définitoire",
+      "domain": "topologie",
+      "id": "e431"
+    },
+    {
+      "from": "VKP1",
+      "to": "TOPO",
+      "kind": "inclusion",
+      "theorem": "Le recollement présuppose une topologie",
+      "statement": "Connexité par arcs, ouverts : van Kampen s'adresse à des espaces topologiques.",
+      "depth": "définitoire",
+      "domain": "topologie algébrique",
+      "id": "e432"
+    },
+    {
+      "from": "EVN",
+      "to": "EV",
+      "kind": "inclusion",
+      "theorem": "Un normé est un espace vectoriel",
+      "statement": "La norme enrichit : sous elle vit la structure linéaire.",
+      "depth": "définitoire",
+      "domain": "algèbre linéaire",
+      "id": "e433"
+    },
+    {
+      "from": "EVN",
+      "to": "METR",
+      "kind": "inclusion",
+      "theorem": "Distance induite par une norme",
+      "statement": "\\( d(x, y) = \\|x - y\\| \\) : toute norme définit une distance. Réciproque fausse sans structure linéaire.",
+      "depth": "immédiat",
+      "domain": "topologie vectorielle",
+      "id": "e434"
+    },
+    {
+      "from": "BAN",
+      "to": "EVN",
+      "kind": "inclusion",
+      "theorem": "Un espace de Banach est un normé",
+      "statement": "Complet ou non, la structure d'abord : un Banach est un espace vectoriel normé.",
+      "depth": "définitoire",
+      "domain": "topologie vectorielle",
+      "id": "e435"
+    },
+    {
+      "from": "BAN",
+      "to": "MT1",
+      "kind": "inclusion",
+      "theorem": "Un Banach est un espace métrique complet",
+      "statement": "Complet pour la distance de sa norme, c'est la définition même : le pont entre topologie vectorielle et complétude métrique.",
+      "depth": "définitoire",
+      "domain": "topologie vectorielle",
+      "id": "e436"
+    },
+    {
+      "from": "MV1",
+      "to": "BAN",
+      "kind": "inclusion",
+      "theorem": "Un Banach séparable est un Banach",
+      "statement": "Séparable, mais toujours complet et normé : le côté Banach de Banach–Mazur.",
+      "depth": "définitoire",
+      "domain": "topologie vectorielle",
+      "id": "e437"
+    },
+    {
+      "from": "MESU",
+      "to": "MESB",
+      "kind": "inclusion",
+      "theorem": "La mesure présuppose une tribu",
+      "statement": "La tribu dit ce qui est mesurable, la mesure dit combien : pas de \\( \\mu \\) sans \\( \\Sigma \\).",
+      "depth": "définitoire",
+      "domain": "théorie de la mesure",
+      "id": "e438"
+    },
+    {
+      "from": "PROB",
+      "to": "MESU",
+      "kind": "inclusion",
+      "theorem": "Une probabilité est une mesure normalisée",
+      "statement": "Kolmogorov (1933) : \\( P \\) est une mesure de masse totale un, l'espace probabiliste est un espace mesuré normalisé, et les variables aléatoires deviennent des fonctions mesurables.",
+      "depth": "immédiat",
+      "domain": "théorie de la mesure",
+      "id": "e439"
+    },
+    {
+      "from": "CBD1",
+      "to": "FERM",
+      "kind": "inclusion",
+      "theorem": "Les fermés de ℝ sont des parties fermées",
+      "statement": "Fermé dans ℝ : la définition ne dépend pas de l'espace ambiant.",
+      "depth": "définitoire",
+      "domain": "topologie",
+      "id": "e440"
+    },
+    {
+      "from": "FQ1",
+      "to": "FERM",
+      "kind": "inclusion",
+      "theorem": "Les parties fermées d'un normé sont des fermées",
+      "statement": "L'espace ambiant change, la nature reste : fermé dans un espace vectoriel normé, fermé au sens général.",
+      "depth": "définitoire",
+      "domain": "topologie vectorielle",
+      "id": "e441"
+    },
+    {
+      "from": "URY1",
+      "to": "FERM",
+      "kind": "inclusion",
+      "theorem": "Les fermés disjoints sont des fermés",
+      "statement": "Deux fermés disjoints d'un espace normal sont chacun des parties fermées : la nature précède la séparation.",
+      "depth": "définitoire",
+      "domain": "topologie",
+      "id": "e442"
+    },
+    {
+      "from": "SEG",
+      "to": "INTR",
+      "kind": "inclusion",
+      "theorem": "Un segment est un intervalle",
+      "statement": "Fermé borné de la droite : le segment est l'intervalle le plus rigide, celui des bornes atteintes.",
+      "depth": "définitoire",
+      "domain": "analyse réelle",
+      "id": "e443"
+    },
+    {
+      "from": "SEG",
+      "to": "CBD1",
+      "kind": "inclusion",
+      "theorem": "Tout segment est un fermé de ℝ",
+      "statement": "\\( [a, b] \\) est le complémentaire de \\( ]-\\infty, a[ \\cup ]b, +\\infty[ \\) : un fermé de ℝ, où les bornes sont atteintes.",
+      "depth": "immédiat",
+      "domain": "analyse réelle",
+      "id": "e444"
+    },
+    {
+      "from": "RN",
+      "to": "EV",
+      "kind": "inclusion",
+      "theorem": "ℝⁿ est un espace vectoriel",
+      "statement": "\\( (\\mathbb{R}^n, +, \\cdot) \\), toutes dimensions : l'espace-nombre de l'analyse.",
+      "depth": "immédiat",
+      "domain": "algèbre linéaire",
+      "id": "e445"
+    },
+    {
+      "from": "ANR1",
+      "to": "ANE",
+      "kind": "inclusion",
+      "theorem": "Tout anneau commutatif est un anneau",
+      "statement": "La commutativité est un cas particulier : la chaîne euclidien, puis principal, factoriel, intègre et commutatif s'arrête aux anneaux.",
+      "depth": "définitoire",
+      "domain": "théorie des anneaux",
+      "id": "e446"
+    },
+    {
+      "from": "L1",
+      "to": "ALGE",
+      "kind": "inclusion",
+      "theorem": "Les matrices carrées forment une algèbre",
+      "statement": "\\( M_n(\\mathbb{C}) \\), toutes tailles : produit matriciel bilinéaire, associatif, distributif, l'algèbre reine.",
+      "depth": "immédiat",
+      "domain": "algèbre linéaire",
+      "id": "e447"
+    },
+    {
+      "from": "CAR1",
+      "to": "ANE",
+      "kind": "inclusion",
+      "theorem": "Toute algèbre d'ensembles est un anneau",
+      "statement": "Pour la différence symétrique et l'intersection, toute algèbre d'ensembles est un anneau de Boole, commutatif et unitaire : Stone en a fait la mesure des logiques.",
+      "depth": "facile",
+      "domain": "théorie de la mesure",
+      "id": "e448"
+    },
+    {
+      "from": "HLB1",
+      "to": "ANE",
+      "kind": "inclusion",
+      "theorem": "Tout anneau noethérien est un anneau",
+      "statement": "La noethérianité enrichit : sous elle vit la structure d'anneau, du côté de la base d'Hilbert.",
+      "depth": "définitoire",
+      "domain": "algèbre générale",
+      "id": "e449"
+    },
+    {
+      "from": "BL1",
+      "to": "FQ1",
+      "kind": "inclusion",
+      "theorem": "Les fermés bornés de ℝⁿ sont des fermés",
+      "statement": "ℝⁿ est un espace vectoriel normé : être fermé borné dans ℝⁿ est être fermé dans un normé.",
+      "depth": "définitoire",
+      "domain": "topologie vectorielle",
+      "id": "e450"
+    },
+    {
+      "from": "SU1",
+      "to": "BR1",
+      "kind": "inclusion",
+      "theorem": "« Suites à ratio limite < 1 » : toujours une suite réelle",
+      "statement": "« Suites à ratio limite < 1 » est habité par des objets qui sont une suite réelle : inclusion définitoire du lot I, qui donne au graphe sa charpente.",
+      "depth": "définitoire",
+      "domain": "analyse des suites réelles",
+      "id": "e451"
+    },
+    {
+      "from": "SU3",
+      "to": "BR1",
+      "kind": "inclusion",
+      "theorem": "« Suites à ratio limite > 1 » : toujours une suite réelle",
+      "statement": "« Suites à ratio limite > 1 » est habité par des objets qui sont une suite réelle : inclusion définitoire du lot I, qui donne au graphe sa charpente.",
+      "depth": "définitoire",
+      "domain": "analyse des suites réelles",
+      "id": "e452"
+    },
+    {
+      "from": "SU5",
+      "to": "BR1",
+      "kind": "inclusion",
+      "theorem": "« Suites à ratio limite 1 » : toujours une suite réelle",
+      "statement": "« Suites à ratio limite 1 » est habité par des objets qui sont une suite réelle : inclusion définitoire du lot I, qui donne au graphe sa charpente.",
+      "depth": "définitoire",
+      "domain": "analyse des suites réelles",
+      "id": "e453"
+    },
+    {
+      "from": "BW2",
+      "to": "BR1",
+      "kind": "inclusion",
+      "theorem": "« Suites admettant une sous-suite convergente » : toujours une suite réelle",
+      "statement": "« Suites admettant une sous-suite convergente » est habité par des objets qui sont une suite réelle : inclusion définitoire du lot I, qui donne au graphe sa charpente.",
+      "depth": "définitoire",
+      "domain": "analyse des suites réelles",
+      "id": "e454"
+    },
+    {
+      "from": "BTY2",
+      "to": "BR1",
+      "kind": "inclusion",
+      "theorem": "« Suites de Beatty partitionnant ℕ* » : toujours une suite réelle",
+      "statement": "« Suites de Beatty partitionnant ℕ* » est habité par des objets qui sont une suite réelle : inclusion définitoire du lot I, qui donne au graphe sa charpente.",
+      "depth": "définitoire",
+      "domain": "analyse des suites réelles",
+      "id": "e455"
+    },
+    {
+      "from": "CSO2",
+      "to": "BR1",
+      "kind": "inclusion",
+      "theorem": "« Suites à moyennes de Cesàro convergentes » : toujours une suite réelle",
+      "statement": "« Suites à moyennes de Cesàro convergentes » est habité par des objets qui sont une suite réelle : inclusion définitoire du lot I, qui donne au graphe sa charpente.",
+      "depth": "définitoire",
+      "domain": "analyse des suites réelles",
+      "id": "e456"
+    },
+    {
+      "from": "CAU1",
+      "to": "SUIT",
+      "kind": "inclusion",
+      "theorem": "« Suites de Cauchy d'un espace complet » : toujours une suite",
+      "statement": "« Suites de Cauchy d'un espace complet » est habité par des objets qui sont une suite : inclusion définitoire du lot I, qui donne au graphe sa charpente.",
+      "depth": "définitoire",
+      "domain": "analyse des suites réelles",
+      "id": "e457"
+    },
+    {
+      "from": "CAU2",
+      "to": "SUIT",
+      "kind": "inclusion",
+      "theorem": "« Suites convergentes de l'espace » : toujours une suite",
+      "statement": "« Suites convergentes de l'espace » est habité par des objets qui sont une suite : inclusion définitoire du lot I, qui donne au graphe sa charpente.",
+      "depth": "définitoire",
+      "domain": "analyse des suites réelles",
+      "id": "e458"
+    },
+    {
+      "from": "EMB1",
+      "to": "SUIT",
+      "kind": "inclusion",
+      "theorem": "« Suites décroissantes de compacts non vides » : toujours une suite",
+      "statement": "« Suites décroissantes de compacts non vides » est habité par des objets qui sont une suite : inclusion définitoire du lot I, qui donne au graphe sa charpente.",
+      "depth": "définitoire",
+      "domain": "analyse des suites réelles",
+      "id": "e459"
+    },
+    {
+      "from": "WRC1",
+      "to": "SERI",
+      "kind": "inclusion",
+      "theorem": "« Séries de fonctions normalement convergentes » : toujours une série",
+      "statement": "« Séries de fonctions normalement convergentes » est habité par des objets qui sont une série : inclusion définitoire du lot I, qui donne au graphe sa charpente.",
+      "depth": "définitoire",
+      "domain": "analyse de séries",
+      "id": "e460"
+    },
+    {
+      "from": "WRC2",
+      "to": "SERI",
+      "kind": "inclusion",
+      "theorem": "« Séries de fonctions uniformément convergentes » : toujours une série",
+      "statement": "« Séries de fonctions uniformément convergentes » est habité par des objets qui sont une série : inclusion définitoire du lot I, qui donne au graphe sa charpente.",
+      "depth": "définitoire",
+      "domain": "analyse de séries",
+      "id": "e461"
+    },
+    {
+      "from": "CBE1",
+      "to": "COUP",
+      "kind": "inclusion",
+      "theorem": "« Couples d'ensembles mutuellement injectables » : toujours un couple",
+      "statement": "« Couples d'ensembles mutuellement injectables » est habité par des objets qui sont un couple : inclusion définitoire du lot I, qui donne au graphe sa charpente.",
+      "depth": "définitoire",
+      "domain": "algèbre générale",
+      "id": "e462"
+    },
+    {
+      "from": "CCB1",
+      "to": "COUP",
+      "kind": "inclusion",
+      "theorem": "« Couples d'ensembles » : toujours un couple",
+      "statement": "« Couples d'ensembles » est habité par des objets qui sont un couple : inclusion définitoire du lot I, qui donne au graphe sa charpente.",
+      "depth": "définitoire",
+      "domain": "algèbre générale",
+      "id": "e463"
+    },
+    {
+      "from": "TCH1",
+      "to": "COUP",
+      "kind": "inclusion",
+      "theorem": "« Couples d'idéaux étrangers » : toujours un couple",
+      "statement": "« Couples d'idéaux étrangers » est habité par des objets qui sont un couple : inclusion définitoire du lot I, qui donne au graphe sa charpente.",
+      "depth": "définitoire",
+      "domain": "algèbre générale",
+      "id": "e464"
+    },
+    {
+      "from": "WIS1",
+      "to": "COUP",
+      "kind": "inclusion",
+      "theorem": "« Couples (groupe fini, puissance de premier divisant l'ordre) » : toujours un couple",
+      "statement": "« Couples (groupe fini, puissance de premier divisant l'ordre) » est habité par des objets qui sont un couple : inclusion définitoire du lot I, qui donne au graphe sa charpente.",
+      "depth": "définitoire",
+      "domain": "algèbre générale",
+      "id": "e465"
+    },
+    {
+      "from": "WIS2",
+      "to": "COUP",
+      "kind": "inclusion",
+      "theorem": "« Couples (groupe fini, ordre atteint par un sous-groupe) » : toujours un couple",
+      "statement": "« Couples (groupe fini, ordre atteint par un sous-groupe) » est habité par des objets qui sont un couple : inclusion définitoire du lot I, qui donne au graphe sa charpente.",
+      "depth": "définitoire",
+      "domain": "algèbre générale",
+      "id": "e466"
+    },
+    {
+      "from": "URY2",
+      "to": "PAIR",
+      "kind": "inclusion",
+      "theorem": "« Paires séparées par une fonction continue » : toujours une paire",
+      "statement": "« Paires séparées par une fonction continue » est habité par des objets qui sont une paire : inclusion définitoire du lot I, qui donne au graphe sa charpente.",
+      "depth": "définitoire",
+      "domain": "algèbre générale",
+      "id": "e467"
+    },
+    {
+      "from": "CQP1",
+      "to": "PAIR",
+      "kind": "inclusion",
+      "theorem": "« Paires de polyèdres à faces congruentes » : toujours une paire",
+      "statement": "« Paires de polyèdres à faces congruentes » est habité par des objets qui sont une paire : inclusion définitoire du lot I, qui donne au graphe sa charpente.",
+      "depth": "définitoire",
+      "domain": "algèbre générale",
+      "id": "e468"
+    },
+    {
+      "from": "CQP2",
+      "to": "PAIR",
+      "kind": "inclusion",
+      "theorem": "« Paires de polyèdres congruents » : toujours une paire",
+      "statement": "« Paires de polyèdres congruents » est habité par des objets qui sont une paire : inclusion définitoire du lot I, qui donne au graphe sa charpente.",
+      "depth": "définitoire",
+      "domain": "algèbre générale",
+      "id": "e469"
+    },
+    {
+      "from": "BNS1",
+      "to": "CYL1",
+      "kind": "inclusion",
+      "theorem": "« Groupes d'ordre pᵃqᵇ » : toujours un groupe",
+      "statement": "« Groupes d'ordre pᵃqᵇ » est habité par des objets qui sont un groupe : inclusion définitoire du lot I, qui donne au graphe sa charpente.",
+      "depth": "définitoire",
+      "domain": "théorie des groupes",
+      "id": "e470"
+    },
+    {
+      "from": "BNS2",
+      "to": "CYL1",
+      "kind": "inclusion",
+      "theorem": "« Groupes finis résolubles » : toujours un groupe",
+      "statement": "« Groupes finis résolubles » est habité par des objets qui sont un groupe : inclusion définitoire du lot I, qui donne au graphe sa charpente.",
+      "depth": "définitoire",
+      "domain": "théorie des groupes",
+      "id": "e471"
+    },
+    {
+      "from": "WDT1",
+      "to": "CYL1",
+      "kind": "inclusion",
+      "theorem": "« Groupes finis à tous les p-Sylow normaux » : toujours un groupe",
+      "statement": "« Groupes finis à tous les p-Sylow normaux » est habité par des objets qui sont un groupe : inclusion définitoire du lot I, qui donne au graphe sa charpente.",
+      "depth": "définitoire",
+      "domain": "théorie des groupes",
+      "id": "e472"
+    },
+    {
+      "from": "WDT2",
+      "to": "CYL1",
+      "kind": "inclusion",
+      "theorem": "« Groupes finis nilpotents » : toujours un groupe",
+      "statement": "« Groupes finis nilpotents » est habité par des objets qui sont un groupe : inclusion définitoire du lot I, qui donne au graphe sa charpente.",
+      "depth": "définitoire",
+      "domain": "théorie des groupes",
+      "id": "e473"
+    },
+    {
+      "from": "TRF1",
+      "to": "CYL1",
+      "kind": "inclusion",
+      "theorem": "« Groupes à p-Sylow central dans son normalisateur » : toujours un groupe",
+      "statement": "« Groupes à p-Sylow central dans son normalisateur » est habité par des objets qui sont un groupe : inclusion définitoire du lot I, qui donne au graphe sa charpente.",
+      "depth": "définitoire",
+      "domain": "théorie des groupes",
+      "id": "e474"
+    },
+    {
+      "from": "TRF2",
+      "to": "CYL1",
+      "kind": "inclusion",
+      "theorem": "« Groupes à p-complément normal » : toujours un groupe",
+      "statement": "« Groupes à p-complément normal » est habité par des objets qui sont un groupe : inclusion définitoire du lot I, qui donne au graphe sa charpente.",
+      "depth": "définitoire",
+      "domain": "théorie des groupes",
+      "id": "e475"
+    },
+    {
+      "from": "GR1",
+      "to": "CYL1",
+      "kind": "inclusion",
+      "theorem": "« Sous-groupes d'un groupe fini » : toujours un groupe",
+      "statement": "« Sous-groupes d'un groupe fini » est habité par des objets qui sont un groupe : inclusion définitoire du lot I, qui donne au graphe sa charpente.",
+      "depth": "définitoire",
+      "domain": "théorie des groupes",
+      "id": "e476"
+    },
+    {
+      "from": "SFG1",
+      "to": "CYL1",
+      "kind": "inclusion",
+      "theorem": "« Groupes réalisables comme groupes de Galois sur ℚ » : toujours un groupe",
+      "statement": "« Groupes réalisables comme groupes de Galois sur ℚ » est habité par des objets qui sont un groupe : inclusion définitoire du lot I, qui donne au graphe sa charpente.",
+      "depth": "définitoire",
+      "domain": "théorie des groupes",
+      "id": "e477"
+    },
+    {
+      "from": "KF1",
+      "to": "KOR1",
+      "kind": "inclusion",
+      "theorem": "« Corps à clôture algébrique finie » : toujours un corps",
+      "statement": "« Corps à clôture algébrique finie » est habité par des objets qui sont un corps : inclusion définitoire du lot I, qui donne au graphe sa charpente.",
+      "depth": "définitoire",
+      "domain": "théorie des corps",
+      "id": "e478"
+    },
+    {
+      "from": "KF2",
+      "to": "KOR1",
+      "kind": "inclusion",
+      "theorem": "« Corps réels clos » : toujours un corps",
+      "statement": "« Corps réels clos » est habité par des objets qui sont un corps : inclusion définitoire du lot I, qui donne au graphe sa charpente.",
+      "depth": "définitoire",
+      "domain": "théorie des corps",
+      "id": "e479"
+    },
+    {
+      "from": "KF3",
+      "to": "KOR1",
+      "kind": "inclusion",
+      "theorem": "« Corps formellement réels » : toujours un corps",
+      "statement": "« Corps formellement réels » est habité par des objets qui sont un corps : inclusion définitoire du lot I, qui donne au graphe sa charpente.",
+      "depth": "définitoire",
+      "domain": "théorie des corps",
+      "id": "e480"
+    },
+    {
+      "from": "KF4",
+      "to": "KOR1",
+      "kind": "inclusion",
+      "theorem": "« Corps ordonnables » : toujours un corps",
+      "statement": "« Corps ordonnables » est habité par des objets qui sont un corps : inclusion définitoire du lot I, qui donne au graphe sa charpente.",
+      "depth": "définitoire",
+      "domain": "théorie des corps",
+      "id": "e481"
+    },
+    {
+      "from": "XZR",
+      "to": "APP",
+      "kind": "inclusion",
+      "theorem": "« Polynômes ayant au moins une racine (dans ℂ) » : toujours une application",
+      "statement": "« Polynômes ayant au moins une racine (dans ℂ) » est habité par des objets qui sont une application : inclusion définitoire du lot I, qui donne au graphe sa charpente.",
+      "depth": "définitoire",
+      "domain": "algèbre générale",
+      "id": "e482"
+    },
+    {
+      "from": "NLI1",
+      "to": "APP",
+      "kind": "inclusion",
+      "theorem": "« Fonctions holomorphes non identiquement nulles » : toujours une application",
+      "statement": "« Fonctions holomorphes non identiquement nulles » est habité par des objets qui sont une application : inclusion définitoire du lot I, qui donne au graphe sa charpente.",
+      "depth": "définitoire",
+      "domain": "algèbre générale",
+      "id": "e483"
+    },
+    {
+      "from": "TOPO",
+      "to": "ZRM1",
+      "kind": "inclusion",
+      "theorem": "Inclusion dans la collection de tous les ensembles",
+      "statement": "Tout élément de « Espaces topologiques » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Espaces topologiques » ⊆ Ensembles est une inclusion définitoire. Raccord du lot I : le hub rejoint le cercle-père du graphe.",
+      "depth": "définitoire",
+      "domain": "théorie des ensembles",
+      "id": "e484"
+    },
+    {
+      "from": "MESB",
+      "to": "ZRM1",
+      "kind": "inclusion",
+      "theorem": "Inclusion dans la collection de tous les ensembles",
+      "statement": "Tout élément de « Espaces mesurables » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Espaces mesurables » ⊆ Ensembles est une inclusion définitoire. Raccord du lot I : le hub rejoint le cercle-père du graphe.",
+      "depth": "définitoire",
+      "domain": "théorie des ensembles",
+      "id": "e485"
+    },
+    {
+      "from": "EV",
+      "to": "ZRM1",
+      "kind": "inclusion",
+      "theorem": "Inclusion dans la collection de tous les ensembles",
+      "statement": "Tout élément de « Espaces vectoriels » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Espaces vectoriels » ⊆ Ensembles est une inclusion définitoire. Raccord du lot I : le hub rejoint le cercle-père du graphe.",
+      "depth": "définitoire",
+      "domain": "théorie des ensembles",
+      "id": "e486"
+    },
+    {
+      "from": "ANE",
+      "to": "ZRM1",
+      "kind": "inclusion",
+      "theorem": "Inclusion dans la collection de tous les ensembles",
+      "statement": "Tout élément de « Anneaux » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Anneaux » ⊆ Ensembles est une inclusion définitoire. Raccord du lot I : le hub rejoint le cercle-père du graphe.",
+      "depth": "définitoire",
+      "domain": "théorie des ensembles",
+      "id": "e487"
+    },
+    {
+      "from": "ALGE",
+      "to": "ZRM1",
+      "kind": "inclusion",
+      "theorem": "Inclusion dans la collection de tous les ensembles",
+      "statement": "Tout élément de « Algèbres sur un corps » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Algèbres sur un corps » ⊆ Ensembles est une inclusion définitoire. Raccord du lot I : le hub rejoint le cercle-père du graphe.",
+      "depth": "définitoire",
+      "domain": "théorie des ensembles",
+      "id": "e488"
+    },
+    {
+      "from": "REEL",
+      "to": "ZRM1",
+      "kind": "inclusion",
+      "theorem": "Inclusion dans la collection de tous les ensembles",
+      "statement": "Tout élément de « Nombres réels ℝ » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Nombres réels ℝ » ⊆ Ensembles est une inclusion définitoire. Raccord du lot I : le hub rejoint le cercle-père du graphe.",
+      "depth": "définitoire",
+      "domain": "théorie des ensembles",
+      "id": "e489"
+    },
+    {
+      "from": "INTR",
+      "to": "ZRM1",
+      "kind": "inclusion",
+      "theorem": "Inclusion dans la collection de tous les ensembles",
+      "statement": "Tout élément de « Intervalles de ℝ » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Intervalles de ℝ » ⊆ Ensembles est une inclusion définitoire. Raccord du lot I : le hub rejoint le cercle-père du graphe.",
+      "depth": "définitoire",
+      "domain": "théorie des ensembles",
+      "id": "e490"
+    },
+    {
+      "from": "OUVR",
+      "to": "ZRM1",
+      "kind": "inclusion",
+      "theorem": "Inclusion dans la collection de tous les ensembles",
+      "statement": "Tout élément de « Parties ouvertes » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Parties ouvertes » ⊆ Ensembles est une inclusion définitoire. Raccord du lot I : le hub rejoint le cercle-père du graphe.",
+      "depth": "définitoire",
+      "domain": "théorie des ensembles",
+      "id": "e491"
+    },
+    {
+      "from": "FERM",
+      "to": "ZRM1",
+      "kind": "inclusion",
+      "theorem": "Inclusion dans la collection de tous les ensembles",
+      "statement": "Tout élément de « Parties fermées » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Parties fermées » ⊆ Ensembles est une inclusion définitoire. Raccord du lot I : le hub rejoint le cercle-père du graphe.",
+      "depth": "définitoire",
+      "domain": "théorie des ensembles",
+      "id": "e492"
+    },
+    {
+      "from": "APP",
+      "to": "ZRM1",
+      "kind": "inclusion",
+      "theorem": "Inclusion dans la collection de tous les ensembles",
+      "statement": "Tout élément de « Applications » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Applications » ⊆ Ensembles est une inclusion définitoire. Raccord du lot I : le hub rejoint le cercle-père du graphe.",
+      "depth": "définitoire",
+      "domain": "théorie des ensembles",
+      "id": "e493"
+    },
+    {
+      "from": "SERI",
+      "to": "ZRM1",
+      "kind": "inclusion",
+      "theorem": "Inclusion dans la collection de tous les ensembles",
+      "statement": "Tout élément de « Séries » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Séries » ⊆ Ensembles est une inclusion définitoire. Raccord du lot I : le hub rejoint le cercle-père du graphe.",
+      "depth": "définitoire",
+      "domain": "théorie des ensembles",
+      "id": "e494"
+    },
+    {
+      "from": "SUIT",
+      "to": "ZRM1",
+      "kind": "inclusion",
+      "theorem": "Inclusion dans la collection de tous les ensembles",
+      "statement": "Tout élément de « Suites » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Suites » ⊆ Ensembles est une inclusion définitoire. Raccord du lot I : le hub rejoint le cercle-père du graphe.",
+      "depth": "définitoire",
+      "domain": "théorie des ensembles",
+      "id": "e495"
+    },
+    {
+      "from": "PAIR",
+      "to": "ZRM1",
+      "kind": "inclusion",
+      "theorem": "Inclusion dans la collection de tous les ensembles",
+      "statement": "Tout élément de « Paires » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Paires » ⊆ Ensembles est une inclusion définitoire. Raccord du lot I : le hub rejoint le cercle-père du graphe.",
+      "depth": "définitoire",
+      "domain": "théorie des ensembles",
+      "id": "e496"
+    },
+    {
+      "from": "COUP",
+      "to": "ZRM1",
+      "kind": "inclusion",
+      "theorem": "Inclusion dans la collection de tous les ensembles",
+      "statement": "Tout élément de « Couples » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Couples » ⊆ Ensembles est une inclusion définitoire. Raccord du lot I : le hub rejoint le cercle-père du graphe.",
+      "depth": "définitoire",
+      "domain": "théorie des ensembles",
+      "id": "e497"
+    },
+    {
+      "from": "FIGU",
+      "to": "ZRM1",
+      "kind": "inclusion",
+      "theorem": "Inclusion dans la collection de tous les ensembles",
+      "statement": "Tout élément de « Figures géométriques » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Figures géométriques » ⊆ Ensembles est une inclusion définitoire. Raccord du lot I : le hub rejoint le cercle-père du graphe.",
+      "depth": "définitoire",
+      "domain": "théorie des ensembles",
+      "id": "e498"
+    },
+    {
+      "from": "GRAP",
+      "to": "ZRM1",
+      "kind": "inclusion",
+      "theorem": "Inclusion dans la collection de tous les ensembles",
+      "statement": "Tout élément de « Graphes » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Graphes » ⊆ Ensembles est une inclusion définitoire. Raccord du lot I : le hub rejoint le cercle-père du graphe.",
+      "depth": "définitoire",
+      "domain": "théorie des ensembles",
+      "id": "e499"
     }
   ]
 }
