@@ -1,7 +1,7 @@
 {
   "meta": {
     "name": "Graphe des théorèmes",
-    "version": "0.14.0",
+    "version": "0.15.0",
     "created": "2026-11-23",
     "language": "fr",
     "description": "Chaque nœud est un ensemble (de fonctions, d'entiers, de matrices…), chaque arête est un théorème : inclusion (A ⊆ B) ou non-inclusion avec contre-exemple (A ⊄ B).",
@@ -3333,14 +3333,14 @@
       "notes": "Hub du lot J ; un ensemble ordonné est le couple (E, ≤), d'où l'inclusion dans « Couples »."
     },
     {
-      "id": "FAML",
-      "label": "Familles",
-      "family": "ensembles",
-      "domain": "théorie des ensembles",
-      "property": "\\{\\, (X_i)_{i \\in I} \\mid I \\text{ ensemble d'indices} \\,\\}",
-      "description": "Toutes les familles (ensembles indexés d'objets).",
-      "example": "Une suite de compacts (K_n)",
-      "notes": "Hub du lot J ; reçoit familles de fonctions, de vecteurs, d'ensembles et les tribus."
+      "id": "GELT",
+      "label": "Éléments d'un groupe",
+      "family": "groupes",
+      "domain": "théorie des groupes",
+      "property": "\\bigcup_{G \\text{ groupe}} G",
+      "description": "Tous les éléments de tous les groupes : le nœud ambiant des ensembles dont les éléments vivent dans un groupe (par exemple le groupe multiplicatif L^* d'un corps L).",
+      "example": "i, élément du groupe multiplicatif ℂ^*",
+      "notes": "Créé en v0.15.0 pour accueillir les cobords de Hilbert."
     }
   ],
   "edges": [
@@ -4845,7 +4845,7 @@
     {
       "from": "HLB1",
       "to": "HLB2",
-      "kind": "inclusion",
+      "kind": "equivalence",
       "theorem": "Théorème de la base d'Hilbert",
       "statement": "Si \\( A \\) est un anneau noethérien, alors \\( A[X] \\) est noethérien ; en itérant, \\( A[X_1, \\ldots, X_n] \\) est noethérien. La réciproque est vraie : \\( A \\) est un quotient de \\( A[X] \\).",
       "depth": "classique",
@@ -5078,7 +5078,7 @@
     {
       "from": "BL1",
       "to": "BL2",
-      "kind": "inclusion",
+      "kind": "equivalence",
       "theorem": "Théorème de Borel–Lebesgue",
       "statement": "Dans \\( \\mathbb{R}^n \\), toute partie fermée et bornée est compacte : de tout recouvrement par des ouverts on peut extraire un sous-recouvrement fini (Borel–Lebesgue). La réciproque est vraie ; la caractérisation échoue en dimension infinie, où la boule unité fermée n'est jamais compacte (théorème de Riesz).",
       "depth": "fondamental",
@@ -5088,7 +5088,7 @@
     {
       "from": "LN1",
       "to": "LN2",
-      "kind": "inclusion",
+      "kind": "equivalence",
       "theorem": "Caractérisation de la continuité linéaire",
       "statement": "Entre espaces vectoriels normés, une application linéaire est continue si et seulement si elle est bornée sur la boule unité : \\( \\exists C, \\ \\forall x, \\ \\|x\\|_E \\le 1 \\Rightarrow \\|T(x)\\|_F \\le C \\). En dimension finie, toutes les applications linéaires sont continues.",
       "depth": "classique",
@@ -5098,7 +5098,7 @@
     {
       "from": "SQ1",
       "to": "SQ2",
-      "kind": "inclusion",
+      "kind": "equivalence",
       "theorem": "Caractérisation séquentielle de la compacité",
       "statement": "Dans un espace vectoriel normé (plus généralement dans tout espace métrique), une partie est compacte si et seulement si toute suite à valeurs dans cette partie admet une sous-suite qui converge dans la partie : les deux définitions coïncident.",
       "depth": "classique",
@@ -5108,7 +5108,7 @@
     {
       "from": "FQ1",
       "to": "FQ2",
-      "kind": "inclusion",
+      "kind": "equivalence",
       "theorem": "Caractérisation séquentielle des fermés",
       "statement": "Dans un espace vectoriel normé (plus généralement dans tout espace métrique), une partie est fermée si et seulement si elle contient les limites de toutes ses suites convergentes.",
       "depth": "immédiat",
@@ -5270,7 +5270,7 @@
     {
       "from": "CBE1",
       "to": "CBE2",
-      "kind": "inclusion",
+      "kind": "equivalence",
       "theorem": "Théorème de Cantor–Bernstein",
       "statement": "Si \\( X \\) s'injecte dans \\( Y \\) et \\( Y \\) s'injecte dans \\( X \\), alors \\( X \\) et \\( Y \\) sont équipotents (Schröder Bernstein). La preuve fait osciller les deux injections : \\( X \\) se partitionne en trois zones, l'une envoyée sur \\( Y \\) par \\( f \\), les deux autres par \\( g^{-1} \\). D'où \\( |\\mathbb{R}| = |\\mathcal{P}(\\mathbb{N})| \\) via les développements binaires.",
       "depth": "classique",
@@ -5300,7 +5300,7 @@
     {
       "from": "CQG1",
       "to": "CQG2",
-      "kind": "inclusion",
+      "kind": "equivalence",
       "theorem": "Théorème de Cauchy (groupes)",
       "statement": "Si un nombre premier \\( p \\) divise l'ordre d'un groupe fini \\( G \\), alors \\( G \\) contient un élément d'ordre \\( p \\), donc un sous-groupe d'ordre \\( p \\). Preuve courte : les \\( p \\)-uplets \\( (x_1, \\ldots, x_p) \\) de produit \\( e \\) sont en nombre multiple de \\( p \\) (rotation circulaire), et les uplets constants fournissent les éléments d'ordre \\( p \\). La réciproque est le sens facile du théorème de Lagrange.",
       "depth": "classique",
@@ -5310,7 +5310,7 @@
     {
       "from": "CAU1",
       "to": "CAU2",
-      "kind": "inclusion",
+      "kind": "equivalence",
       "theorem": "Critère de Cauchy",
       "statement": "Dans un espace métrique complet, toute suite de Cauchy converge : c'est exactement ce que dit la complétion, et le critère de Cauchy permet de prouver une convergence sans connaître la limite. La réciproque vaut dans tout espace métrique : toute suite convergente est de Cauchy. Appliqué aux sommes partielles, c'est le critère de Cauchy des séries : \\( \\sum a_n \\) converge si et seulement si \\( |a_{p+1} + \\cdots + a_q| \\le \\varepsilon \\) dès que \\( q > p \\ge N \\).",
       "depth": "classique",
@@ -5635,16 +5635,6 @@
       "id": "e220"
     },
     {
-      "from": "HLB2",
-      "to": "HLB1",
-      "kind": "inclusion",
-      "theorem": "Réciproque de la base d'Hilbert",
-      "statement": "Si \\( A[X] \\) est noethérien, alors \\( A \\cong A[X]/(X) \\) l'est aussi : tout quotient d'un anneau noethérien est noethérien (les idéaux du quotient se relèvent en idéaux de type fini). La réciproque réplique flèche pour flèche à la base d'Hilbert \\( A \\) noethérien entraîne \\( A[X] \\) noethérien ; les deux ensembles se répondent en double flèche.",
-      "depth": "facile",
-      "domain": "algèbre générale",
-      "id": "e221"
-    },
-    {
       "from": "ABG1",
       "to": "CYL1",
       "kind": "inclusion",
@@ -5685,16 +5675,6 @@
       "depth": "facile",
       "domain": "théorie des groupes",
       "id": "e225"
-    },
-    {
-      "from": "CQG2",
-      "to": "CQG1",
-      "kind": "inclusion",
-      "theorem": "Réciproque du théorème de Cauchy",
-      "statement": "Si un groupe fini contient un élément \\( x \\) d'ordre \\( p \\), le sous-groupe \\( \\langle x \\rangle \\) engendré a exactement \\( p \\) éléments, et le théorème de Lagrange conclut \\( p \\mid |G| \\). La réciproque immédiate du théorème de Cauchy tombe du même coup que Lagrange.",
-      "depth": "immédiat",
-      "domain": "théorie des groupes",
-      "id": "e226"
     },
     {
       "from": "KF2",
@@ -5789,7 +5769,7 @@
     {
       "from": "WLS1",
       "to": "A2",
-      "kind": "inclusion",
+      "kind": "equivalence",
       "theorem": "Théorème de Wilson",
       "statement": "Un entier \\( n \\ge 2 \\) vérifie \\( (n-1)! \\equiv -1 \\pmod{n} \\) si et seulement si \\( n \\) est premier (Wilson, énoncé par Waring, démontré par Lagrange en 1771). Sens modélisé : les nombres de Wilson sont exactement les premiers. Pour \\( n \\) composé et \\( n \\ne 4 \\), les facteurs de \\( n \\) se épars dans \\( (n-1)! \\), qui devient divisible par \\( n \\) ; le cas \\( n = 4 \\) se vérifie à la main (6 laisse 2). Bel exemple de critère de primalité théorique, inutilisable en pratique.",
       "depth": "classique",
@@ -6030,7 +6010,7 @@
     {
       "from": "HTQ1",
       "to": "HTQ2",
-      "kind": "inclusion",
+      "kind": "equivalence",
       "theorem": "Théorème 90 de Hilbert",
       "statement": "Dans une extension cyclique \\( L/K \\) de groupe engendré par \\( \\sigma \\), tout élément de norme 1 est un cobord : \\( N_{L/K}(x) = 1 \\) si et seulement si \\( x = \\sigma(y)/y \\) pour un certain \\( y \\in L^{*} \\) (Hilbert, théorème 90 du Zahlbericht, 1897). Emmy Noether en donne la lecture cohomologique : le premier groupe de cohomologie du groupe de Galois à valeurs dans \\( L^{*} \\) est trivial, et Kummer s'appuie sur le théorème pour bâtir la théorie des extensions abéliennes d'exposant n.",
       "depth": "classique",
@@ -6076,16 +6056,6 @@
       "depth": "définitoire",
       "domain": "théorie des ensembles",
       "id": "e287"
-    },
-    {
-      "from": "ZL2",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Extérieur du disque de Laguerre » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Extérieur du disque de Laguerre » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e291"
     },
     {
       "from": "BF2",
@@ -6186,16 +6156,6 @@
       "depth": "définitoire",
       "domain": "théorie des ensembles",
       "id": "e359"
-    },
-    {
-      "from": "HTQ2",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Cobords de Hilbert » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Cobords de Hilbert » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e384"
     },
     {
       "from": "HCI2",
@@ -7328,16 +7288,6 @@
       "id": "e500"
     },
     {
-      "from": "TRIB",
-      "to": "FAML",
-      "kind": "inclusion",
-      "theorem": "« Tribus » : toujours une famille",
-      "statement": "Une tribu est une famille de parties de X : chaînon du lot J qui enracine les tribus dans « Familles ».",
-      "depth": "définitoire",
-      "domain": "théorie de la mesure",
-      "id": "e501"
-    },
-    {
       "from": "ORDR",
       "to": "COUP",
       "kind": "inclusion",
@@ -8029,76 +7979,6 @@
       "id": "e571"
     },
     {
-      "from": "MA2",
-      "to": "FAML",
-      "kind": "inclusion",
-      "theorem": "« Parties équicontinues » : toujours une famille",
-      "statement": "« Parties équicontinues » est habité par des objets qui sont une famille : chaînon du lot J, qui remplace le fourre-tout « Ensembles » par une hiérarchie lisible.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e572"
-    },
-    {
-      "from": "ADO2",
-      "to": "FAML",
-      "kind": "inclusion",
-      "theorem": "« Sous-algèbres de Lie de gl_n » : toujours une famille",
-      "statement": "« Sous-algèbres de Lie de gl_n » est habité par des objets qui sont une famille : chaînon du lot J, qui remplace le fourre-tout « Ensembles » par une hiérarchie lisible.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e573"
-    },
-    {
-      "from": "SG2",
-      "to": "FAML",
-      "kind": "inclusion",
-      "theorem": "« Ensembles simultanément trigonalisables » : toujours une famille",
-      "statement": "« Ensembles simultanément trigonalisables » est habité par des objets qui sont une famille : chaînon du lot J, qui remplace le fourre-tout « Ensembles » par une hiérarchie lisible.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e574"
-    },
-    {
-      "from": "BI2",
-      "to": "FAML",
-      "kind": "inclusion",
-      "theorem": "« Familles complétées en une base » : toujours une famille",
-      "statement": "« Familles complétées en une base » est habité par des objets qui sont une famille : chaînon du lot J, qui remplace le fourre-tout « Ensembles » par une hiérarchie lisible.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e575"
-    },
-    {
-      "from": "AXC2",
-      "to": "FAML",
-      "kind": "inclusion",
-      "theorem": "« Familles admettant une fonction de choix » : toujours une famille",
-      "statement": "« Familles admettant une fonction de choix » est habité par des objets qui sont une famille : chaînon du lot J, qui remplace le fourre-tout « Ensembles » par une hiérarchie lisible.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e576"
-    },
-    {
-      "from": "TVB2",
-      "to": "FAML",
-      "kind": "inclusion",
-      "theorem": "« Familles Tverberg-partitionnables » : toujours une famille",
-      "statement": "« Familles Tverberg-partitionnables » est habité par des objets qui sont une famille : chaînon du lot J, qui remplace le fourre-tout « Ensembles » par une hiérarchie lisible.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e577"
-    },
-    {
-      "from": "TYC2",
-      "to": "FAML",
-      "kind": "inclusion",
-      "theorem": "« Familles à produit compact » : toujours une famille",
-      "statement": "« Familles à produit compact » est habité par des objets qui sont une famille : chaînon du lot J, qui remplace le fourre-tout « Ensembles » par une hiérarchie lisible.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e578"
-    },
-    {
       "from": "CAR2",
       "to": "TRIB",
       "kind": "inclusion",
@@ -8159,16 +8039,6 @@
       "id": "e584"
     },
     {
-      "from": "FAML",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Familles » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Familles » ⊆ Ensembles est une inclusion définitoire. Raccord du lot J : le hub rejoint le cercle-père du graphe.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e585"
-    },
-    {
       "from": "MAT",
       "to": "APP",
       "kind": "inclusion",
@@ -8177,6 +8047,116 @@
       "depth": "définitoire",
       "domain": "algèbre générale",
       "id": "e586"
+    },
+    {
+      "from": "TRIB",
+      "to": "ZRM1",
+      "kind": "inclusion",
+      "theorem": "Inclusion dans la collection de tous les ensembles",
+      "statement": "Tout élément de « Tribus » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Tribus » ⊆ Ensembles est une inclusion définitoire. Raccord provisoire (v0.15.0) : le hub mécanique « Familles » est supprimé, le vrai parent de ce nœud reste à choisir.",
+      "depth": "définitoire",
+      "domain": "théorie des ensembles",
+      "id": "e587"
+    },
+    {
+      "from": "MA2",
+      "to": "ZRM1",
+      "kind": "inclusion",
+      "theorem": "Inclusion dans la collection de tous les ensembles",
+      "statement": "Tout élément de « Parties équicontinues » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Parties équicontinues » ⊆ Ensembles est une inclusion définitoire. Raccord provisoire (v0.15.0) : le hub mécanique « Familles » est supprimé, le vrai parent de ce nœud reste à choisir.",
+      "depth": "définitoire",
+      "domain": "théorie des ensembles",
+      "id": "e588"
+    },
+    {
+      "from": "ADO2",
+      "to": "ZRM1",
+      "kind": "inclusion",
+      "theorem": "Inclusion dans la collection de tous les ensembles",
+      "statement": "Tout élément de « Sous-algèbres de Lie de gl_n » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Sous-algèbres de Lie de gl_n » ⊆ Ensembles est une inclusion définitoire. Raccord provisoire (v0.15.0) : le hub mécanique « Familles » est supprimé, le vrai parent de ce nœud reste à choisir.",
+      "depth": "définitoire",
+      "domain": "théorie des ensembles",
+      "id": "e589"
+    },
+    {
+      "from": "SG2",
+      "to": "ZRM1",
+      "kind": "inclusion",
+      "theorem": "Inclusion dans la collection de tous les ensembles",
+      "statement": "Tout élément de « Ensembles simultanément trigonalisables » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Ensembles simultanément trigonalisables » ⊆ Ensembles est une inclusion définitoire. Raccord provisoire (v0.15.0) : le hub mécanique « Familles » est supprimé, le vrai parent de ce nœud reste à choisir.",
+      "depth": "définitoire",
+      "domain": "théorie des ensembles",
+      "id": "e590"
+    },
+    {
+      "from": "BI2",
+      "to": "ZRM1",
+      "kind": "inclusion",
+      "theorem": "Inclusion dans la collection de tous les ensembles",
+      "statement": "Tout élément de « Familles complétées en une base » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Familles complétées en une base » ⊆ Ensembles est une inclusion définitoire. Raccord provisoire (v0.15.0) : le hub mécanique « Familles » est supprimé, le vrai parent de ce nœud reste à choisir.",
+      "depth": "définitoire",
+      "domain": "théorie des ensembles",
+      "id": "e591"
+    },
+    {
+      "from": "AXC2",
+      "to": "ZRM1",
+      "kind": "inclusion",
+      "theorem": "Inclusion dans la collection de tous les ensembles",
+      "statement": "Tout élément de « Familles admettant une fonction de choix » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Familles admettant une fonction de choix » ⊆ Ensembles est une inclusion définitoire. Raccord provisoire (v0.15.0) : le hub mécanique « Familles » est supprimé, le vrai parent de ce nœud reste à choisir.",
+      "depth": "définitoire",
+      "domain": "théorie des ensembles",
+      "id": "e592"
+    },
+    {
+      "from": "TVB2",
+      "to": "ZRM1",
+      "kind": "inclusion",
+      "theorem": "Inclusion dans la collection de tous les ensembles",
+      "statement": "Tout élément de « Familles Tverberg-partitionnables » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Familles Tverberg-partitionnables » ⊆ Ensembles est une inclusion définitoire. Raccord provisoire (v0.15.0) : le hub mécanique « Familles » est supprimé, le vrai parent de ce nœud reste à choisir.",
+      "depth": "définitoire",
+      "domain": "théorie des ensembles",
+      "id": "e593"
+    },
+    {
+      "from": "TYC2",
+      "to": "ZRM1",
+      "kind": "inclusion",
+      "theorem": "Inclusion dans la collection de tous les ensembles",
+      "statement": "Tout élément de « Familles à produit compact » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Familles à produit compact » ⊆ Ensembles est une inclusion définitoire. Raccord provisoire (v0.15.0) : le hub mécanique « Familles » est supprimé, le vrai parent de ce nœud reste à choisir.",
+      "depth": "définitoire",
+      "domain": "théorie des ensembles",
+      "id": "e594"
+    },
+    {
+      "from": "HTQ2",
+      "to": "GELT",
+      "kind": "inclusion",
+      "theorem": "« Cobords de Hilbert » ⊆ éléments d'un groupe",
+      "statement": "Un cobord \\( \\sigma(y)/y \\) avec \\( y \\in L^{*} \\) est un élément du groupe multiplicatif \\( L^{*} \\) : c'est un élément d'un groupe.",
+      "depth": "immédiat",
+      "domain": "théorie de Galois",
+      "id": "e595"
+    },
+    {
+      "from": "GELT",
+      "to": "ZRM1",
+      "kind": "inclusion",
+      "theorem": "Inclusion dans la collection de tous les ensembles",
+      "statement": "Tout élément de « Éléments d'un groupe » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Éléments d'un groupe » ⊆ Ensembles est une inclusion définitoire.",
+      "depth": "définitoire",
+      "domain": "théorie des ensembles",
+      "id": "e596"
+    },
+    {
+      "from": "ZL2",
+      "to": "CMLX",
+      "kind": "inclusion",
+      "theorem": "« Extérieur du disque de Laguerre » ⊆ ℂ",
+      "statement": "Un point de l'extérieur du disque de Laguerre est un nombre complexe : \\( z \\in \\mathbb{C} \\) avec \\( |z - z_{0}| > n\\,|f(z_{0})/f'(z_{0})| \\).",
+      "depth": "immédiat",
+      "domain": "analyse complexe",
+      "id": "e597"
     }
   ]
 }
