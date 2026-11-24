@@ -1,7 +1,7 @@
 {
   "meta": {
     "name": "Graphe des théorèmes",
-    "version": "0.15.0",
+    "version": "0.16.0",
     "created": "2026-11-23",
     "language": "fr",
     "description": "Chaque nœud est un ensemble (de fonctions, d'entiers, de matrices…), chaque arête est un théorème : inclusion (A ⊆ B) ou non-inclusion avec contre-exemple (A ⊄ B).",
@@ -3341,6 +3341,86 @@
       "description": "Tous les éléments de tous les groupes : le nœud ambiant des ensembles dont les éléments vivent dans un groupe (par exemple le groupe multiplicatif L^* d'un corps L).",
       "example": "i, élément du groupe multiplicatif ℂ^*",
       "notes": "Créé en v0.15.0 pour accueillir les cobords de Hilbert."
+    },
+    {
+      "id": "FTOP",
+      "label": "Fonctions entre espaces topologiques",
+      "family": "continuité",
+      "domain": "topologie",
+      "property": "\\{\\, f : (X, \\mathcal{T}_X) \\to (Y, \\mathcal{T}_Y) \\,\\}",
+      "description": "Toutes les applications entre espaces topologiques, continues ou non.",
+      "example": "x ↦ ⌊x⌋, de ℝ dans ℝ",
+      "notes": "Hub v0.16.0 : le niveau « topologique » des fonctions, au-dessus des fonctions métriques."
+    },
+    {
+      "id": "FMET",
+      "label": "Fonctions entre espaces métriques",
+      "family": "continuité",
+      "domain": "topologie métrique",
+      "property": "\\{\\, f : (X, d_X) \\to (Y, d_Y) \\,\\}",
+      "description": "Toutes les applications entre espaces métriques, continues ou non.",
+      "example": "x ↦ ⌊x⌋, de ℝ dans ℝ",
+      "notes": "Hub v0.16.0 : au-dessus des fonctions vectorielles, sous les fonctions entre espaces topologiques."
+    },
+    {
+      "id": "FVEC",
+      "label": "Fonctions vectorielles",
+      "family": "continuité",
+      "domain": "topologie vectorielle",
+      "property": "\\{\\, f : (E, \\|\\cdot\\|_E) \\to (F, \\|\\cdot\\|_F) \\,\\}",
+      "description": "Toutes les applications entre espaces vectoriels normés, continues ou non.",
+      "example": "x ↦ ‖x‖, de ℝ³ dans ℝ",
+      "notes": "Hub v0.16.0 : « Fonctions vectorielles continues » en est la partie continue."
+    },
+    {
+      "id": "FNC",
+      "label": "Fonctions complexes",
+      "family": "holomorphie",
+      "domain": "analyse complexe",
+      "property": "\\{\\, f : \\mathbb{C} \\to \\mathbb{C} \\,\\}",
+      "description": "Toutes les fonctions de ℂ dans ℂ.",
+      "example": "z ↦ z̄",
+      "notes": "Hub v0.16.0 : le pendant complexe de « Fonctions réelles »."
+    },
+    {
+      "id": "HOL",
+      "label": "Fonctions holomorphes",
+      "family": "holomorphie",
+      "domain": "analyse complexe",
+      "property": "\\{\\, f : U \\to \\mathbb{C} \\mid U \\subseteq \\mathbb{C} \\text{ ouvert},\\ f \\text{ dérivable au sens complexe en tout point de } U \\,\\}",
+      "description": "Les fonctions dérivables au sens complexe sur un ouvert de ℂ.",
+      "example": "z ↦ 1/z sur ℂ privé de 0",
+      "notes": "Hub v0.16.0 : les fonctions entières en sont le cas où l'ouvert est ℂ tout entier."
+    },
+    {
+      "id": "ALIN",
+      "label": "Applications linéaires",
+      "family": "linéarité",
+      "domain": "algèbre linéaire",
+      "property": "\\{\\, T : E \\to F \\mid T(\\lambda x + \\mu y) = \\lambda T(x) + \\mu T(y) \\,\\}",
+      "description": "Toutes les applications linéaires entre espaces vectoriels.",
+      "example": "x ↦ 2x, de ℝ dans ℝ",
+      "notes": "Hub v0.16.0 : « Applications linéaires continues » en est la partie continue (entre espaces normés)."
+    },
+    {
+      "id": "LIEG",
+      "label": "Algèbres de Lie",
+      "family": "algèbres de Lie",
+      "domain": "algèbre bilinéaire",
+      "property": "\\{\\, (\\mathfrak{g}, [\\cdot,\\cdot]) \\mid [\\cdot,\\cdot] \\text{ bilinéaire, antisymétrique, vérifiant l'identité de Jacobi} \\,\\}",
+      "description": "Toutes les algèbres de Lie, de dimension finie ou non.",
+      "example": "gl_n(ℝ) muni du commutateur",
+      "notes": "Hub v0.16.0 : les algèbres de Lie ne sont pas associatives, elles ne vont pas dans « Algèbres sur un corps »."
+    },
+    {
+      "id": "PCAU",
+      "label": "Problèmes de Cauchy",
+      "family": "équations différentielles",
+      "domain": "analyse des équations différentielles",
+      "property": "\\{\\, (f, t_0, y_0) \\mid y' = f(t, y),\\ y(t_0) = y_0 \\,\\}",
+      "description": "Tous les problèmes de Cauchy : une équation différentielle et une condition initiale.",
+      "example": "y' = y, y(0) = 1",
+      "notes": "Hub v0.16.0."
     }
   ],
   "edges": [
@@ -3356,16 +3436,6 @@
       "id": "e1",
       "domain": "analyse réelle",
       "mathlib": "https://leanprover-community.github.io/mathlib4_docs/Mathlib/Topology/Order/IntermediateValue.html"
-    },
-    {
-      "from": "C",
-      "to": "F",
-      "kind": "inclusion",
-      "theorem": "Définition",
-      "statement": "Une fonction réelle continue est en particulier une fonction de ℝ dans ℝ.",
-      "depth": "définitoire",
-      "id": "e2",
-      "domain": "analyse réelle"
     },
     {
       "from": "C",
@@ -4893,16 +4963,6 @@
       "id": "e147"
     },
     {
-      "from": "XNC",
-      "to": "X3",
-      "kind": "inclusion",
-      "theorem": "Définition",
-      "statement": "Un polynôme non constant est en particulier un polynôme complexe.",
-      "depth": "définitoire",
-      "domain": "analyse complexe",
-      "id": "e148"
-    },
-    {
       "from": "SU1",
       "to": "SU2",
       "kind": "inclusion",
@@ -5007,7 +5067,7 @@
     {
       "from": "F",
       "to": "BG2",
-      "kind": "inclusion",
+      "kind": "equivalence",
       "theorem": "Théorème de Blumberg (1922)",
       "statement": "Pour toute fonction \\( f : \\mathbb{R} \\to \\mathbb{R} \\), il existe une partie dense \\( D \\) de \\( \\mathbb{R} \\) telle que la restriction \\( f|_D \\) soit continue : même la fonction de Dirichlet, discontinue partout, se restreint continûment (constante) à \\( \\mathbb{R} \\setminus \\mathbb{Q} \\). La preuve utilise le lemme de Zorn.",
       "depth": "profond",
@@ -6038,16 +6098,6 @@
       "id": "e262"
     },
     {
-      "from": "TQ2",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Triplets à conditions de résidus » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Triplets à conditions de résidus » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e277"
-    },
-    {
       "from": "GR2",
       "to": "ZRM1",
       "kind": "inclusion",
@@ -6068,16 +6118,6 @@
       "id": "e319"
     },
     {
-      "from": "BRG2",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Quintuplets vérifiant la formule de Brahmagupta » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Quintuplets vérifiant la formule de Brahmagupta » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e328"
-    },
-    {
       "from": "CBD2",
       "to": "ZRM1",
       "kind": "inclusion",
@@ -6088,36 +6128,6 @@
       "id": "e337"
     },
     {
-      "from": "CLP2",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Problèmes de Cauchy à solution unique maximale » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Problèmes de Cauchy à solution unique maximale » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e343"
-    },
-    {
-      "from": "PE2",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Problèmes de Cauchy résolubles » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Problèmes de Cauchy résolubles » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e344"
-    },
-    {
-      "from": "PEU1",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Problèmes de Cauchy à au plus une solution » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Problèmes de Cauchy à au plus une solution » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e345"
-    },
-    {
       "from": "CYL2",
       "to": "ZRM1",
       "kind": "inclusion",
@@ -6126,26 +6136,6 @@
       "depth": "définitoire",
       "domain": "théorie des ensembles",
       "id": "e347"
-    },
-    {
-      "from": "CVA2",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Configurations à céviennes concourantes » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Configurations à céviennes concourantes » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e349"
-    },
-    {
-      "from": "CAA2",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Configurations à céviennes concourantes ou parallèles » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Configurations à céviennes concourantes ou parallèles » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e350"
     },
     {
       "from": "ZRM2",
@@ -6166,16 +6156,6 @@
       "depth": "définitoire",
       "domain": "théorie des ensembles",
       "id": "e386"
-    },
-    {
-      "from": "A1",
-      "to": "NATL",
-      "kind": "inclusion",
-      "theorem": "Les naturels non nuls forment ℕ*",
-      "statement": "\\( \\mathbb{N}^* = \\mathbb{N} \\setminus \\{0\\} \\) : les entiers naturels non nuls sont exactement les naturels privés de zéro. Première marche de la chaîne des nombres (lot I).",
-      "depth": "définitoire",
-      "domain": "arithmétique",
-      "id": "e388"
     },
     {
       "from": "NATL",
@@ -6208,16 +6188,6 @@
       "id": "e391"
     },
     {
-      "from": "IQ",
-      "to": "REEL",
-      "kind": "inclusion",
-      "theorem": "Les irrationnels sont réels",
-      "statement": "Les irrationnels quadratiques \\( \\sqrt{d} \\) vivent sur la droite réelle, hors du corps des rationnels.",
-      "depth": "définitoire",
-      "domain": "analyse réelle",
-      "id": "e392"
-    },
-    {
       "from": "TRS",
       "to": "REEL",
       "kind": "inclusion",
@@ -6228,16 +6198,6 @@
       "id": "e393"
     },
     {
-      "from": "NZL1",
-      "to": "REEL",
-      "kind": "inclusion",
-      "theorem": "Les constructibles sont réels",
-      "statement": "La règle et le compas opèrent sur la droite réelle : tout nombre constructible est un nombre réel, Wantzel y trouve les degrés en puissance de 2.",
-      "depth": "définitoire",
-      "domain": "théorie algébrique des nombres",
-      "id": "e394"
-    },
-    {
       "from": "VSC1",
       "to": "QRAT",
       "kind": "inclusion",
@@ -6246,36 +6206,6 @@
       "depth": "facile",
       "domain": "arithmétique",
       "id": "e395"
-    },
-    {
-      "from": "CSO1",
-      "to": "BR1",
-      "kind": "inclusion",
-      "theorem": "Les suites convergentes sont réelles",
-      "statement": "Converger est une affaire de réels : une suite réelle convergente est en particulier une suite réelle.",
-      "depth": "définitoire",
-      "domain": "analyse des suites réelles",
-      "id": "e396"
-    },
-    {
-      "from": "BW1",
-      "to": "BR1",
-      "kind": "inclusion",
-      "theorem": "Les suites bornées de réels sont réelles",
-      "statement": "Bornées, réelles : l'inclusion la plus plate du lot, mais elle anime Bolzano–Weierstrass.",
-      "depth": "définitoire",
-      "domain": "analyse des suites réelles",
-      "id": "e397"
-    },
-    {
-      "from": "BR1",
-      "to": "SUIT",
-      "kind": "inclusion",
-      "theorem": "Les suites réelles sont des suites",
-      "statement": "ℝ^ℕ ⊆ toutes les suites : l'ambiant discret du côté analyse rejoint le concept général.",
-      "depth": "définitoire",
-      "domain": "analyse des suites réelles",
-      "id": "e398"
     },
     {
       "from": "SU2",
@@ -6308,106 +6238,6 @@
       "id": "e401"
     },
     {
-      "from": "F",
-      "to": "APP",
-      "kind": "inclusion",
-      "theorem": "Les fonctions réelles sont des applications",
-      "statement": "\\( \\mathbb{R}^{\\mathbb{R}} \\) est un morceau du concept général d'application : l'ensemble ambiant des fonctions réelles rejoint le hub.",
-      "depth": "définitoire",
-      "domain": "algèbre générale",
-      "id": "e402"
-    },
-    {
-      "from": "FC",
-      "to": "APP",
-      "kind": "inclusion",
-      "theorem": "Les fonctions vectorielles continues sont des applications",
-      "statement": "Continues entre espaces vectoriels normés, mais d'abord des applications.",
-      "depth": "définitoire",
-      "domain": "algèbre générale",
-      "id": "e403"
-    },
-    {
-      "from": "X2",
-      "to": "APP",
-      "kind": "inclusion",
-      "theorem": "Les fonctions entières sont des applications",
-      "statement": "Entières sur ℂ, mais d'abord des applications de ℂ dans ℂ.",
-      "depth": "définitoire",
-      "domain": "analyse complexe",
-      "id": "e404"
-    },
-    {
-      "from": "X6",
-      "to": "APP",
-      "kind": "inclusion",
-      "theorem": "Les fonctions continues ℂ → ℂ sont des applications",
-      "statement": "Continues de ℂ vers ℂ, mais d'abord des applications.",
-      "depth": "définitoire",
-      "domain": "analyse complexe",
-      "id": "e405"
-    },
-    {
-      "from": "X8",
-      "to": "APP",
-      "kind": "inclusion",
-      "theorem": "Les fonctions bornées ℂ → ℂ sont des applications",
-      "statement": "Bornées de ℂ vers ℂ, mais d'abord des applications.",
-      "depth": "définitoire",
-      "domain": "analyse complexe",
-      "id": "e406"
-    },
-    {
-      "from": "CNT1",
-      "to": "APP",
-      "kind": "inclusion",
-      "theorem": "Les applications dans l'ensemble des parties sont des applications",
-      "statement": "Viser l'ensemble des parties reste appliquer : Cantor en a fait sa diagonale.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e407"
-    },
-    {
-      "from": "LN1",
-      "to": "APP",
-      "kind": "inclusion",
-      "theorem": "Les applications linéaires continues sont des applications",
-      "statement": "Linéaires et continues, mais d'abord des applications.",
-      "depth": "définitoire",
-      "domain": "topologie vectorielle",
-      "id": "e408"
-    },
-    {
-      "from": "L1",
-      "to": "APP",
-      "kind": "inclusion",
-      "theorem": "Les matrices sont des applications",
-      "statement": "Une matrice est une application linéaire donnée par ses colonnes : la reine, lue en coordonnées.",
-      "depth": "définitoire",
-      "domain": "algèbre linéaire",
-      "id": "e409"
-    },
-    {
-      "from": "GCA",
-      "to": "COUP",
-      "kind": "inclusion",
-      "theorem": "Les couples d'angles sont des couples",
-      "statement": "Un couple d'angles est un couple : \\( (\\alpha, \\beta) \\) avant d'intercepter le même arc.",
-      "depth": "définitoire",
-      "domain": "géométrie euclidienne",
-      "id": "e410"
-    },
-    {
-      "from": "BRI1",
-      "to": "COUP",
-      "kind": "inclusion",
-      "theorem": "Les couples représentables sont des couples",
-      "statement": "Représentables par \\( x^2 + ny^2 \\) ou non, les couples d'entiers restent des couples.",
-      "depth": "définitoire",
-      "domain": "arithmétique",
-      "id": "e411"
-    },
-    {
       "from": "BTY1",
       "to": "COUP",
       "kind": "inclusion",
@@ -6416,16 +6246,6 @@
       "depth": "définitoire",
       "domain": "théorie algébrique des nombres",
       "id": "e412"
-    },
-    {
-      "from": "LU1",
-      "to": "COUP",
-      "kind": "inclusion",
-      "theorem": "Les couples d'entiers sont des couples",
-      "statement": "Les couples dominés chiffre à chiffre, ceux de Kummer : des couples d'entiers avant d'être divisibles.",
-      "depth": "définitoire",
-      "domain": "arithmétique",
-      "id": "e413"
     },
     {
       "from": "GTR",
@@ -6446,36 +6266,6 @@
       "depth": "définitoire",
       "domain": "géométrie euclidienne",
       "id": "e415"
-    },
-    {
-      "from": "BRH1",
-      "to": "POLY",
-      "kind": "inclusion",
-      "theorem": "Les hexagones sont des polygones",
-      "statement": "Six sommets, six côtés, circonscrits ou non : Brianchon veille dessus.",
-      "depth": "définitoire",
-      "domain": "géométrie euclidienne",
-      "id": "e416"
-    },
-    {
-      "from": "ZGL1",
-      "to": "POLY",
-      "kind": "inclusion",
-      "theorem": "Les polygones simples sont des polygones",
-      "statement": "Simples ou non, ceux de Zalgaller restent des polygones du plan.",
-      "depth": "définitoire",
-      "domain": "géométrie euclidienne",
-      "id": "e417"
-    },
-    {
-      "from": "WBG1",
-      "to": "POLY",
-      "kind": "inclusion",
-      "theorem": "Les polygones de même aire sont des polygones",
-      "statement": "Même aire ou non : un polygone est un polygone, Wallace–Bolyai–Gerwien y découpe.",
-      "depth": "définitoire",
-      "domain": "géométrie euclidienne",
-      "id": "e418"
     },
     {
       "from": "WBG2",
@@ -6528,16 +6318,6 @@
       "id": "e423"
     },
     {
-      "from": "BRK1",
-      "to": "GRAP",
-      "kind": "inclusion",
-      "theorem": "Les graphes de Brooks sont des graphes",
-      "statement": "Connexes, ni complets ni cycles impairs : la condition de Brooks précise une famille de graphes.",
-      "depth": "définitoire",
-      "domain": "théorie des graphes",
-      "id": "e424"
-    },
-    {
       "from": "BRK3",
       "to": "GRAP",
       "kind": "inclusion",
@@ -6578,16 +6358,6 @@
       "id": "e428"
     },
     {
-      "from": "KP1",
-      "to": "TOPO",
-      "kind": "inclusion",
-      "theorem": "La compacité présuppose une topologie",
-      "statement": "Recouvrements finis d'ouverts : être compact est le fait d'un espace topologique.",
-      "depth": "définitoire",
-      "domain": "topologie",
-      "id": "e429"
-    },
-    {
       "from": "MT2",
       "to": "TOPO",
       "kind": "inclusion",
@@ -6606,16 +6376,6 @@
       "depth": "définitoire",
       "domain": "topologie",
       "id": "e431"
-    },
-    {
-      "from": "VKP1",
-      "to": "TOPO",
-      "kind": "inclusion",
-      "theorem": "Le recollement présuppose une topologie",
-      "statement": "Connexité par arcs, ouverts : van Kampen s'adresse à des espaces topologiques.",
-      "depth": "définitoire",
-      "domain": "topologie algébrique",
-      "id": "e432"
     },
     {
       "from": "EVN",
@@ -6706,16 +6466,6 @@
       "depth": "définitoire",
       "domain": "topologie vectorielle",
       "id": "e441"
-    },
-    {
-      "from": "URY1",
-      "to": "FERM",
-      "kind": "inclusion",
-      "theorem": "Les fermés disjoints sont des fermés",
-      "statement": "Deux fermés disjoints d'un espace normal sont chacun des parties fermées : la nature précède la séparation.",
-      "depth": "définitoire",
-      "domain": "topologie",
-      "id": "e442"
     },
     {
       "from": "SEG",
@@ -6878,26 +6628,6 @@
       "id": "e458"
     },
     {
-      "from": "EMB1",
-      "to": "SUIT",
-      "kind": "inclusion",
-      "theorem": "« Suites décroissantes de compacts non vides » : toujours une suite",
-      "statement": "« Suites décroissantes de compacts non vides » est habité par des objets qui sont une suite : inclusion définitoire du lot I, qui donne au graphe sa charpente.",
-      "depth": "définitoire",
-      "domain": "analyse des suites réelles",
-      "id": "e459"
-    },
-    {
-      "from": "WRC1",
-      "to": "SERI",
-      "kind": "inclusion",
-      "theorem": "« Séries de fonctions normalement convergentes » : toujours une série",
-      "statement": "« Séries de fonctions normalement convergentes » est habité par des objets qui sont une série : inclusion définitoire du lot I, qui donne au graphe sa charpente.",
-      "depth": "définitoire",
-      "domain": "analyse de séries",
-      "id": "e460"
-    },
-    {
       "from": "WRC2",
       "to": "SERI",
       "kind": "inclusion",
@@ -6916,36 +6646,6 @@
       "depth": "définitoire",
       "domain": "algèbre générale",
       "id": "e462"
-    },
-    {
-      "from": "CCB1",
-      "to": "COUP",
-      "kind": "inclusion",
-      "theorem": "« Couples d'ensembles » : toujours un couple",
-      "statement": "« Couples d'ensembles » est habité par des objets qui sont un couple : inclusion définitoire du lot I, qui donne au graphe sa charpente.",
-      "depth": "définitoire",
-      "domain": "algèbre générale",
-      "id": "e463"
-    },
-    {
-      "from": "TCH1",
-      "to": "COUP",
-      "kind": "inclusion",
-      "theorem": "« Couples d'idéaux étrangers » : toujours un couple",
-      "statement": "« Couples d'idéaux étrangers » est habité par des objets qui sont un couple : inclusion définitoire du lot I, qui donne au graphe sa charpente.",
-      "depth": "définitoire",
-      "domain": "algèbre générale",
-      "id": "e464"
-    },
-    {
-      "from": "WIS1",
-      "to": "COUP",
-      "kind": "inclusion",
-      "theorem": "« Couples (groupe fini, puissance de premier divisant l'ordre) » : toujours un couple",
-      "statement": "« Couples (groupe fini, puissance de premier divisant l'ordre) » est habité par des objets qui sont un couple : inclusion définitoire du lot I, qui donne au graphe sa charpente.",
-      "depth": "définitoire",
-      "domain": "algèbre générale",
-      "id": "e465"
     },
     {
       "from": "WIS2",
@@ -6968,16 +6668,6 @@
       "id": "e467"
     },
     {
-      "from": "CQP1",
-      "to": "PAIR",
-      "kind": "inclusion",
-      "theorem": "« Paires de polyèdres à faces congruentes » : toujours une paire",
-      "statement": "« Paires de polyèdres à faces congruentes » est habité par des objets qui sont une paire : inclusion définitoire du lot I, qui donne au graphe sa charpente.",
-      "depth": "définitoire",
-      "domain": "algèbre générale",
-      "id": "e468"
-    },
-    {
       "from": "CQP2",
       "to": "PAIR",
       "kind": "inclusion",
@@ -6988,36 +6678,6 @@
       "id": "e469"
     },
     {
-      "from": "BNS1",
-      "to": "CYL1",
-      "kind": "inclusion",
-      "theorem": "« Groupes d'ordre pᵃqᵇ » : toujours un groupe",
-      "statement": "« Groupes d'ordre pᵃqᵇ » est habité par des objets qui sont un groupe : inclusion définitoire du lot I, qui donne au graphe sa charpente.",
-      "depth": "définitoire",
-      "domain": "théorie des groupes",
-      "id": "e470"
-    },
-    {
-      "from": "BNS2",
-      "to": "CYL1",
-      "kind": "inclusion",
-      "theorem": "« Groupes finis résolubles » : toujours un groupe",
-      "statement": "« Groupes finis résolubles » est habité par des objets qui sont un groupe : inclusion définitoire du lot I, qui donne au graphe sa charpente.",
-      "depth": "définitoire",
-      "domain": "théorie des groupes",
-      "id": "e471"
-    },
-    {
-      "from": "WDT1",
-      "to": "CYL1",
-      "kind": "inclusion",
-      "theorem": "« Groupes finis à tous les p-Sylow normaux » : toujours un groupe",
-      "statement": "« Groupes finis à tous les p-Sylow normaux » est habité par des objets qui sont un groupe : inclusion définitoire du lot I, qui donne au graphe sa charpente.",
-      "depth": "définitoire",
-      "domain": "théorie des groupes",
-      "id": "e472"
-    },
-    {
       "from": "WDT2",
       "to": "CYL1",
       "kind": "inclusion",
@@ -7026,16 +6686,6 @@
       "depth": "définitoire",
       "domain": "théorie des groupes",
       "id": "e473"
-    },
-    {
-      "from": "TRF1",
-      "to": "CYL1",
-      "kind": "inclusion",
-      "theorem": "« Groupes à p-Sylow central dans son normalisateur » : toujours un groupe",
-      "statement": "« Groupes à p-Sylow central dans son normalisateur » est habité par des objets qui sont un groupe : inclusion définitoire du lot I, qui donne au graphe sa charpente.",
-      "depth": "définitoire",
-      "domain": "théorie des groupes",
-      "id": "e474"
     },
     {
       "from": "TRF2",
@@ -7068,36 +6718,6 @@
       "id": "e477"
     },
     {
-      "from": "KF1",
-      "to": "KOR1",
-      "kind": "inclusion",
-      "theorem": "« Corps à clôture algébrique finie » : toujours un corps",
-      "statement": "« Corps à clôture algébrique finie » est habité par des objets qui sont un corps : inclusion définitoire du lot I, qui donne au graphe sa charpente.",
-      "depth": "définitoire",
-      "domain": "théorie des corps",
-      "id": "e478"
-    },
-    {
-      "from": "KF2",
-      "to": "KOR1",
-      "kind": "inclusion",
-      "theorem": "« Corps réels clos » : toujours un corps",
-      "statement": "« Corps réels clos » est habité par des objets qui sont un corps : inclusion définitoire du lot I, qui donne au graphe sa charpente.",
-      "depth": "définitoire",
-      "domain": "théorie des corps",
-      "id": "e479"
-    },
-    {
-      "from": "KF3",
-      "to": "KOR1",
-      "kind": "inclusion",
-      "theorem": "« Corps formellement réels » : toujours un corps",
-      "statement": "« Corps formellement réels » est habité par des objets qui sont un corps : inclusion définitoire du lot I, qui donne au graphe sa charpente.",
-      "depth": "définitoire",
-      "domain": "théorie des corps",
-      "id": "e480"
-    },
-    {
       "from": "KF4",
       "to": "KOR1",
       "kind": "inclusion",
@@ -7106,26 +6726,6 @@
       "depth": "définitoire",
       "domain": "théorie des corps",
       "id": "e481"
-    },
-    {
-      "from": "XZR",
-      "to": "APP",
-      "kind": "inclusion",
-      "theorem": "« Polynômes ayant au moins une racine (dans ℂ) » : toujours une application",
-      "statement": "« Polynômes ayant au moins une racine (dans ℂ) » est habité par des objets qui sont une application : inclusion définitoire du lot I, qui donne au graphe sa charpente.",
-      "depth": "définitoire",
-      "domain": "algèbre générale",
-      "id": "e482"
-    },
-    {
-      "from": "NLI1",
-      "to": "APP",
-      "kind": "inclusion",
-      "theorem": "« Fonctions holomorphes non identiquement nulles » : toujours une application",
-      "statement": "« Fonctions holomorphes non identiquement nulles » est habité par des objets qui sont une application : inclusion définitoire du lot I, qui donne au graphe sa charpente.",
-      "depth": "définitoire",
-      "domain": "algèbre générale",
-      "id": "e483"
     },
     {
       "from": "TOPO",
@@ -7218,26 +6818,6 @@
       "id": "e493"
     },
     {
-      "from": "SERI",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Séries » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Séries » ⊆ Ensembles est une inclusion définitoire. Raccord du lot I : le hub rejoint le cercle-père du graphe.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e494"
-    },
-    {
-      "from": "SUIT",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Suites » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Suites » ⊆ Ensembles est une inclusion définitoire. Raccord du lot I : le hub rejoint le cercle-père du graphe.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e495"
-    },
-    {
       "from": "PAIR",
       "to": "ZRM1",
       "kind": "inclusion",
@@ -7298,66 +6878,6 @@
       "id": "e502"
     },
     {
-      "from": "DEC",
-      "to": "APP",
-      "kind": "inclusion",
-      "theorem": "« Dérivables sauf sur un dénombrable » : toujours une application",
-      "statement": "« Dérivables sauf sur un dénombrable » est habité par des objets qui sont une application : chaînon du lot J, qui remplace le fourre-tout « Ensembles » par une hiérarchie lisible.",
-      "depth": "définitoire",
-      "domain": "algèbre générale",
-      "id": "e503"
-    },
-    {
-      "from": "B",
-      "to": "APP",
-      "kind": "inclusion",
-      "theorem": "« Fonctions réelles bornées » : toujours une application",
-      "statement": "« Fonctions réelles bornées » est habité par des objets qui sont une application : chaînon du lot J, qui remplace le fourre-tout « Ensembles » par une hiérarchie lisible.",
-      "depth": "définitoire",
-      "domain": "algèbre générale",
-      "id": "e504"
-    },
-    {
-      "from": "LIM",
-      "to": "APP",
-      "kind": "inclusion",
-      "theorem": "« Fonctions à limites finies en ±∞ » : toujours une application",
-      "statement": "« Fonctions à limites finies en ±∞ » est habité par des objets qui sont une application : chaînon du lot J, qui remplace le fourre-tout « Ensembles » par une hiérarchie lisible.",
-      "depth": "définitoire",
-      "domain": "algèbre générale",
-      "id": "e505"
-    },
-    {
-      "from": "IVP",
-      "to": "APP",
-      "kind": "inclusion",
-      "theorem": "« Fonctions de Darboux » : toujours une application",
-      "statement": "« Fonctions de Darboux » est habité par des objets qui sont une application : chaînon du lot J, qui remplace le fourre-tout « Ensembles » par une hiérarchie lisible.",
-      "depth": "définitoire",
-      "domain": "algèbre générale",
-      "id": "e506"
-    },
-    {
-      "from": "CARDE",
-      "to": "APP",
-      "kind": "inclusion",
-      "theorem": "« Fonctions à discontinuités dénombrables » : toujours une application",
-      "statement": "« Fonctions à discontinuités dénombrables » est habité par des objets qui sont une application : chaînon du lot J, qui remplace le fourre-tout « Ensembles » par une hiérarchie lisible.",
-      "depth": "définitoire",
-      "domain": "algèbre générale",
-      "id": "e507"
-    },
-    {
-      "from": "RSEG",
-      "to": "APP",
-      "kind": "inclusion",
-      "theorem": "« Fonctions Riemann-intégrables sur tout segment » : toujours une application",
-      "statement": "« Fonctions Riemann-intégrables sur tout segment » est habité par des objets qui sont une application : chaînon du lot J, qui remplace le fourre-tout « Ensembles » par une hiérarchie lisible.",
-      "depth": "définitoire",
-      "domain": "algèbre générale",
-      "id": "e508"
-    },
-    {
       "from": "GAM2",
       "to": "APP",
       "kind": "inclusion",
@@ -7378,76 +6898,6 @@
       "id": "e510"
     },
     {
-      "from": "BG2",
-      "to": "APP",
-      "kind": "inclusion",
-      "theorem": "« Fonctions continûment restreignables à une partie dense » : toujours une application",
-      "statement": "« Fonctions continûment restreignables à une partie dense » est habité par des objets qui sont une application : chaînon du lot J, qui remplace le fourre-tout « Ensembles » par une hiérarchie lisible.",
-      "depth": "définitoire",
-      "domain": "algèbre générale",
-      "id": "e511"
-    },
-    {
-      "from": "BM2",
-      "to": "APP",
-      "kind": "inclusion",
-      "theorem": "« Fonctionnelles a(x₀, ·) » : toujours une application",
-      "statement": "« Fonctionnelles a(x₀, ·) » est habité par des objets qui sont une application : chaînon du lot J, qui remplace le fourre-tout « Ensembles » par une hiérarchie lisible.",
-      "depth": "définitoire",
-      "domain": "algèbre générale",
-      "id": "e512"
-    },
-    {
-      "from": "ME3",
-      "to": "APP",
-      "kind": "inclusion",
-      "theorem": "« Fonctions presque continues » : toujours une application",
-      "statement": "« Fonctions presque continues » est habité par des objets qui sont une application : chaînon du lot J, qui remplace le fourre-tout « Ensembles » par une hiérarchie lisible.",
-      "depth": "définitoire",
-      "domain": "algèbre générale",
-      "id": "e513"
-    },
-    {
-      "from": "BU2",
-      "to": "APP",
-      "kind": "inclusion",
-      "theorem": "« Fonctions identifiant deux points antipodaux » : toujours une application",
-      "statement": "« Fonctions identifiant deux points antipodaux » est habité par des objets qui sont une application : chaînon du lot J, qui remplace le fourre-tout « Ensembles » par une hiérarchie lisible.",
-      "depth": "définitoire",
-      "domain": "algèbre générale",
-      "id": "e514"
-    },
-    {
-      "from": "TB2",
-      "to": "APP",
-      "kind": "inclusion",
-      "theorem": "« Fonctions bornées atteignant leurs bornes » : toujours une application",
-      "statement": "« Fonctions bornées atteignant leurs bornes » est habité par des objets qui sont une application : chaînon du lot J, qui remplace le fourre-tout « Ensembles » par une hiérarchie lisible.",
-      "depth": "définitoire",
-      "domain": "algèbre générale",
-      "id": "e515"
-    },
-    {
-      "from": "CHD2",
-      "to": "APP",
-      "kind": "inclusion",
-      "theorem": "« Limites uniformes de polynômes à coefficients entiers » : toujours une application",
-      "statement": "« Limites uniformes de polynômes à coefficients entiers » est habité par des objets qui sont une application : chaînon du lot J, qui remplace le fourre-tout « Ensembles » par une hiérarchie lisible.",
-      "depth": "définitoire",
-      "domain": "algèbre générale",
-      "id": "e516"
-    },
-    {
-      "from": "WRS2",
-      "to": "APP",
-      "kind": "inclusion",
-      "theorem": "« Limites uniformes de polynômes sur un segment » : toujours une application",
-      "statement": "« Limites uniformes de polynômes sur un segment » est habité par des objets qui sont une application : chaînon du lot J, qui remplace le fourre-tout « Ensembles » par une hiérarchie lisible.",
-      "depth": "définitoire",
-      "domain": "algèbre générale",
-      "id": "e517"
-    },
-    {
       "from": "IN2",
       "to": "APP",
       "kind": "inclusion",
@@ -7458,16 +6908,6 @@
       "id": "e518"
     },
     {
-      "from": "LN2",
-      "to": "APP",
-      "kind": "inclusion",
-      "theorem": "« Applications linéaires bornées sur la boule unité » : toujours une application",
-      "statement": "« Applications linéaires bornées sur la boule unité » est habité par des objets qui sont une application : chaînon du lot J, qui remplace le fourre-tout « Ensembles » par une hiérarchie lisible.",
-      "depth": "définitoire",
-      "domain": "algèbre générale",
-      "id": "e519"
-    },
-    {
       "from": "NLI2",
       "to": "APP",
       "kind": "inclusion",
@@ -7476,16 +6916,6 @@
       "depth": "définitoire",
       "domain": "algèbre générale",
       "id": "e520"
-    },
-    {
-      "from": "LA2",
-      "to": "APP",
-      "kind": "inclusion",
-      "theorem": "« Fonctions développables en série de Laurent » : toujours une application",
-      "statement": "« Fonctions développables en série de Laurent » est habité par des objets qui sont une application : chaînon du lot J, qui remplace le fourre-tout « Ensembles » par une hiérarchie lisible.",
-      "depth": "définitoire",
-      "domain": "algèbre générale",
-      "id": "e521"
     },
     {
       "from": "WSC2",
@@ -7538,16 +6968,6 @@
       "id": "e526"
     },
     {
-      "from": "BJ4",
-      "to": "APP",
-      "kind": "inclusion",
-      "theorem": "« Homéomorphismes monotones sur leur image » : toujours une application",
-      "statement": "« Homéomorphismes monotones sur leur image » est habité par des objets qui sont une application : chaînon du lot J, qui remplace le fourre-tout « Ensembles » par une hiérarchie lisible.",
-      "depth": "définitoire",
-      "domain": "algèbre générale",
-      "id": "e527"
-    },
-    {
       "from": "CNT2",
       "to": "APP",
       "kind": "inclusion",
@@ -7556,36 +6976,6 @@
       "depth": "définitoire",
       "domain": "algèbre générale",
       "id": "e528"
-    },
-    {
-      "from": "TC",
-      "to": "APP",
-      "kind": "inclusion",
-      "theorem": "« Fonctions topologiquement continues » : toujours une application",
-      "statement": "« Fonctions topologiquement continues » est habité par des objets qui sont une application : chaînon du lot J, qui remplace le fourre-tout « Ensembles » par une hiérarchie lisible.",
-      "depth": "définitoire",
-      "domain": "algèbre générale",
-      "id": "e529"
-    },
-    {
-      "from": "BJ2",
-      "to": "APP",
-      "kind": "inclusion",
-      "theorem": "Une bijection est une application",
-      "statement": "Toute bijection d'un segment sur un segment est en particulier une application : chaînon du lot J.",
-      "depth": "immédiat",
-      "domain": "algèbre générale",
-      "id": "e530"
-    },
-    {
-      "from": "BV2",
-      "to": "APP",
-      "kind": "inclusion",
-      "theorem": "« Champs de vecteurs s'annulant quelque part » : toujours une application",
-      "statement": "Un champ de vecteurs est une application (de la variété vers son fibré tangent) : chaînon du lot J.",
-      "depth": "définitoire",
-      "domain": "topologie différentielle",
-      "id": "e531"
     },
     {
       "from": "BR2",
@@ -7888,16 +7278,6 @@
       "id": "e561"
     },
     {
-      "from": "VRG2",
-      "to": "FIGU",
-      "kind": "inclusion",
-      "theorem": "« Quadrilatères de Varignon » : toujours une figure géométrique",
-      "statement": "« Quadrilatères de Varignon » est habité par des objets qui sont une figure géométrique : chaînon du lot J, qui remplace le fourre-tout « Ensembles » par une hiérarchie lisible.",
-      "depth": "définitoire",
-      "domain": "géométrie euclidienne",
-      "id": "e562"
-    },
-    {
       "from": "CKD2",
       "to": "FIGU",
       "kind": "inclusion",
@@ -8039,16 +7419,6 @@
       "id": "e584"
     },
     {
-      "from": "MAT",
-      "to": "APP",
-      "kind": "inclusion",
-      "theorem": "« Matrices à coefficients réels » : toujours une application",
-      "statement": "Une matrice réelle se lit comme un tableau de ses coefficients, c'est-à-dire une application des couples d'indices vers ℝ : chaînon du lot J vers le hub « Applications », qui rend composite son raccord direct à « Ensembles ».",
-      "depth": "définitoire",
-      "domain": "algèbre générale",
-      "id": "e586"
-    },
-    {
       "from": "TRIB",
       "to": "ZRM1",
       "kind": "inclusion",
@@ -8069,16 +7439,6 @@
       "id": "e588"
     },
     {
-      "from": "ADO2",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Sous-algèbres de Lie de gl_n » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Sous-algèbres de Lie de gl_n » ⊆ Ensembles est une inclusion définitoire. Raccord provisoire (v0.15.0) : le hub mécanique « Familles » est supprimé, le vrai parent de ce nœud reste à choisir.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e589"
-    },
-    {
       "from": "SG2",
       "to": "ZRM1",
       "kind": "inclusion",
@@ -8087,46 +7447,6 @@
       "depth": "définitoire",
       "domain": "théorie des ensembles",
       "id": "e590"
-    },
-    {
-      "from": "BI2",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Familles complétées en une base » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Familles complétées en une base » ⊆ Ensembles est une inclusion définitoire. Raccord provisoire (v0.15.0) : le hub mécanique « Familles » est supprimé, le vrai parent de ce nœud reste à choisir.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e591"
-    },
-    {
-      "from": "AXC2",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Familles admettant une fonction de choix » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Familles admettant une fonction de choix » ⊆ Ensembles est une inclusion définitoire. Raccord provisoire (v0.15.0) : le hub mécanique « Familles » est supprimé, le vrai parent de ce nœud reste à choisir.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e592"
-    },
-    {
-      "from": "TVB2",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Familles Tverberg-partitionnables » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Familles Tverberg-partitionnables » ⊆ Ensembles est une inclusion définitoire. Raccord provisoire (v0.15.0) : le hub mécanique « Familles » est supprimé, le vrai parent de ce nœud reste à choisir.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e593"
-    },
-    {
-      "from": "TYC2",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Familles à produit compact » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Familles à produit compact » ⊆ Ensembles est une inclusion définitoire. Raccord provisoire (v0.15.0) : le hub mécanique « Familles » est supprimé, le vrai parent de ce nœud reste à choisir.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e594"
     },
     {
       "from": "HTQ2",
@@ -8157,6 +7477,636 @@
       "depth": "immédiat",
       "domain": "analyse complexe",
       "id": "e597"
+    },
+    {
+      "from": "FTOP",
+      "to": "APP",
+      "kind": "inclusion",
+      "theorem": "« Fonctions entre espaces topologiques » ⊆ « Applications »",
+      "statement": "Tout élément de « Fonctions entre espaces topologiques » est un élément de « Applications » : inclusion définitoire (v0.16.0).",
+      "depth": "définitoire",
+      "domain": "topologie",
+      "id": "e598"
+    },
+    {
+      "from": "FMET",
+      "to": "FTOP",
+      "kind": "inclusion",
+      "theorem": "« Fonctions entre espaces métriques » ⊆ « Fonctions entre espaces topologiques »",
+      "statement": "Tout élément de « Fonctions entre espaces métriques » est un élément de « Fonctions entre espaces topologiques » : inclusion définitoire (v0.16.0).",
+      "depth": "définitoire",
+      "domain": "topologie métrique",
+      "id": "e599"
+    },
+    {
+      "from": "FVEC",
+      "to": "FMET",
+      "kind": "inclusion",
+      "theorem": "« Fonctions vectorielles » ⊆ « Fonctions entre espaces métriques »",
+      "statement": "Tout élément de « Fonctions vectorielles » est un élément de « Fonctions entre espaces métriques » : inclusion définitoire (v0.16.0).",
+      "depth": "définitoire",
+      "domain": "topologie vectorielle",
+      "id": "e600"
+    },
+    {
+      "from": "FNC",
+      "to": "FVEC",
+      "kind": "inclusion",
+      "theorem": "« Fonctions complexes » ⊆ « Fonctions vectorielles »",
+      "statement": "Tout élément de « Fonctions complexes » est un élément de « Fonctions vectorielles » : inclusion définitoire (v0.16.0).",
+      "depth": "définitoire",
+      "domain": "analyse complexe",
+      "id": "e601"
+    },
+    {
+      "from": "HOL",
+      "to": "FMET",
+      "kind": "inclusion",
+      "theorem": "« Fonctions holomorphes » ⊆ « Fonctions entre espaces métriques »",
+      "statement": "Tout élément de « Fonctions holomorphes » est un élément de « Fonctions entre espaces métriques » : inclusion définitoire (v0.16.0).",
+      "depth": "définitoire",
+      "domain": "analyse complexe",
+      "id": "e602"
+    },
+    {
+      "from": "ALIN",
+      "to": "APP",
+      "kind": "inclusion",
+      "theorem": "« Applications linéaires » ⊆ « Applications »",
+      "statement": "Tout élément de « Applications linéaires » est un élément de « Applications » : inclusion définitoire (v0.16.0).",
+      "depth": "définitoire",
+      "domain": "algèbre linéaire",
+      "id": "e603"
+    },
+    {
+      "from": "LIEG",
+      "to": "ZRM1",
+      "kind": "inclusion",
+      "theorem": "« Algèbres de Lie » ⊆ « Ensembles »",
+      "statement": "Tout élément de « Algèbres de Lie » est un élément de « Ensembles » : inclusion définitoire (v0.16.0).",
+      "depth": "définitoire",
+      "domain": "algèbre bilinéaire",
+      "id": "e604"
+    },
+    {
+      "from": "PCAU",
+      "to": "ZRM1",
+      "kind": "inclusion",
+      "theorem": "« Problèmes de Cauchy » ⊆ « Ensembles »",
+      "statement": "Tout élément de « Problèmes de Cauchy » est un élément de « Ensembles » : inclusion définitoire (v0.16.0).",
+      "depth": "définitoire",
+      "domain": "analyse des équations différentielles",
+      "id": "e605"
+    },
+    {
+      "from": "F",
+      "to": "FVEC",
+      "kind": "inclusion",
+      "theorem": "« Fonctions réelles » ⊆ « Fonctions vectorielles »",
+      "statement": "Tout élément de « Fonctions réelles » est un élément de « Fonctions vectorielles » : inclusion définitoire (v0.16.0).",
+      "depth": "définitoire",
+      "domain": "analyse réelle",
+      "id": "e606"
+    },
+    {
+      "from": "FC",
+      "to": "FVEC",
+      "kind": "inclusion",
+      "theorem": "« Fonctions vectorielles continues » ⊆ « Fonctions vectorielles »",
+      "statement": "Tout élément de « Fonctions vectorielles continues » est un élément de « Fonctions vectorielles » : inclusion définitoire (v0.16.0).",
+      "depth": "définitoire",
+      "domain": "topologie vectorielle",
+      "id": "e607"
+    },
+    {
+      "from": "FMC",
+      "to": "FMET",
+      "kind": "inclusion",
+      "theorem": "« Fonctions métriques continues » ⊆ « Fonctions entre espaces métriques »",
+      "statement": "Tout élément de « Fonctions métriques continues » est un élément de « Fonctions entre espaces métriques » : inclusion définitoire (v0.16.0).",
+      "depth": "définitoire",
+      "domain": "topologie métrique",
+      "id": "e608"
+    },
+    {
+      "from": "TC",
+      "to": "FTOP",
+      "kind": "inclusion",
+      "theorem": "« Fonctions topologiquement continues » ⊆ « Fonctions entre espaces topologiques »",
+      "statement": "Tout élément de « Fonctions topologiquement continues » est un élément de « Fonctions entre espaces topologiques » : inclusion définitoire (v0.16.0).",
+      "depth": "définitoire",
+      "domain": "topologie",
+      "id": "e609"
+    },
+    {
+      "from": "DEC",
+      "to": "F",
+      "kind": "inclusion",
+      "theorem": "« Dérivables sauf sur un dénombrable » ⊆ « Fonctions réelles »",
+      "statement": "Tout élément de « Dérivables sauf sur un dénombrable » est un élément de « Fonctions réelles » : inclusion définitoire (v0.16.0).",
+      "depth": "définitoire",
+      "domain": "analyse réelle",
+      "id": "e610"
+    },
+    {
+      "from": "B",
+      "to": "F",
+      "kind": "inclusion",
+      "theorem": "« Fonctions réelles bornées » ⊆ « Fonctions réelles »",
+      "statement": "Tout élément de « Fonctions réelles bornées » est un élément de « Fonctions réelles » : inclusion définitoire (v0.16.0).",
+      "depth": "définitoire",
+      "domain": "analyse réelle",
+      "id": "e611"
+    },
+    {
+      "from": "LIM",
+      "to": "F",
+      "kind": "inclusion",
+      "theorem": "« Fonctions à limites finies en ±∞ » ⊆ « Fonctions réelles »",
+      "statement": "Tout élément de « Fonctions à limites finies en ±∞ » est un élément de « Fonctions réelles » : inclusion définitoire (v0.16.0).",
+      "depth": "définitoire",
+      "domain": "analyse réelle",
+      "id": "e612"
+    },
+    {
+      "from": "IVP",
+      "to": "F",
+      "kind": "inclusion",
+      "theorem": "« Fonctions de Darboux » ⊆ « Fonctions réelles »",
+      "statement": "Tout élément de « Fonctions de Darboux » est un élément de « Fonctions réelles » : inclusion définitoire (v0.16.0).",
+      "depth": "définitoire",
+      "domain": "analyse réelle",
+      "id": "e613"
+    },
+    {
+      "from": "CARDE",
+      "to": "F",
+      "kind": "inclusion",
+      "theorem": "« Fonctions à discontinuités dénombrables » ⊆ « Fonctions réelles »",
+      "statement": "Tout élément de « Fonctions à discontinuités dénombrables » est un élément de « Fonctions réelles » : inclusion définitoire (v0.16.0).",
+      "depth": "définitoire",
+      "domain": "analyse réelle",
+      "id": "e614"
+    },
+    {
+      "from": "RSEG",
+      "to": "F",
+      "kind": "inclusion",
+      "theorem": "« Fonctions Riemann-intégrables sur tout segment » ⊆ « Fonctions réelles »",
+      "statement": "Tout élément de « Fonctions Riemann-intégrables sur tout segment » est un élément de « Fonctions réelles » : inclusion définitoire (v0.16.0).",
+      "depth": "définitoire",
+      "domain": "analyse réelle",
+      "id": "e615"
+    },
+    {
+      "from": "X2",
+      "to": "HOL",
+      "kind": "inclusion",
+      "theorem": "« Fonctions entières » ⊆ « Fonctions holomorphes »",
+      "statement": "Tout élément de « Fonctions entières » est un élément de « Fonctions holomorphes » : inclusion définitoire (v0.16.0).",
+      "depth": "définitoire",
+      "domain": "analyse complexe",
+      "id": "e617"
+    },
+    {
+      "from": "X6",
+      "to": "FNC",
+      "kind": "inclusion",
+      "theorem": "« Fonctions continues ℂ → ℂ » ⊆ « Fonctions complexes »",
+      "statement": "Tout élément de « Fonctions continues ℂ → ℂ » est un élément de « Fonctions complexes » : inclusion définitoire (v0.16.0).",
+      "depth": "définitoire",
+      "domain": "analyse complexe",
+      "id": "e618"
+    },
+    {
+      "from": "X8",
+      "to": "FNC",
+      "kind": "inclusion",
+      "theorem": "« Fonctions bornées ℂ → ℂ » ⊆ « Fonctions complexes »",
+      "statement": "Tout élément de « Fonctions bornées ℂ → ℂ » est un élément de « Fonctions complexes » : inclusion définitoire (v0.16.0).",
+      "depth": "définitoire",
+      "domain": "analyse complexe",
+      "id": "e619"
+    },
+    {
+      "from": "D4",
+      "to": "D",
+      "kind": "inclusion",
+      "theorem": "« Fonctions convexes dérivables » ⊆ « Fonctions dérivables »",
+      "statement": "Tout élément de « Fonctions convexes dérivables » est un élément de « Fonctions dérivables » : inclusion définitoire (v0.16.0).",
+      "depth": "définitoire",
+      "domain": "analyse réelle",
+      "id": "e621"
+    },
+    {
+      "from": "D5",
+      "to": "D",
+      "kind": "inclusion",
+      "theorem": "« Fonctions à dérivée strictement positive » ⊆ « Fonctions dérivables »",
+      "statement": "Tout élément de « Fonctions à dérivée strictement positive » est un élément de « Fonctions dérivables » : inclusion définitoire (v0.16.0).",
+      "depth": "définitoire",
+      "domain": "analyse réelle",
+      "id": "e622"
+    },
+    {
+      "from": "XZR",
+      "to": "X3",
+      "kind": "inclusion",
+      "theorem": "« Polynômes ayant au moins une racine (dans ℂ) » ⊆ « Polynômes complexes »",
+      "statement": "Tout élément de « Polynômes ayant au moins une racine (dans ℂ) » est un élément de « Polynômes complexes » : inclusion définitoire (v0.16.0).",
+      "depth": "définitoire",
+      "domain": "analyse complexe",
+      "id": "e623"
+    },
+    {
+      "from": "NLI1",
+      "to": "HOL",
+      "kind": "inclusion",
+      "theorem": "« Fonctions holomorphes non identiquement nulles » ⊆ « Fonctions holomorphes »",
+      "statement": "Tout élément de « Fonctions holomorphes non identiquement nulles » est un élément de « Fonctions holomorphes » : inclusion définitoire (v0.16.0).",
+      "depth": "définitoire",
+      "domain": "analyse complexe",
+      "id": "e624"
+    },
+    {
+      "from": "LA2",
+      "to": "HOL",
+      "kind": "inclusion",
+      "theorem": "« Fonctions développables en série de Laurent » ⊆ « Fonctions holomorphes »",
+      "statement": "Tout élément de « Fonctions développables en série de Laurent » est un élément de « Fonctions holomorphes » : inclusion définitoire (v0.16.0).",
+      "depth": "définitoire",
+      "domain": "analyse complexe",
+      "id": "e625"
+    },
+    {
+      "from": "WSC1",
+      "to": "HOL",
+      "kind": "inclusion",
+      "theorem": "« Fonctions holomorphes à singularité essentielle » ⊆ « Fonctions holomorphes »",
+      "statement": "Tout élément de « Fonctions holomorphes à singularité essentielle » est un élément de « Fonctions holomorphes » : inclusion définitoire (v0.16.0).",
+      "depth": "définitoire",
+      "domain": "analyse complexe",
+      "id": "e626"
+    },
+    {
+      "from": "LN1",
+      "to": "ALIN",
+      "kind": "inclusion",
+      "theorem": "« Applications linéaires continues » ⊆ « Applications linéaires »",
+      "statement": "Tout élément de « Applications linéaires continues » est un élément de « Applications linéaires » : inclusion définitoire (v0.16.0).",
+      "depth": "définitoire",
+      "domain": "topologie vectorielle",
+      "id": "e627"
+    },
+    {
+      "from": "LN1",
+      "to": "FC",
+      "kind": "inclusion",
+      "theorem": "« Applications linéaires continues » ⊆ « Fonctions vectorielles continues »",
+      "statement": "Tout élément de « Applications linéaires continues » est un élément de « Fonctions vectorielles continues » : inclusion définitoire (v0.16.0).",
+      "depth": "définitoire",
+      "domain": "topologie vectorielle",
+      "id": "e628"
+    },
+    {
+      "from": "LN2",
+      "to": "ALIN",
+      "kind": "inclusion",
+      "theorem": "« Applications linéaires bornées sur la boule unité » ⊆ « Applications linéaires »",
+      "statement": "Tout élément de « Applications linéaires bornées sur la boule unité » est un élément de « Applications linéaires » : inclusion définitoire (v0.16.0).",
+      "depth": "définitoire",
+      "domain": "topologie vectorielle",
+      "id": "e629"
+    },
+    {
+      "from": "L1",
+      "to": "LN1",
+      "kind": "inclusion",
+      "theorem": "« Matrices carrées complexes (toutes tailles) » ⊆ « Applications linéaires continues »",
+      "statement": "Tout élément de « Matrices carrées complexes (toutes tailles) » est un élément de « Applications linéaires continues » : inclusion définitoire (v0.16.0).",
+      "depth": "définitoire",
+      "domain": "algèbre linéaire",
+      "id": "e630"
+    },
+    {
+      "from": "MAT",
+      "to": "L1",
+      "kind": "inclusion",
+      "theorem": "« Matrices à coefficients réels » ⊆ « Matrices carrées complexes (toutes tailles) »",
+      "statement": "Tout élément de « Matrices à coefficients réels » est un élément de « Matrices carrées complexes (toutes tailles) » : inclusion définitoire (v0.16.0).",
+      "depth": "définitoire",
+      "domain": "algèbre linéaire",
+      "id": "e631"
+    },
+    {
+      "from": "BM1",
+      "to": "LN1",
+      "kind": "inclusion",
+      "theorem": "« Formes linéaires continues sur H » ⊆ « Applications linéaires continues »",
+      "statement": "Tout élément de « Formes linéaires continues sur H » est un élément de « Applications linéaires continues » : inclusion définitoire (v0.16.0).",
+      "depth": "définitoire",
+      "domain": "algèbre bilinéaire",
+      "id": "e632"
+    },
+    {
+      "from": "BM2",
+      "to": "ALIN",
+      "kind": "inclusion",
+      "theorem": "« Fonctionnelles a(x₀, ·) » ⊆ « Applications linéaires »",
+      "statement": "Tout élément de « Fonctionnelles a(x₀, ·) » est un élément de « Applications linéaires » : inclusion définitoire (v0.16.0).",
+      "depth": "définitoire",
+      "domain": "algèbre bilinéaire",
+      "id": "e633"
+    },
+    {
+      "from": "BU1",
+      "to": "FMC",
+      "kind": "inclusion",
+      "theorem": "« Fonctions continues de Sⁿ dans ℝⁿ » ⊆ « Fonctions métriques continues »",
+      "statement": "Tout élément de « Fonctions continues de Sⁿ dans ℝⁿ » est un élément de « Fonctions métriques continues » : inclusion définitoire (v0.16.0).",
+      "depth": "définitoire",
+      "domain": "topologie algébrique",
+      "id": "e634"
+    },
+    {
+      "from": "BU2",
+      "to": "FMET",
+      "kind": "inclusion",
+      "theorem": "« Fonctions identifiant deux points antipodaux » ⊆ « Fonctions entre espaces métriques »",
+      "statement": "Tout élément de « Fonctions identifiant deux points antipodaux » est un élément de « Fonctions entre espaces métriques » : inclusion définitoire (v0.16.0).",
+      "depth": "définitoire",
+      "domain": "topologie algébrique",
+      "id": "e635"
+    },
+    {
+      "from": "BV1",
+      "to": "FMC",
+      "kind": "inclusion",
+      "theorem": "« Champs de vecteurs continus tangents à la sphère » ⊆ « Fonctions métriques continues »",
+      "statement": "Tout élément de « Champs de vecteurs continus tangents à la sphère » est un élément de « Fonctions métriques continues » : inclusion définitoire (v0.16.0).",
+      "depth": "définitoire",
+      "domain": "topologie différentielle",
+      "id": "e636"
+    },
+    {
+      "from": "BV2",
+      "to": "FMET",
+      "kind": "inclusion",
+      "theorem": "« Champs de vecteurs s'annulant quelque part » ⊆ « Fonctions entre espaces métriques »",
+      "statement": "Tout élément de « Champs de vecteurs s'annulant quelque part » est un élément de « Fonctions entre espaces métriques » : inclusion définitoire (v0.16.0).",
+      "depth": "définitoire",
+      "domain": "topologie différentielle",
+      "id": "e637"
+    },
+    {
+      "from": "TB1",
+      "to": "FMC",
+      "kind": "inclusion",
+      "theorem": "« Fonctions continues sur un compact » ⊆ « Fonctions métriques continues »",
+      "statement": "Tout élément de « Fonctions continues sur un compact » est un élément de « Fonctions métriques continues » : inclusion définitoire (v0.16.0).",
+      "depth": "définitoire",
+      "domain": "topologie métrique",
+      "id": "e638"
+    },
+    {
+      "from": "TB2",
+      "to": "FMET",
+      "kind": "inclusion",
+      "theorem": "« Fonctions bornées atteignant leurs bornes » ⊆ « Fonctions entre espaces métriques »",
+      "statement": "Tout élément de « Fonctions bornées atteignant leurs bornes » est un élément de « Fonctions entre espaces métriques » : inclusion définitoire (v0.16.0).",
+      "depth": "définitoire",
+      "domain": "topologie métrique",
+      "id": "e639"
+    },
+    {
+      "from": "WRS1",
+      "to": "FMC",
+      "kind": "inclusion",
+      "theorem": "« Fonctions continues sur un segment » ⊆ « Fonctions métriques continues »",
+      "statement": "Tout élément de « Fonctions continues sur un segment » est un élément de « Fonctions métriques continues » : inclusion définitoire (v0.16.0).",
+      "depth": "définitoire",
+      "domain": "analyse réelle",
+      "id": "e640"
+    },
+    {
+      "from": "WRS2",
+      "to": "FMET",
+      "kind": "inclusion",
+      "theorem": "« Limites uniformes de polynômes sur un segment » ⊆ « Fonctions entre espaces métriques »",
+      "statement": "Tout élément de « Limites uniformes de polynômes sur un segment » est un élément de « Fonctions entre espaces métriques » : inclusion définitoire (v0.16.0).",
+      "depth": "définitoire",
+      "domain": "analyse réelle",
+      "id": "e641"
+    },
+    {
+      "from": "CHD1",
+      "to": "WRS1",
+      "kind": "inclusion",
+      "theorem": "« Fonctions continues sur un segment sans entiers » ⊆ « Fonctions continues sur un segment »",
+      "statement": "Tout élément de « Fonctions continues sur un segment sans entiers » est un élément de « Fonctions continues sur un segment » : inclusion définitoire (v0.16.0).",
+      "depth": "définitoire",
+      "domain": "analyse réelle",
+      "id": "e642"
+    },
+    {
+      "from": "CHD2",
+      "to": "FMET",
+      "kind": "inclusion",
+      "theorem": "« Limites uniformes de polynômes à coefficients entiers » ⊆ « Fonctions entre espaces métriques »",
+      "statement": "Tout élément de « Limites uniformes de polynômes à coefficients entiers » est un élément de « Fonctions entre espaces métriques » : inclusion définitoire (v0.16.0).",
+      "depth": "définitoire",
+      "domain": "analyse réelle",
+      "id": "e643"
+    },
+    {
+      "from": "ME3",
+      "to": "FMET",
+      "kind": "inclusion",
+      "theorem": "« Fonctions presque continues » ⊆ « Fonctions entre espaces métriques »",
+      "statement": "Tout élément de « Fonctions presque continues » est un élément de « Fonctions entre espaces métriques » : inclusion définitoire (v0.16.0).",
+      "depth": "définitoire",
+      "domain": "théorie de la mesure",
+      "id": "e644"
+    },
+    {
+      "from": "BJ2",
+      "to": "FMET",
+      "kind": "inclusion",
+      "theorem": "« Bijections d'un segment sur un segment » ⊆ « Fonctions entre espaces métriques »",
+      "statement": "Tout élément de « Bijections d'un segment sur un segment » est un élément de « Fonctions entre espaces métriques » : inclusion définitoire (v0.16.0).",
+      "depth": "définitoire",
+      "domain": "analyse réelle",
+      "id": "e645"
+    },
+    {
+      "from": "BJ4",
+      "to": "FMC",
+      "kind": "inclusion",
+      "theorem": "« Homéomorphismes monotones sur leur image » ⊆ « Fonctions métriques continues »",
+      "statement": "Tout élément de « Homéomorphismes monotones sur leur image » est un élément de « Fonctions métriques continues » : inclusion définitoire (v0.16.0).",
+      "depth": "définitoire",
+      "domain": "analyse réelle",
+      "id": "e646"
+    },
+    {
+      "from": "BI2",
+      "to": "APP",
+      "kind": "inclusion",
+      "theorem": "« Familles complétées en une base » ⊆ « Applications »",
+      "statement": "Tout élément de « Familles complétées en une base » est un élément de « Applications » : inclusion définitoire (v0.16.0).",
+      "depth": "définitoire",
+      "domain": "algèbre linéaire",
+      "id": "e647"
+    },
+    {
+      "from": "AXC2",
+      "to": "APP",
+      "kind": "inclusion",
+      "theorem": "« Familles admettant une fonction de choix » ⊆ « Applications »",
+      "statement": "Tout élément de « Familles admettant une fonction de choix » est un élément de « Applications » : inclusion définitoire (v0.16.0).",
+      "depth": "définitoire",
+      "domain": "théorie des ensembles",
+      "id": "e648"
+    },
+    {
+      "from": "TVB2",
+      "to": "APP",
+      "kind": "inclusion",
+      "theorem": "« Familles Tverberg-partitionnables » ⊆ « Applications »",
+      "statement": "Tout élément de « Familles Tverberg-partitionnables » est un élément de « Applications » : inclusion définitoire (v0.16.0).",
+      "depth": "définitoire",
+      "domain": "géométrie affine",
+      "id": "e649"
+    },
+    {
+      "from": "TYC2",
+      "to": "APP",
+      "kind": "inclusion",
+      "theorem": "« Familles à produit compact » ⊆ « Applications »",
+      "statement": "Tout élément de « Familles à produit compact » est un élément de « Applications » : inclusion définitoire (v0.16.0).",
+      "depth": "définitoire",
+      "domain": "topologie",
+      "id": "e650"
+    },
+    {
+      "from": "ADO2",
+      "to": "LIEG",
+      "kind": "inclusion",
+      "theorem": "« Sous-algèbres de Lie de gl_n » ⊆ « Algèbres de Lie »",
+      "statement": "Tout élément de « Sous-algèbres de Lie de gl_n » est un élément de « Algèbres de Lie » : inclusion définitoire (v0.16.0).",
+      "depth": "définitoire",
+      "domain": "algèbre bilinéaire",
+      "id": "e651"
+    },
+    {
+      "from": "SUIT",
+      "to": "APP",
+      "kind": "inclusion",
+      "theorem": "« Suites » ⊆ « Applications »",
+      "statement": "Tout élément de « Suites » est un élément de « Applications » : inclusion définitoire (v0.16.0).",
+      "depth": "définitoire",
+      "domain": "analyse des suites réelles",
+      "id": "e652"
+    },
+    {
+      "from": "SERI",
+      "to": "SUIT",
+      "kind": "inclusion",
+      "theorem": "« Séries » ⊆ « Suites »",
+      "statement": "Tout élément de « Séries » est un élément de « Suites » : inclusion définitoire (v0.16.0).",
+      "depth": "définitoire",
+      "domain": "analyse de séries",
+      "id": "e653"
+    },
+    {
+      "from": "TQ2",
+      "to": "RN",
+      "kind": "inclusion",
+      "theorem": "« Triplets à conditions de résidus » ⊆ « N-uplets de réels ℝⁿ »",
+      "statement": "Tout élément de « Triplets à conditions de résidus » est un élément de « N-uplets de réels ℝⁿ » : inclusion définitoire (v0.16.0).",
+      "depth": "définitoire",
+      "domain": "théorie algébrique des nombres",
+      "id": "e654"
+    },
+    {
+      "from": "BRG2",
+      "to": "RN",
+      "kind": "inclusion",
+      "theorem": "« Quintuplets vérifiant la formule de Brahmagupta » ⊆ « N-uplets de réels ℝⁿ »",
+      "statement": "Tout élément de « Quintuplets vérifiant la formule de Brahmagupta » est un élément de « N-uplets de réels ℝⁿ » : inclusion définitoire (v0.16.0).",
+      "depth": "définitoire",
+      "domain": "géométrie euclidienne",
+      "id": "e655"
+    },
+    {
+      "from": "CVA2",
+      "to": "FIGU",
+      "kind": "inclusion",
+      "theorem": "« Configurations à céviennes concourantes » ⊆ « Figures géométriques »",
+      "statement": "Tout élément de « Configurations à céviennes concourantes » est un élément de « Figures géométriques » : inclusion définitoire (v0.16.0).",
+      "depth": "définitoire",
+      "domain": "géométrie euclidienne",
+      "id": "e656"
+    },
+    {
+      "from": "CAA2",
+      "to": "FIGU",
+      "kind": "inclusion",
+      "theorem": "« Configurations à céviennes concourantes ou parallèles » ⊆ « Figures géométriques »",
+      "statement": "Tout élément de « Configurations à céviennes concourantes ou parallèles » est un élément de « Figures géométriques » : inclusion définitoire (v0.16.0).",
+      "depth": "définitoire",
+      "domain": "géométrie affine",
+      "id": "e657"
+    },
+    {
+      "from": "VRG2",
+      "to": "POLY",
+      "kind": "inclusion",
+      "theorem": "« Quadrilatères de Varignon » ⊆ « Polygones »",
+      "statement": "Tout élément de « Quadrilatères de Varignon » est un élément de « Polygones » : inclusion définitoire (v0.16.0).",
+      "depth": "définitoire",
+      "domain": "géométrie affine",
+      "id": "e658"
+    },
+    {
+      "from": "SG1",
+      "to": "CYL1",
+      "kind": "inclusion",
+      "theorem": "« Sous-groupes résolubles connexes » ⊆ « Groupes »",
+      "statement": "Tout élément de « Sous-groupes résolubles connexes » est un élément de « Groupes » : inclusion définitoire (v0.16.0).",
+      "depth": "définitoire",
+      "domain": "algèbre linéaire",
+      "id": "e659"
+    },
+    {
+      "from": "PE2",
+      "to": "PCAU",
+      "kind": "inclusion",
+      "theorem": "« Problèmes de Cauchy résolubles » ⊆ « Problèmes de Cauchy »",
+      "statement": "Tout élément de « Problèmes de Cauchy résolubles » est un élément de « Problèmes de Cauchy » : inclusion définitoire (v0.16.0).",
+      "depth": "définitoire",
+      "domain": "analyse des équations différentielles",
+      "id": "e660"
+    },
+    {
+      "from": "CLP2",
+      "to": "PCAU",
+      "kind": "inclusion",
+      "theorem": "« Problèmes de Cauchy à solution unique maximale » ⊆ « Problèmes de Cauchy »",
+      "statement": "Tout élément de « Problèmes de Cauchy à solution unique maximale » est un élément de « Problèmes de Cauchy » : inclusion définitoire (v0.16.0).",
+      "depth": "définitoire",
+      "domain": "analyse des équations différentielles",
+      "id": "e661"
+    },
+    {
+      "from": "PEU1",
+      "to": "PCAU",
+      "kind": "inclusion",
+      "theorem": "« Problèmes de Cauchy à au plus une solution » ⊆ « Problèmes de Cauchy »",
+      "statement": "Tout élément de « Problèmes de Cauchy à au plus une solution » est un élément de « Problèmes de Cauchy » : inclusion définitoire (v0.16.0).",
+      "depth": "définitoire",
+      "domain": "analyse des équations différentielles",
+      "id": "e662"
     }
   ]
 }
