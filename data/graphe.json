@@ -1,7 +1,7 @@
 {
   "meta": {
     "name": "Graphe des théorèmes",
-    "version": "0.16.0",
+    "version": "0.16.5",
     "created": "2026-11-23",
     "language": "fr",
     "description": "Chaque nœud est un ensemble (de fonctions, d'entiers, de matrices…), chaque arête est un théorème : inclusion (A ⊆ B) ou non-inclusion avec contre-exemple (A ⊄ B).",
@@ -38,7 +38,7 @@
       "node": "un ensemble, nommé précisément (ex. : Fonctions réelles continues)",
       "inclusion": "arête verte = théorème d'inclusion A → B (A ⊆ B) ; arête blanche = inclusion définitoire (chaînon de charpente)",
       "anti": "arête rouge pointillée : A ⊄ B, prouvé par un contre-exemple explicite",
-      "nodeSize": "taille du cercle = 46 + 9 par arête qui y arrive (plafond 170) ; le texte s'adapte (retour à la ligne, police réduite) et le cercle ne grandit (jusqu'à ×1,8) que si le texte ne rentre pas autrement",
+      "nodeSize": "taille du cercle proportionnelle au nombre de sous-ensembles contenus (v0.16.5) : fermeture transitive des inclusions et équivalences, suivies dans les deux sens, la même règle que le halo au clic ; une feuille fait 46 px, le plus gros nœud du graphe atteint 170 ; le texte s'adapte (retour à la ligne, police réduite) et le cercle ne grandit (jusqu'à ×1,8) que si le texte ne rentre pas autrement",
       "depth": [
         "définitoire",
         "immédiat",
@@ -47,8 +47,8 @@
         "fondamental",
         "profond"
       ],
-      "notes": "Le type « équivalence » est prévu par le format mais aucune arête d'équivalence n'est encore tracée : la logique des équivalences sera établie par Mathis.",
-      "equivalence": "arête bleue à double flèche : A = B, établie par un théorème (aucune tracée pour l'instant)"
+      "notes": "Les équivalences sont tracées depuis la v0.15.0 (10 arêtes) ; l'ajout des suivantes se fait au fil de l'eau.",
+      "equivalence": "arête bleue à double flèche : A = B, établie par un théorème (10 tracées en v0.15.0 : Wilson, Cauchy, Cantor–Bernstein…)"
     }
   },
   "nodes": [
@@ -380,95 +380,95 @@
       "property": "\\bigcup_{n \\in \\mathbb{N}^{*}} \\mathcal{M}_n(\\mathbb{C})",
       "description": "Univers des matrices carrées à coefficients complexes, toutes tailles n ≥ 1.",
       "example": "I₂",
-      "notes": "Univers ℂ : les matrices réelles de MAT sont des matrices complexes particulières, non reliées ici."
+      "notes": "Univers ℂ : les matrices réelles de MAT sont des matrices complexes particulières, non reliées ici. Toutes les familles de matrices du graphe vivent dans 𝓜ₙ(ℂ) (v0.16.1) : sur un autre anneau, « inversible » ou « diagonalisable » seraient des propriétés différentes (ex. dans 𝓜ₙ(ℤ/2ℤ))."
     },
     {
       "id": "L2",
-      "label": "Matrices inversibles",
+      "label": "Matrices complexes inversibles",
       "family": "matrices",
       "domain": "algèbre linéaire",
       "property": "\\{\\, M \\in \\bigcup_{n \\ge 1} \\mathcal{M}_n(\\mathbb{C}) : \\det M \\neq 0 \\,\\}",
-      "description": "Matrices carrées complexes de déterminant non nul.",
+      "description": "Les matrices carrées inversibles à coefficients complexes.",
       "example": "3·I₂",
       "notes": ""
     },
     {
       "id": "L3",
-      "label": "Matrices singulières",
+      "label": "Matrices complexes singulières",
       "family": "matrices",
       "domain": "algèbre linéaire",
       "property": "\\{\\, M \\in \\bigcup_{n \\ge 1} \\mathcal{M}_n(\\mathbb{C}) : \\det M = 0 \\,\\}",
-      "description": "Matrices carrées complexes non inversibles.",
+      "description": "Les matrices carrées singulières (non inversibles) à coefficients complexes.",
       "example": "diag(1, 0)",
       "notes": ""
     },
     {
       "id": "L4",
-      "label": "Matrices nilpotentes",
+      "label": "Matrices complexes nilpotentes",
       "family": "matrices",
       "domain": "algèbre linéaire",
-      "property": "\\{\\, M : \\exists k \\ge 1,\\ M^{k} = 0 \\,\\}",
-      "description": "Matrices carrées complexes dont une puissance est nulle.",
+      "property": "\\{\\, M \\in \\bigcup_{n \\ge 1} \\mathcal{M}_n(\\mathbb{C}) : \\exists k \\ge 1,\\ M^{k} = 0 \\,\\}",
+      "description": "Les matrices nilpotentes à coefficients complexes.",
       "example": "[[0,1],[0,0]]",
       "notes": ""
     },
     {
       "id": "L5",
-      "label": "Matrices diagonalisables",
+      "label": "Matrices complexes diagonalisables",
       "family": "matrices",
       "domain": "algèbre linéaire",
-      "property": "\\{\\, M : \\exists P \\in \\mathrm{GL}_n(\\mathbb{C}),\\ P^{-1} M P \\text{ diagonale} \\,\\}",
-      "description": "Matrices complexes semblables à une matrice diagonale.",
+      "property": "\\{\\, M \\in \\bigcup_{n \\ge 1} \\mathcal{M}_n(\\mathbb{C}) : \\exists P \\in \\mathrm{GL}_n(\\mathbb{C}),\\ P^{-1} M P \\text{ diagonale} \\,\\}",
+      "description": "Les matrices diagonalisables à coefficients complexes : il existe une base de vecteurs propres.",
       "example": "diag(2, 1)",
       "notes": ""
     },
     {
       "id": "L6",
-      "label": "Matrices normales",
+      "label": "Matrices complexes normales",
       "family": "matrices",
       "domain": "algèbre linéaire",
-      "property": "\\{\\, M : M M^{*} = M^{*} M \\,\\}  \\quad (M^{*} = \\overline{M}^{\\mathsf{T}})",
-      "description": "Matrices complexes commutant avec leur adjointe.",
+      "property": "\\{\\, M \\in \\bigcup_{n \\ge 1} \\mathcal{M}_n(\\mathbb{C}) : M M^{*} = M^{*} M \\,\\}  \\quad (M^{*} = \\overline{M}^{\\mathsf{T}})",
+      "description": "Les matrices normales à coefficients complexes : elles commutent avec leur adjointe.",
       "example": "[[0,-1],[1,0]]",
       "notes": ""
     },
     {
       "id": "L7",
-      "label": "Matrices hermitiennes",
+      "label": "Matrices complexes hermitiennes",
       "family": "matrices",
       "domain": "algèbre linéaire",
-      "property": "\\{\\, M : M^{*} = M \\,\\}",
-      "description": "Matrices complexes égales à leur adjointe.",
+      "property": "\\{\\, M \\in \\bigcup_{n \\ge 1} \\mathcal{M}_n(\\mathbb{C}) : M^{*} = M \\,\\}",
+      "description": "Les matrices hermitiennes à coefficients complexes : égales à leur adjointe.",
       "example": "[[2,1],[1,2]]",
       "notes": ""
     },
     {
       "id": "L8",
-      "label": "Matrices unitaires",
+      "label": "Matrices complexes unitaires",
       "family": "matrices",
       "domain": "algèbre linéaire",
-      "property": "\\{\\, M : M^{*} M = I_n \\,\\}",
-      "description": "Matrices complexes dont l'inverse est l'adjointe.",
+      "property": "\\{\\, M \\in \\bigcup_{n \\ge 1} \\mathcal{M}_n(\\mathbb{C}) : M^{*} M = I_n \\,\\}",
+      "description": "Les matrices unitaires à coefficients complexes : l'adjointe est l'inverse.",
       "example": "diag(i, 1)",
       "notes": ""
     },
     {
       "id": "L9",
-      "label": "Matrices idempotentes",
+      "label": "Matrices complexes idempotentes",
       "family": "matrices",
       "domain": "algèbre linéaire",
-      "property": "\\{\\, M : M^{2} = M \\,\\}",
-      "description": "Matrices carrées complexes égales à leur carré (projecteurs).",
+      "property": "\\{\\, M \\in \\bigcup_{n \\ge 1} \\mathcal{M}_n(\\mathbb{C}) : M^{2} = M \\,\\}",
+      "description": "Les matrices idempotentes à coefficients complexes : les projecteurs.",
       "example": "diag(1, 0)",
       "notes": ""
     },
     {
       "id": "L10",
-      "label": "Matrices involutives",
+      "label": "Matrices complexes involutives",
       "family": "matrices",
       "domain": "algèbre linéaire",
-      "property": "\\{\\, M : M^{2} = I_n \\,\\}",
-      "description": "Matrices carrées complexes égales à leur propre inverse.",
+      "property": "\\{\\, M \\in \\bigcup_{n \\ge 1} \\mathcal{M}_n(\\mathbb{C}) : M^{2} = I_n \\,\\}",
+      "description": "Les matrices involutives à coefficients complexes : leur carré est l'identité.",
       "example": "[[1,1],[0,-1]]",
       "notes": ""
     },
@@ -1354,13 +1354,13 @@
     },
     {
       "id": "SU2",
-      "label": "Séries convergentes",
+      "label": "Suites dont la série converge",
       "family": "séries",
       "domain": "analyse des suites réelles",
       "property": "\\{\\, (a_n)_{n \\ge 1} \\mid \\sum a_n \\text{ converge} \\,\\}",
-      "description": "Les suites réelles (termes généraux) dont la série associée converge.",
+      "description": "Les suites réelles dont la série associée converge.",
       "example": "aₙ = 1/n²",
-      "notes": ""
+      "notes": "Renommée depuis « Séries convergentes » en v0.16.1 : une suite n'est pas une série. L'élément est le terme général (aₙ) ; c'est la série associée ∑ aₙ qui converge."
     },
     {
       "id": "SU3",
@@ -1374,13 +1374,13 @@
     },
     {
       "id": "SU4",
-      "label": "Séries divergentes",
+      "label": "Suites dont la série diverge",
       "family": "séries",
       "domain": "analyse des suites réelles",
       "property": "\\{\\, (a_n)_{n \\ge 1} \\mid \\sum a_n \\text{ diverge} \\,\\}",
       "description": "Les suites réelles dont la série associée diverge.",
       "example": "aₙ = 1/n",
-      "notes": ""
+      "notes": "Renommée depuis « Séries divergentes » en v0.16.1 : l'élément est le terme général (aₙ) ; c'est la série associée ∑ aₙ qui diverge."
     },
     {
       "id": "SU5",
@@ -1974,7 +1974,7 @@
     },
     {
       "id": "CQG2",
-      "label": "Groupes contenant un élément d'ordre p",
+      "label": "Groupes finis contenant un élément d'ordre p",
       "family": "groupes finis",
       "domain": "théorie des groupes",
       "property": "\\{\\, G \\text{ fini} \\mid \\exists x, \\ x^p = e, \\ x \\neq e \\,\\}",
@@ -2074,23 +2074,23 @@
     },
     {
       "id": "RCQ1",
-      "label": "Séries décroissantes à condensée convergente",
+      "label": "Suites décroissantes à condensée convergente",
       "family": "séries",
       "domain": "analyse de séries",
       "property": "\\{\\, (a_n) \\downarrow, \\ a_n > 0 : \\sum 2^k a_{2^k} \\text{ converge} \\,\\}",
-      "description": "Les séries à termes positifs décroissants dont la série condensée de Cauchy converge.",
+      "description": "Les suites réelles positives décroissantes dont la série condensée converge.",
       "example": "1/n^1,1 : la condensée est géométrique, convergente",
-      "notes": ""
+      "notes": "Renommée depuis « Séries décroissantes à condensée convergente » en v0.16.1 : l'élément est la suite (aₙ), pas la série."
     },
     {
       "id": "RCQ3",
-      "label": "Séries décroissantes à condensée divergente",
+      "label": "Suites décroissantes à condensée divergente",
       "family": "séries",
       "domain": "analyse de séries",
       "property": "\\{\\, (a_n) \\downarrow, \\ a_n > 0 : \\sum 2^k a_{2^k} \\text{ diverge} \\,\\}",
-      "description": "Les séries à termes positifs décroissants dont la série condensée diverge.",
+      "description": "Les suites réelles positives décroissantes dont la série condensée diverge.",
       "example": "1/(n log n) : la condensée diverge comme la série harmonique",
-      "notes": ""
+      "notes": "Renommée depuis « Séries décroissantes à condensée divergente » en v0.16.1 : l'élément est la suite (aₙ), pas la série."
     },
     {
       "id": "DCV1",
@@ -2227,10 +2227,10 @@
       "label": "Familles admettant une fonction de choix",
       "family": "familles d'ensembles",
       "domain": "théorie des ensembles",
-      "property": "\\{\\, (A_i)_{i \\in I} : \\exists\\, f : I \\to \\bigcup_i A_i,\\ \\forall i,\\ f(i) \\in A_i \\,\\}",
+      "property": "\\{\\, (A_i)_{i \\in I} \\mid \\prod_{i \\in I} A_i \\ne \\varnothing \\,\\}",
       "description": "Les familles sur lesquelles un choix simultané d'un élément par ensemble existe.",
       "example": "une famille de singletons : la fonction de choix n'a qu'une possibilité",
-      "notes": "Le produit des ensembles de la famille est non vide exactement ici."
+      "notes": "Le produit des ensembles de la famille est non vide exactement ici. Reformulé en v0.16.4 : produit non vide et fonction de choix disent la même chose, l'une du point de vue de l'espace, l'autre du point de vue fonctionnel."
     },
     {
       "id": "CHD1",
@@ -2934,17 +2934,17 @@
     },
     {
       "id": "TYC2",
-      "label": "Familles à produit compact",
-      "family": "familles d'ensembles",
+      "label": "Espaces produits de compacts",
+      "family": "espaces topologiques",
       "domain": "topologie",
-      "property": "\\{\\, (K_i)_{i \\in I} \\mid \\prod_{i \\in I} K_i \\text{ compact} \\,\\}",
-      "description": "Les familles dont le produit, muni de la topologie produit, est compact.",
-      "example": "{0,1}^ℕ (l'espace de Cantor) et plus généralement {0,1}^I pour tout ensemble I",
-      "notes": "La topologie produit est la moins fine rendant toutes les projections continues."
+      "property": "\\{\\, \\prod_{i \\in I} K_i \\mid I \\text{ ensemble},\\ \\forall i \\in I,\\ K_i \\text{ compact} \\,\\}",
+      "description": "Les espaces qui s'écrivent comme produit de compacts, munis de la topologie produit.",
+      "example": "{0,1}^I pour tout ensemble I : l'espace de Cantor quand I = ℕ",
+      "notes": "Reformulé en v0.16.4, après relecture de Mathis : le nœud regarde le produit (un espace), plus la famille. La topologie produit est la moins fine rendant toutes les projections continues."
     },
     {
       "id": "TVB1",
-      "label": "familles de (r−1)(d+1)+1 points",
+      "label": "Familles de (r−1)(d+1)+1 points de ℝᵈ",
       "family": "combinatoire",
       "domain": "géométrie affine",
       "property": "\\{\\, (x_1, \\ldots, x_m) \\mid x_i \\in \\mathbb{R}^d,\\ m = (r-1)(d+1)+1 \\,\\}",
@@ -2954,13 +2954,13 @@
     },
     {
       "id": "TVB2",
-      "label": "Familles Tverberg-partitionnables",
+      "label": "Configurations Tverberg-partitionnables",
       "family": "combinatoire",
       "domain": "géométrie affine",
       "property": "\\{\\, (x_1, \\ldots, x_m) \\mid \\exists \\text{ partition en } r \\text{ parties},\\ \\bigcap_{j=1}^{r} \\mathrm{conv}(C_j) \\neq \\varnothing \\,\\}",
       "description": "Les familles qui se partitionnent en r parties dont les enveloppes convexes ont un point commun.",
       "example": "7 points du plan dont trois triangles se croisent en un même point",
-      "notes": "Pour r = 2, on retrouve le théorème de Radon."
+      "notes": "Pour r = 2, on retrouve le théorème de Radon. Requalifiée en v0.16.1 : une famille finie de points de ℝᵈ est une configuration géométrique, pas une application."
     },
     {
       "id": "HTQ1",
@@ -3227,10 +3227,10 @@
       "label": "Séries",
       "family": "ensembles",
       "domain": "analyse de séries",
-      "property": "\\{\\, \\sum_{n} a_n \\mid (a_n) \\text{ à termes réels ou complexes} \\,\\}",
-      "description": "Toutes les séries, convergentes ou divergentes.",
+      "property": "\\{\\, \\left( (a_n)_n,\\ (S_n)_n \\right) \\mid S_n = \\sum_{k=0}^{n} a_k \\,\\}",
+      "description": "Toutes les séries : une série est le couple de sa suite de termes et de sa suite de sommes partielles.",
       "example": "1 + 1/2 + 1/4 + …",
-      "notes": ""
+      "notes": "Redéfinie en v0.16.1 (relecture de Mathis) : une série n'est pas une suite — le chaînon « Séries » ⊆ « Suites » (v0.16.0) était une absurdité typologique."
     },
     {
       "id": "SUIT",
@@ -3421,6 +3421,96 @@
       "description": "Tous les problèmes de Cauchy : une équation différentielle et une condition initiale.",
       "example": "y' = y, y(0) = 1",
       "notes": "Hub v0.16.0."
+    },
+    {
+      "id": "SRC",
+      "label": "Séries convergentes",
+      "family": "séries",
+      "domain": "analyse de séries",
+      "property": "\\{\\, \\sum a_n \\mid \\text{la suite des sommes partielles } (S_n) \\text{ converge} \\,\\}",
+      "description": "Les séries dont la suite des sommes partielles converge.",
+      "example": "∑ 1/n² (la série de Bâle)",
+      "notes": "Créée en v0.16.1 : le pendant « séries » de « Suites dont la série converge ». La correspondance (aₙ) ↦ ∑ aₙ n'est pas une inclusion — une suite n'est pas une série."
+    },
+    {
+      "id": "SRD",
+      "label": "Séries divergentes",
+      "family": "séries",
+      "domain": "analyse de séries",
+      "property": "\\{\\, \\sum a_n \\mid \\text{la suite des sommes partielles } (S_n) \\text{ ne converge pas} \\,\\}",
+      "description": "Les séries dont la suite des sommes partielles ne converge pas.",
+      "example": "∑ 1/n (la série harmonique)",
+      "notes": "Complémentaire de « Séries convergentes » : une série de réels ou de complexes converge ou diverge (v0.16.1)."
+    },
+    {
+      "id": "CINT",
+      "label": "Couples d'entiers",
+      "family": "couples d'entiers",
+      "domain": "arithmétique",
+      "property": "\\mathbb{Z} \\times \\mathbb{Z} = \\{\\, (a, b) \\mid a, b \\in \\mathbb{Z} \\,\\}",
+      "description": "Le produit ℤ × ℤ : tous les couples d'entiers, sans condition.",
+      "example": "(3, 2), solution de Pell x² − 2y² = 1",
+      "notes": "Intermédiaire entre « Couples » et les familles conditionnelles (Lucas, Brahmagupta). Demandé par Mathis (v0.16.3)."
+    },
+    {
+      "id": "L1R",
+      "label": "Fonctions L¹ sur ℝ",
+      "family": "espaces de Banach",
+      "domain": "théorie de la mesure",
+      "property": "\\{\\, [f] \\mid f : \\mathbb{R} \\to \\mathbb{R} \\text{ mesurable},\\ \\int_{\\mathbb{R}} |f| \\, d\\lambda < +\\infty \\,\\}",
+      "description": "Les classes des fonctions intégrables sur ℝ, pour l'égalité presque partout.",
+      "example": "1/√x sur ]0, 1] : intégrable, mais de carré non intégrable",
+      "notes": "Espace de Banach pour la norme ∫|f| (v0.16.3, demande de Mathis)."
+    },
+    {
+      "id": "L1CC",
+      "label": "Fonctions L¹ complexes sur ℂ",
+      "family": "espaces de Banach",
+      "domain": "théorie de la mesure",
+      "property": "\\{\\, [f] \\mid f : \\mathbb{C} \\to \\mathbb{C} \\text{ mesurable},\\ \\int_{\\mathbb{C}} |f| \\, d\\lambda < +\\infty \\,\\}",
+      "description": "Les classes des fonctions intégrables sur le plan complexe, à valeurs complexes.",
+      "example": "z ↦ 1/(1+|z|)³ : intégrable sur le plan",
+      "notes": "L¹(ℂ, ℂ), le plan mesuré comme ℝ² (v0.16.3, demande de Mathis : les deux versions, à valeurs réelles et complexes)."
+    },
+    {
+      "id": "L1CR",
+      "label": "Fonctions L¹ réelles sur ℂ",
+      "family": "espaces de Banach",
+      "domain": "théorie de la mesure",
+      "property": "\\{\\, [f] \\mid f : \\mathbb{C} \\to \\mathbb{R} \\text{ mesurable},\\ \\int_{\\mathbb{C}} |f| \\, d\\lambda < +\\infty \\,\\}",
+      "description": "Les classes des fonctions intégrables sur le plan complexe, à valeurs réelles.",
+      "example": "z ↦ |z| e^{-|z|}",
+      "notes": "Sous-espace des L¹ complexes sur le plan (v0.16.3, demande de Mathis : L¹(ℂ, ℝ))."
+    },
+    {
+      "id": "L2R",
+      "label": "Fonctions L² sur ℝ",
+      "family": "espaces de Hilbert",
+      "domain": "théorie de la mesure",
+      "property": "\\{\\, [f] \\mid f : \\mathbb{R} \\to \\mathbb{R} \\text{ mesurable},\\ \\int_{\\mathbb{R}} |f|^2 \\, d\\lambda < +\\infty \\,\\}",
+      "description": "Les classes des fonctions de carré intégrable : l'exemple canonique d'espace de Hilbert.",
+      "example": "e^{-x²}, la gaussienne",
+      "notes": "Produit scalaire ∫ f g ; l'analyse de Fourier y vit (v0.16.3, demande de Mathis)."
+    },
+    {
+      "id": "SOB",
+      "label": "Espaces de Sobolev",
+      "family": "espaces de Banach",
+      "domain": "analyse des équations différentielles",
+      "property": "\\{\\, W^{k, p}(\\Omega) \\mid k \\in \\mathbb{N},\\ 1 \\le p \\le \\infty,\\ \\Omega \\subseteq \\mathbb{R}^n \\text{ ouvert} \\,\\}",
+      "description": "L'échelle des fonctions Lᵖ dont les dérivées faibles jusqu'à l'ordre k sont Lᵖ.",
+      "example": "H¹(ℝ) = W^{1,2}(ℝ)",
+      "notes": "Demande de Mathis : l'échelle ET son membre concret, tracé à part (v0.16.3)."
+    },
+    {
+      "id": "H1R",
+      "label": "Fonctions H¹ sur ℝ",
+      "family": "espaces de Hilbert",
+      "domain": "analyse des équations différentielles",
+      "property": "\\{\\, [f] \\in L^2(\\mathbb{R}) \\mid f' \\in L^2(\\mathbb{R}),\\ f' \\text{ dérivée faible} \\,\\}",
+      "description": "L'espace de Sobolev W^{1,2}(ℝ) : les fonctions L² dont la dérivée faible est L².",
+      "example": "e^{-x²} : la fonction et sa dérivée faible sont L²",
+      "notes": "Membre concret de l'échelle « Espaces de Sobolev » et espace de Hilbert (v0.16.3)."
     }
   ],
   "edges": [
@@ -5269,7 +5359,7 @@
     },
     {
       "from": "BRN1",
-      "to": "SU2",
+      "to": "SRC",
       "kind": "inclusion",
       "theorem": "Théorème de Brun (1919)",
       "statement": "La série des inverses des couples de premiers jumeaux converge : la constante de Brun vaut environ 1,902. C'est un résultat de crible ; il laisse ouverte l'existence d'une infinité de premiers jumeaux, mais montre qu'ils sont assez rares pour que \\( \\sum (1/p + 1/(p+2)) \\) converge, alors que la série des inverses de tous les premiers diverge (Euler).",
@@ -5831,7 +5921,7 @@
       "to": "A2",
       "kind": "equivalence",
       "theorem": "Théorème de Wilson",
-      "statement": "Un entier \\( n \\ge 2 \\) vérifie \\( (n-1)! \\equiv -1 \\pmod{n} \\) si et seulement si \\( n \\) est premier (Wilson, énoncé par Waring, démontré par Lagrange en 1771). Sens modélisé : les nombres de Wilson sont exactement les premiers. Pour \\( n \\) composé et \\( n \\ne 4 \\), les facteurs de \\( n \\) se épars dans \\( (n-1)! \\), qui devient divisible par \\( n \\) ; le cas \\( n = 4 \\) se vérifie à la main (6 laisse 2). Bel exemple de critère de primalité théorique, inutilisable en pratique.",
+      "statement": "Un entier \\( n \\ge 2 \\) vérifie \\( (n-1)! \\equiv -1 \\pmod{n} \\) si et seulement si \\( n \\) est premier (Wilson, énoncé par Waring, démontré par Lagrange en 1771). Sens modélisé : les nombres de Wilson sont exactement les premiers. Pour \\( n \\) composé et \\( n \\ne 4 \\), les facteurs de \\( n \\) figurent tous dans \\( (n-1)! \\), qui devient divisible par \\( n \\) ; le cas \\( n = 4 \\) se vérifie à la main (6 laisse 2). Bel exemple de critère de primalité théorique, inutilisable en pratique.",
       "depth": "classique",
       "domain": "arithmétique",
       "id": "e236"
@@ -6048,11 +6138,11 @@
       "id": "e257"
     },
     {
-      "from": "TYC1",
-      "to": "TYC2",
+      "from": "TYC2",
+      "to": "KP1",
       "kind": "inclusion",
       "theorem": "Théorème de Tychonov",
-      "statement": "Un produit quelconque \\( \\prod_{i \\in I} K_i \\) de compacts est compact pour la topologie produit (Tychonov, 1930) : quel que soit l'ensemble d'indices \\( I \\), , dénombrable ou plus grand. La preuve courte passe par les ultrafiltres : chaque ultrafiltre sur le produit se projette en un ultrafiltre convergent sur chaque facteur, et le filtre des réponses se referme en un point limite, un choix simultané partout. Le théorème est d'ailleurs équivalent à l'axiome du choix (Kelley, 1950) : compacité du produit et axiome du choix, même force. Brique de base des topologies faibles et de Banach-Alaoglu.",
+      "statement": "Un produit quelconque \\( \\prod_{i \\in I} K_i \\) de compacts est compact pour la topologie produit (Tychonov, 1930) : quel que soit l'ensemble d'indices \\( I \\), dénombrable ou plus grand. La preuve courte passe par les ultrafiltres : chaque ultrafiltre sur le produit se projette en un ultrafiltre convergent sur chaque facteur, et le filtre des réponses se referme en un point limite, un choix simultané partout. Le théorème est d'ailleurs équivalent à l'axiome du choix (Kelley, 1950) : compacité du produit et axiome du choix, même force. Brique de base des topologies faibles et de Banach-Alaoglu. Requalifié en v0.16.4, après relecture de Mathis : l'inclusion court du produit vers les compacts.",
       "depth": "fondamental",
       "domain": "topologie",
       "id": "e258"
@@ -6209,22 +6299,22 @@
     },
     {
       "from": "SU2",
-      "to": "SERI",
+      "to": "BR1",
       "kind": "inclusion",
-      "theorem": "Les séries convergentes sont des séries",
-      "statement": "Converger est un sort, pas une nature : l'objet reste une série.",
+      "theorem": "« Suites dont la série converge » : toujours une suite réelle",
+      "statement": "L'objet est une suite réelle : c'est la série associée ∑ aₙ qui converge, pas la suite qui deviendrait série. Requalifié en v0.16.1, après relecture de Mathis : une suite n'est pas une série.",
       "depth": "définitoire",
-      "domain": "analyse de séries",
+      "domain": "analyse des suites réelles",
       "id": "e399"
     },
     {
       "from": "SU4",
-      "to": "SERI",
+      "to": "BR1",
       "kind": "inclusion",
-      "theorem": "Les séries divergentes sont des séries",
-      "statement": "Diverger n'exclut pas d'être une série : la famille divergente vit à côté de la convergente, même nature d'objet.",
+      "theorem": "« Suites dont la série diverge » : toujours une suite réelle",
+      "statement": "L'objet est une suite réelle : c'est la série associée ∑ aₙ qui diverge. Requalifié en v0.16.1, après relecture de Mathis : une suite n'est pas une série.",
       "depth": "définitoire",
-      "domain": "analyse de séries",
+      "domain": "analyse des suites réelles",
       "id": "e400"
     },
     {
@@ -7029,20 +7119,20 @@
     },
     {
       "from": "LU2",
-      "to": "COUP",
+      "to": "CINT",
       "kind": "inclusion",
-      "theorem": "« Binômes non divisibles par p » : toujours un couple",
-      "statement": "« Binômes non divisibles par p » est habité par des objets qui sont un couple : chaînon du lot J, qui remplace le fourre-tout « Ensembles » par une hiérarchie lisible.",
+      "theorem": "« Binômes non divisibles par p » ⊆ « Couples d'entiers »",
+      "statement": "\\( (n, k) \\in \\mathbb{N}^2 \\subseteq \\mathbb{Z}^2 \\) : l'inclusion fine remplace le saut vers « Couples ». Requalifié en v0.16.3, à l'arrivée du nœud « Couples d'entiers » (règle 4 : chaînon le plus fin).",
       "depth": "définitoire",
       "domain": "algèbre générale",
       "id": "e537"
     },
     {
       "from": "BRI2",
-      "to": "COUP",
+      "to": "CINT",
       "kind": "inclusion",
-      "theorem": "« Couples dont le produit est représentable » : toujours un couple",
-      "statement": "« Couples dont le produit est représentable » est habité par des objets qui sont un couple : chaînon du lot J, qui remplace le fourre-tout « Ensembles » par une hiérarchie lisible.",
+      "theorem": "« Couples dont le produit est représentable » ⊆ « Couples d'entiers »",
+      "statement": "Un couple d'entiers représentables par x² + ny² : Brahmagupta vit déjà dans ℤ². Requalifié en v0.16.3 — l'inclusion fine remplace « Couples » (règle 4).",
       "depth": "définitoire",
       "domain": "algèbre générale",
       "id": "e538"
@@ -7960,33 +8050,23 @@
     },
     {
       "from": "AXC2",
-      "to": "APP",
+      "to": "ZRM1",
       "kind": "inclusion",
-      "theorem": "« Familles admettant une fonction de choix » ⊆ « Applications »",
-      "statement": "Tout élément de « Familles admettant une fonction de choix » est un élément de « Applications » : inclusion définitoire (v0.16.0).",
+      "theorem": "« Familles admettant une fonction de choix » ⊆ « Ensembles »",
+      "statement": "Une famille d'ensembles est un ensemble (de couples indexés), pas une application. Requalifié en v0.16.4, après relecture de Mathis — même verdict que Tverberg en v0.16.1.",
       "depth": "définitoire",
       "domain": "théorie des ensembles",
       "id": "e648"
     },
     {
       "from": "TVB2",
-      "to": "APP",
+      "to": "FIGU",
       "kind": "inclusion",
-      "theorem": "« Familles Tverberg-partitionnables » ⊆ « Applications »",
-      "statement": "Tout élément de « Familles Tverberg-partitionnables » est un élément de « Applications » : inclusion définitoire (v0.16.0).",
+      "theorem": "« Configurations Tverberg-partitionnables » ⊆ « Figures géométriques »",
+      "statement": "Un ensemble fini de points de ℝᵈ est une figure géométrique ; le classement précédent (une famille indexée serait une application) était indéfendable ici. Requalifié en v0.16.1, après relecture de Mathis.",
       "depth": "définitoire",
       "domain": "géométrie affine",
       "id": "e649"
-    },
-    {
-      "from": "TYC2",
-      "to": "APP",
-      "kind": "inclusion",
-      "theorem": "« Familles à produit compact » ⊆ « Applications »",
-      "statement": "Tout élément de « Familles à produit compact » est un élément de « Applications » : inclusion définitoire (v0.16.0).",
-      "depth": "définitoire",
-      "domain": "topologie",
-      "id": "e650"
     },
     {
       "from": "ADO2",
@@ -8010,10 +8090,10 @@
     },
     {
       "from": "SERI",
-      "to": "SUIT",
+      "to": "COUP",
       "kind": "inclusion",
-      "theorem": "« Séries » ⊆ « Suites »",
-      "statement": "Tout élément de « Séries » est un élément de « Suites » : inclusion définitoire (v0.16.0).",
+      "theorem": "Une série est le couple de sa suite de termes et de sa suite de sommes partielles",
+      "statement": "Une série n'est pas une suite : c'est le couple de sa suite de termes et de sa suite de sommes partielles, et seule cette seconde suite est une suite. Requalifié en v0.16.1, après relecture de Mathis.",
       "depth": "définitoire",
       "domain": "analyse de séries",
       "id": "e653"
@@ -8107,6 +8187,178 @@
       "depth": "définitoire",
       "domain": "analyse des équations différentielles",
       "id": "e662"
+    },
+    {
+      "id": "e663",
+      "from": "SRC",
+      "to": "SERI",
+      "kind": "inclusion",
+      "theorem": "Les séries convergentes sont des séries",
+      "statement": "Converger est un sort, pas une nature : l'objet reste le couple (termes, sommes partielles). Inclusion définitoire (v0.16.1).",
+      "depth": "définitoire",
+      "domain": "analyse de séries"
+    },
+    {
+      "id": "e664",
+      "from": "SRD",
+      "to": "SERI",
+      "kind": "inclusion",
+      "theorem": "Les séries divergentes sont des séries",
+      "statement": "Convergente et divergente sont deux sorts complémentaires du même type d'objet : la suite des sommes partielles ne converge pas. Inclusion définitoire (v0.16.1).",
+      "depth": "définitoire",
+      "domain": "analyse de séries"
+    },
+    {
+      "id": "e665",
+      "from": "F",
+      "to": "EV",
+      "kind": "inclusion",
+      "theorem": "Les fonctions réelles forment un espace vectoriel",
+      "statement": "\\( \\mathbb{R}^{\\mathbb{R}} \\) : somme et produit par un scalaire, point à point — l'espace ambiant de l'analyse (v0.16.2).",
+      "depth": "immédiat",
+      "domain": "analyse réelle"
+    },
+    {
+      "id": "e666",
+      "from": "FNC",
+      "to": "EV",
+      "kind": "inclusion",
+      "theorem": "Les fonctions complexes forment un espace vectoriel",
+      "statement": "\\( \\mathbb{C}^{\\mathbb{C}} \\) : la même structure, point à point — l'ambiant de l'analyse complexe (v0.16.2).",
+      "depth": "immédiat",
+      "domain": "analyse complexe"
+    },
+    {
+      "id": "e667",
+      "from": "L1",
+      "to": "EV",
+      "kind": "inclusion",
+      "theorem": "Les matrices forment un espace vectoriel",
+      "statement": "\\( \\mathcal{M}_n(\\mathbb{C}) \\) taille par taille : somme et scalaire sans jamais mélanger deux dimensions — les matrices sont à la fois applications linéaires continues et espaces vectoriels (v0.16.2).",
+      "depth": "immédiat",
+      "domain": "algèbre linéaire"
+    },
+    {
+      "id": "e668",
+      "from": "BR1",
+      "to": "EV",
+      "kind": "inclusion",
+      "theorem": "Les suites réelles forment un espace vectoriel",
+      "statement": "\\( \\mathbb{R}^{\\mathbb{N}} \\) : somme et produit par un scalaire, terme à terme (v0.16.2).",
+      "depth": "immédiat",
+      "domain": "analyse des suites réelles"
+    },
+    {
+      "id": "e669",
+      "from": "CINT",
+      "to": "COUP",
+      "kind": "inclusion",
+      "theorem": "« Couples d'entiers » ⊆ « Couples »",
+      "statement": "Tout élément de « Couples d'entiers » est un couple : inclusion définitoire (v0.16.3).",
+      "depth": "définitoire",
+      "domain": "arithmétique"
+    },
+    {
+      "id": "e670",
+      "from": "CINT",
+      "to": "RN",
+      "kind": "inclusion",
+      "theorem": "« Couples d'entiers » ⊆ « N-uplets de réels ℝⁿ »",
+      "statement": "Un couple d'entiers est un 2-uplet de réels : \\( \\mathbb{Z}^2 \\subseteq \\mathbb{R}^2 \\). Double chaînon légitime, règle 7 (v0.16.3).",
+      "depth": "définitoire",
+      "domain": "arithmétique"
+    },
+    {
+      "id": "e671",
+      "from": "L1CR",
+      "to": "L1CC",
+      "kind": "inclusion",
+      "theorem": "« Fonctions L¹ réelles sur ℂ » ⊆ « Fonctions L¹ complexes sur ℂ »",
+      "statement": "\\( \\mathbb{R} \\subseteq \\mathbb{C} \\) : une fonction à valeurs réelles est à valeurs complexes, et \\( |f| \\) n'y voit que du feu (v0.16.3).",
+      "depth": "immédiat",
+      "domain": "théorie de la mesure"
+    },
+    {
+      "id": "e672",
+      "from": "L1R",
+      "to": "EV",
+      "kind": "inclusion",
+      "theorem": "Les fonctions L¹ sur ℝ forment un espace vectoriel",
+      "statement": "\\( L^1(\\mathbb{R}) \\) : somme et produit par un scalaire, point à point — et \\( \\|f\\|_1 = \\int |f| \\) en fait même un espace de Banach (v0.16.3).",
+      "depth": "immédiat",
+      "domain": "théorie de la mesure"
+    },
+    {
+      "id": "e673",
+      "from": "L1CC",
+      "to": "EV",
+      "kind": "inclusion",
+      "theorem": "Les fonctions L¹ sur ℂ forment un espace vectoriel",
+      "statement": "\\( L^1(\\mathbb{C}) \\), le plan mesuré comme \\( \\mathbb{R}^2 \\) : somme et scalaire point à point (v0.16.3).",
+      "depth": "immédiat",
+      "domain": "théorie de la mesure"
+    },
+    {
+      "id": "e674",
+      "from": "L2R",
+      "to": "EV",
+      "kind": "inclusion",
+      "theorem": "Les fonctions L² sur ℝ forment un espace vectoriel",
+      "statement": "\\( L^2(\\mathbb{R}) \\) : somme et scalaire, avec le produit scalaire \\( \\langle f, g \\rangle = \\int_{\\mathbb{R}} f g \\) (v0.16.3).",
+      "depth": "immédiat",
+      "domain": "théorie de la mesure"
+    },
+    {
+      "id": "e675",
+      "from": "SOB",
+      "to": "BAN",
+      "kind": "inclusion",
+      "theorem": "Un espace de Sobolev est un espace de Banach",
+      "statement": "Chaque \\( W^{k, p} \\) est complet pour sa norme \\( \\|f\\|_{k, p} \\) : l'échelle entière vit dans les Banach (v0.16.3).",
+      "depth": "classique",
+      "domain": "topologie vectorielle"
+    },
+    {
+      "id": "e676",
+      "from": "H1R",
+      "to": "L2R",
+      "kind": "inclusion",
+      "theorem": "« Fonctions H¹ sur ℝ » ⊆ « Fonctions L² sur ℝ »",
+      "statement": "Être H¹, c'est être L² avec sa dérivée faible : la moitié de la définition est une inclusion définitoire (v0.16.3).",
+      "depth": "définitoire",
+      "domain": "analyse des équations différentielles"
+    },
+    {
+      "id": "e677",
+      "from": "L2R",
+      "to": "L1R",
+      "kind": "anti",
+      "theorem": "L² ⊄ L¹ sur ℝ",
+      "statement": "Sur un espace de mesure infinie, le carré intégrable ne garantit pas l'intégrable (v0.16.3).",
+      "counterexample": "f(x) = 1/x sur [1, +∞[, nulle ailleurs : ∫f² = 1 mais ∫f = +∞.",
+      "depth": "classique",
+      "domain": "théorie de la mesure"
+    },
+    {
+      "id": "e678",
+      "from": "L1R",
+      "to": "L2R",
+      "kind": "anti",
+      "theorem": "L¹ ⊄ L² sur ℝ",
+      "statement": "Une singularité assez douce reste intégrable sans que son carré le soit (v0.16.3).",
+      "counterexample": "f(x) = 1/√x sur ]0, 1], nulle ailleurs : ∫f = 2 mais ∫f² = +∞.",
+      "depth": "classique",
+      "domain": "théorie de la mesure"
+    },
+    {
+      "id": "e679",
+      "from": "TYC1",
+      "to": "ZRM1",
+      "kind": "inclusion",
+      "theorem": "« Familles de compacts » ⊆ « Ensembles »",
+      "statement": "Une famille indexée d'espaces compacts est un ensemble de couples : inclusion définitoire. Raccord refait en v0.16.4, après relecture de Mathis — le continent des familles est ensembliste.",
+      "depth": "définitoire",
+      "domain": "topologie"
     }
   ]
 }
