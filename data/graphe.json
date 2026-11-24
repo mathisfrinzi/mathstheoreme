@@ -1,7 +1,7 @@
 {
   "meta": {
     "name": "Graphe des théorèmes",
-    "version": "0.26.0",
+    "version": "0.33.1",
     "created": "2026-11-23",
     "language": "fr",
     "description": "Chaque nœud est un ensemble (de fonctions, d'entiers, de matrices…), chaque arête est un théorème : inclusion (A ⊆ B) ou non-inclusion avec contre-exemple (A ⊄ B).",
@@ -33,14 +33,18 @@
       "géométrie affine": "olive",
       "théorie des anneaux": "acajou",
       "analyse harmonique": "corail",
-      "analyse vectorielle": "vert d'eau"
+      "analyse vectorielle": "vert d'eau",
+      "géométrie complexe": "lilas",
+      "théorie ergodique": "bordeaux foncé",
+      "géométrie combinatoire": "rouge pastel"
     },
     "semantics": {
+      "cardinalite": "Champ optionnel card par nœud : fini:n (n éléments), aleph0 (dénombrable), aleph1 (le continu, convention CH), pow2 (2^ℵ₁, cardinal de 𝒫(ℝ)) ; absent = dénombrabilité non définie ou inconnue (affiché en gris). Conventions : classes de structures comptées à isomorphisme près (groupes cycliques, ordres denses dénombrables, nœuds, entrelacs et tresses à isotopie près) ; les ensembles de fonctions définis sur ℝ ou ℂ valent aleph1, sauf ceux dont les éléments sont des classes explicites (une valeur par classe de fonctions égales presque partout), qui valent pow2 (v0.33.0).",
       "node": "un ensemble, nommé précisément (ex. : Fonctions réelles continues)",
       "inclusion": "arête verte = théorème d'inclusion A → B (A ⊆ B) ; arête blanche = inclusion définitoire (chaînon de charpente)",
       "anti": "arête rouge pointillée : A ⊄ B, prouvé par un contre-exemple explicite",
-      "partie": "arête orange : lien « partie de » — tout élément de A est une partie de B (A ⊆ 𝒫(B)) ; la première relie 𝒫(ℝ) à la droite réelle (v0.26.0)",
-      "nodeSize": "taille du cercle proportionnelle au nombre de sous-ensembles contenus (v0.16.5) : fermeture transitive des inclusions et équivalences, suivies dans les deux sens, la même règle que le halo au clic ; une feuille fait 46 px, le plus gros nœud du graphe atteint 170 ; le texte s'adapte (retour à la ligne, police réduite) et le cercle ne grandit (jusqu'à ×1,8) que si le texte ne rentre pas autrement",
+      "partie": "arête orange : lien « partie de » — tout élément de A est une partie de B (A ⊆ 𝒫(B)) ; la première relie 𝒫(ℝ) à la droite réelle (v0.26.0) ; une arête « partie de » compte comme une inclusion pour le halo au clic et la taille des cercles (v0.27.0)",
+      "nodeSize": "taille du cercle proportionnelle au nombre de sous-ensembles contenus (v0.16.5) : fermeture transitive des inclusions, équivalences et liens orange « partie de », suivies dans les deux sens, la même règle que le halo au clic ; une feuille fait 46 px, le plus gros nœud du graphe atteint 170 ; le texte s'adapte (retour à la ligne, police réduite) et le cercle ne grandit (jusqu'à ×1,8) que si le texte ne rentre pas autrement",
       "depth": [
         "définitoire",
         "immédiat",
@@ -56,6 +60,7 @@
   "nodes": [
     {
       "id": "C",
+      "card": "aleph1",
       "label": "Fonctions réelles continues",
       "family": "continuité",
       "domain": "analyse réelle",
@@ -66,6 +71,7 @@
     },
     {
       "id": "F",
+      "card": "pow2",
       "label": "Fonctions réelles",
       "family": "univers",
       "domain": "analyse réelle",
@@ -86,6 +92,7 @@
     },
     {
       "id": "UC",
+      "card": "aleph1",
       "label": "Fonctions uniformément continues",
       "family": "continuité",
       "domain": "analyse réelle",
@@ -96,6 +103,7 @@
     },
     {
       "id": "L",
+      "card": "aleph1",
       "label": "Fonctions lipschitziennes",
       "family": "dérivabilité",
       "domain": "analyse réelle",
@@ -106,6 +114,7 @@
     },
     {
       "id": "DBR",
+      "card": "aleph1",
       "label": "Fonctions dérivables à dérivée bornée",
       "family": "dérivabilité",
       "domain": "analyse réelle",
@@ -116,6 +125,7 @@
     },
     {
       "id": "D",
+      "card": "aleph1",
       "label": "Fonctions dérivables",
       "family": "dérivabilité",
       "domain": "analyse réelle",
@@ -126,6 +136,7 @@
     },
     {
       "id": "DEC",
+      "card": "aleph1",
       "label": "Dérivables sauf sur un dénombrable",
       "family": "dérivabilité",
       "domain": "analyse réelle",
@@ -136,6 +147,7 @@
     },
     {
       "id": "DER",
+      "card": "aleph1",
       "label": "Fonctions dérivées",
       "family": "dérivabilité",
       "domain": "analyse réelle",
@@ -146,6 +158,7 @@
     },
     {
       "id": "C1",
+      "card": "aleph1",
       "label": "Fonctions de classe C¹",
       "family": "dérivabilité",
       "domain": "analyse réelle",
@@ -156,6 +169,7 @@
     },
     {
       "id": "P",
+      "card": "aleph1",
       "label": "Fonctions polynomiales",
       "family": "dérivabilité",
       "domain": "analyse réelle",
@@ -166,6 +180,7 @@
     },
     {
       "id": "AFF",
+      "card": "aleph1",
       "label": "Fonctions affines",
       "family": "dérivabilité",
       "domain": "analyse réelle",
@@ -176,6 +191,7 @@
     },
     {
       "id": "M",
+      "card": "aleph1",
       "label": "Fonctions monotones",
       "family": "monotonie",
       "domain": "analyse réelle",
@@ -186,6 +202,7 @@
     },
     {
       "id": "CNV",
+      "card": "aleph1",
       "label": "Fonctions convexes",
       "family": "continuité",
       "domain": "analyse réelle",
@@ -196,6 +213,7 @@
     },
     {
       "id": "B",
+      "card": "pow2",
       "label": "Fonctions réelles bornées",
       "family": "monotonie",
       "domain": "analyse réelle",
@@ -206,6 +224,7 @@
     },
     {
       "id": "MB",
+      "card": "aleph1",
       "label": "Fonctions monotones et bornées",
       "family": "monotonie",
       "domain": "analyse réelle",
@@ -216,6 +235,7 @@
     },
     {
       "id": "LIM",
+      "card": "pow2",
       "label": "Fonctions à limites finies en ±∞",
       "family": "monotonie",
       "domain": "analyse réelle",
@@ -226,6 +246,7 @@
     },
     {
       "id": "IVP",
+      "card": "pow2",
       "label": "Fonctions de Darboux",
       "family": "valeurs",
       "domain": "analyse réelle",
@@ -236,6 +257,7 @@
     },
     {
       "id": "CARDE",
+      "card": "aleph1",
       "label": "Fonctions à discontinuités dénombrables",
       "family": "intégrabilité",
       "domain": "analyse réelle",
@@ -246,6 +268,7 @@
     },
     {
       "id": "PC",
+      "card": "aleph1",
       "label": "Fonctions continues par morceaux",
       "family": "intégrabilité",
       "domain": "analyse réelle",
@@ -256,6 +279,7 @@
     },
     {
       "id": "RSEG",
+      "card": "pow2",
       "label": "Fonctions Riemann-intégrables sur tout segment",
       "family": "intégrabilité",
       "domain": "analyse réelle",
@@ -266,6 +290,7 @@
     },
     {
       "id": "MAT",
+      "card": "aleph1",
       "label": "Matrices à coefficients réels",
       "family": "linéarité",
       "domain": "algèbre linéaire",
@@ -286,6 +311,7 @@
     },
     {
       "id": "A1",
+      "card": "aleph0",
       "label": "Entiers naturels non nuls",
       "family": "arithmétique",
       "domain": "arithmétique",
@@ -296,6 +322,7 @@
     },
     {
       "id": "A2",
+      "card": "aleph0",
       "label": "Nombres premiers",
       "family": "arithmétique",
       "domain": "arithmétique",
@@ -306,6 +333,7 @@
     },
     {
       "id": "A3",
+      "card": "aleph0",
       "label": "Carrés parfaits",
       "family": "arithmétique",
       "domain": "arithmétique",
@@ -316,6 +344,7 @@
     },
     {
       "id": "A4",
+      "card": "aleph0",
       "label": "Entiers pairs",
       "family": "congruences",
       "domain": "arithmétique",
@@ -326,6 +355,7 @@
     },
     {
       "id": "A5",
+      "card": "aleph0",
       "label": "Entiers sans facteur carré",
       "family": "factorisation",
       "domain": "arithmétique",
@@ -336,6 +366,7 @@
     },
     {
       "id": "A6",
+      "card": "aleph0",
       "label": "Nombres triangulaires",
       "family": "combinatoire",
       "domain": "arithmétique",
@@ -356,6 +387,7 @@
     },
     {
       "id": "A8",
+      "card": "aleph0",
       "label": "Formes d'Euclide-Euler",
       "family": "diviseurs",
       "domain": "arithmétique",
@@ -366,6 +398,7 @@
     },
     {
       "id": "A9",
+      "card": "aleph0",
       "label": "Entiers impairs",
       "family": "congruences",
       "domain": "arithmétique",
@@ -376,6 +409,7 @@
     },
     {
       "id": "L1",
+      "card": "aleph1",
       "label": "Matrices carrées complexes (toutes tailles)",
       "family": "matrices",
       "domain": "algèbre linéaire",
@@ -386,6 +420,7 @@
     },
     {
       "id": "L2",
+      "card": "aleph1",
       "label": "Matrices complexes inversibles",
       "family": "matrices",
       "domain": "algèbre linéaire",
@@ -396,6 +431,7 @@
     },
     {
       "id": "L3",
+      "card": "aleph1",
       "label": "Matrices complexes singulières",
       "family": "matrices",
       "domain": "algèbre linéaire",
@@ -406,6 +442,7 @@
     },
     {
       "id": "L4",
+      "card": "aleph1",
       "label": "Matrices complexes nilpotentes",
       "family": "matrices",
       "domain": "algèbre linéaire",
@@ -416,6 +453,7 @@
     },
     {
       "id": "L5",
+      "card": "aleph1",
       "label": "Matrices complexes diagonalisables",
       "family": "matrices",
       "domain": "algèbre linéaire",
@@ -426,6 +464,7 @@
     },
     {
       "id": "L6",
+      "card": "aleph1",
       "label": "Matrices complexes normales",
       "family": "matrices",
       "domain": "algèbre linéaire",
@@ -436,6 +475,7 @@
     },
     {
       "id": "L7",
+      "card": "aleph1",
       "label": "Matrices complexes hermitiennes",
       "family": "matrices",
       "domain": "algèbre linéaire",
@@ -446,6 +486,7 @@
     },
     {
       "id": "L8",
+      "card": "aleph1",
       "label": "Matrices complexes unitaires",
       "family": "matrices",
       "domain": "algèbre linéaire",
@@ -456,6 +497,7 @@
     },
     {
       "id": "L9",
+      "card": "aleph1",
       "label": "Matrices complexes idempotentes",
       "family": "matrices",
       "domain": "algèbre linéaire",
@@ -466,6 +508,7 @@
     },
     {
       "id": "L10",
+      "card": "aleph1",
       "label": "Matrices complexes involutives",
       "family": "matrices",
       "domain": "algèbre linéaire",
@@ -476,6 +519,7 @@
     },
     {
       "id": "D1",
+      "card": "aleph1",
       "label": "Fonctions de classe C²",
       "family": "dérivabilité",
       "domain": "analyse réelle",
@@ -486,6 +530,7 @@
     },
     {
       "id": "D2",
+      "card": "aleph1",
       "label": "Fonctions de classe C^∞",
       "family": "dérivabilité",
       "domain": "analyse réelle",
@@ -496,6 +541,7 @@
     },
     {
       "id": "D3",
+      "card": "aleph1",
       "label": "Fonctions analytiques réelles",
       "family": "dérivabilité",
       "domain": "analyse réelle",
@@ -506,6 +552,7 @@
     },
     {
       "id": "D4",
+      "card": "aleph1",
       "label": "Fonctions convexes dérivables",
       "family": "dérivabilité",
       "domain": "analyse réelle",
@@ -516,6 +563,7 @@
     },
     {
       "id": "D5",
+      "card": "aleph1",
       "label": "Fonctions à dérivée strictement positive",
       "family": "dérivabilité",
       "domain": "analyse réelle",
@@ -526,6 +574,7 @@
     },
     {
       "id": "D6",
+      "card": "aleph1",
       "label": "Fonctions strictement croissantes",
       "family": "monotonie",
       "domain": "analyse réelle",
@@ -536,6 +585,7 @@
     },
     {
       "id": "D7",
+      "card": "aleph1",
       "label": "Fonctions constantes",
       "family": "dérivabilité",
       "domain": "analyse réelle",
@@ -546,6 +596,7 @@
     },
     {
       "id": "D9",
+      "card": "aleph1",
       "label": "Solutions de y' = y",
       "family": "équations différentielles",
       "domain": "analyse des équations différentielles",
@@ -556,6 +607,7 @@
     },
     {
       "id": "D10",
+      "card": "aleph1",
       "label": "Solutions de y'' + y = 0",
       "family": "équations différentielles",
       "domain": "analyse des équations différentielles",
@@ -566,6 +618,7 @@
     },
     {
       "id": "X2",
+      "card": "aleph1",
       "label": "Fonctions entières",
       "family": "holomorphie",
       "domain": "analyse complexe",
@@ -576,6 +629,7 @@
     },
     {
       "id": "X3",
+      "card": "aleph1",
       "label": "Polynômes complexes",
       "family": "holomorphie",
       "domain": "analyse complexe",
@@ -586,6 +640,7 @@
     },
     {
       "id": "X4",
+      "card": "aleph1",
       "label": "Fonctions affines complexes",
       "family": "holomorphie",
       "domain": "analyse complexe",
@@ -596,6 +651,7 @@
     },
     {
       "id": "X5",
+      "card": "aleph1",
       "label": "Fonctions constantes complexes",
       "family": "holomorphie",
       "domain": "analyse complexe",
@@ -606,6 +662,7 @@
     },
     {
       "id": "X6",
+      "card": "aleph1",
       "label": "Fonctions continues ℂ → ℂ",
       "family": "régularité réelle",
       "domain": "analyse complexe",
@@ -616,6 +673,7 @@
     },
     {
       "id": "X7",
+      "card": "aleph1",
       "label": "Fonctions C¹ au sens réel",
       "family": "régularité réelle",
       "domain": "analyse complexe",
@@ -626,6 +684,7 @@
     },
     {
       "id": "X8",
+      "card": "pow2",
       "label": "Fonctions bornées ℂ → ℂ",
       "family": "régularité réelle",
       "domain": "analyse complexe",
@@ -636,6 +695,7 @@
     },
     {
       "id": "X9",
+      "card": "aleph1",
       "label": "Fonctions entières bornées",
       "family": "holomorphie",
       "domain": "analyse complexe",
@@ -646,6 +706,7 @@
     },
     {
       "id": "IQ",
+      "card": "aleph0",
       "label": "Irrationnels quadratiques",
       "family": "nombres réels",
       "domain": "théorie algébrique des nombres",
@@ -656,6 +717,7 @@
     },
     {
       "id": "FCP",
+      "card": "aleph0",
       "label": "Réels à fraction continue périodique",
       "family": "nombres réels",
       "domain": "théorie algébrique des nombres",
@@ -666,6 +728,7 @@
     },
     {
       "id": "S4",
+      "card": "aleph0",
       "label": "Sommes de quatre carrés",
       "family": "arithmétique",
       "domain": "arithmétique",
@@ -676,6 +739,7 @@
     },
     {
       "id": "LIO",
+      "card": "aleph0",
       "label": "Nombres de Liouville",
       "family": "nombres réels",
       "domain": "arithmétique",
@@ -686,6 +750,7 @@
     },
     {
       "id": "TRS",
+      "card": "aleph1",
       "label": "Nombres transcendants",
       "family": "nombres réels",
       "domain": "arithmétique",
@@ -696,6 +761,7 @@
     },
     {
       "id": "TQ1",
+      "card": "aleph0",
       "label": "Formes ternaires résolubles",
       "family": "triplets d'entiers",
       "domain": "théorie algébrique des nombres",
@@ -706,6 +772,7 @@
     },
     {
       "id": "TQ2",
+      "card": "aleph0",
       "label": "Triplets à conditions de résidus",
       "family": "triplets d'entiers",
       "domain": "théorie algébrique des nombres",
@@ -716,6 +783,7 @@
     },
     {
       "id": "LU1",
+      "card": "aleph0",
       "label": "Couples dominés chiffre à chiffre",
       "family": "couples d'entiers",
       "domain": "arithmétique",
@@ -726,6 +794,7 @@
     },
     {
       "id": "LU2",
+      "card": "aleph0",
       "label": "Binômes non divisibles par p",
       "family": "couples d'entiers",
       "domain": "arithmétique",
@@ -756,6 +825,7 @@
     },
     {
       "id": "KOL",
+      "card": "aleph1",
       "label": "Fonctions C² à normes bornées",
       "family": "univers",
       "domain": "analyse réelle",
@@ -766,6 +836,7 @@
     },
     {
       "id": "LA1",
+      "card": "aleph1",
       "label": "Fonctions holomorphes sur une couronne",
       "family": "holomorphie",
       "domain": "analyse complexe",
@@ -776,6 +847,7 @@
     },
     {
       "id": "LA2",
+      "card": "aleph1",
       "label": "Fonctions développables en série de Laurent",
       "family": "holomorphie",
       "domain": "analyse complexe",
@@ -806,6 +878,7 @@
     },
     {
       "id": "ME1",
+      "card": "pow2",
       "label": "Fonctions à discontinuités de mesure nulle",
       "family": "univers",
       "domain": "théorie de la mesure",
@@ -816,6 +889,7 @@
     },
     {
       "id": "ME2",
+      "card": "pow2",
       "label": "Fonctions mesurables sur le segment",
       "family": "univers",
       "domain": "théorie de la mesure",
@@ -826,6 +900,7 @@
     },
     {
       "id": "ME3",
+      "card": "pow2",
       "label": "Fonctions presque continues",
       "family": "univers",
       "domain": "théorie de la mesure",
@@ -926,6 +1001,7 @@
     },
     {
       "id": "IN1",
+      "card": "aleph1",
       "label": "Fonctions sur n points fixés",
       "family": "univers",
       "domain": "algèbre générale",
@@ -936,6 +1012,7 @@
     },
     {
       "id": "IN2",
+      "card": "aleph1",
       "label": "Restrictions de polynômes de degré au plus n−1",
       "family": "univers",
       "domain": "algèbre générale",
@@ -946,6 +1023,7 @@
     },
     {
       "id": "LR1",
+      "card": "aleph1",
       "label": "Racines à coefficients imposés",
       "family": "polynômes",
       "domain": "analyse réelle",
@@ -956,6 +1034,7 @@
     },
     {
       "id": "LR2",
+      "card": "aleph1",
       "label": "Segment de Laguerre",
       "family": "polynômes",
       "domain": "analyse réelle",
@@ -976,6 +1055,7 @@
     },
     {
       "id": "ZL2",
+      "card": "aleph1",
       "label": "Extérieur du disque de Laguerre",
       "family": "polynômes",
       "domain": "analyse complexe",
@@ -986,6 +1066,7 @@
     },
     {
       "id": "GTR",
+      "card": "aleph1",
       "label": "Triangles du plan",
       "family": "triangles",
       "domain": "géométrie euclidienne",
@@ -996,6 +1077,7 @@
     },
     {
       "id": "GAK",
+      "card": "aleph1",
       "label": "Quadruplets vérifiant la loi d'Al-Kashi",
       "family": "triangles",
       "domain": "géométrie euclidienne",
@@ -1006,6 +1088,7 @@
     },
     {
       "id": "GIA",
+      "card": "aleph1",
       "label": "Angles inscrits interceptant un arc donné",
       "family": "cercles",
       "domain": "géométrie euclidienne",
@@ -1016,6 +1099,7 @@
     },
     {
       "id": "GIM",
+      "card": "aleph1",
       "label": "Moitiés de l'angle au centre correspondant",
       "family": "cercles",
       "domain": "géométrie euclidienne",
@@ -1026,6 +1110,7 @@
     },
     {
       "id": "GCA",
+      "card": "aleph1",
       "label": "Couples d'angles interceptant le même arc",
       "family": "cercles",
       "domain": "géométrie euclidienne",
@@ -1036,6 +1121,7 @@
     },
     {
       "id": "GCD",
+      "card": "aleph1",
       "label": "Couples dont l'un vaut le double de l'autre",
       "family": "cercles",
       "domain": "géométrie euclidienne",
@@ -1046,6 +1132,7 @@
     },
     {
       "id": "GAR",
+      "card": "aleph1",
       "label": "Lieux des points voyant [AB] sous un angle donné",
       "family": "cercles",
       "domain": "géométrie euclidienne",
@@ -1056,6 +1143,7 @@
     },
     {
       "id": "GAA",
+      "card": "aleph1",
       "label": "Réunions de deux arcs de cercles passant par A et B",
       "family": "cercles",
       "domain": "géométrie euclidienne",
@@ -1066,6 +1154,7 @@
     },
     {
       "id": "GAP",
+      "card": "aleph1",
       "label": "Lieux à rapport de distances constant (k ≠ 1)",
       "family": "cercles",
       "domain": "géométrie euclidienne",
@@ -1076,6 +1165,7 @@
     },
     {
       "id": "CER",
+      "card": "aleph1",
       "label": "Cercles du plan",
       "family": "cercles",
       "domain": "géométrie euclidienne",
@@ -1086,6 +1176,7 @@
     },
     {
       "id": "GME",
+      "card": "aleph1",
       "label": "Lieux à rapport de distances égal à 1",
       "family": "droites",
       "domain": "géométrie euclidienne",
@@ -1096,6 +1187,7 @@
     },
     {
       "id": "LT1",
+      "card": "aleph1",
       "label": "Solutions d'une équation de langage",
       "family": "équations de langages",
       "domain": "théorie des langages",
@@ -1106,6 +1198,7 @@
     },
     {
       "id": "LT2",
+      "card": "aleph1",
       "label": "Langages de la forme BA*",
       "family": "équations de langages",
       "domain": "théorie des langages",
@@ -1226,6 +1319,7 @@
     },
     {
       "id": "ABR1",
+      "card": "aleph1",
       "label": "Équations génériques de degré au moins 5",
       "family": "équations polynomiales",
       "domain": "algèbre générale",
@@ -1236,6 +1330,7 @@
     },
     {
       "id": "ABR2",
+      "card": "aleph1",
       "label": "Équations résolubles par radicaux",
       "family": "équations polynomiales",
       "domain": "algèbre générale",
@@ -1306,6 +1401,7 @@
     },
     {
       "id": "BTY1",
+      "card": "aleph1",
       "label": "Couples irrationnels complémentaires",
       "family": "nombres réels",
       "domain": "théorie algébrique des nombres",
@@ -1316,6 +1412,7 @@
     },
     {
       "id": "BTY2",
+      "card": "aleph1",
       "label": "Suites de Beatty partitionnant ℕ*",
       "family": "nombres réels",
       "domain": "théorie algébrique des nombres",
@@ -1326,6 +1423,7 @@
     },
     {
       "id": "XNC",
+      "card": "aleph1",
       "label": "Polynômes non constants",
       "family": "polynômes",
       "domain": "analyse complexe",
@@ -1336,6 +1434,7 @@
     },
     {
       "id": "XZR",
+      "card": "aleph1",
       "label": "Polynômes ayant au moins une racine (dans ℂ)",
       "family": "polynômes",
       "domain": "analyse complexe",
@@ -1346,6 +1445,7 @@
     },
     {
       "id": "SU1",
+      "card": "aleph1",
       "label": "Suites à ratio limite < 1",
       "family": "séries",
       "domain": "analyse des suites réelles",
@@ -1356,6 +1456,7 @@
     },
     {
       "id": "SU2",
+      "card": "aleph1",
       "label": "Suites dont la série converge",
       "family": "séries",
       "domain": "analyse des suites réelles",
@@ -1366,6 +1467,7 @@
     },
     {
       "id": "SU3",
+      "card": "aleph1",
       "label": "Suites à ratio limite > 1",
       "family": "séries",
       "domain": "analyse des suites réelles",
@@ -1376,6 +1478,7 @@
     },
     {
       "id": "SU4",
+      "card": "aleph1",
       "label": "Suites dont la série diverge",
       "family": "séries",
       "domain": "analyse des suites réelles",
@@ -1386,6 +1489,7 @@
     },
     {
       "id": "SU5",
+      "card": "aleph1",
       "label": "Suites à ratio limite 1",
       "family": "séries",
       "domain": "analyse des suites réelles",
@@ -1396,6 +1500,7 @@
     },
     {
       "id": "BZ1",
+      "card": "aleph0",
       "label": "Ensembles de combinaisons au + bv",
       "family": "diviseurs",
       "domain": "arithmétique",
@@ -1406,6 +1511,7 @@
     },
     {
       "id": "BZ2",
+      "card": "aleph0",
       "label": "Sous-groupes de la forme nℤ",
       "family": "diviseurs",
       "domain": "arithmétique",
@@ -1416,6 +1522,7 @@
     },
     {
       "id": "BJ1",
+      "card": "aleph1",
       "label": "Fonctions continues strictement monotones sur un segment",
       "family": "monotonie",
       "domain": "analyse réelle",
@@ -1426,6 +1533,7 @@
     },
     {
       "id": "BJ2",
+      "card": "pow2",
       "label": "Bijections d'un segment sur un segment",
       "family": "valeurs",
       "domain": "analyse réelle",
@@ -1436,6 +1544,7 @@
     },
     {
       "id": "BJ3",
+      "card": "aleph1",
       "label": "Fonctions continues strictement monotones sur un intervalle",
       "family": "monotonie",
       "domain": "analyse réelle",
@@ -1446,6 +1555,7 @@
     },
     {
       "id": "BJ4",
+      "card": "aleph1",
       "label": "Homéomorphismes monotones sur leur image",
       "family": "valeurs",
       "domain": "analyse réelle",
@@ -1456,6 +1566,7 @@
     },
     {
       "id": "BG2",
+      "card": "pow2",
       "label": "Fonctions continûment restreignables à une partie dense",
       "family": "continuité",
       "domain": "théorie des ensembles",
@@ -1466,6 +1577,7 @@
     },
     {
       "id": "GAM1",
+      "card": "fini:1",
       "label": "Fonctions gamma-like log-convexes",
       "family": "fonctions usuelles",
       "domain": "analyse réelle",
@@ -1476,6 +1588,7 @@
     },
     {
       "id": "GAM3",
+      "card": "pow2",
       "label": "Fonctions vérifiant l'équation fonctionnelle de Gamma",
       "family": "fonctions usuelles",
       "domain": "analyse réelle",
@@ -1486,6 +1599,7 @@
     },
     {
       "id": "GAM2",
+      "card": "fini:1",
       "label": "Fonction Gamma d'Euler",
       "family": "fonctions usuelles",
       "domain": "analyse réelle",
@@ -1496,6 +1610,7 @@
     },
     {
       "id": "BW1",
+      "card": "aleph1",
       "label": "Suites bornées de réels",
       "family": "suites",
       "domain": "analyse des suites réelles",
@@ -1506,6 +1621,7 @@
     },
     {
       "id": "BW2",
+      "card": "aleph1",
       "label": "Suites admettant une sous-suite convergente",
       "family": "suites",
       "domain": "analyse des suites réelles",
@@ -1536,6 +1652,7 @@
     },
     {
       "id": "BR1",
+      "card": "aleph1",
       "label": "Suites réelles",
       "family": "suites",
       "domain": "analyse des suites réelles",
@@ -1546,6 +1663,7 @@
     },
     {
       "id": "BR2",
+      "card": "aleph1",
       "label": "Suites de dérivées successives en 0 de fonctions C∞",
       "family": "dérivabilité",
       "domain": "analyse réelle",
@@ -1556,6 +1674,7 @@
     },
     {
       "id": "BL1",
+      "card": "aleph1",
       "label": "Parties fermées bornées de ℝⁿ",
       "family": "parties d'un evn",
       "domain": "topologie vectorielle",
@@ -1566,6 +1685,7 @@
     },
     {
       "id": "BL2",
+      "card": "aleph1",
       "label": "Parties compactes de ℝⁿ",
       "family": "parties d'un evn",
       "domain": "topologie vectorielle",
@@ -1636,6 +1756,7 @@
     },
     {
       "id": "TB1",
+      "card": "aleph1",
       "label": "Fonctions continues sur un compact",
       "family": "fonctions continues",
       "domain": "topologie métrique",
@@ -1646,6 +1767,7 @@
     },
     {
       "id": "TB2",
+      "card": "pow2",
       "label": "Fonctions bornées atteignant leurs bornes",
       "family": "bornes",
       "domain": "topologie métrique",
@@ -1656,6 +1778,7 @@
     },
     {
       "id": "BU1",
+      "card": "aleph1",
       "label": "Fonctions continues de Sⁿ dans ℝⁿ",
       "family": "sphères",
       "domain": "topologie algébrique",
@@ -1666,6 +1789,7 @@
     },
     {
       "id": "BU2",
+      "card": "aleph1",
       "label": "Fonctions identifiant deux points antipodaux",
       "family": "sphères",
       "domain": "topologie algébrique",
@@ -1676,6 +1800,7 @@
     },
     {
       "id": "BV1",
+      "card": "aleph1",
       "label": "Champs de vecteurs continus tangents à la sphère",
       "family": "champs de vecteurs",
       "domain": "topologie différentielle",
@@ -1686,6 +1811,7 @@
     },
     {
       "id": "BV2",
+      "card": "aleph1",
       "label": "Champs de vecteurs s'annulant quelque part",
       "family": "champs de vecteurs",
       "domain": "topologie différentielle",
@@ -1696,6 +1822,7 @@
     },
     {
       "id": "BRG1",
+      "card": "aleph1",
       "label": "Quadrilatères cycliques",
       "family": "polygones",
       "domain": "géométrie euclidienne",
@@ -1706,6 +1833,7 @@
     },
     {
       "id": "BRG2",
+      "card": "aleph1",
       "label": "Quintuplets vérifiant la formule de Brahmagupta",
       "family": "polygones",
       "domain": "géométrie euclidienne",
@@ -1716,6 +1844,7 @@
     },
     {
       "id": "BRI1",
+      "card": "aleph0",
       "label": "Couples représentables par x² + ny²",
       "family": "couples d'entiers",
       "domain": "arithmétique",
@@ -1726,6 +1855,7 @@
     },
     {
       "id": "BRI2",
+      "card": "aleph0",
       "label": "Couples dont le produit est représentable",
       "family": "couples d'entiers",
       "domain": "arithmétique",
@@ -1736,6 +1866,7 @@
     },
     {
       "id": "BRH1",
+      "card": "aleph1",
       "label": "Hexagones circonscrits à une conique",
       "family": "polygones",
       "domain": "géométrie euclidienne",
@@ -1746,6 +1877,7 @@
     },
     {
       "id": "BRH2",
+      "card": "aleph1",
       "label": "Hexagones à diagonales concourantes",
       "family": "polygones",
       "domain": "géométrie euclidienne",
@@ -1776,6 +1908,7 @@
     },
     {
       "id": "BRK3",
+      "card": "aleph0",
       "label": "Cycles impairs",
       "family": "graphes",
       "domain": "théorie des graphes",
@@ -1786,6 +1919,7 @@
     },
     {
       "id": "BRK4",
+      "card": "aleph0",
       "label": "Cliques",
       "family": "graphes",
       "domain": "théorie des graphes",
@@ -1796,6 +1930,7 @@
     },
     {
       "id": "BRN1",
+      "card": "fini:1",
       "label": "Séries des inverses des premiers jumeaux",
       "family": "séries",
       "domain": "théorie algébrique des nombres",
@@ -1806,6 +1941,7 @@
     },
     {
       "id": "BNS1",
+      "card": "aleph0",
       "label": "Groupes d'ordre pᵃqᵇ",
       "family": "groupes finis",
       "domain": "théorie des groupes",
@@ -1816,6 +1952,7 @@
     },
     {
       "id": "BNS2",
+      "card": "aleph0",
       "label": "Groupes finis résolubles",
       "family": "groupes finis",
       "domain": "théorie des groupes",
@@ -1826,6 +1963,7 @@
     },
     {
       "id": "BSL1",
+      "card": "aleph0",
       "label": "Nombres d'orbites d'actions de groupes finis",
       "family": "actions de groupes",
       "domain": "théorie des groupes",
@@ -1836,6 +1974,7 @@
     },
     {
       "id": "BSL2",
+      "card": "aleph0",
       "label": "Moyennes de nombres de points fixes",
       "family": "actions de groupes",
       "domain": "théorie des groupes",
@@ -1866,6 +2005,7 @@
     },
     {
       "id": "ORD1",
+      "card": "fini:1",
       "label": "Ordres linéaires denses dénombrables sans extrémités",
       "family": "ordres",
       "domain": "théorie des ordres",
@@ -1876,6 +2016,7 @@
     },
     {
       "id": "ORD2",
+      "card": "fini:1",
       "label": "Ordres isomorphes à celui des rationnels",
       "family": "ordres",
       "domain": "théorie des ordres",
@@ -1886,6 +2027,7 @@
     },
     {
       "id": "CBD1",
+      "card": "aleph1",
       "label": "Fermés de ℝ",
       "family": "parties de ℝ",
       "domain": "topologie",
@@ -1896,6 +2038,7 @@
     },
     {
       "id": "CBD2",
+      "card": "aleph1",
       "label": "Réunions d'un parfait et d'un dénombrable",
       "family": "parties de ℝ",
       "domain": "topologie",
@@ -1946,6 +2089,7 @@
     },
     {
       "id": "CKD1",
+      "card": "pow2",
       "label": "Enveloppes convexes de parties de ℝⁿ",
       "family": "convexité",
       "domain": "topologie vectorielle",
@@ -1956,6 +2100,7 @@
     },
     {
       "id": "CKD2",
+      "card": "aleph1",
       "label": "Réunions des enveloppes de n+1 points",
       "family": "convexité",
       "domain": "topologie vectorielle",
@@ -1966,6 +2111,7 @@
     },
     {
       "id": "CQG1",
+      "card": "aleph0",
       "label": "Groupes finis d'ordre divisible par p",
       "family": "groupes finis",
       "domain": "théorie des groupes",
@@ -1976,6 +2122,7 @@
     },
     {
       "id": "CQG2",
+      "card": "aleph0",
       "label": "Groupes finis contenant un élément d'ordre p",
       "family": "groupes finis",
       "domain": "théorie des groupes",
@@ -2006,6 +2153,7 @@
     },
     {
       "id": "CQP1",
+      "card": "aleph1",
       "label": "Paires de polyèdres à faces congruentes",
       "family": "polyèdres",
       "domain": "géométrie euclidienne",
@@ -2016,6 +2164,7 @@
     },
     {
       "id": "CQP2",
+      "card": "aleph1",
       "label": "Paires de polyèdres congruents",
       "family": "polyèdres",
       "domain": "géométrie euclidienne",
@@ -2026,6 +2175,7 @@
     },
     {
       "id": "CLP1",
+      "card": "aleph1",
       "label": "Problèmes de Cauchy à second membre localement lipschitzien",
       "family": "équations différentielles",
       "domain": "analyse des équations différentielles",
@@ -2036,6 +2186,7 @@
     },
     {
       "id": "CLP2",
+      "card": "pow2",
       "label": "Problèmes de Cauchy à solution unique maximale",
       "family": "équations différentielles",
       "domain": "analyse des équations différentielles",
@@ -2046,6 +2197,7 @@
     },
     {
       "id": "PE1",
+      "card": "aleph1",
       "label": "Problèmes de Cauchy à second membre continu",
       "family": "équations différentielles",
       "domain": "analyse des équations différentielles",
@@ -2056,6 +2208,7 @@
     },
     {
       "id": "PE2",
+      "card": "pow2",
       "label": "Problèmes de Cauchy résolubles",
       "family": "équations différentielles",
       "domain": "analyse des équations différentielles",
@@ -2066,6 +2219,7 @@
     },
     {
       "id": "PEU1",
+      "card": "pow2",
       "label": "Problèmes de Cauchy à au plus une solution",
       "family": "équations différentielles",
       "domain": "analyse des équations différentielles",
@@ -2076,6 +2230,7 @@
     },
     {
       "id": "RCQ1",
+      "card": "aleph1",
       "label": "Suites décroissantes à condensée convergente",
       "family": "séries",
       "domain": "analyse de séries",
@@ -2086,6 +2241,7 @@
     },
     {
       "id": "RCQ3",
+      "card": "aleph1",
       "label": "Suites décroissantes à condensée divergente",
       "family": "séries",
       "domain": "analyse de séries",
@@ -2096,6 +2252,7 @@
     },
     {
       "id": "DCV1",
+      "card": "aleph1",
       "label": "Disques de convergence des séries entières",
       "family": "séries entières",
       "domain": "analyse complexe",
@@ -2106,6 +2263,7 @@
     },
     {
       "id": "DCV2",
+      "card": "aleph1",
       "label": "Disques hadamardiens",
       "family": "séries entières",
       "domain": "analyse complexe",
@@ -2116,6 +2274,7 @@
     },
     {
       "id": "CR1",
+      "card": "aleph1",
       "label": "Fonctions vérifiant les équations de Cauchy–Riemann",
       "family": "holomorphie",
       "domain": "analyse complexe",
@@ -2146,6 +2305,7 @@
     },
     {
       "id": "CSO1",
+      "card": "aleph1",
       "label": "Suites réelles convergentes",
       "family": "suites",
       "domain": "analyse des suites réelles",
@@ -2156,6 +2316,7 @@
     },
     {
       "id": "CSO2",
+      "card": "aleph1",
       "label": "Suites à moyennes de Cesàro convergentes",
       "family": "suites",
       "domain": "analyse des suites réelles",
@@ -2166,6 +2327,7 @@
     },
     {
       "id": "CVA1",
+      "card": "aleph1",
       "label": "Points sur les côtés à produit des rapports 1",
       "family": "triangles",
       "domain": "géométrie euclidienne",
@@ -2176,6 +2338,7 @@
     },
     {
       "id": "CVA2",
+      "card": "aleph1",
       "label": "Configurations à céviennes concourantes",
       "family": "triangles",
       "domain": "géométrie euclidienne",
@@ -2186,6 +2349,7 @@
     },
     {
       "id": "CAA1",
+      "card": "aleph1",
       "label": "Points sur les côtés à produit des rapports 1",
       "family": "triangles",
       "domain": "géométrie affine",
@@ -2196,6 +2360,7 @@
     },
     {
       "id": "CAA2",
+      "card": "aleph1",
       "label": "Configurations à céviennes concourantes ou parallèles",
       "family": "triangles",
       "domain": "géométrie affine",
@@ -2206,6 +2371,7 @@
     },
     {
       "id": "SFG1",
+      "card": "aleph0",
       "label": "Groupes réalisables comme groupes de Galois sur ℚ",
       "family": "galois",
       "domain": "théorie de Galois",
@@ -2236,6 +2402,7 @@
     },
     {
       "id": "CHD1",
+      "card": "aleph1",
       "label": "Fonctions continues sur un segment sans entiers",
       "family": "continuité",
       "domain": "analyse réelle",
@@ -2246,6 +2413,7 @@
     },
     {
       "id": "CHD2",
+      "card": "aleph1",
       "label": "Limites uniformes de polynômes à coefficients entiers",
       "family": "polynômes",
       "domain": "analyse réelle",
@@ -2386,6 +2554,7 @@
     },
     {
       "id": "GCY1",
+      "card": "aleph0",
       "label": "Groupes cycliques",
       "family": "groupes",
       "domain": "théorie des groupes",
@@ -2396,6 +2565,7 @@
     },
     {
       "id": "PRX1",
+      "card": "aleph1",
       "label": "Polynômes réels",
       "family": "polynômes",
       "domain": "algèbre générale",
@@ -2446,6 +2616,7 @@
     },
     {
       "id": "ZLT1",
+      "card": "aleph0",
       "label": "Multiplications modulaires par les carrés (modulo p premier)",
       "family": "permutations modulaires",
       "domain": "arithmétique",
@@ -2456,6 +2627,7 @@
     },
     {
       "id": "ZLT2",
+      "card": "aleph0",
       "label": "Permutations paires de ℤ/pℤ",
       "family": "permutations modulaires",
       "domain": "arithmétique",
@@ -2466,6 +2638,7 @@
     },
     {
       "id": "ZLF1",
+      "card": "aleph0",
       "label": "Multiplications modulaires par les carrés (modulo n impair)",
       "family": "permutations modulaires",
       "domain": "arithmétique",
@@ -2476,6 +2649,7 @@
     },
     {
       "id": "ZLF2",
+      "card": "aleph0",
       "label": "Permutations paires de ℤ/nℤ",
       "family": "permutations modulaires",
       "domain": "arithmétique",
@@ -2486,6 +2660,7 @@
     },
     {
       "id": "NLI1",
+      "card": "aleph1",
       "label": "Fonctions holomorphes non identiquement nulles",
       "family": "holomorphie",
       "domain": "analyse complexe",
@@ -2496,6 +2671,7 @@
     },
     {
       "id": "NLI2",
+      "card": "pow2",
       "label": "Fonctions à zéros isolés",
       "family": "holomorphie",
       "domain": "analyse complexe",
@@ -2506,6 +2682,7 @@
     },
     {
       "id": "ZGL1",
+      "card": "aleph1",
       "label": "Polygones simples du plan",
       "family": "découpages",
       "domain": "géométrie euclidienne",
@@ -2516,6 +2693,7 @@
     },
     {
       "id": "ZGL2",
+      "card": "aleph1",
       "label": "Polygones translatables en un carré",
       "family": "découpages",
       "domain": "géométrie euclidienne",
@@ -2546,6 +2724,7 @@
     },
     {
       "id": "WLS1",
+      "card": "aleph0",
       "label": "Nombres de Wilson",
       "family": "congruences",
       "domain": "arithmétique",
@@ -2556,6 +2735,7 @@
     },
     {
       "id": "WDT1",
+      "card": "aleph0",
       "label": "Groupes finis à tous les p-Sylow normaux",
       "family": "groupes finis",
       "domain": "théorie des groupes",
@@ -2566,6 +2746,7 @@
     },
     {
       "id": "WDT2",
+      "card": "aleph0",
       "label": "Groupes finis nilpotents",
       "family": "groupes finis",
       "domain": "théorie des groupes",
@@ -2576,6 +2757,7 @@
     },
     {
       "id": "WIS1",
+      "card": "aleph0",
       "label": "Couples (groupe fini, puissance de premier divisant l'ordre)",
       "family": "groupes finis",
       "domain": "théorie des groupes",
@@ -2586,6 +2768,7 @@
     },
     {
       "id": "WIS2",
+      "card": "aleph0",
       "label": "Couples (groupe fini, ordre atteint par un sous-groupe)",
       "family": "groupes finis",
       "domain": "théorie des groupes",
@@ -2596,6 +2779,7 @@
     },
     {
       "id": "WTT1",
+      "card": "aleph0",
       "label": "Tours d'automorphismes itérées",
       "family": "tours de groupes",
       "domain": "théorie des groupes",
@@ -2606,6 +2790,7 @@
     },
     {
       "id": "WTT2",
+      "card": "aleph0",
       "label": "Tours stationnaires",
       "family": "tours de groupes",
       "domain": "théorie des groupes",
@@ -2636,6 +2821,7 @@
     },
     {
       "id": "WIE1",
+      "card": "aleph1",
       "label": "Fonctions L1 à transformée de Fourier sans zéro",
       "family": "analyse de Fourier",
       "domain": "analyse harmonique",
@@ -2646,6 +2832,7 @@
     },
     {
       "id": "WIE2",
+      "card": "aleph1",
       "label": "Fonctions à translatées engendrant un espace dense",
       "family": "analyse de Fourier",
       "domain": "analyse harmonique",
@@ -2666,6 +2853,7 @@
     },
     {
       "id": "WKH2",
+      "card": "aleph1",
       "label": "Transformées de Fourier de mesures spectrales",
       "family": "analyse de Fourier",
       "domain": "analyse harmonique",
@@ -2676,6 +2864,7 @@
     },
     {
       "id": "WRS1",
+      "card": "aleph1",
       "label": "Fonctions continues sur un segment",
       "family": "continuité",
       "domain": "analyse réelle",
@@ -2686,6 +2875,7 @@
     },
     {
       "id": "WRS2",
+      "card": "aleph1",
       "label": "Limites uniformes de polynômes sur un segment",
       "family": "continuité",
       "domain": "analyse réelle",
@@ -2696,6 +2886,7 @@
     },
     {
       "id": "WSC1",
+      "card": "aleph1",
       "label": "Fonctions holomorphes à singularité essentielle",
       "family": "holomorphie",
       "domain": "analyse complexe",
@@ -2706,6 +2897,7 @@
     },
     {
       "id": "WSC2",
+      "card": "aleph1",
       "label": "Fonctions à images denses près de la singularité",
       "family": "holomorphie",
       "domain": "analyse complexe",
@@ -2716,6 +2908,7 @@
     },
     {
       "id": "WRC1",
+      "card": "pow2",
       "label": "Séries de fonctions normalement convergentes",
       "family": "séries",
       "domain": "analyse de séries",
@@ -2726,6 +2919,7 @@
     },
     {
       "id": "WRC2",
+      "card": "pow2",
       "label": "Séries de fonctions uniformément convergentes",
       "family": "séries",
       "domain": "analyse de séries",
@@ -2736,6 +2930,7 @@
     },
     {
       "id": "WDB1",
+      "card": "aleph0",
       "label": "Anneaux à division finis",
       "family": "corps",
       "domain": "théorie des corps",
@@ -2746,6 +2941,7 @@
     },
     {
       "id": "NZL1",
+      "card": "aleph0",
       "label": "Nombres constructibles",
       "family": "nombres réels",
       "domain": "théorie algébrique des nombres",
@@ -2756,6 +2952,7 @@
     },
     {
       "id": "NZL2",
+      "card": "aleph0",
       "label": "Algébriques de degré une puissance de 2",
       "family": "nombres réels",
       "domain": "théorie algébrique des nombres",
@@ -2766,6 +2963,7 @@
     },
     {
       "id": "WBG1",
+      "card": "aleph1",
       "label": "Polygones de même aire",
       "family": "découpages",
       "domain": "géométrie euclidienne",
@@ -2776,6 +2974,7 @@
     },
     {
       "id": "WBG2",
+      "card": "aleph1",
       "label": "Polygones équidécomposables",
       "family": "découpages",
       "domain": "géométrie euclidienne",
@@ -2786,6 +2985,7 @@
     },
     {
       "id": "VSC1",
+      "card": "aleph0",
       "label": "Nombres de Bernoulli pairs",
       "family": "nombres de Bernoulli",
       "domain": "arithmétique",
@@ -2796,6 +2996,7 @@
     },
     {
       "id": "VSC2",
+      "card": "aleph0",
       "label": "Couples corrigés par les premiers",
       "family": "nombres de Bernoulli",
       "domain": "arithmétique",
@@ -2806,6 +3007,7 @@
     },
     {
       "id": "VIV1",
+      "card": "aleph1",
       "label": "Points intérieurs du triangle équilatéral",
       "family": "triangles",
       "domain": "géométrie euclidienne",
@@ -2816,6 +3018,7 @@
     },
     {
       "id": "VIV2",
+      "card": "aleph1",
       "label": "Points à somme des distances constante",
       "family": "triangles",
       "domain": "géométrie euclidienne",
@@ -2826,6 +3029,7 @@
     },
     {
       "id": "VIT1",
+      "card": "fini:1",
       "label": "Produits partiels de Viète",
       "family": "suites",
       "domain": "analyse des suites réelles",
@@ -2836,6 +3040,7 @@
     },
     {
       "id": "AXV1",
+      "card": "fini:0",
       "label": "L'ensemble vide",
       "family": "ensembles",
       "domain": "théorie des ensembles",
@@ -2846,6 +3051,7 @@
     },
     {
       "id": "VRG1",
+      "card": "aleph1",
       "label": "Quadrilatères",
       "family": "quadrilatères",
       "domain": "géométrie affine",
@@ -2856,6 +3062,7 @@
     },
     {
       "id": "VRG2",
+      "card": "aleph1",
       "label": "Quadrilatères de Varignon",
       "family": "quadrilatères",
       "domain": "géométrie affine",
@@ -2906,6 +3113,7 @@
     },
     {
       "id": "CNU1",
+      "card": "aleph1",
       "label": "Séries trigonométriques somme nulle",
       "family": "séries",
       "domain": "analyse de séries",
@@ -2916,6 +3124,7 @@
     },
     {
       "id": "CNU2",
+      "card": "fini:1",
       "label": "Séries à coefficients tous nuls",
       "family": "séries",
       "domain": "analyse de séries",
@@ -2946,6 +3155,7 @@
     },
     {
       "id": "TVB1",
+      "card": "aleph1",
       "label": "Familles de (r−1)(d+1)+1 points de ℝᵈ",
       "family": "combinatoire",
       "domain": "géométrie affine",
@@ -2956,6 +3166,7 @@
     },
     {
       "id": "TVB2",
+      "card": "aleph1",
       "label": "Configurations Tverberg-partitionnables",
       "family": "combinatoire",
       "domain": "géométrie affine",
@@ -2966,6 +3177,7 @@
     },
     {
       "id": "HTQ1",
+      "card": "aleph0",
       "label": "Éléments de norme 1 d'une extension cyclique",
       "family": "galois",
       "domain": "théorie de Galois",
@@ -2976,6 +3188,7 @@
     },
     {
       "id": "HTQ2",
+      "card": "aleph0",
       "label": "Cobords de Hilbert",
       "family": "galois",
       "domain": "théorie de Galois",
@@ -2986,6 +3199,7 @@
     },
     {
       "id": "TRF1",
+      "card": "aleph0",
       "label": "Groupes à p-Sylow central dans son normalisateur",
       "family": "groupes finis",
       "domain": "théorie des groupes",
@@ -2996,6 +3210,7 @@
     },
     {
       "id": "TRF2",
+      "card": "aleph0",
       "label": "Groupes à p-complément normal",
       "family": "groupes finis",
       "domain": "théorie des groupes",
@@ -3006,6 +3221,7 @@
     },
     {
       "id": "HCI1",
+      "card": "aleph0",
       "label": "Idéaux entiers de K",
       "family": "idéaux",
       "domain": "théorie algébrique des nombres",
@@ -3016,6 +3232,7 @@
     },
     {
       "id": "HCI2",
+      "card": "aleph0",
       "label": "Idéaux principalisés dans le corps de classes",
       "family": "idéaux",
       "domain": "théorie algébrique des nombres",
@@ -3126,6 +3343,7 @@
     },
     {
       "id": "NATL",
+      "card": "aleph0",
       "label": "Entiers naturels ℕ",
       "family": "ensembles",
       "domain": "arithmétique",
@@ -3136,6 +3354,7 @@
     },
     {
       "id": "ZENT",
+      "card": "aleph0",
       "label": "Entiers relatifs ℤ",
       "family": "ensembles",
       "domain": "arithmétique",
@@ -3146,6 +3365,7 @@
     },
     {
       "id": "QRAT",
+      "card": "aleph0",
       "label": "Nombres rationnels ℚ",
       "family": "ensembles",
       "domain": "arithmétique",
@@ -3156,6 +3376,7 @@
     },
     {
       "id": "REEL",
+      "card": "aleph1",
       "label": "Nombres réels ℝ",
       "family": "ensembles",
       "domain": "analyse réelle",
@@ -3166,6 +3387,7 @@
     },
     {
       "id": "PDR",
+      "card": "pow2",
       "label": "Parties de ℝ",
       "family": "ensembles",
       "domain": "théorie des ensembles",
@@ -3176,6 +3398,7 @@
     },
     {
       "id": "RN",
+      "card": "aleph1",
       "label": "N-uplets de réels ℝⁿ",
       "family": "ensembles",
       "domain": "analyse réelle",
@@ -3186,6 +3409,7 @@
     },
     {
       "id": "SEG",
+      "card": "aleph1",
       "label": "Segments de ℝ",
       "family": "ensembles",
       "domain": "analyse réelle",
@@ -3196,6 +3420,7 @@
     },
     {
       "id": "INTR",
+      "card": "aleph1",
       "label": "Intervalles de ℝ",
       "family": "ensembles",
       "domain": "analyse réelle",
@@ -3206,6 +3431,7 @@
     },
     {
       "id": "OUVR",
+      "card": "aleph1",
       "label": "Parties ouvertes",
       "family": "ensembles",
       "domain": "topologie",
@@ -3216,6 +3442,7 @@
     },
     {
       "id": "FERM",
+      "card": "aleph1",
       "label": "Parties fermées",
       "family": "ensembles",
       "domain": "topologie",
@@ -3286,6 +3513,7 @@
     },
     {
       "id": "POLY",
+      "card": "aleph1",
       "label": "Polygones",
       "family": "ensembles",
       "domain": "géométrie euclidienne",
@@ -3306,6 +3534,7 @@
     },
     {
       "id": "CMLX",
+      "card": "aleph1",
       "label": "Nombres complexes ℂ",
       "family": "ensembles",
       "domain": "analyse complexe",
@@ -3386,6 +3615,7 @@
     },
     {
       "id": "FNC",
+      "card": "pow2",
       "label": "Fonctions complexes",
       "family": "holomorphie",
       "domain": "analyse complexe",
@@ -3396,6 +3626,7 @@
     },
     {
       "id": "HOL",
+      "card": "aleph1",
       "label": "Fonctions holomorphes",
       "family": "holomorphie",
       "domain": "analyse complexe",
@@ -3426,6 +3657,7 @@
     },
     {
       "id": "PCAU",
+      "card": "pow2",
       "label": "Problèmes de Cauchy",
       "family": "équations différentielles",
       "domain": "analyse des équations différentielles",
@@ -3436,6 +3668,7 @@
     },
     {
       "id": "SRC",
+      "card": "aleph1",
       "label": "Séries convergentes",
       "family": "séries",
       "domain": "analyse de séries",
@@ -3446,6 +3679,7 @@
     },
     {
       "id": "SRD",
+      "card": "aleph1",
       "label": "Séries divergentes",
       "family": "séries",
       "domain": "analyse de séries",
@@ -3456,6 +3690,7 @@
     },
     {
       "id": "CINT",
+      "card": "aleph0",
       "label": "Couples d'entiers",
       "family": "couples d'entiers",
       "domain": "arithmétique",
@@ -3466,6 +3701,7 @@
     },
     {
       "id": "L1R",
+      "card": "aleph1",
       "label": "Fonctions L¹ sur ℝ",
       "family": "espaces de Banach",
       "domain": "théorie de la mesure",
@@ -3476,6 +3712,7 @@
     },
     {
       "id": "L1CC",
+      "card": "aleph1",
       "label": "Fonctions L¹ complexes sur ℂ",
       "family": "espaces de Banach",
       "domain": "théorie de la mesure",
@@ -3486,6 +3723,7 @@
     },
     {
       "id": "L1CR",
+      "card": "aleph1",
       "label": "Fonctions L¹ réelles sur ℂ",
       "family": "espaces de Banach",
       "domain": "théorie de la mesure",
@@ -3496,6 +3734,7 @@
     },
     {
       "id": "L2R",
+      "card": "aleph1",
       "label": "Fonctions L² sur ℝ",
       "family": "espaces de Hilbert",
       "domain": "théorie de la mesure",
@@ -3516,6 +3755,7 @@
     },
     {
       "id": "H1R",
+      "card": "aleph1",
       "label": "Fonctions H¹ sur ℝ",
       "family": "espaces de Hilbert",
       "domain": "analyse des équations différentielles",
@@ -3526,6 +3766,7 @@
     },
     {
       "id": "UCT",
+      "card": "aleph1",
       "label": "Fonctions uniformément continues sur tout segment",
       "family": "continuité",
       "domain": "analyse réelle",
@@ -3536,6 +3777,7 @@
     },
     {
       "id": "ATJ",
+      "card": "aleph1",
       "label": "Fonctions atteignant leurs bornes sur tout segment",
       "family": "bornes",
       "domain": "analyse réelle",
@@ -3546,6 +3788,7 @@
     },
     {
       "id": "INJ",
+      "card": "aleph1",
       "label": "Fonctions continues injectives sur un intervalle",
       "family": "valeurs",
       "domain": "analyse réelle",
@@ -3556,6 +3799,7 @@
     },
     {
       "id": "REG",
+      "card": "aleph1",
       "label": "Fonctions réglées",
       "family": "régularité réelle",
       "domain": "analyse réelle",
@@ -3566,6 +3810,7 @@
     },
     {
       "id": "CWF",
+      "card": "aleph1",
       "label": "Fonctions continues sur un fermé de ℝ",
       "family": "continuité",
       "domain": "analyse réelle",
@@ -3576,6 +3821,7 @@
     },
     {
       "id": "PRC",
+      "card": "aleph1",
       "label": "Fonctions prolongeables en une fonction continue sur ℝ",
       "family": "continuité",
       "domain": "analyse réelle",
@@ -3586,6 +3832,7 @@
     },
     {
       "id": "SCI",
+      "card": "aleph1",
       "label": "Fonctions semi-continues inférieurement",
       "family": "bornes",
       "domain": "analyse réelle",
@@ -3596,6 +3843,7 @@
     },
     {
       "id": "ABI",
+      "card": "aleph1",
       "label": "Fonctions atteignant leur borne inférieure sur tout segment",
       "family": "bornes",
       "domain": "analyse réelle",
@@ -3606,6 +3854,7 @@
     },
     {
       "id": "CCH",
+      "card": "aleph1",
       "label": "Fonctions Cauchy-continues",
       "family": "continuité",
       "domain": "analyse réelle",
@@ -3616,6 +3865,7 @@
     },
     {
       "id": "DERO",
+      "card": "aleph1",
       "label": "Dérivées bornées",
       "family": "dérivabilité",
       "domain": "analyse réelle",
@@ -3626,6 +3876,7 @@
     },
     {
       "id": "CANT",
+      "card": "aleph1",
       "label": "Escaliers singuliers",
       "family": "monotonie",
       "domain": "analyse réelle",
@@ -3636,6 +3887,7 @@
     },
     {
       "id": "ACN",
+      "card": "aleph1",
       "label": "Fonctions absolument continues sur tout segment",
       "family": "régularité réelle",
       "domain": "analyse réelle",
@@ -3646,6 +3898,7 @@
     },
     {
       "id": "ACZ",
+      "card": "aleph1",
       "label": "Fonctions absolument continues à dérivée nulle p.p.",
       "family": "régularité réelle",
       "domain": "théorie de la mesure",
@@ -3656,6 +3909,7 @@
     },
     {
       "id": "DNC",
+      "card": "aleph1",
       "label": "Fonctions dérivables à dérivée nulle partout",
       "family": "dérivabilité",
       "domain": "analyse réelle",
@@ -3676,6 +3930,7 @@
     },
     {
       "id": "DCX",
+      "card": "aleph1",
       "label": "Fonctions dérivables à dérivée croissante",
       "family": "dérivabilité",
       "domain": "analyse réelle",
@@ -3686,6 +3941,7 @@
     },
     {
       "id": "DLR",
+      "card": "aleph1",
       "label": "Fonctions à dérivées latérales partout",
       "family": "dérivabilité",
       "domain": "analyse réelle",
@@ -3696,6 +3952,7 @@
     },
     {
       "id": "LLH",
+      "card": "aleph1",
       "label": "Fonctions localement lipschitziennes",
       "family": "dérivabilité",
       "domain": "analyse réelle",
@@ -3706,6 +3963,7 @@
     },
     {
       "id": "LCV",
+      "card": "aleph1",
       "label": "Fonctions log-convexes",
       "family": "convexité",
       "domain": "analyse réelle",
@@ -3716,6 +3974,7 @@
     },
     {
       "id": "SMB",
+      "card": "aleph1",
       "label": "Suites monotones bornées",
       "family": "suites",
       "domain": "analyse des suites réelles",
@@ -3726,6 +3985,7 @@
     },
     {
       "id": "ADJ",
+      "card": "aleph1",
       "label": "Suites adjacentes",
       "family": "suites",
       "domain": "analyse des suites réelles",
@@ -3736,6 +3996,7 @@
     },
     {
       "id": "CAUR",
+      "card": "aleph1",
       "label": "Suites de Cauchy réelles",
       "family": "suites",
       "domain": "analyse des suites réelles",
@@ -3746,6 +4007,7 @@
     },
     {
       "id": "RCL",
+      "card": "aleph1",
       "label": "Suites récurrentes linéaires stables",
       "family": "suites",
       "domain": "analyse des suites réelles",
@@ -3756,6 +4018,7 @@
     },
     {
       "id": "ABS",
+      "card": "aleph1",
       "label": "Séries absolument convergentes",
       "family": "séries",
       "domain": "analyse de séries",
@@ -3766,6 +4029,7 @@
     },
     {
       "id": "COMM",
+      "card": "aleph1",
       "label": "Séries commutativement convergentes",
       "family": "séries",
       "domain": "analyse de séries",
@@ -3776,6 +4040,7 @@
     },
     {
       "id": "CMP",
+      "card": "aleph1",
       "label": "Séries à termes positifs dominées par une série convergente",
       "family": "séries",
       "domain": "analyse de séries",
@@ -3786,6 +4051,7 @@
     },
     {
       "id": "ALTG",
+      "card": "aleph1",
       "label": "Séries alternées décroissantes",
       "family": "séries",
       "domain": "analyse de séries",
@@ -3796,6 +4062,7 @@
     },
     {
       "id": "RAC",
+      "card": "aleph1",
       "label": "Séries à limite radicielle < 1",
       "family": "séries",
       "domain": "analyse de séries",
@@ -3806,6 +4073,7 @@
     },
     {
       "id": "AD1",
+      "card": "aleph1",
       "label": "Séries à sommes partielles bornées et terme monotone vers 0",
       "family": "séries",
       "domain": "analyse de séries",
@@ -3816,6 +4084,7 @@
     },
     {
       "id": "TAU1",
+      "card": "aleph1",
       "label": "Séries Cesàro-sommables à terme o(1/n)",
       "family": "séries",
       "domain": "analyse de séries",
@@ -3826,6 +4095,7 @@
     },
     {
       "id": "BER1",
+      "card": "aleph1",
       "label": "Séries de Bertrand convergentes",
       "family": "séries",
       "domain": "analyse de séries",
@@ -3836,6 +4106,7 @@
     },
     {
       "id": "BER2",
+      "card": "aleph1",
       "label": "Séries de Bertrand divergentes",
       "family": "séries",
       "domain": "analyse de séries",
@@ -3846,6 +4117,7 @@
     },
     {
       "id": "VAR1",
+      "card": "aleph1",
       "label": "Fonctions à variation bornée sur tout segment",
       "family": "régularité réelle",
       "domain": "analyse réelle",
@@ -3856,6 +4128,7 @@
     },
     {
       "id": "W11",
+      "card": "aleph1",
       "label": "Fonctions W^{1,1} sur le segment",
       "family": "régularité réelle",
       "domain": "théorie de la mesure",
@@ -3866,6 +4139,7 @@
     },
     {
       "id": "PRI",
+      "card": "aleph1",
       "label": "Primitives de Riemann-intégrables",
       "family": "intégrabilité",
       "domain": "analyse réelle",
@@ -3876,6 +4150,7 @@
     },
     {
       "id": "L1J",
+      "card": "pow2",
       "label": "Fonctions Lebesgue-intégrables sur tout segment",
       "family": "intégrabilité",
       "domain": "théorie de la mesure",
@@ -3886,6 +4161,7 @@
     },
     {
       "id": "DRB",
+      "card": "pow2",
       "label": "Fonctions Darboux-intégrables",
       "family": "intégrabilité",
       "domain": "analyse réelle",
@@ -3896,6 +4172,7 @@
     },
     {
       "id": "DMC",
+      "card": "aleph1",
       "label": "Différences de fonctions croissantes",
       "family": "monotonie",
       "domain": "analyse réelle",
@@ -3906,6 +4183,7 @@
     },
     {
       "id": "CFT",
+      "card": "pow2",
       "label": "Fonctions à coefficients de Fourier tendant vers 0",
       "family": "analyse de Fourier",
       "domain": "analyse harmonique",
@@ -3916,6 +4194,7 @@
     },
     {
       "id": "IAC",
+      "card": "pow2",
       "label": "Intégrales impropres absolument convergentes",
       "family": "intégrabilité",
       "domain": "analyse réelle",
@@ -3926,6 +4205,7 @@
     },
     {
       "id": "IGC",
+      "card": "pow2",
       "label": "Intégrales impropres convergentes",
       "family": "intégrabilité",
       "domain": "analyse réelle",
@@ -3936,6 +4216,7 @@
     },
     {
       "id": "H12",
+      "card": "aleph1",
       "label": "Fonctions höldériennes d'exposant 1/2",
       "family": "régularité réelle",
       "domain": "analyse réelle",
@@ -3946,6 +4227,7 @@
     },
     {
       "id": "H14",
+      "card": "aleph1",
       "label": "Fonctions höldériennes d'exposant 1/4",
       "family": "régularité réelle",
       "domain": "analyse réelle",
@@ -3956,6 +4238,7 @@
     },
     {
       "id": "ZLH",
+      "card": "aleph1",
       "label": "Fonctions log-lipschitziennes",
       "family": "régularité réelle",
       "domain": "analyse réelle",
@@ -3966,6 +4249,7 @@
     },
     {
       "id": "C1A",
+      "card": "aleph1",
       "label": "Fonctions de classe C^{1,1/2}",
       "family": "régularité réelle",
       "domain": "analyse réelle",
@@ -3976,6 +4260,7 @@
     },
     {
       "id": "H1S",
+      "card": "aleph1",
       "label": "Fonctions H¹ sur le segment",
       "family": "espaces de Hilbert",
       "domain": "théorie de la mesure",
@@ -3986,6 +4271,7 @@
     },
     {
       "id": "LP0S",
+      "card": "pow2",
       "label": "Fonctions L^∞ sur le segment",
       "family": "espaces de Banach",
       "domain": "théorie de la mesure",
@@ -3996,6 +4282,7 @@
     },
     {
       "id": "LP1S",
+      "card": "pow2",
       "label": "Fonctions L¹ sur le segment",
       "family": "espaces de Banach",
       "domain": "théorie de la mesure",
@@ -4006,6 +4293,7 @@
     },
     {
       "id": "LP2S",
+      "card": "pow2",
       "label": "Fonctions L² sur le segment",
       "family": "espaces de Banach",
       "domain": "théorie de la mesure",
@@ -4016,6 +4304,7 @@
     },
     {
       "id": "BAF1",
+      "card": "aleph1",
       "label": "Fonctions de classe de Baire 1",
       "family": "régularité réelle",
       "domain": "analyse réelle",
@@ -4026,6 +4315,7 @@
     },
     {
       "id": "CGD",
+      "card": "pow2",
       "label": "Fonctions continues en chaque point d'un Gδ dense",
       "family": "continuité",
       "domain": "analyse réelle",
@@ -4036,6 +4326,7 @@
     },
     {
       "id": "THO",
+      "card": "fini:1",
       "label": "Fonctions de Thomae",
       "family": "intégrabilité",
       "domain": "théorie de la mesure",
@@ -4046,6 +4337,7 @@
     },
     {
       "id": "DWI",
+      "card": "pow2",
       "label": "Indicatrices de parties denses d'intérieur vide",
       "family": "intégrabilité",
       "domain": "théorie de la mesure",
@@ -4056,6 +4348,7 @@
     },
     {
       "id": "CPER",
+      "card": "aleph1",
       "label": "Fonctions 2π-périodiques continues",
       "family": "analyse de Fourier",
       "domain": "analyse harmonique",
@@ -4066,6 +4359,7 @@
     },
     {
       "id": "FJS",
+      "card": "aleph1",
       "label": "Fonctions approchées par leurs moyennes de Fejér",
       "family": "analyse de Fourier",
       "domain": "analyse harmonique",
@@ -4076,6 +4370,7 @@
     },
     {
       "id": "NDV",
+      "card": "pow2",
       "label": "Fonctions dérivables en au moins un point",
       "family": "dérivabilité",
       "domain": "analyse réelle",
@@ -4086,6 +4381,7 @@
     },
     {
       "id": "H11",
+      "card": "aleph1",
       "label": "Fonctions höldériennes d'exposant 1",
       "family": "régularité réelle",
       "domain": "analyse réelle",
@@ -4096,6 +4392,7 @@
     },
     {
       "id": "W1I",
+      "card": "aleph1",
       "label": "Fonctions W^{1,∞} sur le segment",
       "family": "régularité réelle",
       "domain": "théorie de la mesure",
@@ -4106,6 +4403,7 @@
     },
     {
       "id": "LCS",
+      "card": "aleph1",
       "label": "Fonctions lipschitziennes sur le segment",
       "family": "régularité réelle",
       "domain": "analyse réelle",
@@ -4116,6 +4414,7 @@
     },
     {
       "id": "W21",
+      "card": "aleph1",
       "label": "Fonctions W^{2,1} sur le segment",
       "family": "régularité réelle",
       "domain": "théorie de la mesure",
@@ -4126,6 +4425,7 @@
     },
     {
       "id": "INT1",
+      "card": "pow2",
       "label": "Fonctions L¹ et L² sur le segment",
       "family": "espaces de Banach",
       "domain": "théorie de la mesure",
@@ -4136,6 +4436,7 @@
     },
     {
       "id": "LPP",
+      "card": "pow2",
       "label": "Fonctions dans tous les L^p sur le segment",
       "family": "espaces de Banach",
       "domain": "théorie de la mesure",
@@ -4146,6 +4447,7 @@
     },
     {
       "id": "FSM",
+      "card": "pow2",
       "label": "Fonctions à points de discontinuité Fσ maigres",
       "family": "continuité",
       "domain": "analyse réelle",
@@ -4156,6 +4458,7 @@
     },
     {
       "id": "SFR",
+      "card": "pow2",
       "label": "Suites de fonctions réelles",
       "family": "suites",
       "domain": "analyse réelle",
@@ -4166,6 +4469,7 @@
     },
     {
       "id": "SUC",
+      "card": "aleph1",
       "label": "Suites croissantes de fonctions continues sur un segment",
       "family": "suites",
       "domain": "analyse réelle",
@@ -4176,6 +4480,7 @@
     },
     {
       "id": "SCS",
+      "card": "aleph1",
       "label": "Suites croissantes de continues convergeant simplement vers une continue",
       "family": "suites",
       "domain": "analyse réelle",
@@ -4186,6 +4491,7 @@
     },
     {
       "id": "UNF",
+      "card": "pow2",
       "label": "Suites de fonctions convergeant uniformément",
       "family": "suites",
       "domain": "analyse réelle",
@@ -4196,6 +4502,7 @@
     },
     {
       "id": "FRN",
+      "card": "pow2",
       "label": "Fonctions de ℝⁿ dans ℝⁿ",
       "family": "analyse vectorielle",
       "domain": "analyse vectorielle",
@@ -4206,6 +4513,7 @@
     },
     {
       "id": "MEL",
+      "card": "pow2",
       "label": "Fonctions Lebesgue-mesurables",
       "family": "intégrabilité",
       "domain": "théorie de la mesure",
@@ -4216,6 +4524,7 @@
     },
     {
       "id": "BA2",
+      "card": "aleph1",
       "label": "Fonctions de classe de Baire 2",
       "family": "régularité réelle",
       "domain": "analyse réelle",
@@ -4226,6 +4535,7 @@
     },
     {
       "id": "LP3S",
+      "card": "pow2",
       "label": "Fonctions L³ sur le segment",
       "family": "espaces de Banach",
       "domain": "théorie de la mesure",
@@ -4236,6 +4546,7 @@
     },
     {
       "id": "W31",
+      "card": "aleph1",
       "label": "Fonctions W^{3,1} sur le segment",
       "family": "régularité réelle",
       "domain": "théorie de la mesure",
@@ -4246,6 +4557,7 @@
     },
     {
       "id": "CFR",
+      "card": "pow2",
       "label": "Fonctions à coefficients de Fourier tendant vers zéro",
       "family": "analyse de Fourier",
       "domain": "analyse harmonique",
@@ -4256,6 +4568,7 @@
     },
     {
       "id": "LH2",
+      "card": "pow2",
       "label": "Fonctions L^{1/2} sur le segment",
       "family": "espaces de Banach",
       "domain": "théorie de la mesure",
@@ -4266,6 +4579,7 @@
     },
     {
       "id": "LH3",
+      "card": "pow2",
       "label": "Fonctions L^{1/3} sur le segment",
       "family": "espaces de Banach",
       "domain": "théorie de la mesure",
@@ -4276,6 +4590,7 @@
     },
     {
       "id": "H13",
+      "card": "aleph1",
       "label": "Fonctions höldériennes d'exposant 1/3",
       "family": "régularité réelle",
       "domain": "analyse réelle",
@@ -4286,6 +4601,7 @@
     },
     {
       "id": "W12S",
+      "card": "aleph1",
       "label": "Fonctions W^{1,2} sur le segment",
       "family": "régularité réelle",
       "domain": "théorie de la mesure",
@@ -4296,6 +4612,7 @@
     },
     {
       "id": "WP32",
+      "card": "aleph1",
       "label": "Fonctions W^{1,3/2} sur le segment",
       "family": "régularité réelle",
       "domain": "théorie de la mesure",
@@ -4326,6 +4643,7 @@
     },
     {
       "id": "CMI",
+      "card": "aleph1",
       "label": "Suites dominées par une intégrable",
       "family": "séries",
       "domain": "analyse des suites réelles",
@@ -4336,6 +4654,7 @@
     },
     {
       "id": "BA3",
+      "card": "aleph1",
       "label": "Fonctions de classe de Baire 3",
       "family": "régularité réelle",
       "domain": "analyse réelle",
@@ -4406,6 +4725,7 @@
     },
     {
       "id": "VCV",
+      "card": "aleph1",
       "label": "Fonctions convexes de plusieurs variables",
       "family": "convexité",
       "domain": "analyse vectorielle",
@@ -4416,6 +4736,7 @@
     },
     {
       "id": "VCD",
+      "card": "aleph1",
       "label": "Fonctions convexes différentiables",
       "family": "convexité",
       "domain": "analyse vectorielle",
@@ -4426,6 +4747,7 @@
     },
     {
       "id": "VGM",
+      "card": "aleph1",
       "label": "Fonctions différentiables à gradient monotone",
       "family": "convexité",
       "domain": "analyse vectorielle",
@@ -4476,6 +4798,7 @@
     },
     {
       "id": "ESC",
+      "card": "aleph1",
       "label": "Fonctions en escalier sur tout segment",
       "family": "régularité réelle",
       "domain": "analyse réelle",
@@ -4486,6 +4809,7 @@
     },
     {
       "id": "LH4",
+      "card": "pow2",
       "label": "Fonctions L^{1/4} sur le segment",
       "family": "espaces de Banach",
       "domain": "théorie de la mesure",
@@ -4496,6 +4820,7 @@
     },
     {
       "id": "H15",
+      "card": "aleph1",
       "label": "Fonctions höldériennes d'exposant 1/5",
       "family": "régularité réelle",
       "domain": "analyse réelle",
@@ -4506,6 +4831,7 @@
     },
     {
       "id": "WP54",
+      "card": "aleph1",
       "label": "Fonctions W^{1,5/4} sur le segment",
       "family": "régularité réelle",
       "domain": "théorie de la mesure",
@@ -4513,6 +4839,541 @@
       "description": "Les fonctions de dérivée faible dans L^{5/4}.",
       "example": "x ↦ x^{9/4} sur [0, 1]",
       "notes": ""
+    },
+    {
+      "id": "TS1",
+      "card": "aleph1",
+      "label": "Paires de triangles semblables",
+      "family": "triangles",
+      "domain": "géométrie euclidienne",
+      "property": "\\{\\, (T, T') \\text{ triangles non dégénérés} \\mid \\exists \\lambda > 0 : a' = \\lambda a,\\ b' = \\lambda b,\\ c' = \\lambda c \\,\\}",
+      "description": "Les paires de triangles dont les côtés homologues sont proportionnels (rapport de similitude λ).",
+      "example": "un triangle 3-4-5 et un triangle 6-8-10, rapport λ = 2",
+      "notes": ""
+    },
+    {
+      "id": "TS2",
+      "card": "aleph1",
+      "label": "Paires de triangles aux angles homologues égaux",
+      "family": "triangles",
+      "domain": "géométrie euclidienne",
+      "property": "\\{\\, (T, T') \\text{ triangles non dégénérés} \\mid \\alpha = \\alpha',\\ \\beta = \\beta',\\ \\gamma = \\gamma' \\,\\}",
+      "description": "Les paires de triangles qui ont leurs trois angles homologues égaux.",
+      "example": "deux triangles équilatéraux quelconques",
+      "notes": ""
+    },
+    {
+      "id": "TC1",
+      "card": "aleph1",
+      "label": "Paires de triangles congruents",
+      "family": "triangles",
+      "domain": "géométrie euclidienne",
+      "property": "\\{\\, (T, T') \\text{ triangles} \\mid a = a',\\ b = b',\\ c = c' \\,\\}",
+      "description": "Les paires de triangles dont les trois côtés homologues ont même longueur (isométries).",
+      "example": "deux copies du triangle 3-4-5",
+      "notes": "La congruence par les côtés (SSS) ; c'est la similitude de rapport 1 (e861)."
+    },
+    {
+      "id": "TC2",
+      "card": "aleph1",
+      "label": "Paires de triangles à un côté et ses angles adjacents égaux",
+      "family": "triangles",
+      "domain": "géométrie euclidienne",
+      "property": "\\{\\, (T, T') \\text{ triangles} \\mid a = a',\\ \\beta = \\beta',\\ \\gamma = \\gamma' \\,\\}",
+      "description": "Les paires de triangles qui partagent un côté et les deux angles adjacents à ce côté (données ASA).",
+      "example": "deux triangles avec le même côté a = 5 et les mêmes angles adjacents 40° et 60°",
+      "notes": ""
+    },
+    {
+      "id": "TC3",
+      "card": "aleph1",
+      "label": "Paires de triangles à deux angles et un côté égaux",
+      "family": "triangles",
+      "domain": "géométrie euclidienne",
+      "property": "\\{\\, (T, T') \\text{ triangles} \\mid \\alpha = \\alpha',\\ \\beta = \\beta',\\ a = a' \\,\\}",
+      "description": "Les paires de triangles qui partagent deux angles et un côté (données AAS).",
+      "example": "deux triangles 30-60-90 avec la même hypoténuse",
+      "notes": ""
+    },
+    {
+      "id": "TC4",
+      "card": "aleph1",
+      "label": "Paires de triangles à deux côtés et un angle non compris égaux",
+      "family": "triangles",
+      "domain": "géométrie euclidienne",
+      "property": "\\{\\, (T, T') \\text{ triangles} \\mid a = a',\\ c = c',\\ \\alpha = \\alpha' \\,\\}",
+      "description": "Les paires de triangles qui partagent deux côtés et un angle homologue non compris entre eux (données ASS, le cas ambigu).",
+      "example": "angle α = 30°, côtés a = 5 et c = 8 : les deux triangles solutions, non congruents",
+      "notes": "Loi des sinus : sin γ = (c sin α)/a peut prendre deux angles supplémentaires."
+    },
+    {
+      "id": "ANG1",
+      "card": "aleph1",
+      "label": "Quadruplets portés par la bissectrice intérieure",
+      "family": "triangles",
+      "domain": "géométrie euclidienne",
+      "property": "\\{\\, (A, B, C, D) \\in (\\mathbb{R}^2)^4 \\mid A, B, C \\text{ non alignés},\\ D \\in [BC],\\ (AD) \\text{ bissectrice intérieure de } \\widehat{BAC} \\,\\}",
+      "description": "Les configurations d'un triangle ABC et d'un point D du côté [BC] portés par la bissectrice intérieure issue de A.",
+      "example": "le pied de la bissectrice issue du sommet principal d'un triangle isocèle",
+      "notes": ""
+    },
+    {
+      "id": "ANG2",
+      "card": "aleph1",
+      "label": "Quadruplets à rapport de distances égal au rapport des côtés",
+      "family": "triangles",
+      "domain": "géométrie euclidienne",
+      "property": "\\{\\, (A, B, C, D) \\in (\\mathbb{R}^2)^4 \\mid A, B, C \\text{ non alignés},\\ D \\in [BC],\\ \\frac{DB}{DC} = \\frac{AB}{AC} \\,\\}",
+      "description": "Les configurations d'un triangle et d'un point du côté opposé qui divisent [BC] dans le rapport des côtés adjacents.",
+      "example": "D qui divise [BC] dans le rapport 2 : 3 quand AB : AC = 2 : 3",
+      "notes": ""
+    },
+    {
+      "id": "NK1",
+      "card": "aleph0",
+      "label": "Nœuds",
+      "family": "nœuds",
+      "domain": "topologie algéblique",
+      "property": "\\{\\, K : S^1 \\to \\mathbb{R}^3 \\mid K \\text{ plongement (injectif, homeomorphisme sur son image)} \\,\\}",
+      "description": "Les plongements du cercle dans l'espace : les nœuds, étudiés à isotopie près.",
+      "example": "le trèfle, fermeture de la tresse (σ₁)³ à deux brins",
+      "notes": "Deux plongements isotopes représentent le même nœud ; la théorie des nœuds classe ces classes."
+    },
+    {
+      "id": "NK2",
+      "card": "aleph0",
+      "label": "Entrelacs orientés",
+      "family": "nœuds",
+      "domain": "topologie algéblique",
+      "property": "\\{\\, L : S^1 \\sqcup \\cdots \\sqcup S^1 \\to \\mathbb{R}^3 \\mid L \\text{ plongement, cercles orientés disjoints} \\,\\}",
+      "description": "Les plongements d'un nombre fini de cercles orientés disjoints dans l'espace : les entrelacs.",
+      "example": "le nœud de huit, entrelacs à une composante",
+      "notes": ""
+    },
+    {
+      "id": "NK3",
+      "card": "aleph0",
+      "label": "Tresses",
+      "family": "nœuds",
+      "domain": "topologie algéblique",
+      "property": "\\{\\, \\beta : \\bigsqcup_{i=1}^{n} [0, 1] \\to \\mathbb{R}^2 \\times [0, 1] \\mid \\beta \\text{ plongement, brins disjoints, extrémités fixées} \\,\\}",
+      "description": "Les tresses à n brins : plongements de n intervalles dans le cylindre ℝ² × [0, 1], du haut vers le bas dans un ordre permuté, à isotopie près.",
+      "example": "le croisement σ₁ des deux premiers brins",
+      "notes": "Leur groupe est Bₙ ; la fermeture des brins, raccordés bout à bout dans le complémentaire du cylindre, donne un entrelacs orienté."
+    },
+    {
+      "id": "NK4",
+      "card": "aleph0",
+      "label": "Fermetures de tresses",
+      "family": "nœuds",
+      "domain": "topologie algéblique",
+      "property": "\\{\\, L \\mid \\exists \\beta \\text{ tresse dans un cylindre},\\ L = \\text{fermeture de } \\beta \\,\\}",
+      "description": "Les entrelacs orientés obtenus en refermant les brins d'une tresse bout à bout, sans croisement nouveau.",
+      "example": "le trèfle, fermeture de (σ₁)³",
+      "notes": "Sens immédiat du théorème d'Alexander : une fermeture de tresse est un entrelacs orienté ; le sens retour est le théorème (e872)."
+    },
+    {
+      "id": "SUR1",
+      "card": "aleph1",
+      "label": "Surfaces compactes plongées dans ℝ³",
+      "family": "surfaces",
+      "domain": "topologie différentielle",
+      "property": "\\{\\, S \\subset \\mathbb{R}^3 \\mid S \\text{ surface compacte connexe sans bord, image d'un plongement} \\,\\}",
+      "description": "Les surfaces compactes connexes sans bord, plongées (sans point double) dans l'espace.",
+      "example": "la sphère unité, le tore de révolution",
+      "notes": ""
+    },
+    {
+      "id": "SUR2",
+      "card": "aleph1",
+      "label": "Surfaces plongées à courbure moyenne constante",
+      "family": "surfaces",
+      "domain": "topologie différentielle",
+      "property": "\\{\\, S \\in \\text{surfaces compactes plongées} \\mid H \\text{ constante sur } S \\,\\}",
+      "description": "Les surfaces compactes plongées dans ℝ³ dont la courbure moyenne H est la même en tout point : les interfaces à pression constante, les bulles de savon fermées.",
+      "example": "la sphère unité (H = 1)",
+      "notes": "Une vraie bulle de savon (film physique sans pression) est minimale : H = 0."
+    },
+    {
+      "id": "SUR3",
+      "card": "aleph1",
+      "label": "Surfaces sphériques plongées",
+      "family": "surfaces",
+      "domain": "topologie différentielle",
+      "property": "\\{\\, S \\in \\text{surfaces compactes plongées} \\mid S \\text{ homéomorphe à } S^2 \\,\\}",
+      "description": "Les surfaces compactes plongées dans ℝ³ homéomorphes à la sphère : le genre 0.",
+      "example": "la sphère unité",
+      "notes": ""
+    },
+    {
+      "id": "SUR4",
+      "card": "aleph1",
+      "label": "Surfaces immergées à courbure moyenne constante",
+      "family": "surfaces",
+      "domain": "topologie différentielle",
+      "property": "\\{\\, S \\subset \\mathbb{R}^3 \\mid S \\text{ image d'une immersion CMC d'une surface compacte} \\,\\}",
+      "description": "Les images dans ℝ³ d'immersions à courbure moyenne constante de surfaces compactes : les points doubles sont permis, la courbure moyenne se lit sur la paramétrisation.",
+      "example": "les tores immergés à courbure moyenne constante (Wente, 1984)",
+      "notes": "L'hypothèse plongée du théorème d'Alexandrov (e875) est essentielle : immergées, d'autres genres existent."
+    },
+    {
+      "id": "TIC1",
+      "card": "aleph1",
+      "label": "Surfaces de Riemann de type fini",
+      "family": "surfaces de Riemann",
+      "domain": "géométrie complexe",
+      "property": "\\{\\, X \\mid X \\text{ surface de Riemann connexe de type } (g, n),\\ g \\ge 0,\\ n \\ge 0 \\,\\}",
+      "description": "Les surfaces de Riemann connexes de type fini : variétés complexes de dimension 1, de genre g avec n points marqués.",
+      "example": "la sphère de Riemann ℂ ∪ {∞} (g = 0, n = 0)",
+      "notes": "Pour g ≥ 2, la uniformisation donne une unique métrique hyperbolique dans la classe conforme."
+    },
+    {
+      "id": "TIC2",
+      "card": "aleph1",
+      "label": "Espaces de Teichmüller",
+      "family": "espaces de modules",
+      "domain": "géométrie complexe",
+      "property": "\\{\\, T_{g,n} \\mid (g, n) \\text{ type fini} \\,\\}",
+      "description": "Les espaces de Teichmüller : pour chaque type (g, n), l'ensemble des structures conformes marquées (surfaces de Riemann de genre g, n points marqués, marquées à isotopie près) muni de la topologie quasiconforme. Les éléments de T_{g,n} sont les classes de surfaces marquées.",
+      "example": "T_{1,0} : les structures de tore marquées, le demi-plan supérieur homéomorphe à ℝ²",
+      "notes": "Dimension réelle 6g − 6 + 2n pour g ≥ 2 (3g − 3 + n paramètres complexes)."
+    },
+    {
+      "id": "TIC3",
+      "label": "Espaces homéomorphes à un ouvert de ℝᵐ",
+      "family": "espaces de modules",
+      "domain": "géométrie complexe",
+      "property": "\\{\\, E \\mid \\exists m,\\ E \\approx \\text{ouvert non vide de } \\mathbb{R}^m \\,\\}",
+      "description": "Les espaces topologiques homéomorphes à un ouvert d'un espace euclidien : les cellules de dimension finie.",
+      "example": "la boule ouverte unité de ℝᵐ",
+      "notes": ""
+    },
+    {
+      "id": "MER1",
+      "card": "aleph1",
+      "label": "Fonctions méromorphes",
+      "family": "holomorphie",
+      "domain": "analyse complexe",
+      "property": "\\{\\, f : \\mathbb{C} \\setminus P \\to \\mathbb{C} \\mid P \\text{ discret fermé},\\ f \\text{ holomorphe, chaque point de } P \\text{ est un pôle} \\,\\}",
+      "description": "Les fonctions méromorphes sur le plan : holomorphes hors d'un ensemble discret fermé de pôles.",
+      "example": "z ↦ 1/z, méromorphe d'un seul pôle en 0",
+      "notes": "Prolongées par ∞ aux pôles, elles deviennent des applications continues de ℂ dans la sphère de Riemann."
+    },
+    {
+      "id": "MER2",
+      "card": "aleph1",
+      "label": "Fonctions méromorphes transcendantes",
+      "family": "holomorphie",
+      "domain": "analyse complexe",
+      "property": "\\{\\, f \\text{ méromorphe sur } \\mathbb{C} \\mid f \\text{ non rationnelle} \\,\\}",
+      "description": "Les fonctions méromorphes qui ne sont rationnelles : ni polynôme, ni quotient de polynômes.",
+      "example": "l'exponentielle, la tangente, Gamma",
+      "notes": ""
+    },
+    {
+      "id": "MER3",
+      "card": "aleph1",
+      "label": "Fonctions couvrant cinq îles",
+      "family": "holomorphie",
+      "domain": "analyse complexe",
+      "property": "\\{\\, f \\mid \\text{pour tout quintette d'îles (domaines de Jordan) disjoints, } f \\text{ couvre chaque île} \\,\\}",
+      "description": "Les fonctions qui, sur n'importe quel quintette d'îles disjointes (domaines de Jordan simplement connexes à frontières deux à deux disjointes), prennent dans chaque île toutes les valeurs complexes, sauf au plus deux exceptions.",
+      "example": "l'exponentielle e^z (le théorème e883 la couvre)",
+      "notes": ""
+    },
+    {
+      "id": "CVX1",
+      "card": "aleph1",
+      "label": "Corps convexes",
+      "family": "convexité",
+      "domain": "géométrie affine",
+      "property": "\\{\\, K \\subset \\mathbb{R}^d \\mid K \\text{ compact convexe d'intérieur non vide} \\,\\}",
+      "description": "Les corps convexes : compacts convexes d'intérieur non vide des espaces ℝᵈ.",
+      "example": "la boule unité fermée, le cube [0, 1]^d",
+      "notes": "La fonction de luminosité (brightness) de K : l'aire (d − 1)-dimensionnelle de sa projection sur un hyperplan, comme fonction de la direction."
+    },
+    {
+      "id": "CVX2",
+      "card": "aleph1",
+      "label": "Paires de corps convexes à même fonction de luminosité",
+      "family": "convexité",
+      "domain": "géométrie affine",
+      "property": "\\{\\, (K, K') \\mid K, K' \\text{ corps convexes},\\ \\text{luminosité de } K = \\text{luminosité de } K' \\,\\}",
+      "description": "Les paires de corps convexes dont les projections sur tout hyperplan ont la même aire.",
+      "example": "deux corps translatés l'un de l'autre",
+      "notes": ""
+    },
+    {
+      "id": "CVX3",
+      "card": "aleph1",
+      "label": "Paires de corps convexes égales à une translation près",
+      "family": "convexité",
+      "domain": "géométrie affine",
+      "property": "\\{\\, (K, K') \\mid \\exists v,\\ K' = K + v \\,\\}",
+      "description": "Les paires de corps convexes qui se déduisent l'une de l'autre par une translation.",
+      "example": "la boule unité centrée en 0 et centrée en (1, 0, \\ldots, 0)",
+      "notes": ""
+    },
+    {
+      "id": "CVX4",
+      "card": "aleph1",
+      "label": "Paires de corps convexes du plan à même fonction de largeur",
+      "family": "convexité",
+      "domain": "géométrie affine",
+      "property": "\\{\\, (K, K') \\subset \\mathbb{R}^2 \\mid \\text{largeur}(K, u) = \\text{largeur}(K', u) \\text{ pour toute direction } u \\,\\}",
+      "description": "Les paires de corps convexes du plan dont la largeur (longueur de la projection sur la droite de direction u) coïncide dans toutes les directions.",
+      "example": "le disque de rayon r et le triangle de Reuleaux de largeur 2r",
+      "notes": "La largeur ne détermine pas le corps plan : contre-exemple e888."
+    },
+    {
+      "id": "ERG1",
+      "label": "Flots mesurés",
+      "family": "flots",
+      "domain": "théorie ergodique",
+      "property": "\\{\\, \\varphi : \\mathbb{R} \\times X \\to X \\mid \\varphi \\text{ action mesurable de } (\\mathbb{R}, +),\\ \\exists \\mu \\text{ probabilité invariante} \\,\\}",
+      "description": "Les flots mesurés : actions mesurables du groupe réel sur un espace probabilisé, qui préservent la mesure.",
+      "example": "le flot géodésique d'une surface hyperbolique compacte (mesure de Liouville)",
+      "notes": "Un flot est une famille (φ_t) d'applications ; la mesure μ vérifie μ(φ_t(A)) = μ(A)."
+    },
+    {
+      "id": "ERG2",
+      "label": "Suspensions (flots sous une fonction)",
+      "family": "flots",
+      "domain": "théorie ergodique",
+      "property": "\\{\\, \\varphi_T^f \\mid T \\text{ application mesurable préservant } \\mu,\\ f > 0 \\text{ intégrable} \\,\\}",
+      "description": "Les suspensions : le flot construit sur l'espace {(x, s) : 0 ≤ s < f(x)} qui avance en s à vitesse 1 et, en f(x), saute de x à T(x). Le plafond f est le temps de vol avant chaque saut.",
+      "example": "la suspension de la rotation irrationnelle d'angle α, plafond constant 1",
+      "notes": "La mesure produit μ(dx) × ds, renormalisée par ∫f dμ, est invariante."
+    },
+    {
+      "id": "ERG3",
+      "label": "Flots à multiplicité dénombrable",
+      "family": "flots",
+      "domain": "théorie ergodique",
+      "property": "\\{\\, \\varphi \\text{ flot mesuré} \\mid \\text{la multiplicité spectrale est dénombrable} \\,\\}",
+      "description": "Les flots mesurés dont la multiplicité spectrale (des sous-espaces propres de l'action sur les fonctions) est au plus dénombrable.",
+      "example": "les suspensions ergodiques",
+      "notes": ""
+    },
+    {
+      "id": "ERG4",
+      "label": "Flots isomorphes à une suspension",
+      "family": "flots",
+      "domain": "théorie ergodique",
+      "property": "\\{\\, \\varphi \\text{ flot mesuré} \\mid \\exists \\text{ suspension } \\varphi_T^f,\\ \\varphi \\cong \\varphi_T^f \\,\\}",
+      "description": "Les flots mesurés isomorphes (semi-conjugaison bijective hors ensemble de mesure nulle) à une suspension construite sous une fonction.",
+      "example": "les suspensions elles-mêmes",
+      "notes": ""
+    },
+    {
+      "id": "ANN1",
+      "card": "aleph1",
+      "label": "Régions entre deux sphères emboîtées",
+      "family": "variétés",
+      "domain": "topologie différentielle",
+      "property": "\\{\\, R \\subset \\mathbb{R}^n \\mid R \\text{ compact bordé par deux sphères topologiques emboîtées (Steinrod)} \\,\\}",
+      "description": "Dans ℝⁿ, les régions compactes comprises entre deux sphères topologiques emboîtées (images de plongements sauvages ou lisses de Sⁿ⁻¹, la seconde dans la composante bornée de la première).",
+      "example": "la couronne fermée entre deux sphères concentriques (le cas lisse)",
+      "notes": ""
+    },
+    {
+      "id": "ANN2",
+      "label": "Espaces homéomorphes à un anneau fermé",
+      "family": "variétés",
+      "domain": "topologie différentielle",
+      "property": "\\{\\, E \\mid \\exists n,\\ E \\approx S^{n-1} \\times [0, 1] \\,\\}",
+      "description": "Les espaces topologiques homéomorphes à l'anneau fermé Sⁿ⁻¹ × [0, 1] entre deux sphères de dimension n − 1.",
+      "example": "la couronne {x ∈ ℝⁿ : 1 ≤ |x| ≤ 2}",
+      "notes": ""
+    },
+    {
+      "id": "GC2",
+      "card": "aleph1",
+      "label": "Polygones surveillables par ⌊n/3⌋ gardes",
+      "family": "combinatoire",
+      "domain": "géométrie combinatoire",
+      "property": "\\{\\, P \\text{ polygone simple à } n \\text{ sommets} \\mid \\exists G \\subseteq \\text{sommets},\\ |G| \\le \\lfloor n/3 \\rfloor,\\ G \\text{ surveille tout point de } P \\,\\}",
+      "description": "Les polygones simples qu'environ un tiers des sommets suffit à surveiller : ⌊n/3⌋ gardes placés à des sommets, chaque point du polygone visible d'au moins un garde (le segment de vue reste dans P).",
+      "example": "tout triangle : un garde (⌊3/3⌋ = 1) à n'importe quel sommet",
+      "notes": ""
+    },
+    {
+      "id": "GC3",
+      "card": "aleph1",
+      "label": "Polygones surveillables par ⌊n/3⌋ − 1 gardes",
+      "family": "combinatoire",
+      "domain": "géométrie combinatoire",
+      "property": "\\{\\, P \\text{ polygone simple à } n \\text{ sommets} \\mid \\exists G, |G| \\le \\lfloor n/3 \\rfloor - 1,\\ G \\text{ surveille } P \\,\\}",
+      "description": "Les polygones simples qu'un garde de moins que le compte de Chvátal suffit à surveiller.",
+      "example": "l'hexagone convexe : un seul garde en un sommet voit tout (⌊6/3⌋ − 1 = 1)",
+      "notes": ""
+    },
+    {
+      "id": "NST1",
+      "card": "aleph1",
+      "label": "Surfaces minimales complètes qui sont des graphes entiers",
+      "family": "surfaces",
+      "domain": "topologie différentielle",
+      "property": "\\(\\{\\, \\text{graphes de } f \\in C^2(\\mathbb{R}^2, \\mathbb{R}) \\mid \\mathrm{div}\\!\\left( \\frac{\\nabla f}{\\sqrt{1 + |\\nabla f|^2}} \\right) = 0 \\,\\}\\)",
+      "description": "Les surfaces complètes minimales définies comme le graphe d'une fonction de classe C² sur le plan euclidien tout entier : l'équation des surfaces minimales, div(∇f/√(1+|∇f|²)) = 0, imposée sur ℝ² entier.",
+      "example": "le plan z = 0 (f nulle) : le seul exemple que Bernstein laisse",
+      "notes": "Fiche Bernstein Minimal Surface Theorem (paquet B, v0.30.0)."
+    },
+    {
+      "id": "NST2",
+      "card": "aleph1",
+      "label": "Plans affines de ℝ³",
+      "family": "variétés",
+      "domain": "géométrie affine",
+      "property": "\\(\\{\\, P \\subset \\mathbb{R}^3 \\mid \\exists (a, b, c) \\neq 0, \\ \\exists d : \\ P = \\{ (x, y, z) : ax + by + cz = d \\} \\,\\}\\)",
+      "description": "Les plans affines de l'espace euclidien : une équation linéaire non triviale, une direction à deux dimensions, la plus plate des surfaces.",
+      "example": "le plan z = 0",
+      "notes": "Fiche Bernstein (paquet B, v0.30.0)."
+    },
+    {
+      "id": "BTO1",
+      "card": "aleph1",
+      "label": "Matrices bistochastiques réelles n×n",
+      "family": "matrices",
+      "domain": "algèbre linéaire",
+      "property": "\\(\\{\\, A \\in \\mathbb{R}^{n \\times n} \\mid a_{ij} \\ge 0, \\ \\sum_{j} a_{ij} = 1 \\ \\forall i, \\ \\sum_{i} a_{ij} = 1 \\ \\forall j \\,\\}\\)",
+      "description": "Les matrices réelles dont chaque ligne et chaque colonne est une loi de probabilité : le polytope bistochastique.",
+      "example": "\\(\\begin{pmatrix} 0 & 1 \\\\ 1 & 0 \\end{pmatrix}\\)",
+      "notes": "Fiche Birkhoff–von Neumann (paquet B, v0.30.0)."
+    },
+    {
+      "id": "BTO2",
+      "card": "aleph1",
+      "label": "Matrices combinaisons convexes de matrices de permutation",
+      "family": "matrices",
+      "domain": "algèbre linéaire",
+      "property": "\\(\\{\\, A \\in \\mathbb{R}^{n \\times n} \\mid \\exists \\lambda_1, \\ldots, \\lambda_k \\ge 0, \\ \\sum \\lambda_k = 1 : \\ A = \\sum_k \\lambda_k P_k, \\ P_k \\text{ matrices de permutation} \\,\\}\\)",
+      "description": "Les barycentres à poids positifs des matrices de permutation : l'enveloppe convexe du groupe symétrique plongé dans les matrices.",
+      "example": "\\(\\frac{1}{2}\\begin{pmatrix} 1 & 0 \\\\ 0 & 1 \\end{pmatrix} + \\frac{1}{2}\\begin{pmatrix} 0 & 1 \\\\ 1 & 0 \\end{pmatrix} = \\begin{pmatrix} 1/2 & 1/2 \\\\ 1/2 & 1/2 \\end{pmatrix}\\)",
+      "notes": "Fiche Birkhoff–von Neumann (paquet B, v0.30.0)."
+    },
+    {
+      "id": "CHP1",
+      "card": "aleph1",
+      "label": "Fonctions définies positives continues sur ℝⁿ",
+      "family": "analyse de Fourier",
+      "domain": "analyse harmonique",
+      "property": "\\(\\{\\, f \\in C(\\mathbb{R}^n) \\mid \\forall x_1, \\ldots, x_k, \\ \\forall c_1, \\ldots, c_k \\in \\mathbb{C} : \\ \\sum_{i,j} c_i \\overline{c_j} \\, f(x_i - x_j) \\ge 0 \\,\\}\\)",
+      "description": "Les fonctions continues dont toutes les matrices de covariance associées (f(x_i − x_j)) sont hermitiennes positives : le cœur des processus stationnaires.",
+      "example": "\\( f(x) = e^{-|x|^2} \\) : définie positive via la transformée de Fourier de la gaussienne",
+      "notes": "Fiche Bochner (paquet B, v0.30.0)."
+    },
+    {
+      "id": "CHP2",
+      "card": "aleph1",
+      "label": "Transformées de Fourier de mesures positives finies",
+      "family": "analyse de Fourier",
+      "domain": "analyse harmonique",
+      "property": "\\(\\{\\, f : \\exists \\mu \\text{ mesure de Borel positive finie sur } \\mathbb{R}^n : \\ f(x) = \\int e^{-i \\langle x, t \\rangle} \\, d\\mu(t) \\,\\}\\)",
+      "description": "Les fonctions qui sont la transformée de Fourier d'une mesure de Borel positive finie sur l'espace dual.",
+      "example": "\\( x \\mapsto \\frac{1}{\\pi(1 + x^2)} \\) : transformée à un facteur près d'une masse au point 1",
+      "notes": "Fiche Bochner (paquet B, v0.30.0)."
+    },
+    {
+      "id": "BFS1",
+      "label": "Familles d'applications linéaires continues ponctuellement bornées",
+      "family": "applications linéaires",
+      "domain": "topologie vectorielle",
+      "property": "\\(\\{\\, \\{T_i\\}_{i \\in I} \\mid T_i : E \\to F \\text{ linéaires continues, } E \\text{ Banach}, \\ F \\text{ normé}, \\ \\forall x \\in E : \\ \\sup_i \\|T_i x\\| < \\infty \\,\\}\\)",
+      "description": "Les familles d'opérateurs bornées en chaque point, mais a priori pas en opérateur : la borne peut dépendre du point.",
+      "example": "sur \\(\\ell^2\\), les formes coordonnées \\( x \\mapsto x_n \\) : bornées en chaque point",
+      "notes": "Fiche Banach–Steinhaus (paquet B, v0.30.0)."
+    },
+    {
+      "id": "BFS2",
+      "label": "Familles d'applications linéaires continues uniformément bornées",
+      "family": "applications linéaires",
+      "domain": "topologie vectorielle",
+      "property": "\\(\\{\\, \\{T_i\\}_{i \\in I} \\mid \\sup_i \\|T_i\\| < \\infty \\,\\}\\)",
+      "description": "Les familles d'opérateurs dont la norme est globalement majorée : la même borne vaut pour tous les points de la boule unité.",
+      "example": "les formes coordonnées de \\(\\ell^2\\), de norme 1",
+      "notes": "Fiche Banach–Steinhaus (paquet B, v0.30.0)."
+    },
+    {
+      "id": "CG1",
+      "label": "Couplages maximums d'un graphe fini",
+      "family": "graphes",
+      "domain": "théorie des graphes",
+      "property": "\\(\\{\\, M \\subseteq E(G) \\mid \\text{arêtes deux à deux sans sommet commun}, \\ |M| \\text{ de cardinal maximal} \\,\\}\\)",
+      "description": "Les couplages de G de taille maximale : le plus grand nombre d'arêtes deux à deux disjointes possible dans le graphe.",
+      "example": "dans le carré C₄ : les deux paires d'arêtes opposées",
+      "notes": "Fiche Berge (paquet B, v0.30.0)."
+    },
+    {
+      "id": "CG2",
+      "label": "Couplages sans chaîne augmentante",
+      "family": "graphes",
+      "domain": "théorie des graphes",
+      "property": "\\(\\{\\, M \\text{ couplage de } G \\mid \\text{aucun chemin alternant de longueur impaire dont les deux extrémités sont non couvertes} \\,\\}\\)",
+      "description": "Les couplages où aucun chemin alternant (arêtes hors M, arêtes de M) ne peut, en échangeant ses arêtes, augmenter le cardinal.",
+      "example": "les deux paires d'arêtes opposées du carré C₄",
+      "notes": "Fiche Berge (paquet B, v0.30.0)."
+    },
+    {
+      "id": "BNG1",
+      "label": "3-variétés fermées où toute courbe tient dans une boule",
+      "family": "variétés",
+      "domain": "topologie différentielle",
+      "property": "\\(\\{\\, M \\text{ compacte, orientée, connexe}, \\ \\dim M = 3 \\mid \\forall \\gamma \\subset M \\text{ courbe simple fermée} : \\gamma \\text{ intérieure à une boule de } M \\,\\}\\)",
+      "description": "Les 3-variétés fermées orientées connexes où chaque courbe fermée simple tient dans l'intérieur d'une boule : aucune courbe n'est nouée ou encombrante.",
+      "example": "la sphère S³ : toute courbe simple fermée est contenue dans une boule",
+      "notes": "Fiche Bing (paquet B, v0.30.0)."
+    },
+    {
+      "id": "BNG2",
+      "label": "Variétés homéomorphes à la sphère S³",
+      "family": "variétés",
+      "domain": "topologie différentielle",
+      "property": "\\(\\{\\, M \\mid \\dim M = 3, \\ M \\simeq \\mathbb{S}^3 \\,\\}\\)",
+      "description": "La 3-sphère et ses copies topologiques : la variété fermée de dimension trois la plus simple, bouclée sur elle-même.",
+      "example": "la sphère unité de ℝ⁴, bord de la boule de dimension 4 (un point retiré donne ℝ³)",
+      "notes": "Fiche Bing (paquet B, v0.30.0)."
+    },
+    {
+      "id": "LPB",
+      "label": "Espaces L^p (1 < p < ∞)",
+      "family": "espaces de Banach",
+      "domain": "topologie vectorielle",
+      "property": "\\{\\, L^p(\\Omega,\\mu) \\mid 1 < p < \\infty,\\ (\\Omega,\\mu) \\text{ espace mesuré} \\,\\}",
+      "description": "Les espaces L^p d'un espace mesuré, pour l'exposant strictement entre 1 et l'infini : complets (Riesz–Fischer), réflexifs, uniformément convexibles (Clarkson).",
+      "example": "L²(0, 1), les fonctions de carré intégrable sur le segment",
+      "notes": "Extrêmes exclus : L¹ et L∞ ne sont ni réflexifs ni Banach–Saks."
+    },
+    {
+      "id": "BSK",
+      "label": "Espaces de Banach–Saks",
+      "family": "espaces de Banach",
+      "domain": "topologie vectorielle",
+      "property": "\\{\\, E \\text{ espace de Banach} \\mid \\text{toute suite bornée de } E \\text{ a une sous-suite aux moyennes de Cesàro convergentes en norme} \\,\\}",
+      "description": "Les espaces de Banach où toute suite bornée admet une sous-suite dont les moyennes arithmétiques convergent en norme : la propriété de Banach–Saks, une compacité payée en moyennes de Cesàro.",
+      "example": "tout espace uniformément convexe (Kakutani), dont les L^p pour 1 < p < ∞",
+      "notes": "Née du théorème de Banach–Saks (e914) ; elle force la réflexivité (e915), la réciproque est fausse (Baernstein II, 1972)."
+    },
+    {
+      "id": "RFL",
+      "label": "Espaces de Banach réflexifs",
+      "family": "espaces de Banach",
+      "domain": "topologie vectorielle",
+      "property": "\\{\\, E \\text{ espace de Banach} \\mid J_E : E \\to E'' \\text{ surjective} \\,\\}",
+      "description": "Les espaces de Banach dont l'application canonique J_E : x ↦ (φ ↦ φ(x)) vers le bidual est surjective : l'espace se reconnaît dans son double dual.",
+      "example": "L²(0, 1) : le théorème de représentation de Riesz",
+      "notes": "Milman–Pettis : uniformément convexe entraîne réflexif. La boule unité d'un réflexif est compacte pour la topologie faible."
+    },
+    {
+      "id": "DGD",
+      "card": "aleph1",
+      "label": "Matrices à diagonale strictement dominante",
+      "family": "matrices",
+      "domain": "algèbre linéaire",
+      "property": "\\{\\, A = (a_{ij}) \\in \\mathbb{C}^{n \\times n} \\mid \\forall i : \\left|a_{ii}\\right| > \\sum_{j \\neq i} \\left|a_{ij}\\right| \\,\\}",
+      "description": "Les matrices carrées complexes dont chaque coefficient diagonal domine strictement la somme des modules des autres coefficients de sa ligne.",
+      "example": "la matrice [[3, 1], [0, 2]]",
+      "notes": "Lévy (1881, cas réel), Desplanques (1887, cas complexe) ; aussi Minkowski (1900), Hadamard (1903), Gershgorin (1931). Les disques de Gershgorin en donnent le versant spectral."
     }
   ],
   "edges": [
@@ -9032,13 +9893,14 @@
     },
     {
       "from": "BI2",
-      "to": "APP",
-      "kind": "inclusion",
-      "theorem": "« Familles complétées en une base » ⊆ « Applications »",
-      "statement": "Tout élément de « Familles complétées en une base » est un élément de « Applications » : inclusion définitoire (v0.16.0).",
+      "to": "EV",
+      "kind": "partie",
+      "theorem": "« Familles complétées en une base » : toujours dans un espace vectoriel",
+      "statement": "Une famille complétée en une base est un ensemble de vecteurs : son support \\( \\{x_i : i \\in I\\} \\) est une partie de l'espace vectoriel E dont elle est extraite, et les combinaisons de ses termes peuplent le sous-espace qu'elle engendre. Ce n'est pas une application : l'ancien chaînon (v0.16.0) la rattachait à « Applications » par l'encodage d'une famille comme application de son ensemble d'indices.",
       "depth": "définitoire",
       "domain": "algèbre linéaire",
-      "id": "e647"
+      "id": "e647",
+      "notes": "Correction demandée par Mathis (v0.33.1) : le giron naturel des familles de vecteurs est l'espace vectoriel (arête orange « partie de », la seconde du graphe), pas les applications."
     },
     {
       "from": "AXC2",
@@ -11091,6 +11953,592 @@
       "depth": "définitoire",
       "domain": "théorie des ensembles",
       "id": "e859"
+    },
+    {
+      "from": "TS2",
+      "to": "TS1",
+      "kind": "equivalence",
+      "theorem": "Critère de similitude AAA",
+      "statement": "Deux triangles non dégénérés ont leurs angles homologues deux à deux égaux si et seulement si leurs côtés homologues sont proportionnels : \\( \\alpha = \\alpha' \\), \\( \\beta = \\beta' \\), \\( \\gamma = \\gamma' \\) \\( \\Longleftrightarrow \\) \\( \\exists \\lambda > 0 : a' = \\lambda a,\\ b' = \\lambda b,\\ c' = \\lambda c \\). Sens direct : loi des sinus, \\( 2R = \\tfrac{a}{\\sin\\alpha} \\) sur les deux triangles, donc rapport constant. Réciproque : loi des cosinus, \\( \\cos\\alpha' = \\tfrac{\\lambda^2 (b^2 + c^2 - a^2)}{2 \\lambda^2 bc} = \\cos\\alpha \\).",
+      "depth": "classique",
+      "domain": "géométrie euclidienne",
+      "id": "e860"
+    },
+    {
+      "from": "TC1",
+      "to": "TS1",
+      "kind": "inclusion",
+      "theorem": "Des triangles congruents sont semblables",
+      "statement": "Si deux triangles ont leurs trois côtés homologues de même longueur, ils sont semblables : le rapport de similitude vaut \\( \\lambda = 1 \\). La réciproque est fausse : un triangle et son image par une homothétie de rapport 2 sont semblables non congruents.",
+      "depth": "immédiat",
+      "domain": "géométrie euclidienne",
+      "id": "e861"
+    },
+    {
+      "from": "TC2",
+      "to": "TC1",
+      "kind": "inclusion",
+      "theorem": "Cas de congruence ASA",
+      "statement": "Deux triangles qui ont un côté homologue de même longueur et les deux angles adjacents à ce côté homologues égaux sont congruents (côtés et angles homologues égaux). Les données \\( (a, \\beta, \\gamma) \\) déterminent le triangle : \\( \\alpha = \\pi - \\beta - \\gamma \\), puis loi des sinus \\( b = a\\,\\tfrac{\\sin\\beta}{\\sin\\alpha} \\) et \\( c = a\\,\\tfrac{\\sin\\gamma}{\\sin\\alpha} \\).",
+      "depth": "classique",
+      "domain": "géométrie euclidienne",
+      "id": "e862"
+    },
+    {
+      "from": "TC3",
+      "to": "TC1",
+      "kind": "inclusion",
+      "theorem": "Cas de congruence AAS",
+      "statement": "Deux triangles qui ont deux angles homologues égaux et un côté homologue de même longueur sont congruents. Le troisième angle est imposé par \\( \\alpha = \\pi - \\beta - \\gamma \\), et le côté donné porte les deux angles de part et d'autre : le cas AAS se ramène à ASA (e862).",
+      "depth": "classique",
+      "domain": "géométrie euclidienne",
+      "id": "e863"
+    },
+    {
+      "from": "TC4",
+      "to": "TC1",
+      "kind": "anti",
+      "theorem": "Le cas défectueux ASS",
+      "statement": "Deux côtés et un angle homologue égal non compris entre eux ne suffisent pas : il existe des paires de triangles non congruents avec les mêmes données \\( (a, c, \\alpha) \\), l'angle \\( \\alpha \\) étant non adjacent au côté \\( a \\) (il est compris entre \\( b \\) et \\( c \\)). La loi des sinus \\( \\tfrac{\\sin\\gamma}{c} = \\tfrac{\\sin\\alpha}{a} \\) donne \\( \\sin\\gamma = \\tfrac{c \\sin\\alpha}{a} \\) : deux angles supplémentaires possibles, donc deux triangles.",
+      "depth": "classique",
+      "counterexample": "\\( \\alpha = 30° \\), \\( a = 5 \\), \\( c = 8 \\) : \\( \\sin\\gamma = \\tfrac{8 \\cdot 0{,}5}{5} = \\tfrac{4}{5} \\), donc \\( \\gamma = 53{,}13° \\) ou \\( 126{,}87° \\), et le troisième côté \\( b = 4\\sqrt{3} \\pm 3 \\) (environ 3,93 et 9,93) : deux triangles non congruents partagent exactement ces données.",
+      "domain": "géométrie euclidienne",
+      "id": "e864"
+    },
+    {
+      "from": "TS1",
+      "to": "PAIR",
+      "kind": "inclusion",
+      "theorem": "« Paires de triangles semblables » : toujours une paire",
+      "statement": "« Paires de triangles semblables » est habité par des objets qui sont une paire : inclusion définitoire (v0.28.0), qui raccorde le bloc des similitudes au hub « Paires ». Les paires congruentes et leurs cas ASA, AAS y montent par transitivité (règle 4).",
+      "depth": "définitoire",
+      "domain": "algèbre générale",
+      "id": "e865"
+    },
+    {
+      "from": "TC4",
+      "to": "PAIR",
+      "kind": "inclusion",
+      "theorem": "« Paires de triangles à deux côtés et un angle non compris égaux » : toujours une paire",
+      "statement": "Les éléments de « Paires de triangles à deux côtés et un angle non compris égaux » sont des paires : inclusion définitoire (v0.28.0). Faute de congruence (le cas ASS échoue, e864), ce noeud ne peut pas monter vers « Paires de triangles congruents ».",
+      "depth": "définitoire",
+      "domain": "algèbre générale",
+      "id": "e866"
+    },
+    {
+      "from": "ANG1",
+      "to": "ANG2",
+      "kind": "equivalence",
+      "theorem": "Théorème de la bissectrice et sa réciproque",
+      "statement": "Dans un triangle \\( ABC \\) (\\( A, B, C \\) non alignés), pour tout point \\( D \\) du segment \\( [BC] \\) : la droite \\( (AD) \\) est la bissectrice intérieure de l'angle \\( \\widehat{BAC} \\) si et seulement si \\( \\tfrac{DB}{DC} = \\tfrac{AB}{AC} \\). Preuve par les aires : \\( \\tfrac{\\mathrm{Aire}(ABD)}{\\mathrm{Aire}(ADC)} = \\tfrac{DB}{DC} \\) (hauteur commune issue de \\( A \\)) et, sur la bissectrice, \\( \\tfrac{\\mathrm{Aire}(ABD)}{\\mathrm{Aire}(ADC)} = \\tfrac{AB}{AC} \\) car \\( D \\) est à distance égale des droites \\( (AB) \\) et \\( (AC) \\). Réciproque : \\( D \\mapsto \\tfrac{DB}{DC} \\) est strictement croissante de \\( [BC] \\) sur \\( [0, +\\infty] \\), et le pied de la bissectrice réalise déjà \\( \\tfrac{AB}{AC} \\), donc un seul point convient.",
+      "depth": "classique",
+      "domain": "géométrie euclidienne",
+      "id": "e867"
+    },
+    {
+      "from": "ANG2",
+      "to": "RN",
+      "kind": "inclusion",
+      "theorem": "« Quadruplets à rapport de distances égal au rapport des côtés » ⊆ « N-uplets de réels ℝⁿ »",
+      "statement": "Tout élément de « Quadruplets à rapport de distances égal au rapport des côtés » est un 8-uplet de réels (un point du plan est un couple de réels) : inclusion définitoire (v0.28.0).",
+      "depth": "définitoire",
+      "domain": "géométrie euclidienne",
+      "id": "e868"
+    },
+    {
+      "from": "NK1",
+      "to": "NK2",
+      "kind": "inclusion",
+      "theorem": "« Nœuds » ⊆ « Entrelacs orientés »",
+      "statement": "Un nœud est un entrelacs à une composante : tout plongement du cercle orienté est un plongement d'une famille d'un seul cercle. Inclusion définitoire (v0.29.0).",
+      "depth": "définitoire",
+      "domain": "topologie algéblique",
+      "id": "e869"
+    },
+    {
+      "from": "NK2",
+      "to": "APP",
+      "kind": "inclusion",
+      "theorem": "« Entrelacs orientés » ⊆ « Applications »",
+      "statement": "Un entrelacs est un plongement, donc une application (de la réunion disjointe des cercles dans ℝ³) : inclusion définitoire (v0.29.0).",
+      "depth": "définitoire",
+      "domain": "topologie algéblique",
+      "id": "e870"
+    },
+    {
+      "from": "NK3",
+      "to": "APP",
+      "kind": "inclusion",
+      "theorem": "« Tresses » ⊆ « Applications »",
+      "statement": "Une tresse est un plongement de n intervalles, donc une application : inclusion définitoire (v0.29.0).",
+      "depth": "définitoire",
+      "domain": "topologie algéblique",
+      "id": "e871"
+    },
+    {
+      "from": "NK2",
+      "to": "NK4",
+      "kind": "equivalence",
+      "theorem": "Théorème d'Alexander (1923)",
+      "statement": "Tout entrelacs orienté de ℝ³ est isotope à la fermeture d'une tresse, et toute fermeture de tresse est un entrelacs orienté : les deux ensembles coïncident. La preuve déforme l'entrelacs pour le rendre transverse aux niveaux d'une fonction hauteur, puis lit le tressage dans les dispositions des arcs entre niveaux ; l'algorithme de Vogel minimise le nombre de brins obtenus.",
+      "depth": "classique",
+      "domain": "topologie algéblique",
+      "id": "e872"
+    },
+    {
+      "from": "SUR1",
+      "to": "FIGU",
+      "kind": "inclusion",
+      "theorem": "« Surfaces compactes plongées dans ℝ³ » ⊆ « Figures géométriques »",
+      "statement": "Une surface compacte plongée est une partie de l'espace, objet de la géométrie : inclusion définitoire (v0.29.0).",
+      "depth": "définitoire",
+      "domain": "topologie différentielle",
+      "id": "e873"
+    },
+    {
+      "from": "SUR3",
+      "to": "SUR1",
+      "kind": "inclusion",
+      "theorem": "« Surfaces sphériques plongées » ⊆ « Surfaces compactes plongées dans ℝ³ »",
+      "statement": "Une surface sphérique plongée est en particulier une surface compacte plongée : le genre 0 est une restriction de la compréhension. Inclusion définitoire (v0.29.0).",
+      "depth": "définitoire",
+      "domain": "topologie différentielle",
+      "id": "e874"
+    },
+    {
+      "from": "SUR2",
+      "to": "SUR3",
+      "kind": "inclusion",
+      "theorem": "Théorème d'Alexandrov sur les bulles de savon (1958)",
+      "statement": "Une surface compacte connexe plongée dans ℝ³ à courbure moyenne constante est une sphère (homéomorphe à S², en fait ronde de rayon 1/H) : les seules interfaces fermées à pression constante sont les bulles rondes. Preuve : la méthode des plans mobiles d'Alexandrov ; le principe du maximum impose la symétrie par rapport à tout plan, donc la sphéricité. L'hypothèse plongée est essentielle (le tore immergé de Wente, e877).",
+      "depth": "profond",
+      "domain": "topologie différentielle",
+      "id": "e875"
+    },
+    {
+      "from": "SUR4",
+      "to": "FIGU",
+      "kind": "inclusion",
+      "theorem": "« Surfaces immergées à courbure moyenne constante » ⊆ « Figures géométriques »",
+      "statement": "L'image d'une immersion d'une surface compacte est une partie de l'espace : une figure géométrique (les points doubles sont autorisés). Inclusion définitoire (v0.29.0).",
+      "depth": "définitoire",
+      "domain": "topologie différentielle",
+      "id": "e876"
+    },
+    {
+      "from": "SUR4",
+      "to": "SUR3",
+      "kind": "anti",
+      "theorem": "Les tores de Wente ne sont pas sphériques",
+      "statement": "L'hypothèse plongée du théorème d'Alexandrov (e875) est nécessaire : une surface immergée à courbure moyenne constante peut être de genre 1, donc pas homéomorphe à S².",
+      "depth": "classique",
+      "counterexample": "Le tore de Wente (1984), première immersion à courbure moyenne constante du tore T² dans ℝ³, de genre 1. Kapouleas construit des surfaces CMC immergées de tout genre \\(\\ge 1\\).",
+      "domain": "topologie différentielle",
+      "id": "e877"
+    },
+    {
+      "from": "TIC1",
+      "to": "TOPO",
+      "kind": "inclusion",
+      "theorem": "« Surfaces de Riemann de type fini » ⊆ « Espaces topologiques »",
+      "statement": "Une surface de Riemann est en particulier un espace topologique (surface connexe munie de la topologie de son atlas) : inclusion définitoire (v0.29.0).",
+      "depth": "définitoire",
+      "domain": "géométrie complexe",
+      "id": "e878"
+    },
+    {
+      "from": "TIC2",
+      "to": "TIC3",
+      "kind": "inclusion",
+      "theorem": "Théorème d'Ahlfors–Bers (l'espace de Teichmüller est une cellule)",
+      "statement": "Chaque espace de Teichmüller de type fini est homéomorphe à un ouvert d'un espace euclidien : T_{g,n} ≅ ℝ^{6g−6+2n} pour g ≥ 2 (paramètres quasiconformes, 3g − 3 + n coordonnées complexes), T_{1,n} ≅ ℝⁿ, T_{0,3} un point. L'espace est contractile ; Ahlfors et Bers en donnent la structure de cellule, Earle–Eells la topologie.",
+      "depth": "profond",
+      "domain": "géométrie complexe",
+      "id": "e879"
+    },
+    {
+      "from": "TIC3",
+      "to": "TOPO",
+      "kind": "inclusion",
+      "theorem": "« Espaces homéomorphes à un ouvert de ℝᵐ » ⊆ « Espaces topologiques »",
+      "statement": "Un espace homéomorphe à un ouvert de ℝᵐ est un espace topologique : inclusion définitoire (v0.29.0).",
+      "depth": "définitoire",
+      "domain": "géométrie complexe",
+      "id": "e880"
+    },
+    {
+      "from": "MER1",
+      "to": "APP",
+      "kind": "inclusion",
+      "theorem": "« Fonctions méromorphes » ⊆ « Applications »",
+      "statement": "Une fonction méromorphe sur le plan est une application de ℂ privé de ses pôles dans ℂ : inclusion définitoire (v0.29.0). Prolongée par ∞ aux pôles, elle devient une application de ℂ dans la sphère de Riemann.",
+      "depth": "définitoire",
+      "domain": "analyse complexe",
+      "id": "e881"
+    },
+    {
+      "from": "MER2",
+      "to": "MER1",
+      "kind": "inclusion",
+      "theorem": "« Fonctions méromorphes transcendantes » ⊆ « Fonctions méromorphes »",
+      "statement": "Une méromorphe non rationnelle est en particulier méromorphe : inclusion définitoire (v0.29.0).",
+      "depth": "définitoire",
+      "domain": "analyse complexe",
+      "id": "e882"
+    },
+    {
+      "from": "MER2",
+      "to": "MER3",
+      "kind": "inclusion",
+      "theorem": "Théorème des cinq îles (Ahlfors, 1935)",
+      "statement": "Soient cinq domaines de Jordan deux à deux disjoints (cinq îles). Toute fonction méromorphe transcendante prend sur chaque île toutes les valeurs complexes, sauf au plus deux exceptions. Les méromorphes transcendantes vivent donc toutes dans « Fonctions couvrant cinq îles ». Sommet de la théorie de la distribution des valeurs de Nevanlinna (médaille Fields d'Ahlfors, 1936) ; la constante cinq est optimale.",
+      "depth": "profond",
+      "domain": "analyse complexe",
+      "id": "e883"
+    },
+    {
+      "from": "CVX1",
+      "to": "TOPO",
+      "kind": "inclusion",
+      "theorem": "« Corps convexes » ⊆ « Espaces topologiques »",
+      "statement": "Un corps convexe, muni de la topologie induite, est un espace topologique (compact) : inclusion définitoire (v0.29.0).",
+      "depth": "définitoire",
+      "domain": "géométrie affine",
+      "id": "e884"
+    },
+    {
+      "from": "CVX3",
+      "to": "PAIR",
+      "kind": "inclusion",
+      "theorem": "« Paires de corps convexes égales à une translation près » : toujours une paire",
+      "statement": "« Paires de corps convexes égales à une translation près » est habité par des objets qui sont une paire : inclusion définitoire (v0.29.0).",
+      "depth": "définitoire",
+      "domain": "géométrie affine",
+      "id": "e885"
+    },
+    {
+      "from": "CVX2",
+      "to": "CVX3",
+      "kind": "inclusion",
+      "theorem": "Théorème d'unicité d'Aleksandrov (1937)",
+      "statement": "Deux corps convexes de ℝᵈ, d ≥ 3, dont les projections sur tout hyperplan ont la même aire ((d−1)-volumes égaux : même fonction de luminosité) se déduisent l'un de l'autre par une translation. La luminosité détermine le corps à translation près dès la dimension 3 ; dans le plan, l'analogue avec la largeur est faux (e888).",
+      "depth": "classique",
+      "domain": "géométrie affine",
+      "id": "e886"
+    },
+    {
+      "from": "CVX4",
+      "to": "PAIR",
+      "kind": "inclusion",
+      "theorem": "« Paires de corps convexes du plan à même fonction de largeur » : toujours une paire",
+      "statement": "Les éléments de « Paires de corps convexes du plan à même fonction de largeur » sont des paires : inclusion définitoire (v0.29.0).",
+      "depth": "définitoire",
+      "domain": "géométrie affine",
+      "id": "e887"
+    },
+    {
+      "from": "CVX4",
+      "to": "CVX3",
+      "kind": "anti",
+      "theorem": "La largeur ne détermine pas le corps plan",
+      "statement": "En dimension 2, la fonction de largeur, longueur des projections sur les droites, ne détermine pas le corps convexe à translation près : l'analogue plan du théorème d'Aleksandrov (e886) est faux.",
+      "depth": "classique",
+      "counterexample": "Le disque de rayon r et le triangle de Reuleaux de largeur 2r : même fonction de largeur (constante 2r dans toute direction), aucune translation ne les échange.",
+      "domain": "géométrie affine",
+      "id": "e888"
+    },
+    {
+      "from": "ERG1",
+      "to": "APP",
+      "kind": "inclusion",
+      "theorem": "« Flots mesurés » ⊆ « Applications »",
+      "statement": "Un flot mesuré est une application (t, x) ↦ φ_t(x) de ℝ × X dans X : inclusion définitoire (v0.29.0).",
+      "depth": "définitoire",
+      "domain": "théorie ergodique",
+      "id": "e889"
+    },
+    {
+      "from": "ERG2",
+      "to": "ERG1",
+      "kind": "inclusion",
+      "theorem": "Une suspension est un flot mesuré",
+      "statement": "La suspension φ_T^f préserve la mesure produit μ(dx) × ds, renormalisée par ∫f dμ : c'est un flot mesuré. Inclusion définitoire (v0.29.0).",
+      "depth": "définitoire",
+      "domain": "théorie ergodique",
+      "id": "e890"
+    },
+    {
+      "from": "ERG4",
+      "to": "ERG1",
+      "kind": "inclusion",
+      "theorem": "Un flot isomorphe à une suspension préserve une mesure",
+      "statement": "L'image d'une mesure invariante par un isomorphisme mesurable est invariante : un flot isomorphe à une suspension est un flot mesuré.",
+      "depth": "immédiat",
+      "domain": "théorie ergodique",
+      "id": "e891"
+    },
+    {
+      "from": "ERG3",
+      "to": "ERG4",
+      "kind": "inclusion",
+      "theorem": "Théorème d'Ambrose–Kakutani (1956)",
+      "statement": "Tout flot mesuré à multiplicité spectrale dénombrable est isomorphe (à un ensemble de mesure nulle près) à un flot construit sous une fonction : la structure des flots se ramène à une application de base T et un plafond f. Le cas ergodique est dû à Kakutani (1943), le cas général à Ambrose et Kakutani (1956).",
+      "depth": "classique",
+      "domain": "théorie ergodique",
+      "id": "e892"
+    },
+    {
+      "from": "ANN2",
+      "to": "TOPO",
+      "kind": "inclusion",
+      "theorem": "« Espaces homéomorphes à un anneau fermé » ⊆ « Espaces topologiques »",
+      "statement": "Un espace homéomorphe à un anneau fermé est un espace topologique : inclusion définitoire (v0.29.0).",
+      "depth": "définitoire",
+      "domain": "topologie différentielle",
+      "id": "e893"
+    },
+    {
+      "from": "ANN1",
+      "to": "ANN2",
+      "kind": "inclusion",
+      "theorem": "Théorème de l'anneau (l'ancienne conjecture de l'anneau)",
+      "statement": "La région compacte comprise entre deux sphères topologiques emboîtées dans ℝⁿ est homéomorphe à l'anneau Sⁿ⁻¹ × [0, 1] : même emboîtées sauvagement (sans hypothèse de lissité), les deux sphères délimitent un véritable anneau. Démontré par Kirby (n ≥ 5, 1969), Quinn (n = 4, 1982) et Moise (n = 3) ; le théorème des homéomorphismes stables en est le pendant.",
+      "depth": "profond",
+      "domain": "topologie différentielle",
+      "id": "e894"
+    },
+    {
+      "from": "ZGL1",
+      "to": "GC2",
+      "kind": "equivalence",
+      "theorem": "Théorème de la galerie d'art (Chvátal, 1975)",
+      "statement": "Tout polygone simple à n sommets est surveillable par ⌊n/3⌋ gardes placés à des sommets, et (réciproque tautologique) un polygone surveillable par ⌊n/3⌋ gardes est simple : les ensembles « Polygones simples du plan » et « Polygones surveillables par ⌊n/3⌋ gardes » coïncident. Preuve de Fisk : trianguler sans nouveau sommet, 3-colorier les sommets, la couleur la moins représentée (au plus ⌊n/3⌋ sommets) surveille tout, car chaque triangle porte les trois couleurs et un sommet d'un triangle voit tout triangle incident. Le compte est optimal (le peigne, e897).",
+      "depth": "classique",
+      "domain": "géométrie combinatoire",
+      "id": "e895"
+    },
+    {
+      "from": "GC3",
+      "to": "GC2",
+      "kind": "inclusion",
+      "theorem": "« Polygones surveillables par ⌊n/3⌋ − 1 gardes » ⊆ « Polygones surveillables par ⌊n/3⌋ gardes »",
+      "statement": "Un polygone surveillable par ⌊n/3⌋ − 1 gardes l'est a fortiori par ⌊n/3⌋ : inclusion définitoire (v0.29.0).",
+      "depth": "définitoire",
+      "domain": "géométrie combinatoire",
+      "id": "e896"
+    },
+    {
+      "from": "ZGL1",
+      "to": "GC3",
+      "kind": "anti",
+      "theorem": "Le compte de Chvátal est optimal",
+      "statement": "⌊n/3⌋ − 1 gardes ne suffisent pas en général : il existe des polygones simples à n sommets qui exigent ⌊n/3⌋ gardes.",
+      "depth": "classique",
+      "counterexample": "Le peigne de Chvátal, polygone simple à 3m sommets : une longue chambre bordée de m renfoncements en dents de peigne dont les m pointes sont deux à deux invisibles, chacune réclame son garde, soit m = ⌊3m/3⌋ gardes : ⌊n/3⌋ − 1 ne suffit pas.",
+      "domain": "géométrie combinatoire",
+      "id": "e897"
+    },
+    {
+      "from": "NST1",
+      "to": "NST2",
+      "kind": "inclusion",
+      "theorem": "Théorème de Bernstein (1915)",
+      "statement": "Si le graphe d'une fonction \\( f \\in C^2(\\mathbb{R}^2, \\mathbb{R}) \\) est une surface minimale (courbure moyenne nulle en tout point), alors f est affine : le graphe est un plan. En dimension 2, la seule surface minimale complète qui se projette bijectivement sur le plan est le plan lui-même ; l'énoncé s'étend jusqu'à la dimension 7 (De Giorgi, Almgren, Simons) et tombe à partir de la dimension 8 (contre-exemples de Bombieri, De Giorgi et Giusti, 1969).",
+      "depth": "profond",
+      "domain": "topologie différentielle",
+      "id": "e898",
+      "notes": "Fiche Bernstein Minimal Surface Theorem (paquet B, v0.30.0) ; la fiche maintient la dimension 2."
+    },
+    {
+      "from": "NST2",
+      "to": "FIGU",
+      "kind": "inclusion",
+      "theorem": "« Plans affines de ℝ³ » : toujours une figure géométrique",
+      "statement": "Un plan affine de l'espace est une figure géométrique : inclusion définitoire (v0.30.0).",
+      "depth": "définitoire",
+      "domain": "géométrie euclidienne",
+      "id": "e899"
+    },
+    {
+      "from": "BTO1",
+      "to": "BTO2",
+      "kind": "equivalence",
+      "theorem": "Théorème de Birkhoff–von Neumann (1946)",
+      "statement": "Le polytope bistochastique n×n est exactement l'enveloppe convexe des matrices de permutation : toute matrice bistochastique est combinaison convexe de matrices de permutation, et toute combinaison convexe de matrices de permutation est bistochastique. Les sommets du polytope de Birkhoff sont les n! matrices de permutation.",
+      "depth": "classique",
+      "domain": "algèbre linéaire",
+      "id": "e900",
+      "notes": "Preuve de Birkhoff par « décroissement de Jordan-von Neumann » (1937) ; le théorème de König sous-tend la décomposition."
+    },
+    {
+      "from": "BTO1",
+      "to": "L1",
+      "kind": "inclusion",
+      "theorem": "« Matrices bistochastiques réelles n×n » : toujours une matrice carrée complexe",
+      "statement": "Une matrice réelle carrée est une matrice carrée complexe à coefficients réels : inclusion définitoire (v0.30.0).",
+      "depth": "définitoire",
+      "domain": "algèbre linéaire",
+      "id": "e901"
+    },
+    {
+      "from": "BTO2",
+      "to": "L1",
+      "kind": "inclusion",
+      "theorem": "« Matrices combinaisons convexes de matrices de permutation » : toujours une matrice carrée complexe",
+      "statement": "Un barycentre de matrices carrées réelles est une matrice carrée, à coefficients réels donc complexes : inclusion définitoire (v0.30.0).",
+      "depth": "définitoire",
+      "domain": "algèbre linéaire",
+      "id": "e902"
+    },
+    {
+      "from": "CHP1",
+      "to": "CHP2",
+      "kind": "equivalence",
+      "theorem": "Théorème de Bochner (1932)",
+      "statement": "Une fonction continue f sur ℝⁿ est définie positive si et seulement s'il existe une mesure de Borel positive finie μ, unique, dont f est la transformée de Fourier. D'une inégalité de covariance à une représentation intégrale : le fondement de l'analyse harmonique sur les groupes abéliens (Herglotz avait le cas des suites sur le cercle).",
+      "depth": "fondamental",
+      "domain": "analyse harmonique",
+      "id": "e903"
+    },
+    {
+      "from": "CHP1",
+      "to": "APP",
+      "kind": "inclusion",
+      "theorem": "« Fonctions définies positives continues sur ℝⁿ » : toujours une application",
+      "statement": "Une fonction de ℝⁿ dans ℂ est une application : inclusion définitoire (v0.30.0).",
+      "depth": "définitoire",
+      "domain": "algèbre générale",
+      "id": "e904"
+    },
+    {
+      "from": "CHP2",
+      "to": "APP",
+      "kind": "inclusion",
+      "theorem": "« Transformées de Fourier de mesures positives finies » : toujours une application",
+      "statement": "Une transformée de Fourier est une fonction de ℝⁿ dans ℂ, donc une application : inclusion définitoire (v0.30.0).",
+      "depth": "définitoire",
+      "domain": "algèbre générale",
+      "id": "e905"
+    },
+    {
+      "from": "BFS1",
+      "to": "BFS2",
+      "kind": "equivalence",
+      "theorem": "Principe de la borne uniforme (Banach–Steinhaus, 1927)",
+      "statement": "Sur un espace de Banach E, une famille d'applications linéaires continues vers un espace normé est ponctuellement bornée si et seulement si elle est uniformément bornée : \\( \\sup_{\\|x\\| \\le 1} \\sup_i \\|T_i x\\| = \\sup_i \\|T_i\\| < \\infty \\). Le sens uniforme ⇒ ponctuel est immédiat ; le sens réciproque, cœur du théorème, vient du lemme de Baire (e139) : les fermés \\( F_m = \\{x : \\sup_i \\|T_i x\\| \\le m\\} \\) recouvrent E, donc l'un a de l'intérieur, et l'ensemble des points où \\( \\|T\\| \\) explose est maigre.",
+      "depth": "classique",
+      "domain": "topologie vectorielle",
+      "id": "e906"
+    },
+    {
+      "from": "BFS2",
+      "to": "AXC1",
+      "kind": "inclusion",
+      "theorem": "« Familles d'applications linéaires continues uniformément bornées » : toujours une famille non vide d'ensembles non vides",
+      "statement": "Les éléments d'une telle famille sont des applications, donc des ensembles non vides ; la famille elle-même est un ensemble non vide d'ensembles non vides : inclusion définitoire (v0.30.0).",
+      "depth": "définitoire",
+      "domain": "algèbre générale",
+      "id": "e907"
+    },
+    {
+      "from": "CG1",
+      "to": "CG2",
+      "kind": "equivalence",
+      "theorem": "Théorème de Berge (1957)",
+      "statement": "Un couplage M d'un graphe est de cardinal maximum si et seulement s'il n'admet aucune chaîne augmentante : aucun chemin alternant (arêtes hors M, arêtes dans M) dont les deux extrémités sont des sommets non couverts. Échanger les arêtes d'une telle chaîne augmenterait M ; l'absence de chaîne est donc l'optimalité. Les algorithmes de couplage (hongrois, chemins augmentants) vivent de cette équivalence.",
+      "depth": "classique",
+      "domain": "théorie des graphes",
+      "id": "e908"
+    },
+    {
+      "from": "CG1",
+      "to": "GRAP",
+      "kind": "inclusion",
+      "theorem": "« Couplages maximums d'un graphe fini » : toujours un graphe",
+      "statement": "Un couplage est un ensemble d'arêtes, donc un graphe au sens large (ses sommets incidents et ses arêtes) : inclusion définitoire (v0.30.0).",
+      "depth": "définitoire",
+      "domain": "théorie des graphes",
+      "id": "e909"
+    },
+    {
+      "from": "CG2",
+      "to": "GRAP",
+      "kind": "inclusion",
+      "theorem": "« Couplages sans chaîne augmentante » : toujours un graphe",
+      "statement": "Un couplage est un ensemble d'arêtes, donc un graphe au sens large : inclusion définitoire (v0.30.0).",
+      "depth": "définitoire",
+      "domain": "théorie des graphes",
+      "id": "e910"
+    },
+    {
+      "from": "BNG1",
+      "to": "BNG2",
+      "kind": "inclusion",
+      "theorem": "Théorème de Bing (1952)",
+      "statement": "Si M est une 3-variété fermée orientée connexe où chaque courbe fermée simple est intérieure à une boule de M, alors M est homéomorphe à la sphère S³ : de la petitesse locale des courbes à la rigidité globale de la sphère. La caractérisation de Bing, l'une des pierres d'angle de la topologie des variétés de dimension trois.",
+      "depth": "profond",
+      "domain": "topologie différentielle",
+      "id": "e911"
+    },
+    {
+      "from": "BNG2",
+      "to": "TOPO",
+      "kind": "inclusion",
+      "theorem": "« Variétés homéomorphes à la sphère S³ » : toujours un espace topologique",
+      "statement": "Un ensemble de variétés de dimension trois : chacune porte une topologie. Inclusion définitoire (v0.30.0).",
+      "depth": "définitoire",
+      "domain": "topologie",
+      "id": "e912"
+    },
+    {
+      "from": "DGD",
+      "to": "L2",
+      "kind": "inclusion",
+      "theorem": "Théorème de Lévy–Desplanques (1881)",
+      "statement": "Toute matrice carrée complexe à diagonale strictement dominante est inversible. Si \\( Ax = 0 \\) avec \\( x \\neq 0 \\), prenons i tel que \\( |x_i| = \\max_j |x_j| > 0 \\) ; alors \\( |a_{ii}|\\,|x_i| = \\bigl|\\sum_{j \\neq i} a_{ij} x_j\\bigr| \\le \\sum_{j \\neq i} |a_{ij}|\\,|x_j| \\le \\bigl(\\sum_{j \\neq i} |a_{ij}|\\bigr)\\,|x_i| < |a_{ii}|\\,|x_i| \\), contradiction. La domination ligne par ligne rend la matrice inversible : une localisation spectrale devenue inclusion d'ensembles.",
+      "depth": "classique",
+      "strict": true,
+      "strictnessExample": "La réciproque est fausse : la matrice [[1, 2], [2, 1]] est inversible (déterminant \\( -3 \\)) sans être à diagonale strictement dominante.",
+      "domain": "algèbre linéaire",
+      "id": "e913",
+      "notes": "Ajouté à la demande de Mathis après la discussion sur les localisations spectrales (Gershgorin, Brauer, Ballieu : des bornes, pas des inclusions entre ensembles) (v0.31.0). Historique : Lévy (1881, cas réel), Desplanques (1887, cas complexe), Minkowski (1900), Hadamard (1903), Gershgorin (1931)."
+    },
+    {
+      "from": "LPB",
+      "to": "BSK",
+      "kind": "inclusion",
+      "theorem": "Théorème de Banach–Saks (1930)",
+      "statement": "Pour \\( 1 < p < \\infty \\) (Banach et Saks, 1930 ; Kakutani, 1938, pour tout espace uniformément convexe), toute suite bornée de \\( L^p \\) admet une sous-suite \\( (u_{n_k}) \\) dont les moyennes arithmétiques convergent en norme. En dimension infinie la boule unité n'est pas compacte (Bolzano–Weierstrass échoue) ; la convergence en moyenne de Cesàro d'une sous-suite est le prix payé pour retrouver une forme de compacité.",
+      "depth": "classique",
+      "strict": true,
+      "strictnessExample": "L'espace de Sobolev H¹(0, 1), hilbertien donc uniformément convexe et Banach–Saks (Kakutani), n'est pas un espace L\\(^p\\).",
+      "domain": "topologie vectorielle",
+      "id": "e914",
+      "notes": "Fiche MathWorld Banach-Saks Theorem (paquet B : la fiche énonce le cas L², en suites bornées d'un espace fixé) ; intégrée v0.31.0 après reformalisation de la catégorie extraction en propriété d'espace."
+    },
+    {
+      "from": "BSK",
+      "to": "RFL",
+      "kind": "inclusion",
+      "theorem": "Banach–Saks force la réflexivité (Nishiura–Waterman, 1963)",
+      "statement": "Tout espace de Banach qui a la propriété de Banach–Saks est réflexif : même affaiblie en moyennes de Cesàro, la compacité de la boule unité reste trop exigeante pour un espace non réflexif.",
+      "depth": "classique",
+      "strict": true,
+      "strictnessExample": "Baernstein II (1972) : un espace de Banach réflexif sans la propriété de Banach–Saks.",
+      "domain": "topologie vectorielle",
+      "id": "e915",
+      "notes": "Chaîne : Espaces L^p (e914) → Banach–Saks → réflexifs → Banach (e916). La réciproque est fausse."
+    },
+    {
+      "from": "RFL",
+      "to": "BAN",
+      "kind": "inclusion",
+      "theorem": "« Espaces de Banach réflexifs » : toujours des espaces de Banach",
+      "statement": "Un espace de Banach réflexif est un espace de Banach : inclusion définitoire (v0.31.0).",
+      "depth": "définitoire",
+      "domain": "topologie vectorielle",
+      "id": "e916",
+      "notes": ""
     }
   ]
 }

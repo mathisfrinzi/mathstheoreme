@@ -1,0 +1,71 @@
+{
+  "meta": {
+    "name": "Contextes",
+    "version": "0.1.0",
+    "created": "2026-11-24",
+    "language": "fr",
+    "description": "Un contexte est une liste d'ensembles du graphe des théorèmes (champ requires : un ensemble, ou n'importe lequel de ses sous-ensembles par inclusions ou équivalences, suffit à le déclencher). Quand il est actif, des objets contextuels apparaissent : des ensembles qui n'existent qu'une fois un objet du contexte fixé (les valeurs propres d'UNE matrice), avec leurs propres arêtes. Un nœud du graphe principal est un ensemble définissable sans contexte ; un objet contextuel ne l'est pas. Les arêtes ont le même format que celles de graphe.json ; from et to désignent un objet contextuel (id défini ici) ou un nœud de graphe.json."
+  },
+  "contexts": [
+    {
+      "id": "CX1",
+      "label": "Matrice carrée complexe",
+      "variable": "M",
+      "requires": ["L1"],
+      "objects": [
+        {
+          "id": "CX1_SP",
+          "label": "Ensemble des valeurs propres",
+          "domain": "algèbre linéaire",
+          "property": "\\sigma(M) = \\{\\, \\lambda \\in \\mathbb{C} \\mid \\det(\\lambda I - M) = 0 \\,\\}",
+          "description": "Le spectre d'une matrice carrée complexe M fixée : l'ensemble de ses valeurs propres, racines complexes de son polynôme caractéristique.",
+          "example": "Pour M = diag(1, 2, 2) : {1, 2}.",
+          "notes": "Objet contextuel : il dépend de la matrice M choisie dans le contexte, ce n'est pas un ensemble de matrices."
+        },
+        {
+          "id": "CX1_GE",
+          "label": "Disques de Gershgorin",
+          "domain": "algèbre linéaire",
+          "property": "\\Gamma(M) = \\bigcup_{i=1}^{n} \\overline{D}\\big(m_{ii},\\, R_i(M)\\big), \\quad R_i(M) = \\sum_{j \\neq i} |m_{ij}|",
+          "description": "La réunion des n disques fermés de centres les coefficients diagonaux m_ii de M, de rayons les sommes R_i des modules des autres coefficients de la ligne i.",
+          "example": "Pour M = [[0, 1], [0, 0]] : le disque unité fermé (centre 0, rayon 1) et le point 0.",
+          "notes": "Objet contextuel : il se calcule à partir des coefficients de la matrice M du contexte."
+        }
+      ],
+      "edges": [
+        {
+          "id": "CX1_e1",
+          "from": "CX1_SP",
+          "to": "CMLX",
+          "kind": "inclusion",
+          "theorem": "Définition",
+          "statement": "Les valeurs propres d'une matrice complexe sont des nombres complexes : ce sont les racines de son polynôme caractéristique, à coefficients complexes.",
+          "depth": "définitoire",
+          "domain": "algèbre linéaire"
+        },
+        {
+          "id": "CX1_e2",
+          "from": "CX1_GE",
+          "to": "CMLX",
+          "kind": "inclusion",
+          "theorem": "Définition",
+          "statement": "Les disques de Gershgorin sont des disques du plan complexe : leur réunion est une partie de \\( \\mathbb{C} \\).",
+          "depth": "définitoire",
+          "domain": "algèbre linéaire"
+        },
+        {
+          "id": "CX1_e3",
+          "from": "CX1_SP",
+          "to": "CX1_GE",
+          "kind": "inclusion",
+          "theorem": "Théorème des disques de Gershgorin",
+          "statement": "Pour toute matrice \\( M = (m_{ij}) \\in \\mathcal{M}_n(\\mathbb{C}) \\), toute valeur propre de \\( M \\) appartient à l'un au moins des disques fermés \\( \\overline{D}(m_{ii}, R_i) \\), où \\( R_i = \\sum_{j \\neq i} |m_{ij}| \\) (Gershgorin, 1931).",
+          "depth": "classique",
+          "strict": true,
+          "strictnessExample": "M = [[0, 1], [0, 0]] : le spectre est {0}, mais la réunion des disques est le disque unité fermé tout entier.",
+          "domain": "algèbre linéaire"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,509 @@
+{
+  "meta": {
+    "name": "Graphe des formules",
+    "version": "0.1.0",
+    "created": "2026-11-24",
+    "language": "fr",
+    "description": "Le pendant du graphe des théorèmes pour les identités : chaque nœud-quantité est une valeur ou un objet bien défini, chaque nœud-formule (losange) une identité qui les relie, chaque arête « terme » disant quelle quantité intervient dans quelle formule.",
+    "semantics": {
+      "quantité": "nœud : une quantité ou un objet mathématique bien défini (périmètre, probabilité conditionnelle, somme de quatrièmes puissances…), avec sa compréhension et un exemple",
+      "formule": "nœud losange : une identité ou formule fermée, avec ses conditions de validité, sa fiche MathWorld d'origine et son domaine (réutilise le code couleur du graphe des théorèmes)",
+      "terme": "arête : la quantité intervient dans la formule ; une formule est en général n-aire (Bayes relie quatre quantités en tout)",
+      "notes": "Né en v0.32.0 après la typologie des non-tenues de la pioche MathWorld : les identités sont des égalités de chemins de calcul, pas des inclusions entre familles réutilisables ; elles vivent ici (discussion Banach–Saks, lauréat du filtre de réutilisabilité, étant resté au graphe des théorèmes)."
+    }
+  },
+  "nodes": [
+    {
+      "id": "qSOM",
+      "kind": "quantité",
+      "label": "Puissances d'une somme",
+      "domain": "algèbre générale",
+      "property": "\\{\\, (a+b)^n \\mid a, b \\text{ dans un anneau commutatif},\\ n \\in \\mathbb{N} \\,\\}",
+      "description": "Les puissances entières d'une somme de deux éléments d'un anneau.",
+      "example": "(2+3)^4 = 5^4 = 625"
+    },
+    {
+      "id": "qBIN",
+      "kind": "quantité",
+      "label": "Sommes binomiales",
+      "domain": "algèbre générale",
+      "property": "\\{\\, \\sum_{k=0}^{n} \\binom{n}{k} a^{n-k} b^k \\mid a, b, n \\,\\}",
+      "description": "Les développements binomiaux complets : la somme pondérée par les coefficients du triangle de Pascal.",
+      "example": "\\sum_{k=0}^{2} \\binom{2}{k} a^{2-k} b^k = a^2 + 2ab + b^2"
+    },
+    {
+      "id": "qSER",
+      "kind": "quantité",
+      "label": "Séries binomiales",
+      "domain": "analyse de séries",
+      "property": "\\{\\, \\sum_{k=0}^{\\infty} \\binom{\\alpha}{k} x^k \\mid \\alpha \\in \\mathbb{C},\\ |x| < 1 \\,\\}",
+      "description": "La série binomiale : le prolongement du binôme aux exposants quelconques.",
+      "example": "(1+x)^{1/2} = 1 + \\frac{x}{2} - \\frac{x^2}{8} + \\cdots"
+    },
+    {
+      "id": "qDEC",
+      "kind": "quantité",
+      "label": "Sommes à décalage d'Abel",
+      "domain": "algèbre générale",
+      "property": "\\{\\, \\sum_{k=0}^{n} \\binom{n}{k} (x - kz)^{k-1} (y + kz)^{n-k} \\mid x, y, z, n \\,\\}",
+      "description": "Les sommes d'Abel : chaque terme est décalé de kz par rapport au cas classique.",
+      "example": "n = 1 : y/x + 1 = (x+y)/x"
+    },
+    {
+      "id": "qCOND",
+      "kind": "quantité",
+      "label": "Probabilités conditionnelles",
+      "domain": "théorie de la mesure",
+      "property": "\\{\\, P(A \\mid B) \\mid A, B \\text{ événements},\\ P(B) > 0 \\,\\}",
+      "description": "La probabilité d'un événement sachant un autre.",
+      "example": "P({6} \\mid \\text{pair}) au dé = 1/3"
+    },
+    {
+      "id": "qMARG",
+      "kind": "quantité",
+      "label": "Probabilités marginales (a priori)",
+      "domain": "théorie de la mesure",
+      "property": "\\{\\, P(A) \\mid A \\text{ événement} \\,\\}",
+      "description": "Les probabilités des événements avant tout conditionnement.",
+      "example": "P(pair au dé) = 1/2"
+    },
+    {
+      "id": "qPER",
+      "kind": "quantité",
+      "label": "Périmètres de courbes planes convexes",
+      "domain": "géométrie euclidienne",
+      "property": "\\{\\, p(C) \\mid C \\text{ courbe plane convexe fermée} \\,\\}",
+      "description": "La longueur du contour d'une courbe convexe.",
+      "example": "cercle de rayon r : p = 2\\pi r"
+    },
+    {
+      "id": "qLAR",
+      "kind": "quantité",
+      "label": "Largeurs des courbes convexes",
+      "domain": "géométrie euclidienne",
+      "property": "\\{\\, w_C(\\theta) \\mid C \\text{ courbe convexe},\\ \\theta \\text{ direction} \\,\\}",
+      "description": "La distance entre les deux droites parallèles de direction θ qui enserrent C.",
+      "example": "cercle de rayon r : w(\\theta) = 2r"
+    },
+    {
+      "id": "qLCO",
+      "kind": "quantité",
+      "label": "Courbes de largeur constante",
+      "domain": "géométrie euclidienne",
+      "property": "\\{\\, C \\text{ courbe plane convexe} \\mid w_C(\\theta) \\text{ indépendante de } \\theta \\,\\}",
+      "description": "Les courbes dont la largeur ne dépend pas de la direction : cercles, polygones de Reuleaux et leurs cousines.",
+      "example": "le triangle de Reuleaux"
+    },
+    {
+      "id": "qEUL",
+      "kind": "quantité",
+      "label": "Nombres de circuits eulériens",
+      "domain": "théorie des graphes",
+      "property": "\\{\\, \\mathrm{ec}(G) \\mid G \\text{ digraphe eulérien} \\,\\}",
+      "description": "Combien de circuits fermés parcourent chaque arc d'un digraphe eulérien exactement une fois.",
+      "example": "un sommet portant n boucles : (n-1)!"
+    },
+    {
+      "id": "qARB",
+      "kind": "quantité",
+      "label": "Nombres d'arborescences",
+      "domain": "théorie des graphes",
+      "property": "\\{\\, t_w(G) \\mid G \\text{ digraphe},\\ w \\text{ sommet} \\,\\}",
+      "description": "Les arbres couvrants orientant tous leurs arcs vers w (comptés par le matrix tree theorem de Tutte).",
+      "example": "cycle orienté à n sommets : t_w = 1"
+    },
+    {
+      "id": "qDEG",
+      "kind": "quantité",
+      "label": "Produits des factorielles de degrés",
+      "domain": "théorie des graphes",
+      "property": "\\{\\, \\prod_v (\\deg^+(v) - 1)! \\mid G \\text{ digraphe eulérien} \\,\\}",
+      "description": "Le facteur combinatoire du théorème BEST : chaque sommet répartit l'ordre de sortie de ses arcs.",
+      "example": "un sommet à 3 boucles : (3-1)! = 2"
+    },
+    {
+      "id": "qINT",
+      "kind": "quantité",
+      "label": "Nombres de points d'intersection",
+      "domain": "algèbre générale",
+      "property": "\\{\\, \\#(C \\cap D) \\mid C, D \\text{ courbes algébriques planes} \\,\\}",
+      "description": "Combien de fois deux courbes algébriques se rencontrent, multiplicités comprises.",
+      "example": "deux droites : 1 point"
+    },
+    {
+      "id": "qPRD",
+      "kind": "quantité",
+      "label": "Produits des degrés",
+      "domain": "algèbre générale",
+      "property": "\\{\\, m \\cdot n \\mid C, D \\text{ courbes de degrés } m, n \\,\\}",
+      "description": "Le produit des degrés de deux courbes : la valeur prédite par Bézout.",
+      "example": "deux coniques : 2 \\cdot 2 = 4"
+    },
+    {
+      "id": "qGAM",
+      "kind": "quantité",
+      "label": "Rapports de gamma aux demi-entiers",
+      "domain": "analyse réelle",
+      "property": "\\{\\, \\left[ \\frac{\\Gamma(m + \\frac{1}{2})}{\\Gamma(m)} \\right]^2 \\mid m \\in \\mathbb{N}^* \\,\\}",
+      "description": "Les carrés des rapports de la fonction gamma aux demi-entiers, qui coiffent les identités de Bailey.",
+      "example": "m = 1 : [\\Gamma(3/2)/\\Gamma(1)]^2 = \\pi/4"
+    },
+    {
+      "id": "qDBF",
+      "kind": "quantité",
+      "label": "Double factorielles normalisées",
+      "domain": "analyse réelle",
+      "property": "\\{\\, \\left[ \\frac{(2k-1)!!}{(2k)!!} \\right]^2 \\mid k \\in \\mathbb{N} \\,\\}",
+      "description": "Les carrés du quotient des doubles factorielles impaire et paire (k = 0 vaut 1).",
+      "example": "k = 1 : (1/2)^2 = 1/4"
+    },
+    {
+      "id": "qTRB",
+      "kind": "quantité",
+      "label": "Tronquées de Bailey",
+      "domain": "analyse réelle",
+      "property": "\\{\\, \\sum_{k=0}^{n-1} \\frac{1}{m+k} \\left[ \\frac{(2k-1)!!}{(2k)!!} \\right]^2 \\mid m, n \\in \\mathbb{N}^* \\,\\}",
+      "description": "Les sommes partielles qui, coiffées des rapports gamma, s'égalent entre elles selon Bailey.",
+      "example": "m = n = 1 : la somme vaut 1"
+    },
+    {
+      "id": "qKUN",
+      "kind": "quantité",
+      "label": "Hypergraphes complets k-uniformes",
+      "domain": "théorie des graphes",
+      "property": "\\{\\, K_n^k \\mid k \\text{ divise } n \\,\\}",
+      "description": "L'hypergraphe dont les arêtes sont toutes les parties de cardinal k des n sommets.",
+      "example": "K_6^2 : le graphe complet à 6 sommets"
+    },
+    {
+      "id": "qUNF",
+      "kind": "quantité",
+      "label": "Factorisations en 1-facteurs",
+      "domain": "théorie des graphes",
+      "property": "\\{\\, \\text{partitions des arêtes en classes qui partitionnent les sommets} \\,\\}",
+      "description": "Une factorisation en 1-facteurs : chaque classe découpe les n sommets en n/k uplets disjoints.",
+      "example": "K_6^2 se partage en 5 couplages parfaits"
+    },
+    {
+      "id": "qTRI",
+      "kind": "quantité",
+      "label": "Triples de somme nulle",
+      "domain": "arithmétique",
+      "property": "\\{\\, (a, b, c) \\in \\mathbb{Z}^3 \\mid a + b + c = 0 \\,\\}",
+      "description": "Le plan des triplets d'entiers de somme nulle, sur lequel vivent les formules de Ramanujan et Bhargava.",
+      "example": "(1, 1, -2)"
+    },
+    {
+      "id": "qQUA",
+      "kind": "quantité",
+      "label": "Sommes de quatrièmes puissances",
+      "domain": "arithmétique",
+      "property": "\\{\\, a^4 + b^4 + c^4 \\mid (a, b, c) \\text{ de somme nulle} \\,\\}",
+      "description": "La quantité \\|u\\| des formules de quatrièmes puissances.",
+      "example": "1 + 1 + 16 = 18"
+    },
+    {
+      "id": "qBOX",
+      "kind": "quantité",
+      "label": "Ensembles de boîtes",
+      "domain": "géométrie combinatoire",
+      "property": "\\{\\, \\text{familles finies de boîtes rangées les unes dans les autres} \\,\\}",
+      "description": "Les boîtes et leurs assemblages, dans les problèmes de rangement.",
+      "example": "les pots du puzzle de Conway"
+    },
+    {
+      "id": "qPREM",
+      "kind": "quantité",
+      "label": "Boîtes premières",
+      "domain": "géométrie combinatoire",
+      "property": "\\{\\, \\text{ensembles de boîtes non constructibles à partir des configurations données} \\,\\}",
+      "description": "Les ensembles qu'aucun assemblage des configurations de départ ne produit.",
+      "example": "les briques irréductibles de la famille"
+    },
+    {
+      "id": "qPCH",
+      "kind": "quantité",
+      "label": "Symboles de Pochhammer",
+      "domain": "analyse réelle",
+      "property": "\\{\\, (\\alpha)_j = \\alpha (\\alpha+1) \\cdots (\\alpha + j - 1) \\mid \\alpha \\in \\mathbb{C},\\ j \\in \\mathbb{N} \\,\\}",
+      "description": "La factorielle montante : le produit des j premiers pas à partir de α.",
+      "example": "(1)_n = n!"
+    },
+    {
+      "id": "qSRJ",
+      "kind": "quantité",
+      "label": "Séries gamma de Ramanujan",
+      "domain": "analyse réelle",
+      "property": "\\{\\, S(\\alpha, \\beta, m, z) = m \\sum_{j=0}^{\\infty} \\frac{\\Gamma(\\beta + 1 + jz)\\, \\Gamma(m + j(z+1))}{\\Gamma(\\alpha + \\beta + 1 + j(z+1))\\, \\Gamma(m + jz + 1)} \\cdot \\frac{(\\alpha)_j}{j!} \\,\\}",
+      "description": "La série de Ramanujan que Bradley a évaluée en forme fermée pour α entier négatif.",
+      "example": "\\alpha = -1 : la série s'arrête à j = 1"
+    },
+    {
+      "id": "f01",
+      "kind": "formule",
+      "label": "Binôme de Newton",
+      "domain": "algèbre générale",
+      "statement": "Pour \\( n \\in \\mathbb{N} \\) et \\( a, b \\) dans un anneau commutatif : \\( (a+b)^n = \\sum_{k=0}^{n} \\binom{n}{k} a^{n-k} b^k \\). La série binomiale générale étend l'exposant : \\( (1+x)^{\\alpha} = \\sum_{k=0}^{\\infty} \\binom{\\alpha}{k} x^k \\) pour α réel (aussi complexe) et \\( |x| < 1 \\) ; Newton (1676) avait le cas des exposants négatifs, Pascal (1666) la forme moderne du cas entier, Euclide (vers 300 av. J.-C.) le cas n = 2.",
+      "source": "https://mathworld.wolfram.com/BinomialTheorem.html",
+      "origin": "Binomial Theorem (MathWorld)",
+      "notes": "Identité par excellence : deux chemins de calcul du même nombre ; entre dans le graphe des formules (v0.32.0)."
+    },
+    {
+      "id": "f02",
+      "kind": "formule",
+      "label": "Binôme d'Abel (1826)",
+      "domain": "algèbre générale",
+      "statement": "Pour \\( n \\in \\mathbb{N} \\) et \\( x, y, z \\) avec x inversible : \\( \\frac{(x+y)^n}{x} = \\sum_{k=0}^{n} \\binom{n}{k} (x - kz)^{k-1} (y + kz)^{n-k} \\). En \\( z = 0 \\) on retrouve le binôme de Newton : les décalages kz s'évanouissent ; en \\( x = -y \\), la différence finie \\( \\Delta_z^n [y^{n-1}] \\) est nulle. Le binôme de Newton n'est qu'un cas particulier de cette identité plus générale (Abel, 1826).",
+      "source": "https://mathworld.wolfram.com/AbelsBinomialTheorem.html",
+      "origin": "Abels Binomial Theorem (MathWorld)"
+    },
+    {
+      "id": "f03",
+      "kind": "formule",
+      "label": "Théorème de Bayes (1763)",
+      "domain": "théorie de la mesure",
+      "statement": "Pour des événements A, B avec \\( P(B) \\neq 0 \\) : \\( P(A \\mid B) = \\frac{P(B \\mid A)\\, P(A)}{P(B)} \\). Forme généralisée : si \\( B_1, \\dots, B_n \\) sont deux à deux disjoints, de probabilités non nulles, et recouvrent A, alors \\( P(B_i \\mid A) = \\frac{P(A \\mid B_i)\\, P(B_i)}{\\sum_j P(A \\mid B_j)\\, P(B_j)} \\) : la probabilité a posteriori d'une cause se lit sur la vraisemblance et les a priori.",
+      "source": "https://mathworld.wolfram.com/BayesTheorem.html",
+      "origin": "Bayes Theorem (MathWorld)"
+    },
+    {
+      "id": "f04",
+      "kind": "formule",
+      "label": "Théorème de Barbier (1860)",
+      "domain": "géométrie euclidienne",
+      "statement": "Toute courbe plane convexe de largeur constante w a pour périmètre \\( p = \\pi w \\) : toutes les courbes de largeur w ont le même périmètre qu'un cercle de diamètre w, sans être un cercle. La preuve passe par la formule du périmètre de Cauchy : \\( p = \\int_0^{\\pi} w(\\theta)\\, d\\theta \\), et pour une largeur constante \\( w(\\theta) = w \\), donc \\( p = \\pi w \\).",
+      "source": "https://mathworld.wolfram.com/BarbiersTheorem.html",
+      "origin": "Barbiers Theorem (MathWorld)",
+      "notes": "La candidate la plus naturelle à un passage au graphe des théorèmes : courbes de largeur constante ⊆ courbes de périmètre π·largeur (famille réutilisable, côté isopérimétrique)."
+    },
+    {
+      "id": "f05",
+      "kind": "formule",
+      "label": "Théorème BEST (de Bruijn, van Aardenne-Ehrenfest, Smith, Tutte)",
+      "domain": "théorie des graphes",
+      "statement": "Soit G un digraphe fini fortement connexe avec \\( \\deg^+(v) = \\deg^-(v) \\) en chaque sommet (digraphe eulérien) et \\( t_w(G) \\) le nombre d'arborescences dont les arcs convergent vers w (donné par le matrix tree theorem orienté). Le nombre de circuits eulériens de G commençant par un arc prescrit sortant de w vaut \\( \\mathrm{ec}(G) = t_w(G) \\prod_v (\\deg^+(v) - 1)! \\) ; sans arc prescrit, le compte se multiplie par \\( \\deg^+(w) \\), avec normalisation pour les comptes modulo rotation. Sert aussi à compter les cycles hamiltoniens des itérés de line-digraphes.",
+      "source": "https://mathworld.wolfram.com/BESTTheorem.html",
+      "origin": "BEST Theorem (MathWorld)"
+    },
+    {
+      "id": "f06",
+      "kind": "formule",
+      "label": "Théorème de Bézout (courbes)",
+      "domain": "algèbre générale",
+      "statement": "Sur un corps algébriquement clos, deux courbes algébriques projectives planes de degrés m et n sans composante commune se rencontrent en exactement \\( mn \\) points, comptés avec multiplicité ; sans l'hypothèse d'absence de composante commune, elles ne peuvent pas se rencontrer en plus de \\( mn \\) points (Coolidge 1959, p. 10). Version polynômes : si P et Q n'ont pas de racine commune, il existe U, V tels que PU + QV = 1 ; version entiers (Séroul 2000) : pour a, b ∈ ℤ, il existe u, v tels que au + bv = pgcd(a, b).",
+      "source": "https://mathworld.wolfram.com/BezoutsTheorem.html",
+      "origin": "Bezouts Theorem (MathWorld)"
+    },
+    {
+      "id": "f07",
+      "kind": "formule",
+      "label": "Théorème de Bailey (1931)",
+      "domain": "analyse réelle",
+      "statement": "Pour m, n entiers positifs : \\( \\left[\\frac{\\Gamma(m + \\tfrac{1}{2})}{\\Gamma(m)}\\right]^2 \\sum_{k=0}^{n-1} \\frac{1}{m+k} \\left[\\frac{(2k-1)!!}{(2k)!!}\\right]^2 = \\left[\\frac{\\Gamma(n + \\tfrac{1}{2})}{\\Gamma(n)}\\right]^2 \\sum_{k=0}^{m-1} \\frac{1}{n+k} \\left[\\frac{(2k-1)!!}{(2k)!!}\\right]^2 \\). Les deux côtés croisés en m et n s'égalent : l'une des identités de Ramanujan démontrée par Bailey (1931), sur les sommes partielles des coefficients de la série hypergéométrique.",
+      "source": "https://mathworld.wolfram.com/BaileysTheorem.html",
+      "origin": "Baileys Theorem (MathWorld)"
+    },
+    {
+      "id": "f08",
+      "kind": "formule",
+      "label": "Théorème de Baranyai (1975)",
+      "domain": "théorie des graphes",
+      "statement": "Si k divise n, l'hypergraphe complet k-uniforme \\( K_n^k \\) sur n sommets se décompose en 1-facteurs : ses arêtes se partitionnent en classes dont chacune découpe les n sommets en n/k parties de cardinal k, deux à deux disjointes. Brouwer et Schrijver (1979) en donnent une preuve par le max-flow min-cut ; le théorème sert aussi au calcul du nombre de clique des graphes de Kneser.",
+      "source": "https://mathworld.wolfram.com/BaranyaisTheorem.html",
+      "origin": "Baranyais Theorem (MathWorld)"
+    },
+    {
+      "id": "f09",
+      "kind": "formule",
+      "label": "Théorème de Bhargava (1992, d'après Ramanujan)",
+      "domain": "arithmétique",
+      "statement": "Sur \\( u = (a, b, c) \\), notons \\( |u| = a + b + c \\) et \\( \\|u\\| = a^4 + b^4 + c^4 \\). Définissons \\( f(u) = (a(b-c),\\; b(c-a),\\; c(a-b)) \\) et \\( g(u) = (a^2b + b^2c + c^2a,\\; ab^2 + bc^2 + ca^2,\\; 3abc) \\). Si \\( |u| = 0 \\), les deux applications préservent le plan \\( a + b + c = 0 \\) et anticommutent : \\( f \\circ g = -\\, g \\circ f \\). C'est la clé de la composition itérée des formules de Ramanujan sur les sommes de quatrièmes puissances.",
+      "source": "https://mathworld.wolfram.com/BhargavasTheorem.html",
+      "origin": "Bhargavas Theorem (MathWorld)",
+      "notes": "La fiche MathWorld énonce les compositions itérées complètes ((7)-(8), rendues en images sur la page) ; l'anticommutation ci-dessus est vérifiée à la main sur le plan a+b+c = 0 (deux échantillons). Cadre complet : Berndt, Ramanujan's Notebooks IV, pp. 97-100 ; Bhargava, Ganita 43, 1992."
+    },
+    {
+      "id": "f10",
+      "kind": "formule",
+      "label": "Théorème des boîtes premières (Box-Packing)",
+      "domain": "géométrie combinatoire",
+      "statement": "Étant donné des configurations de boîtes, un ensemble de boîtes est dit premier s'il ne peut pas être construit à partir d'une ou plusieurs des configurations données ; le nombre d'ensembles premiers est toujours fini (Honsberger, Mathematical Gems II, p. 74 ; l'argument noethérien remonte à de Bruijn).",
+      "source": "https://mathworld.wolfram.com/Box-PackingTheorem.html",
+      "origin": "Box-Packing Theorem (MathWorld)",
+      "notes": "Énoncé de finitude plus qu'identité : la fiche entre ici pour mémoire, dans l'attente du rendu dédié."
+    },
+    {
+      "id": "f11",
+      "kind": "formule",
+      "label": "Théorème de Bradley (1994)",
+      "domain": "analyse réelle",
+      "statement": "Posons \\( S(\\alpha, \\beta, m, z) = m \\sum_{j=0}^{\\infty} \\frac{\\Gamma(\\beta + 1 + jz)\\, \\Gamma(m + j(z+1))}{\\Gamma(\\alpha + \\beta + 1 + j(z+1))\\, \\Gamma(m + jz + 1)} \\cdot \\frac{(\\alpha)_j}{j!} \\). Si \\( \\alpha = -k \\) est un entier négatif ou nul, la série s'arrête et, pour tout z complexe, \\( S = \\frac{\\Gamma(\\beta + 1 - m)}{\\Gamma(\\alpha + \\beta + 1 - m)} \\) : la valeur ne dépend plus de z. En \\( z = 0 \\) avec \\( \\mathrm{Re}(\\beta + 1 - m) > 0 \\), l'égalité vaut pour tout \\( \\alpha \\). C'est la réclamation de Ramanujan sur certaines séries hypergéométriques, établie par Bradley (Proc. Amer. Math. Soc. 121, 1994).",
+      "source": "https://mathworld.wolfram.com/BradleysTheorem.html",
+      "origin": "Bradleys Theorem (MathWorld)"
+    }
+  ],
+  "edges": [
+    {
+      "id": "t01",
+      "from": "qSOM",
+      "to": "f01",
+      "kind": "terme"
+    },
+    {
+      "id": "t02",
+      "from": "qBIN",
+      "to": "f01",
+      "kind": "terme"
+    },
+    {
+      "id": "t03",
+      "from": "qSER",
+      "to": "f01",
+      "kind": "terme"
+    },
+    {
+      "id": "t04",
+      "from": "qDEC",
+      "to": "f02",
+      "kind": "terme"
+    },
+    {
+      "id": "t05",
+      "from": "qSOM",
+      "to": "f02",
+      "kind": "terme"
+    },
+    {
+      "id": "t06",
+      "from": "qCOND",
+      "to": "f03",
+      "kind": "terme"
+    },
+    {
+      "id": "t07",
+      "from": "qMARG",
+      "to": "f03",
+      "kind": "terme"
+    },
+    {
+      "id": "t08",
+      "from": "qPER",
+      "to": "f04",
+      "kind": "terme"
+    },
+    {
+      "id": "t09",
+      "from": "qLAR",
+      "to": "f04",
+      "kind": "terme"
+    },
+    {
+      "id": "t10",
+      "from": "qLCO",
+      "to": "f04",
+      "kind": "terme"
+    },
+    {
+      "id": "t11",
+      "from": "qEUL",
+      "to": "f05",
+      "kind": "terme"
+    },
+    {
+      "id": "t12",
+      "from": "qARB",
+      "to": "f05",
+      "kind": "terme"
+    },
+    {
+      "id": "t13",
+      "from": "qDEG",
+      "to": "f05",
+      "kind": "terme"
+    },
+    {
+      "id": "t14",
+      "from": "qINT",
+      "to": "f06",
+      "kind": "terme"
+    },
+    {
+      "id": "t15",
+      "from": "qPRD",
+      "to": "f06",
+      "kind": "terme"
+    },
+    {
+      "id": "t16",
+      "from": "qGAM",
+      "to": "f07",
+      "kind": "terme"
+    },
+    {
+      "id": "t17",
+      "from": "qDBF",
+      "to": "f07",
+      "kind": "terme"
+    },
+    {
+      "id": "t18",
+      "from": "qTRB",
+      "to": "f07",
+      "kind": "terme"
+    },
+    {
+      "id": "t19",
+      "from": "qKUN",
+      "to": "f08",
+      "kind": "terme"
+    },
+    {
+      "id": "t20",
+      "from": "qUNF",
+      "to": "f08",
+      "kind": "terme"
+    },
+    {
+      "id": "t21",
+      "from": "qTRI",
+      "to": "f09",
+      "kind": "terme"
+    },
+    {
+      "id": "t22",
+      "from": "qQUA",
+      "to": "f09",
+      "kind": "terme"
+    },
+    {
+      "id": "t23",
+      "from": "qBOX",
+      "to": "f10",
+      "kind": "terme"
+    },
+    {
+      "id": "t24",
+      "from": "qPREM",
+      "to": "f10",
+      "kind": "terme"
+    },
+    {
+      "id": "t25",
+      "from": "qPCH",
+      "to": "f11",
+      "kind": "terme"
+    },
+    {
+      "id": "t26",
+      "from": "qGAM",
+      "to": "f11",
+      "kind": "terme"
+    },
+    {
+      "id": "t27",
+      "from": "qSRJ",
+      "to": "f11",
+      "kind": "terme"
+    }
+  ]
+}
