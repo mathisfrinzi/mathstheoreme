@@ -1,7 +1,7 @@
 {
   "meta": {
     "name": "Graphe des théorèmes",
-    "version": "0.13.0",
+    "version": "0.14.0",
     "created": "2026-11-23",
     "language": "fr",
     "description": "Chaque nœud est un ensemble (de fonctions, d'entiers, de matrices…), chaque arête est un théorème : inclusion (A ⊆ B) ou non-inclusion avec contre-exemple (A ⊄ B).",
@@ -36,8 +36,8 @@
     },
     "semantics": {
       "node": "un ensemble, nommé précisément (ex. : Fonctions réelles continues)",
-      "inclusion": "arête blanche fine A → B : le théorème affirme A ⊆ B",
-      "anti": "arête pointillée : A ⊄ B, prouvé par un contre-exemple explicite",
+      "inclusion": "arête verte = théorème d'inclusion A → B (A ⊆ B) ; arête blanche = inclusion définitoire (chaînon de charpente)",
+      "anti": "arête rouge pointillée : A ⊄ B, prouvé par un contre-exemple explicite",
       "nodeSize": "taille du cercle = 46 + 9 par arête qui y arrive (plafond 170) ; le texte s'adapte (retour à la ligne, police réduite) et le cercle ne grandit (jusqu'à ×1,8) que si le texte ne rentre pas autrement",
       "depth": [
         "définitoire",
@@ -47,7 +47,8 @@
         "fondamental",
         "profond"
       ],
-      "notes": "Le type « équivalence » est prévu par le format mais aucune arête d'équivalence n'est encore tracée : la logique des équivalences sera établie par Mathis."
+      "notes": "Le type « équivalence » est prévu par le format mais aucune arête d'équivalence n'est encore tracée : la logique des équivalences sera établie par Mathis.",
+      "equivalence": "arête bleue à double flèche : A = B, établie par un théorème (aucune tracée pour l'instant)"
     }
   },
   "nodes": [
@@ -2429,7 +2430,7 @@
       "property": "\\{\\, x \\mid x \\text{ est un ensemble} \\,\\}",
       "description": "Tous les ensembles : la collection ambiante de la théorie des ensembles, et le cercle-père du graphe.",
       "example": "∅, ℕ, ℝ",
-      "notes": "L'univers de tous les ensembles est une classe propre, pas un ensemble (Russell) : le nœud représente la collection entière, comme les couples d'ensembles voisins. Lot H (v0.12.0) : une arête définitoire part de chacun des 124 ensembles maximaux du graphe (ceux sans inclusion sortante) et du nœud CQG1 (seule composante où chaque cercle a une inclusion sortante : un cycle) ; les autres cercles y montent par transitivité, et le graphe devient connexe. Lot I (v0.13.0) : une couche de hubs structurels (espaces, structures, nombres, figures, applications, suites, séries, couples, graphes) raccorde les îlots entre eux ; règle 4, les raccords du lot H devenus composés ont été retirés."
+      "notes": "L'univers de tous les ensembles est une classe propre, pas un ensemble (Russell) : le nœud représente la collection entière, comme les couples d'ensembles voisins. Lot H (v0.12.0) : une arête définitoire part de chacun des 124 ensembles maximaux du graphe (ceux sans inclusion sortante) et du nœud CQG1 (seule composante où chaque cercle a une inclusion sortante : un cycle) ; les autres cercles y montent par transitivité, et le graphe devient connexe. Lot I (v0.13.0) : une couche de hubs structurels (espaces, structures, nombres, figures, applications, suites, séries, couples, graphes) raccorde les îlots entre eux ; règle 4, les raccords du lot H devenus composés ont été retirés. Lot J (v0.14.0) : plus un fourre-tout — chaque ancien raccord est requalifié en chaînon vers son continent (Applications, Suites, Couples, ℝ, ℂ, Fermées, Groupes, Familles…), les vrais théorèmes le remplacent quand ils existent (compact ⊆ fermé, ℝ ⊆ ℂ, pont de Cauchy), et seuls les hubs, l'axiome du vide et un petit résidu montent encore directement."
     },
     {
       "id": "ZRM2",
@@ -3290,6 +3291,56 @@
       "description": "Les graphes : des sommets et des arêtes, finis ou non.",
       "example": "un cycle impair.",
       "notes": ""
+    },
+    {
+      "id": "CMLX",
+      "label": "Nombres complexes ℂ",
+      "family": "ensembles",
+      "domain": "analyse complexe",
+      "property": "\\{\\, z = a + i\\,b \\mid a, b \\in \\mathbb{R} \\,\\}",
+      "description": "Les nombres complexes.",
+      "example": "i",
+      "notes": "Hub du lot J : le prolongement de la chaîne des nombres au-delà de ℝ."
+    },
+    {
+      "id": "LANG",
+      "label": "Langages",
+      "family": "ensembles",
+      "domain": "théorie des langages",
+      "property": "\\{\\, L \\subseteq \\Sigma^{*} \\mid \\Sigma \\text{ alphabet} \\,\\}",
+      "description": "Tous les langages : ensembles de mots sur un alphabet.",
+      "example": "L'ensemble des mots palindromes sur {a, b}",
+      "notes": "Hub du lot J."
+    },
+    {
+      "id": "TRIB",
+      "label": "Tribus",
+      "family": "ensembles",
+      "domain": "théorie de la mesure",
+      "property": "\\{\\, \\Sigma \\subseteq \\mathcal{P}(X) : \\text{stable par complémentaire et réunions dénombrables} \\,\\}",
+      "description": "Toutes les tribus.",
+      "example": "La tribu borélienne de ℝ",
+      "notes": "Hub du lot J ; une tribu est une famille de parties, d'où l'inclusion dans « Familles »."
+    },
+    {
+      "id": "ORDR",
+      "label": "Ordres",
+      "family": "ensembles",
+      "domain": "théorie des ordres",
+      "property": "\\{\\, (E, \\leq) \\mid \\leq \\text{ relation d'ordre sur } E \\,\\}",
+      "description": "Les ensembles ordonnés.",
+      "example": "(ℕ, ≤)",
+      "notes": "Hub du lot J ; un ensemble ordonné est le couple (E, ≤), d'où l'inclusion dans « Couples »."
+    },
+    {
+      "id": "FAML",
+      "label": "Familles",
+      "family": "ensembles",
+      "domain": "théorie des ensembles",
+      "property": "\\{\\, (X_i)_{i \\in I} \\mid I \\text{ ensemble d'indices} \\,\\}",
+      "description": "Toutes les familles (ensembles indexés d'objets).",
+      "example": "Une suite de compacts (K_n)",
+      "notes": "Hub du lot J ; reçoit familles de fonctions, de vecteurs, d'ensembles et les tribus."
     }
   ],
   "edges": [
@@ -6007,146 +6058,6 @@
       "id": "e262"
     },
     {
-      "from": "DEC",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Dérivables sauf sur un dénombrable » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Dérivables sauf sur un dénombrable » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e263"
-    },
-    {
-      "from": "B",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Fonctions réelles bornées » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Fonctions réelles bornées » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e264"
-    },
-    {
-      "from": "LIM",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Fonctions à limites finies en ±∞ » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Fonctions à limites finies en ±∞ » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e265"
-    },
-    {
-      "from": "IVP",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Fonctions de Darboux » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Fonctions de Darboux » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e266"
-    },
-    {
-      "from": "CARDE",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Fonctions à discontinuités dénombrables » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Fonctions à discontinuités dénombrables » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e267"
-    },
-    {
-      "from": "RSEG",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Fonctions Riemann-intégrables sur tout segment » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Fonctions Riemann-intégrables sur tout segment » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e268"
-    },
-    {
-      "from": "MAT",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Matrices à coefficients réels » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Matrices à coefficients réels » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e269"
-    },
-    {
-      "from": "TC",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Fonctions topologiquement continues » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Fonctions topologiquement continues » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e270"
-    },
-    {
-      "from": "L1",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Matrices carrées complexes (toutes tailles) » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Matrices carrées complexes (toutes tailles) » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e271"
-    },
-    {
-      "from": "X6",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Fonctions continues ℂ → ℂ » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Fonctions continues ℂ → ℂ » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e272"
-    },
-    {
-      "from": "X8",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Fonctions bornées ℂ → ℂ » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Fonctions bornées ℂ → ℂ » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e273"
-    },
-    {
-      "from": "FCP",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Réels à fraction continue périodique » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Réels à fraction continue périodique » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e274"
-    },
-    {
-      "from": "S4",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Sommes de quatre carrés » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Sommes de quatre carrés » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e275"
-    },
-    {
-      "from": "TRS",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Nombres transcendants » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Nombres transcendants » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e276"
-    },
-    {
       "from": "TQ2",
       "to": "ZRM1",
       "kind": "inclusion",
@@ -6155,96 +6066,6 @@
       "depth": "définitoire",
       "domain": "théorie des ensembles",
       "id": "e277"
-    },
-    {
-      "from": "LU2",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Binômes non divisibles par p » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Binômes non divisibles par p » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e278"
-    },
-    {
-      "from": "LL2",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Mersenne validés par Lucas–Lehmer » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Mersenne validés par Lucas–Lehmer » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e279"
-    },
-    {
-      "from": "LA2",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Fonctions développables en série de Laurent » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Fonctions développables en série de Laurent » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e280"
-    },
-    {
-      "from": "BM2",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Fonctionnelles a(x₀, ·) » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Fonctionnelles a(x₀, ·) » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e281"
-    },
-    {
-      "from": "ME3",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Fonctions presque continues » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Fonctions presque continues » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e282"
-    },
-    {
-      "from": "PR2",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Suites convergeant presque sûrement » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Suites convergeant presque sûrement » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e283"
-    },
-    {
-      "from": "PR3",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Suites convergeant en probabilité » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Suites convergeant en probabilité » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e284"
-    },
-    {
-      "from": "SG2",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Ensembles simultanément trigonalisables » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Ensembles simultanément trigonalisables » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e285"
-    },
-    {
-      "from": "KP2",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Espaces à projection fermée » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Espaces à projection fermée » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e286"
     },
     {
       "from": "GR2",
@@ -6257,36 +6078,6 @@
       "id": "e287"
     },
     {
-      "from": "IN2",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Restrictions de polynômes de degré au plus n−1 » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Restrictions de polynômes de degré au plus n−1 » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e288"
-    },
-    {
-      "from": "LR2",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Segment de Laguerre » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Segment de Laguerre » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e289"
-    },
-    {
-      "from": "ZL1",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Zéros d'un polynôme fixé » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Zéros d'un polynôme fixé » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e290"
-    },
-    {
       "from": "ZL2",
       "to": "ZRM1",
       "kind": "inclusion",
@@ -6295,236 +6086,6 @@
       "depth": "définitoire",
       "domain": "théorie des ensembles",
       "id": "e291"
-    },
-    {
-      "from": "GAK",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Quadruplets vérifiant la loi d'Al-Kashi » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Quadruplets vérifiant la loi d'Al-Kashi » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e292"
-    },
-    {
-      "from": "GIM",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Moitiés de l'angle au centre correspondant » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Moitiés de l'angle au centre correspondant » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e293"
-    },
-    {
-      "from": "GCD",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Couples dont l'un vaut le double de l'autre » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Couples dont l'un vaut le double de l'autre » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e294"
-    },
-    {
-      "from": "GAA",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Réunions de deux arcs de cercles passant par A et B » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Réunions de deux arcs de cercles passant par A et B » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e295"
-    },
-    {
-      "from": "CER",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Cercles du plan » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Cercles du plan » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e296"
-    },
-    {
-      "from": "GME",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Lieux à rapport de distances égal à 1 » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Lieux à rapport de distances égal à 1 » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e297"
-    },
-    {
-      "from": "LT2",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Langages de la forme BA* » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Langages de la forme BA* » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e298"
-    },
-    {
-      "from": "MT2",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Espaces de Baire » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Espaces de Baire » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e300"
-    },
-    {
-      "from": "MA2",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Parties équicontinues » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Parties équicontinues » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e301"
-    },
-    {
-      "from": "MV2",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Espaces isométriques à un sous-espace de C([0,1]) » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Espaces isométriques à un sous-espace de C([0,1]) » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e302"
-    },
-    {
-      "from": "ABR1",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Équations génériques de degré au moins 5 » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Équations génériques de degré au moins 5 » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e303"
-    },
-    {
-      "from": "ABR2",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Équations résolubles par radicaux » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Équations résolubles par radicaux » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e304"
-    },
-    {
-      "from": "BI2",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Familles complétées en une base » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Familles complétées en une base » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e305"
-    },
-    {
-      "from": "ADO2",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Sous-algèbres de Lie de gl_n » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Sous-algèbres de Lie de gl_n » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e306"
-    },
-    {
-      "from": "XZR",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Polynômes ayant au moins une racine (dans ℂ) » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Polynômes ayant au moins une racine (dans ℂ) » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e308"
-    },
-    {
-      "from": "SU2",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Séries convergentes » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Séries convergentes » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e309"
-    },
-    {
-      "from": "SU4",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Séries divergentes » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Séries divergentes » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e310"
-    },
-    {
-      "from": "BZ2",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Sous-groupes de la forme nℤ » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Sous-groupes de la forme nℤ » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e312"
-    },
-    {
-      "from": "BJ2",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Bijections d'un segment sur un segment » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Bijections d'un segment sur un segment » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e313"
-    },
-    {
-      "from": "BJ4",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Homéomorphismes monotones sur leur image » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Homéomorphismes monotones sur leur image » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e314"
-    },
-    {
-      "from": "BG2",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Fonctions continûment restreignables à une partie dense » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Fonctions continûment restreignables à une partie dense » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e315"
-    },
-    {
-      "from": "GAM3",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Fonctions vérifiant l'équation fonctionnelle de Gamma » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Fonctions vérifiant l'équation fonctionnelle de Gamma » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e316"
-    },
-    {
-      "from": "GAM2",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Fonction Gamma d'Euler » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Fonction Gamma d'Euler » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e317"
     },
     {
       "from": "BF2",
@@ -6537,86 +6098,6 @@
       "id": "e319"
     },
     {
-      "from": "BR2",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Suites de dérivées successives en 0 de fonctions C∞ » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Suites de dérivées successives en 0 de fonctions C∞ » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e320"
-    },
-    {
-      "from": "BL2",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Parties compactes de ℝⁿ » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Parties compactes de ℝⁿ » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e321"
-    },
-    {
-      "from": "LN2",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Applications linéaires bornées sur la boule unité » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Applications linéaires bornées sur la boule unité » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e322"
-    },
-    {
-      "from": "SQ2",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Parties séquentiellement compactes » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Parties séquentiellement compactes » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e323"
-    },
-    {
-      "from": "FQ2",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Parties contenant les limites de leurs suites » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Parties contenant les limites de leurs suites » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e324"
-    },
-    {
-      "from": "TB2",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Fonctions bornées atteignant leurs bornes » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Fonctions bornées atteignant leurs bornes » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e325"
-    },
-    {
-      "from": "BU2",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Fonctions identifiant deux points antipodaux » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Fonctions identifiant deux points antipodaux » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e326"
-    },
-    {
-      "from": "BV2",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Champs de vecteurs s'annulant quelque part » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Champs de vecteurs s'annulant quelque part » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e327"
-    },
-    {
       "from": "BRG2",
       "to": "ZRM1",
       "kind": "inclusion",
@@ -6627,86 +6108,6 @@
       "id": "e328"
     },
     {
-      "from": "BRI2",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Couples dont le produit est représentable » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Couples dont le produit est représentable » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e329"
-    },
-    {
-      "from": "BRH2",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Hexagones à diagonales concourantes » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Hexagones à diagonales concourantes » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e330"
-    },
-    {
-      "from": "BRK2",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Graphes colorables avec deg couleurs » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Graphes colorables avec deg couleurs » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e331"
-    },
-    {
-      "from": "BRK3",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Cycles impairs » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Cycles impairs » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e332"
-    },
-    {
-      "from": "BRK4",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Cliques » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Cliques » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e333"
-    },
-    {
-      "from": "BSL2",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Moyennes de nombres de points fixes » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Moyennes de nombres de points fixes » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e334"
-    },
-    {
-      "from": "CNT2",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Applications non surjectives » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Applications non surjectives » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e335"
-    },
-    {
-      "from": "ORD2",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Ordres isomorphes à celui des rationnels » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Ordres isomorphes à celui des rationnels » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e336"
-    },
-    {
       "from": "CBD2",
       "to": "ZRM1",
       "kind": "inclusion",
@@ -6715,56 +6116,6 @@
       "depth": "définitoire",
       "domain": "théorie des ensembles",
       "id": "e337"
-    },
-    {
-      "from": "CBE2",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Couples d'ensembles équipotents » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Couples d'ensembles équipotents » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e338"
-    },
-    {
-      "from": "CAR2",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Tribus complètes » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Tribus complètes » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e339"
-    },
-    {
-      "from": "CKD2",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Réunions des enveloppes de n+1 points » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Réunions des enveloppes de n+1 points » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e340"
-    },
-    {
-      "from": "CAU2",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Suites convergentes de l'espace » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Suites convergentes de l'espace » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e341"
-    },
-    {
-      "from": "CQP2",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Paires de polyèdres congruents » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Paires de polyèdres congruents » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e342"
     },
     {
       "from": "CLP2",
@@ -6797,16 +6148,6 @@
       "id": "e345"
     },
     {
-      "from": "DCV1",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Disques de convergence des séries entières » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Disques de convergence des séries entières » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e346"
-    },
-    {
       "from": "CYL2",
       "to": "ZRM1",
       "kind": "inclusion",
@@ -6837,76 +6178,6 @@
       "id": "e350"
     },
     {
-      "from": "AXC2",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Familles admettant une fonction de choix » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Familles admettant une fonction de choix » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e352"
-    },
-    {
-      "from": "CHD2",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Limites uniformes de polynômes à coefficients entiers » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Limites uniformes de polynômes à coefficients entiers » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e353"
-    },
-    {
-      "from": "EMB2",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Suites à intersection non vide » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Suites à intersection non vide » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e354"
-    },
-    {
-      "from": "CCB2",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Couples comparables par injection » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Couples comparables par injection » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e355"
-    },
-    {
-      "from": "TCH2",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Couples à quotient isomorphe au produit » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Couples à quotient isomorphe au produit » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e356"
-    },
-    {
-      "from": "ANR1",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Anneaux commutatifs » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Anneaux commutatifs » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e357"
-    },
-    {
-      "from": "ZRN2",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Ensembles ordonnés à élément maximal » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Ensembles ordonnés à élément maximal » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e358"
-    },
-    {
       "from": "ZRM2",
       "to": "ZRM1",
       "kind": "inclusion",
@@ -6915,236 +6186,6 @@
       "depth": "définitoire",
       "domain": "théorie des ensembles",
       "id": "e359"
-    },
-    {
-      "from": "ZLT2",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Permutations paires de ℤ/pℤ » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Permutations paires de ℤ/pℤ » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e360"
-    },
-    {
-      "from": "ZLF2",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Permutations paires de ℤ/nℤ » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Permutations paires de ℤ/nℤ » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e361"
-    },
-    {
-      "from": "NLI2",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Fonctions à zéros isolés » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Fonctions à zéros isolés » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e362"
-    },
-    {
-      "from": "ZGL2",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Polygones translatables en un carré » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Polygones translatables en un carré » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e363"
-    },
-    {
-      "from": "WIT2",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Formes quadratiques isomorphes » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Formes quadratiques isomorphes » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e364"
-    },
-    {
-      "from": "WIS2",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Couples (groupe fini, ordre atteint par un sous-groupe) » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Couples (groupe fini, ordre atteint par un sous-groupe) » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e366"
-    },
-    {
-      "from": "WTT2",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Tours stationnaires » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Tours stationnaires » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e367"
-    },
-    {
-      "from": "WTN2",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Variétés plongeables dans R^{2n} » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Variétés plongeables dans R^{2n} » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e368"
-    },
-    {
-      "from": "WIE2",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Fonctions à translatées engendrant un espace dense » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Fonctions à translatées engendrant un espace dense » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e369"
-    },
-    {
-      "from": "WKH2",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Transformées de Fourier de mesures spectrales » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Transformées de Fourier de mesures spectrales » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e370"
-    },
-    {
-      "from": "WRS2",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Limites uniformes de polynômes sur un segment » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Limites uniformes de polynômes sur un segment » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e371"
-    },
-    {
-      "from": "WSC2",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Fonctions à images denses près de la singularité » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Fonctions à images denses près de la singularité » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e372"
-    },
-    {
-      "from": "WRC2",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Séries de fonctions uniformément convergentes » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Séries de fonctions uniformément convergentes » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e373"
-    },
-    {
-      "from": "NZL2",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Algébriques de degré une puissance de 2 » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Algébriques de degré une puissance de 2 » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e374"
-    },
-    {
-      "from": "WBG2",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Polygones équidécomposables » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Polygones équidécomposables » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e375"
-    },
-    {
-      "from": "VSC2",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Couples corrigés par les premiers » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Couples corrigés par les premiers » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e376"
-    },
-    {
-      "from": "VIV2",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Points à somme des distances constante » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Points à somme des distances constante » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e377"
-    },
-    {
-      "from": "VRG2",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Quadrilatères de Varignon » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Quadrilatères de Varignon » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e378"
-    },
-    {
-      "from": "VKP2",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Espaces à groupe fondamental amalgamé » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Espaces à groupe fondamental amalgamé » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e379"
-    },
-    {
-      "from": "URY2",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Paires séparées par une fonction continue » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Paires séparées par une fonction continue » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e380"
-    },
-    {
-      "from": "CNU2",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Séries à coefficients tous nuls » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Séries à coefficients tous nuls » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e381"
-    },
-    {
-      "from": "TYC2",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Familles à produit compact » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Familles à produit compact » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e382"
-    },
-    {
-      "from": "TVB2",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Familles Tverberg-partitionnables » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Familles Tverberg-partitionnables » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e383"
     },
     {
       "from": "HTQ2",
@@ -7165,16 +6206,6 @@
       "depth": "définitoire",
       "domain": "théorie des ensembles",
       "id": "e386"
-    },
-    {
-      "from": "CQG1",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Groupes finis d'ordre divisible par p » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Groupes finis d'ordre divisible par p » ⊆ Ensembles est une inclusion définitoire. Raccord du lot H : une arête par ensemble maximal, les autres cercles y montent par transitivité.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e387"
     },
     {
       "from": "A1",
@@ -8187,16 +7218,6 @@
       "id": "e488"
     },
     {
-      "from": "REEL",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Inclusion dans la collection de tous les ensembles",
-      "statement": "Tout élément de « Nombres réels ℝ » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Nombres réels ℝ » ⊆ Ensembles est une inclusion définitoire. Raccord du lot I : le hub rejoint le cercle-père du graphe.",
-      "depth": "définitoire",
-      "domain": "théorie des ensembles",
-      "id": "e489"
-    },
-    {
       "from": "INTR",
       "to": "ZRM1",
       "kind": "inclusion",
@@ -8295,6 +7316,867 @@
       "depth": "définitoire",
       "domain": "théorie des ensembles",
       "id": "e499"
+    },
+    {
+      "from": "REEL",
+      "to": "CMLX",
+      "kind": "inclusion",
+      "theorem": "ℝ ⊆ ℂ",
+      "statement": "Tout nombre réel est un nombre complexe (de partie imaginaire nulle) : la chaîne des nombres se prolonge ℕ ⊆ ℤ ⊆ ℚ ⊆ ℝ ⊆ ℂ.",
+      "depth": "immédiat",
+      "domain": "analyse complexe",
+      "id": "e500"
+    },
+    {
+      "from": "TRIB",
+      "to": "FAML",
+      "kind": "inclusion",
+      "theorem": "« Tribus » : toujours une famille",
+      "statement": "Une tribu est une famille de parties de X : chaînon du lot J qui enracine les tribus dans « Familles ».",
+      "depth": "définitoire",
+      "domain": "théorie de la mesure",
+      "id": "e501"
+    },
+    {
+      "from": "ORDR",
+      "to": "COUP",
+      "kind": "inclusion",
+      "theorem": "Un ensemble ordonné est un couple",
+      "statement": "Un ensemble ordonné se donne par le couple (E, ≤) : « Ordres » ⊆ « Couples » est l'encodage du lot J.",
+      "depth": "définitoire",
+      "domain": "théorie des ordres",
+      "id": "e502"
+    },
+    {
+      "from": "DEC",
+      "to": "APP",
+      "kind": "inclusion",
+      "theorem": "« Dérivables sauf sur un dénombrable » : toujours une application",
+      "statement": "« Dérivables sauf sur un dénombrable » est habité par des objets qui sont une application : chaînon du lot J, qui remplace le fourre-tout « Ensembles » par une hiérarchie lisible.",
+      "depth": "définitoire",
+      "domain": "algèbre générale",
+      "id": "e503"
+    },
+    {
+      "from": "B",
+      "to": "APP",
+      "kind": "inclusion",
+      "theorem": "« Fonctions réelles bornées » : toujours une application",
+      "statement": "« Fonctions réelles bornées » est habité par des objets qui sont une application : chaînon du lot J, qui remplace le fourre-tout « Ensembles » par une hiérarchie lisible.",
+      "depth": "définitoire",
+      "domain": "algèbre générale",
+      "id": "e504"
+    },
+    {
+      "from": "LIM",
+      "to": "APP",
+      "kind": "inclusion",
+      "theorem": "« Fonctions à limites finies en ±∞ » : toujours une application",
+      "statement": "« Fonctions à limites finies en ±∞ » est habité par des objets qui sont une application : chaînon du lot J, qui remplace le fourre-tout « Ensembles » par une hiérarchie lisible.",
+      "depth": "définitoire",
+      "domain": "algèbre générale",
+      "id": "e505"
+    },
+    {
+      "from": "IVP",
+      "to": "APP",
+      "kind": "inclusion",
+      "theorem": "« Fonctions de Darboux » : toujours une application",
+      "statement": "« Fonctions de Darboux » est habité par des objets qui sont une application : chaînon du lot J, qui remplace le fourre-tout « Ensembles » par une hiérarchie lisible.",
+      "depth": "définitoire",
+      "domain": "algèbre générale",
+      "id": "e506"
+    },
+    {
+      "from": "CARDE",
+      "to": "APP",
+      "kind": "inclusion",
+      "theorem": "« Fonctions à discontinuités dénombrables » : toujours une application",
+      "statement": "« Fonctions à discontinuités dénombrables » est habité par des objets qui sont une application : chaînon du lot J, qui remplace le fourre-tout « Ensembles » par une hiérarchie lisible.",
+      "depth": "définitoire",
+      "domain": "algèbre générale",
+      "id": "e507"
+    },
+    {
+      "from": "RSEG",
+      "to": "APP",
+      "kind": "inclusion",
+      "theorem": "« Fonctions Riemann-intégrables sur tout segment » : toujours une application",
+      "statement": "« Fonctions Riemann-intégrables sur tout segment » est habité par des objets qui sont une application : chaînon du lot J, qui remplace le fourre-tout « Ensembles » par une hiérarchie lisible.",
+      "depth": "définitoire",
+      "domain": "algèbre générale",
+      "id": "e508"
+    },
+    {
+      "from": "GAM2",
+      "to": "APP",
+      "kind": "inclusion",
+      "theorem": "« Fonction Gamma d'Euler » : toujours une application",
+      "statement": "« Fonction Gamma d'Euler » est habité par des objets qui sont une application : chaînon du lot J, qui remplace le fourre-tout « Ensembles » par une hiérarchie lisible.",
+      "depth": "définitoire",
+      "domain": "algèbre générale",
+      "id": "e509"
+    },
+    {
+      "from": "GAM3",
+      "to": "APP",
+      "kind": "inclusion",
+      "theorem": "« Fonctions vérifiant l'équation fonctionnelle de Gamma » : toujours une application",
+      "statement": "« Fonctions vérifiant l'équation fonctionnelle de Gamma » est habité par des objets qui sont une application : chaînon du lot J, qui remplace le fourre-tout « Ensembles » par une hiérarchie lisible.",
+      "depth": "définitoire",
+      "domain": "algèbre générale",
+      "id": "e510"
+    },
+    {
+      "from": "BG2",
+      "to": "APP",
+      "kind": "inclusion",
+      "theorem": "« Fonctions continûment restreignables à une partie dense » : toujours une application",
+      "statement": "« Fonctions continûment restreignables à une partie dense » est habité par des objets qui sont une application : chaînon du lot J, qui remplace le fourre-tout « Ensembles » par une hiérarchie lisible.",
+      "depth": "définitoire",
+      "domain": "algèbre générale",
+      "id": "e511"
+    },
+    {
+      "from": "BM2",
+      "to": "APP",
+      "kind": "inclusion",
+      "theorem": "« Fonctionnelles a(x₀, ·) » : toujours une application",
+      "statement": "« Fonctionnelles a(x₀, ·) » est habité par des objets qui sont une application : chaînon du lot J, qui remplace le fourre-tout « Ensembles » par une hiérarchie lisible.",
+      "depth": "définitoire",
+      "domain": "algèbre générale",
+      "id": "e512"
+    },
+    {
+      "from": "ME3",
+      "to": "APP",
+      "kind": "inclusion",
+      "theorem": "« Fonctions presque continues » : toujours une application",
+      "statement": "« Fonctions presque continues » est habité par des objets qui sont une application : chaînon du lot J, qui remplace le fourre-tout « Ensembles » par une hiérarchie lisible.",
+      "depth": "définitoire",
+      "domain": "algèbre générale",
+      "id": "e513"
+    },
+    {
+      "from": "BU2",
+      "to": "APP",
+      "kind": "inclusion",
+      "theorem": "« Fonctions identifiant deux points antipodaux » : toujours une application",
+      "statement": "« Fonctions identifiant deux points antipodaux » est habité par des objets qui sont une application : chaînon du lot J, qui remplace le fourre-tout « Ensembles » par une hiérarchie lisible.",
+      "depth": "définitoire",
+      "domain": "algèbre générale",
+      "id": "e514"
+    },
+    {
+      "from": "TB2",
+      "to": "APP",
+      "kind": "inclusion",
+      "theorem": "« Fonctions bornées atteignant leurs bornes » : toujours une application",
+      "statement": "« Fonctions bornées atteignant leurs bornes » est habité par des objets qui sont une application : chaînon du lot J, qui remplace le fourre-tout « Ensembles » par une hiérarchie lisible.",
+      "depth": "définitoire",
+      "domain": "algèbre générale",
+      "id": "e515"
+    },
+    {
+      "from": "CHD2",
+      "to": "APP",
+      "kind": "inclusion",
+      "theorem": "« Limites uniformes de polynômes à coefficients entiers » : toujours une application",
+      "statement": "« Limites uniformes de polynômes à coefficients entiers » est habité par des objets qui sont une application : chaînon du lot J, qui remplace le fourre-tout « Ensembles » par une hiérarchie lisible.",
+      "depth": "définitoire",
+      "domain": "algèbre générale",
+      "id": "e516"
+    },
+    {
+      "from": "WRS2",
+      "to": "APP",
+      "kind": "inclusion",
+      "theorem": "« Limites uniformes de polynômes sur un segment » : toujours une application",
+      "statement": "« Limites uniformes de polynômes sur un segment » est habité par des objets qui sont une application : chaînon du lot J, qui remplace le fourre-tout « Ensembles » par une hiérarchie lisible.",
+      "depth": "définitoire",
+      "domain": "algèbre générale",
+      "id": "e517"
+    },
+    {
+      "from": "IN2",
+      "to": "APP",
+      "kind": "inclusion",
+      "theorem": "« Restrictions de polynômes de degré au plus n−1 » : toujours une application",
+      "statement": "« Restrictions de polynômes de degré au plus n−1 » est habité par des objets qui sont une application : chaînon du lot J, qui remplace le fourre-tout « Ensembles » par une hiérarchie lisible.",
+      "depth": "définitoire",
+      "domain": "algèbre générale",
+      "id": "e518"
+    },
+    {
+      "from": "LN2",
+      "to": "APP",
+      "kind": "inclusion",
+      "theorem": "« Applications linéaires bornées sur la boule unité » : toujours une application",
+      "statement": "« Applications linéaires bornées sur la boule unité » est habité par des objets qui sont une application : chaînon du lot J, qui remplace le fourre-tout « Ensembles » par une hiérarchie lisible.",
+      "depth": "définitoire",
+      "domain": "algèbre générale",
+      "id": "e519"
+    },
+    {
+      "from": "NLI2",
+      "to": "APP",
+      "kind": "inclusion",
+      "theorem": "« Fonctions à zéros isolés » : toujours une application",
+      "statement": "« Fonctions à zéros isolés » est habité par des objets qui sont une application : chaînon du lot J, qui remplace le fourre-tout « Ensembles » par une hiérarchie lisible.",
+      "depth": "définitoire",
+      "domain": "algèbre générale",
+      "id": "e520"
+    },
+    {
+      "from": "LA2",
+      "to": "APP",
+      "kind": "inclusion",
+      "theorem": "« Fonctions développables en série de Laurent » : toujours une application",
+      "statement": "« Fonctions développables en série de Laurent » est habité par des objets qui sont une application : chaînon du lot J, qui remplace le fourre-tout « Ensembles » par une hiérarchie lisible.",
+      "depth": "définitoire",
+      "domain": "algèbre générale",
+      "id": "e521"
+    },
+    {
+      "from": "WSC2",
+      "to": "APP",
+      "kind": "inclusion",
+      "theorem": "« Fonctions à images denses près de la singularité » : toujours une application",
+      "statement": "« Fonctions à images denses près de la singularité » est habité par des objets qui sont une application : chaînon du lot J, qui remplace le fourre-tout « Ensembles » par une hiérarchie lisible.",
+      "depth": "définitoire",
+      "domain": "algèbre générale",
+      "id": "e522"
+    },
+    {
+      "from": "WIE2",
+      "to": "APP",
+      "kind": "inclusion",
+      "theorem": "« Fonctions à translatées engendrant un espace dense » : toujours une application",
+      "statement": "« Fonctions à translatées engendrant un espace dense » est habité par des objets qui sont une application : chaînon du lot J, qui remplace le fourre-tout « Ensembles » par une hiérarchie lisible.",
+      "depth": "définitoire",
+      "domain": "algèbre générale",
+      "id": "e523"
+    },
+    {
+      "from": "WKH2",
+      "to": "APP",
+      "kind": "inclusion",
+      "theorem": "« Transformées de Fourier de mesures spectrales » : toujours une application",
+      "statement": "« Transformées de Fourier de mesures spectrales » est habité par des objets qui sont une application : chaînon du lot J, qui remplace le fourre-tout « Ensembles » par une hiérarchie lisible.",
+      "depth": "définitoire",
+      "domain": "algèbre générale",
+      "id": "e524"
+    },
+    {
+      "from": "ZLT2",
+      "to": "APP",
+      "kind": "inclusion",
+      "theorem": "« Permutations paires de ℤ/pℤ » : toujours une application",
+      "statement": "« Permutations paires de ℤ/pℤ » est habité par des objets qui sont une application : chaînon du lot J, qui remplace le fourre-tout « Ensembles » par une hiérarchie lisible.",
+      "depth": "définitoire",
+      "domain": "algèbre générale",
+      "id": "e525"
+    },
+    {
+      "from": "ZLF2",
+      "to": "APP",
+      "kind": "inclusion",
+      "theorem": "« Permutations paires de ℤ/nℤ » : toujours une application",
+      "statement": "« Permutations paires de ℤ/nℤ » est habité par des objets qui sont une application : chaînon du lot J, qui remplace le fourre-tout « Ensembles » par une hiérarchie lisible.",
+      "depth": "définitoire",
+      "domain": "algèbre générale",
+      "id": "e526"
+    },
+    {
+      "from": "BJ4",
+      "to": "APP",
+      "kind": "inclusion",
+      "theorem": "« Homéomorphismes monotones sur leur image » : toujours une application",
+      "statement": "« Homéomorphismes monotones sur leur image » est habité par des objets qui sont une application : chaînon du lot J, qui remplace le fourre-tout « Ensembles » par une hiérarchie lisible.",
+      "depth": "définitoire",
+      "domain": "algèbre générale",
+      "id": "e527"
+    },
+    {
+      "from": "CNT2",
+      "to": "APP",
+      "kind": "inclusion",
+      "theorem": "« Applications non surjectives » : toujours une application",
+      "statement": "« Applications non surjectives » est habité par des objets qui sont une application : chaînon du lot J, qui remplace le fourre-tout « Ensembles » par une hiérarchie lisible.",
+      "depth": "définitoire",
+      "domain": "algèbre générale",
+      "id": "e528"
+    },
+    {
+      "from": "TC",
+      "to": "APP",
+      "kind": "inclusion",
+      "theorem": "« Fonctions topologiquement continues » : toujours une application",
+      "statement": "« Fonctions topologiquement continues » est habité par des objets qui sont une application : chaînon du lot J, qui remplace le fourre-tout « Ensembles » par une hiérarchie lisible.",
+      "depth": "définitoire",
+      "domain": "algèbre générale",
+      "id": "e529"
+    },
+    {
+      "from": "BJ2",
+      "to": "APP",
+      "kind": "inclusion",
+      "theorem": "Une bijection est une application",
+      "statement": "Toute bijection d'un segment sur un segment est en particulier une application : chaînon du lot J.",
+      "depth": "immédiat",
+      "domain": "algèbre générale",
+      "id": "e530"
+    },
+    {
+      "from": "BV2",
+      "to": "APP",
+      "kind": "inclusion",
+      "theorem": "« Champs de vecteurs s'annulant quelque part » : toujours une application",
+      "statement": "Un champ de vecteurs est une application (de la variété vers son fibré tangent) : chaînon du lot J.",
+      "depth": "définitoire",
+      "domain": "topologie différentielle",
+      "id": "e531"
+    },
+    {
+      "from": "BR2",
+      "to": "SUIT",
+      "kind": "inclusion",
+      "theorem": "« Suites de dérivées successives en 0 de fonctions C∞ » : toujours une suite",
+      "statement": "« Suites de dérivées successives en 0 de fonctions C∞ » est habité par des objets qui sont une suite : chaînon du lot J, qui remplace le fourre-tout « Ensembles » par une hiérarchie lisible.",
+      "depth": "définitoire",
+      "domain": "analyse des suites réelles",
+      "id": "e532"
+    },
+    {
+      "from": "EMB2",
+      "to": "SUIT",
+      "kind": "inclusion",
+      "theorem": "« Suites à intersection non vide » : toujours une suite",
+      "statement": "« Suites à intersection non vide » est habité par des objets qui sont une suite : chaînon du lot J, qui remplace le fourre-tout « Ensembles » par une hiérarchie lisible.",
+      "depth": "définitoire",
+      "domain": "analyse des suites réelles",
+      "id": "e533"
+    },
+    {
+      "from": "PR2",
+      "to": "SUIT",
+      "kind": "inclusion",
+      "theorem": "« Suites convergeant presque sûrement » : toujours une suite",
+      "statement": "« Suites convergeant presque sûrement » est habité par des objets qui sont une suite : chaînon du lot J, qui remplace le fourre-tout « Ensembles » par une hiérarchie lisible.",
+      "depth": "définitoire",
+      "domain": "analyse des suites réelles",
+      "id": "e534"
+    },
+    {
+      "from": "PR3",
+      "to": "SUIT",
+      "kind": "inclusion",
+      "theorem": "« Suites convergeant en probabilité » : toujours une suite",
+      "statement": "« Suites convergeant en probabilité » est habité par des objets qui sont une suite : chaînon du lot J, qui remplace le fourre-tout « Ensembles » par une hiérarchie lisible.",
+      "depth": "définitoire",
+      "domain": "analyse des suites réelles",
+      "id": "e535"
+    },
+    {
+      "from": "WTT2",
+      "to": "SUIT",
+      "kind": "inclusion",
+      "theorem": "« Tours stationnaires » : toujours une suite",
+      "statement": "Une tour est une suite de groupes : chaînon du lot J vers le hub « Suites ».",
+      "depth": "définitoire",
+      "domain": "théorie des groupes",
+      "id": "e536"
+    },
+    {
+      "from": "LU2",
+      "to": "COUP",
+      "kind": "inclusion",
+      "theorem": "« Binômes non divisibles par p » : toujours un couple",
+      "statement": "« Binômes non divisibles par p » est habité par des objets qui sont un couple : chaînon du lot J, qui remplace le fourre-tout « Ensembles » par une hiérarchie lisible.",
+      "depth": "définitoire",
+      "domain": "algèbre générale",
+      "id": "e537"
+    },
+    {
+      "from": "BRI2",
+      "to": "COUP",
+      "kind": "inclusion",
+      "theorem": "« Couples dont le produit est représentable » : toujours un couple",
+      "statement": "« Couples dont le produit est représentable » est habité par des objets qui sont un couple : chaînon du lot J, qui remplace le fourre-tout « Ensembles » par une hiérarchie lisible.",
+      "depth": "définitoire",
+      "domain": "algèbre générale",
+      "id": "e538"
+    },
+    {
+      "from": "VSC2",
+      "to": "COUP",
+      "kind": "inclusion",
+      "theorem": "« Couples corrigés par les premiers » : toujours un couple",
+      "statement": "« Couples corrigés par les premiers » est habité par des objets qui sont un couple : chaînon du lot J, qui remplace le fourre-tout « Ensembles » par une hiérarchie lisible.",
+      "depth": "définitoire",
+      "domain": "algèbre générale",
+      "id": "e539"
+    },
+    {
+      "from": "GCD",
+      "to": "COUP",
+      "kind": "inclusion",
+      "theorem": "« Couples dont l'un vaut le double de l'autre » : toujours un couple",
+      "statement": "« Couples dont l'un vaut le double de l'autre » est habité par des objets qui sont un couple : chaînon du lot J, qui remplace le fourre-tout « Ensembles » par une hiérarchie lisible.",
+      "depth": "définitoire",
+      "domain": "algèbre générale",
+      "id": "e540"
+    },
+    {
+      "from": "CBE2",
+      "to": "COUP",
+      "kind": "inclusion",
+      "theorem": "« Couples d'ensembles équipotents » : toujours un couple",
+      "statement": "« Couples d'ensembles équipotents » est habité par des objets qui sont un couple : chaînon du lot J, qui remplace le fourre-tout « Ensembles » par une hiérarchie lisible.",
+      "depth": "définitoire",
+      "domain": "algèbre générale",
+      "id": "e541"
+    },
+    {
+      "from": "CCB2",
+      "to": "COUP",
+      "kind": "inclusion",
+      "theorem": "« Couples comparables par injection » : toujours un couple",
+      "statement": "« Couples comparables par injection » est habité par des objets qui sont un couple : chaînon du lot J, qui remplace le fourre-tout « Ensembles » par une hiérarchie lisible.",
+      "depth": "définitoire",
+      "domain": "algèbre générale",
+      "id": "e542"
+    },
+    {
+      "from": "TCH2",
+      "to": "COUP",
+      "kind": "inclusion",
+      "theorem": "« Couples à quotient isomorphe au produit » : toujours un couple",
+      "statement": "« Couples à quotient isomorphe au produit » est habité par des objets qui sont un couple : chaînon du lot J, qui remplace le fourre-tout « Ensembles » par une hiérarchie lisible.",
+      "depth": "définitoire",
+      "domain": "algèbre générale",
+      "id": "e543"
+    },
+    {
+      "from": "WIT2",
+      "to": "COUP",
+      "kind": "inclusion",
+      "theorem": "« Formes quadratiques isomorphes » : toujours un couple",
+      "statement": "« Formes quadratiques isomorphes » est habité par des objets qui sont un couple : chaînon du lot J, qui remplace le fourre-tout « Ensembles » par une hiérarchie lisible.",
+      "depth": "définitoire",
+      "domain": "algèbre générale",
+      "id": "e544"
+    },
+    {
+      "from": "DCV1",
+      "to": "COUP",
+      "kind": "inclusion",
+      "theorem": "« Disques de convergence » : toujours un couple",
+      "statement": "Chaque disque de convergence est donné par le couple (série entière, disque) : chaînon du lot J.",
+      "depth": "définitoire",
+      "domain": "analyse complexe",
+      "id": "e545"
+    },
+    {
+      "from": "S4",
+      "to": "NATL",
+      "kind": "inclusion",
+      "theorem": "Sommes de quatre carrés ⊆ ℕ",
+      "statement": "Une somme de quatre carrés d'entiers naturels est un entier naturel : ℕ est stable par addition et multiplication.",
+      "depth": "immédiat",
+      "domain": "arithmétique",
+      "id": "e546"
+    },
+    {
+      "from": "LL2",
+      "to": "NATL",
+      "kind": "inclusion",
+      "theorem": "Mersenne validés ⊆ ℕ",
+      "statement": "Un nombre de Mersenne 2^p − 1 est un entier naturel, validé ou non par Lucas–Lehmer.",
+      "depth": "immédiat",
+      "domain": "arithmétique",
+      "id": "e547"
+    },
+    {
+      "from": "FCP",
+      "to": "REEL",
+      "kind": "inclusion",
+      "theorem": "« Réels à fraction continue périodique » ⊆ ℝ",
+      "statement": "Un réel à fraction continue périodique est, littéralement, un nombre réel : chaînon du lot J, qui prolonge la chaîne du lot I.",
+      "depth": "immédiat",
+      "domain": "théorie algébrique des nombres",
+      "id": "e548"
+    },
+    {
+      "from": "BSL2",
+      "to": "REEL",
+      "kind": "inclusion",
+      "theorem": "« Moyennes de nombres de points fixes » ⊆ ℝ",
+      "statement": "Une moyenne de nombres de points fixes est un nombre réel : chaînon du lot J.",
+      "depth": "immédiat",
+      "domain": "théorie des groupes",
+      "id": "e549"
+    },
+    {
+      "from": "GIM",
+      "to": "REEL",
+      "kind": "inclusion",
+      "theorem": "La mesure d'un angle est un réel",
+      "statement": "Une moitié d'angle au centre est représentée par sa mesure : un nombre réel. Chaînon du lot J.",
+      "depth": "immédiat",
+      "domain": "géométrie euclidienne",
+      "id": "e550"
+    },
+    {
+      "from": "NZL2",
+      "to": "REEL",
+      "kind": "inclusion",
+      "theorem": "« Algébriques de degré une puissance de 2 » : toujours un nombre réel",
+      "statement": "« Algébriques de degré une puissance de 2 » est habité par des objets qui sont un nombre réel : chaînon du lot J, qui remplace le fourre-tout « Ensembles » par une hiérarchie lisible.",
+      "depth": "définitoire",
+      "domain": "arithmétique",
+      "id": "e551"
+    },
+    {
+      "from": "ZL1",
+      "to": "CMLX",
+      "kind": "inclusion",
+      "theorem": "« Zéros d'un polynôme fixé » ⊆ ℂ",
+      "statement": "Un zéro d'un polynôme complexe est un nombre complexe : chaînon du lot J vers le nouveau hub ℂ.",
+      "depth": "immédiat",
+      "domain": "analyse complexe",
+      "id": "e552"
+    },
+    {
+      "from": "VIV2",
+      "to": "RN",
+      "kind": "inclusion",
+      "theorem": "Un point du plan est un n-uplet de réels",
+      "statement": "Un point M du plan est un couple de réels, donc un élément de ℝⁿ : chaînon du lot J.",
+      "depth": "immédiat",
+      "domain": "géométrie euclidienne",
+      "id": "e553"
+    },
+    {
+      "from": "LR2",
+      "to": "SEG",
+      "kind": "inclusion",
+      "theorem": "« Segment de Laguerre » : toujours un segment",
+      "statement": "Le segment de Laguerre [u, v] est un segment de ℝ : chaînon du lot J.",
+      "depth": "définitoire",
+      "domain": "analyse réelle",
+      "id": "e554"
+    },
+    {
+      "from": "BL2",
+      "to": "FERM",
+      "kind": "inclusion",
+      "theorem": "Compact ⊆ fermé",
+      "statement": "Toute partie compacte de ℝⁿ est fermée : dans un espace séparé, un compact est stable par passage à la limite. Le lot J en fait le vrai théorème qui remplace le raccord artificiel.",
+      "depth": "classique",
+      "domain": "topologie",
+      "id": "e555"
+    },
+    {
+      "from": "SQ2",
+      "to": "FERM",
+      "kind": "inclusion",
+      "theorem": "Séquentiellement compact ⊆ fermé",
+      "statement": "Toute suite convergente d'une partie séquentiellement compacte garde sa limite dans la partie : la partie est donc fermée.",
+      "depth": "classique",
+      "domain": "topologie",
+      "id": "e556"
+    },
+    {
+      "from": "FQ2",
+      "to": "FERM",
+      "kind": "inclusion",
+      "theorem": "Contenir ses limites de suites = fermé",
+      "statement": "Dans un espace métrique, une partie contient les limites de ses suites convergentes si et seulement si elle est fermée ; le lot J trace le sens qui remplace le raccord artificiel.",
+      "depth": "classique",
+      "domain": "topologie",
+      "id": "e557"
+    },
+    {
+      "from": "GME",
+      "to": "FERM",
+      "kind": "inclusion",
+      "theorem": "La médiatrice est fermée",
+      "statement": "{M : MA = MB} est l'image réciproque du fermé {0} par l'application continue M ↦ d(A, M) − d(B, M) : toute médiatrice est une partie fermée.",
+      "depth": "facile",
+      "domain": "topologie",
+      "id": "e558"
+    },
+    {
+      "from": "VKP2",
+      "to": "TOPO",
+      "kind": "inclusion",
+      "theorem": "« Espaces à groupe fondamental amalgamé » : toujours un espace topologique",
+      "statement": "« Espaces à groupe fondamental amalgamé » est habité par des objets qui sont un espace topologique : chaînon du lot J, qui remplace le fourre-tout « Ensembles » par une hiérarchie lisible.",
+      "depth": "définitoire",
+      "domain": "topologie",
+      "id": "e559"
+    },
+    {
+      "from": "WTN2",
+      "to": "TOPO",
+      "kind": "inclusion",
+      "theorem": "« Variétés plongeables dans R^{2n} » : toujours un espace topologique",
+      "statement": "« Variétés plongeables dans R^{2n} » est habité par des objets qui sont un espace topologique : chaînon du lot J, qui remplace le fourre-tout « Ensembles » par une hiérarchie lisible.",
+      "depth": "définitoire",
+      "domain": "topologie",
+      "id": "e560"
+    },
+    {
+      "from": "MV2",
+      "to": "EVN",
+      "kind": "inclusion",
+      "theorem": "Isométrique à un sous-espace → normé",
+      "statement": "Un espace linéairement isométrique à un sous-espace de C([0,1]) hérite de la norme sup restreinte : c'est un espace vectoriel normé. (Enroulé vers Banach, ce serait faux : un sous-espace non fermé n'est pas complet.)",
+      "depth": "immédiat",
+      "domain": "topologie vectorielle",
+      "id": "e561"
+    },
+    {
+      "from": "VRG2",
+      "to": "FIGU",
+      "kind": "inclusion",
+      "theorem": "« Quadrilatères de Varignon » : toujours une figure géométrique",
+      "statement": "« Quadrilatères de Varignon » est habité par des objets qui sont une figure géométrique : chaînon du lot J, qui remplace le fourre-tout « Ensembles » par une hiérarchie lisible.",
+      "depth": "définitoire",
+      "domain": "géométrie euclidienne",
+      "id": "e562"
+    },
+    {
+      "from": "CKD2",
+      "to": "FIGU",
+      "kind": "inclusion",
+      "theorem": "« Réunions des enveloppes de n+1 points » : toujours une figure géométrique",
+      "statement": "« Réunions des enveloppes de n+1 points » est habité par des objets qui sont une figure géométrique : chaînon du lot J, qui remplace le fourre-tout « Ensembles » par une hiérarchie lisible.",
+      "depth": "définitoire",
+      "domain": "géométrie euclidienne",
+      "id": "e563"
+    },
+    {
+      "from": "BRH2",
+      "to": "POLY",
+      "kind": "inclusion",
+      "theorem": "« Hexagones à diagonales concourantes » : toujours un polygone",
+      "statement": "« Hexagones à diagonales concourantes » est habité par des objets qui sont un polygone : chaînon du lot J, qui remplace le fourre-tout « Ensembles » par une hiérarchie lisible.",
+      "depth": "définitoire",
+      "domain": "géométrie euclidienne",
+      "id": "e564"
+    },
+    {
+      "from": "ZGL2",
+      "to": "POLY",
+      "kind": "inclusion",
+      "theorem": "« Polygones translatables en un carré » : toujours un polygone",
+      "statement": "« Polygones translatables en un carré » est habité par des objets qui sont un polygone : chaînon du lot J, qui remplace le fourre-tout « Ensembles » par une hiérarchie lisible.",
+      "depth": "définitoire",
+      "domain": "géométrie euclidienne",
+      "id": "e565"
+    },
+    {
+      "from": "BRK2",
+      "to": "GRAP",
+      "kind": "inclusion",
+      "theorem": "« Graphes colorables avec deg couleurs » : toujours un graphe",
+      "statement": "« Graphes colorables avec deg couleurs » est habité par des objets qui sont un graphe : chaînon du lot J, qui remplace le fourre-tout « Ensembles » par une hiérarchie lisible.",
+      "depth": "définitoire",
+      "domain": "théorie des graphes",
+      "id": "e566"
+    },
+    {
+      "from": "BZ2",
+      "to": "CYL1",
+      "kind": "inclusion",
+      "theorem": "« Sous-groupes de la forme nℤ » : toujours un groupe",
+      "statement": "Un sous-groupe est en particulier un groupe : chaînon du lot J vers le hub « Groupes ».",
+      "depth": "définitoire",
+      "domain": "théorie des groupes",
+      "id": "e567"
+    },
+    {
+      "from": "CQG2",
+      "to": "CYL1",
+      "kind": "inclusion",
+      "theorem": "« Groupes contenant un élément d'ordre p » : toujours un groupe",
+      "statement": "Un groupe contenant un élément d'ordre p est en particulier un groupe : ce chaînon du lot J raccorde l'île de Cauchy (le seul cycle du graphe, CQG1 ↔ CQG2) au continent des groupes ; le raccord direct e387 devient composé et sera retiré.",
+      "depth": "immédiat",
+      "domain": "théorie des groupes",
+      "id": "e569",
+      "notes": "Pont du lot J sur l'île de Cauchy."
+    },
+    {
+      "from": "ABR1",
+      "to": "X3",
+      "kind": "inclusion",
+      "theorem": "« Équations génériques de degré au moins 5 » : toujours un polynôme complexe",
+      "statement": "« Équations génériques de degré au moins 5 » est habité par des objets qui sont un polynôme complexe : chaînon du lot J, qui remplace le fourre-tout « Ensembles » par une hiérarchie lisible.",
+      "depth": "définitoire",
+      "domain": "analyse complexe",
+      "id": "e570"
+    },
+    {
+      "from": "ABR2",
+      "to": "X3",
+      "kind": "inclusion",
+      "theorem": "« Équations résolubles par radicaux » : toujours un polynôme complexe",
+      "statement": "« Équations résolubles par radicaux » est habité par des objets qui sont un polynôme complexe : chaînon du lot J, qui remplace le fourre-tout « Ensembles » par une hiérarchie lisible.",
+      "depth": "définitoire",
+      "domain": "analyse complexe",
+      "id": "e571"
+    },
+    {
+      "from": "MA2",
+      "to": "FAML",
+      "kind": "inclusion",
+      "theorem": "« Parties équicontinues » : toujours une famille",
+      "statement": "« Parties équicontinues » est habité par des objets qui sont une famille : chaînon du lot J, qui remplace le fourre-tout « Ensembles » par une hiérarchie lisible.",
+      "depth": "définitoire",
+      "domain": "théorie des ensembles",
+      "id": "e572"
+    },
+    {
+      "from": "ADO2",
+      "to": "FAML",
+      "kind": "inclusion",
+      "theorem": "« Sous-algèbres de Lie de gl_n » : toujours une famille",
+      "statement": "« Sous-algèbres de Lie de gl_n » est habité par des objets qui sont une famille : chaînon du lot J, qui remplace le fourre-tout « Ensembles » par une hiérarchie lisible.",
+      "depth": "définitoire",
+      "domain": "théorie des ensembles",
+      "id": "e573"
+    },
+    {
+      "from": "SG2",
+      "to": "FAML",
+      "kind": "inclusion",
+      "theorem": "« Ensembles simultanément trigonalisables » : toujours une famille",
+      "statement": "« Ensembles simultanément trigonalisables » est habité par des objets qui sont une famille : chaînon du lot J, qui remplace le fourre-tout « Ensembles » par une hiérarchie lisible.",
+      "depth": "définitoire",
+      "domain": "théorie des ensembles",
+      "id": "e574"
+    },
+    {
+      "from": "BI2",
+      "to": "FAML",
+      "kind": "inclusion",
+      "theorem": "« Familles complétées en une base » : toujours une famille",
+      "statement": "« Familles complétées en une base » est habité par des objets qui sont une famille : chaînon du lot J, qui remplace le fourre-tout « Ensembles » par une hiérarchie lisible.",
+      "depth": "définitoire",
+      "domain": "théorie des ensembles",
+      "id": "e575"
+    },
+    {
+      "from": "AXC2",
+      "to": "FAML",
+      "kind": "inclusion",
+      "theorem": "« Familles admettant une fonction de choix » : toujours une famille",
+      "statement": "« Familles admettant une fonction de choix » est habité par des objets qui sont une famille : chaînon du lot J, qui remplace le fourre-tout « Ensembles » par une hiérarchie lisible.",
+      "depth": "définitoire",
+      "domain": "théorie des ensembles",
+      "id": "e576"
+    },
+    {
+      "from": "TVB2",
+      "to": "FAML",
+      "kind": "inclusion",
+      "theorem": "« Familles Tverberg-partitionnables » : toujours une famille",
+      "statement": "« Familles Tverberg-partitionnables » est habité par des objets qui sont une famille : chaînon du lot J, qui remplace le fourre-tout « Ensembles » par une hiérarchie lisible.",
+      "depth": "définitoire",
+      "domain": "théorie des ensembles",
+      "id": "e577"
+    },
+    {
+      "from": "TYC2",
+      "to": "FAML",
+      "kind": "inclusion",
+      "theorem": "« Familles à produit compact » : toujours une famille",
+      "statement": "« Familles à produit compact » est habité par des objets qui sont une famille : chaînon du lot J, qui remplace le fourre-tout « Ensembles » par une hiérarchie lisible.",
+      "depth": "définitoire",
+      "domain": "théorie des ensembles",
+      "id": "e578"
+    },
+    {
+      "from": "CAR2",
+      "to": "TRIB",
+      "kind": "inclusion",
+      "theorem": "« Tribus complètes » : toujours une tribu",
+      "statement": "« Tribus complètes » est habité par des objets qui sont une tribu : chaînon du lot J, qui remplace le fourre-tout « Ensembles » par une hiérarchie lisible.",
+      "depth": "définitoire",
+      "domain": "théorie de la mesure",
+      "id": "e579"
+    },
+    {
+      "from": "LT2",
+      "to": "LANG",
+      "kind": "inclusion",
+      "theorem": "« Langages de la forme BA* » : toujours un langage",
+      "statement": "« Langages de la forme BA* » est habité par des objets qui sont un langage : chaînon du lot J, qui remplace le fourre-tout « Ensembles » par une hiérarchie lisible.",
+      "depth": "définitoire",
+      "domain": "théorie des langages",
+      "id": "e580"
+    },
+    {
+      "from": "ORD2",
+      "to": "ORDR",
+      "kind": "inclusion",
+      "theorem": "« Ordres isomorphes à celui des rationnels » : toujours un ensemble ordonné",
+      "statement": "« Ordres isomorphes à celui des rationnels » est habité par des objets qui sont un ensemble ordonné : chaînon du lot J, qui remplace le fourre-tout « Ensembles » par une hiérarchie lisible.",
+      "depth": "définitoire",
+      "domain": "théorie des ordres",
+      "id": "e581"
+    },
+    {
+      "from": "ZRN2",
+      "to": "ORDR",
+      "kind": "inclusion",
+      "theorem": "« Ensembles ordonnés à élément maximal » : toujours un ensemble ordonné",
+      "statement": "« Ensembles ordonnés à élément maximal » est habité par des objets qui sont un ensemble ordonné : chaînon du lot J, qui remplace le fourre-tout « Ensembles » par une hiérarchie lisible.",
+      "depth": "définitoire",
+      "domain": "théorie des ordres",
+      "id": "e582"
+    },
+    {
+      "from": "CMLX",
+      "to": "ZRM1",
+      "kind": "inclusion",
+      "theorem": "Inclusion dans la collection de tous les ensembles",
+      "statement": "Tout élément de « Nombres complexes ℂ » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Nombres complexes ℂ » ⊆ Ensembles est une inclusion définitoire. Raccord du lot J : le hub rejoint le cercle-père du graphe.",
+      "depth": "définitoire",
+      "domain": "théorie des ensembles",
+      "id": "e583"
+    },
+    {
+      "from": "LANG",
+      "to": "ZRM1",
+      "kind": "inclusion",
+      "theorem": "Inclusion dans la collection de tous les ensembles",
+      "statement": "Tout élément de « Langages » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Langages » ⊆ Ensembles est une inclusion définitoire. Raccord du lot J : le hub rejoint le cercle-père du graphe.",
+      "depth": "définitoire",
+      "domain": "théorie des ensembles",
+      "id": "e584"
+    },
+    {
+      "from": "FAML",
+      "to": "ZRM1",
+      "kind": "inclusion",
+      "theorem": "Inclusion dans la collection de tous les ensembles",
+      "statement": "Tout élément de « Familles » est un objet mathématique, donc un ensemble dans l'encodage de la théorie : « Familles » ⊆ Ensembles est une inclusion définitoire. Raccord du lot J : le hub rejoint le cercle-père du graphe.",
+      "depth": "définitoire",
+      "domain": "théorie des ensembles",
+      "id": "e585"
+    },
+    {
+      "from": "MAT",
+      "to": "APP",
+      "kind": "inclusion",
+      "theorem": "« Matrices à coefficients réels » : toujours une application",
+      "statement": "Une matrice réelle se lit comme un tableau de ses coefficients, c'est-à-dire une application des couples d'indices vers ℝ : chaînon du lot J vers le hub « Applications », qui rend composite son raccord direct à « Ensembles ».",
+      "depth": "définitoire",
+      "domain": "algèbre générale",
+      "id": "e586"
     }
   ]
 }
