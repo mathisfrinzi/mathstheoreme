@@ -1,7 +1,7 @@
 {
   "meta": {
     "name": "Contextes",
-    "version": "0.37.0",
+    "version": "0.51.0",
     "created": "2026-11-24",
     "language": "fr",
     "description": "Un contexte est une liste de variables (champ variables), chacune avec son domaine : les ensembles du graphe des théorèmes qui déclenchent le contexte sont listés dans requires (l'ensemble requis, ou n'importe lequel de ses sous-ensembles par inclusions ou équivalences, suffit). Convention : les variables d'un contexte sont quelconques. Un énoncé du contexte vaut pour toutes les valeurs admissibles des variables à la fois (un seul quantificateur ∀ extérieur) ; les hypothèses du théorème sont entièrement dans les domaines des variables. Les objets contextuels sont des applications des variables vers des ensembles (les valeurs propres d'UNE matrice) ; un nœud du graphe y est un ensemble constant. Types d'arêtes : inclusion (∀ valeurs, A ⊆ B), équivalence (A = B), partie, anti (non-inclusion : il existe des valeurs, données par le contre-exemple, pour lesquelles A ⊄ B), disjoint (∀ valeurs, A ∩ B = ∅), isomorphisme (A ≃ B pour la structure indiquée), conjecture. Les identités, congruences et estimations ne sont pas des arêtes : elles vivent dans data/formules.json. Les arêtes ont le même format que celles de graphe.json ; from et to désignent un objet contextuel (id défini ici) ou un nœud de graphe.json."
@@ -748,6 +748,26 @@
           "example": "les trois sommets, tout point d'un côté, tout point intérieur",
           "notes": "Un point extérieur au triangle donne une somme strictement plus grande : le triangle est exactement la ligne de niveau h.",
           "card": "aleph1"
+        },
+        {
+          "id": "PMP1",
+          "label": "Triplets des distances aux trois sommets",
+          "domain": "géométrie euclidienne",
+          "property": "\\{\\, (PA, PB, PC) \\mid P \\in \\mathbb{R}^2 \\,\\}",
+          "description": "Les triplets de distances d'un point P du plan aux trois sommets du triangle équilatéral ABC.",
+          "example": "au sommet A : le triplet (0, a, a)",
+          "notes": "Théorème de Pompeiu (lettre P de la pioche).",
+          "card": "aleph1"
+        },
+        {
+          "id": "PMP2",
+          "label": "Triplets qui forment les côtés d'un vrai triangle",
+          "domain": "géométrie euclidienne",
+          "property": "\\{\\, (x, y, z) \\mid x < y + z,\\ y < x + z,\\ z < x + y \\,\\}",
+          "description": "Les triplets qui vérifient strictement les inégalités triangulaires : de vrais triangles, non aplatis.",
+          "example": "(a, a, a) le triangle équilatéral lui-même",
+          "notes": "Théorème de Pompeiu (lettre P de la pioche).",
+          "card": "aleph1"
         }
       ],
       "edges": [
@@ -770,6 +790,18 @@
           "depth": "immédiat",
           "domain": "géométrie euclidienne",
           "id": "e553"
+        },
+        {
+          "id": "e1219",
+          "from": "PMP1",
+          "to": "PMP2",
+          "kind": "inclusion",
+          "strict": true,
+          "theorem": "Théorème de Pompeiu (1936)",
+          "statement": "Les trois distances d'un point P aux sommets du triangle équilatéral ABC forment toujours les côtés d'un vrai triangle : le triplet (PA, PB, PC) satisfait strictement les inégalités triangulaires ; la seule exception survient sur le cercle circonscrit, où l'une des distances vaut la somme des deux autres et le triangle s'aplatit (l'égalité de Ptolémée, f77). Le point intérieur, le point extérieur, tout point du plan hors du cercle donne un vrai triangle.",
+          "depth": "classique",
+          "domain": "géométrie euclidienne",
+          "strictnessExample": "P sur l'arc AB du cercle circonscrit : PC = PA + PB, le triplet dégénère (égalité de Ptolémée)"
         }
       ],
       "variables": [
@@ -944,6 +976,237 @@
         {
           "nom": "(Ω, 𝒜, P)",
           "domaine": "espace probabilisé"
+        }
+      ]
+    },
+    {
+      "id": "CX15",
+      "label": "Triangle du plan (A, B, C)",
+      "requires": [
+        "GTR"
+      ],
+      "description": "Un triangle du plan : trois sommets A, B, C non alignés, avec le vocabulaire des cercles inscrit, exinscrits et circonscrit.",
+      "variables": [
+        {
+          "nom": "A, B, C",
+          "domaine": "trois points non alignés du plan"
+        }
+      ],
+      "objects": [
+        {
+          "id": "CX15_SY",
+          "label": "Symétrique du centre du cercle inscrit par rapport au centre du cercle circonscrit",
+          "domain": "géométrie euclidienne",
+          "property": "\\{\\, 2O - I \\mid I \\text{ centre du cercle inscrit de } ABC,\\ O \\text{ centre du cercle circonscrit} \\,\\}",
+          "description": "Le point obtenu en réfléchissant le centre du cercle inscrit par rapport au centre du cercle circonscrit du triangle ABC fixé.",
+          "example": "pour un triangle équilatéral, le centre commun",
+          "card": "aleph1"
+        },
+        {
+          "id": "CX15_BV",
+          "label": "Centre du cercle circonscrit du triangle excentral (point de Bevan)",
+          "domain": "géométrie euclidienne",
+          "property": "\\{\\, \\text{centre du cercle circonscrit du triangle excentral de } ABC \\,\\}",
+          "description": "Le point de Bevan : le centre du cercle circonscrit du triangle excentral (les centres des trois cercles exinscrits de ABC), un point attaché au triangle ABC fixé.",
+          "example": "pour un triangle équilatéral : le centre commun",
+          "card": "aleph1",
+          "notes": "L'excentral a pour orthocentre le centre du cercle inscrit I et pour triangle orthique ABC. Le rayon excentral : voir f18 dans le graphe des formules."
+        }
+      ],
+      "edges": [
+        {
+          "id": "CX15_e1",
+          "from": "CX15_BV",
+          "to": "CX15_SY",
+          "kind": "equivalence",
+          "theorem": "Théorème de Bevan (1806)",
+          "statement": "Le centre du cercle circonscrit du triangle excentral (le point de Bevan) est le symétrique du centre du cercle inscrit par rapport au centre du cercle circonscrit : les trois points sont alignés et O est le milieu de [I, Bv]. La raison : I est l'orthocentre de l'excentral et ABC son triangle orthique, donc le cercle circonscrit de ABC est le cercle des neuf points de l'excentral, dont le centre est le milieu de l'orthocentre et du centre du cercle circonscrit. Le rayon excentral vaut le double du rayon circonscrit de ABC (cf. graphe des formules, f18).",
+          "depth": "classique",
+          "domain": "géométrie euclidienne"
+        }
+      ]
+    },
+    {
+      "id": "CX16",
+      "label": "Deux cercles du plan",
+      "requires": [
+        "CER"
+      ],
+      "description": "Deux cercles distincts et non concentriques du plan : le lieu de leurs puissances égales, l'axe radical.",
+      "variables": [
+        {
+          "nom": "C₁, C₂",
+          "domaine": "cercles du plan, distincts, non concentriques"
+        }
+      ],
+      "objects": [
+        {
+          "id": "CX16_PR",
+          "label": "Points de puissance égale",
+          "domain": "géométrie euclidienne",
+          "property": "\\{\\, M \\mid \\mathrm{Pow}_{C_1}(M) = \\mathrm{Pow}_{C_2}(M) \\,\\}",
+          "description": "L'ensemble des points du plan dont les puissances par rapport aux deux cercles coïncident : la puissance de M est le produit (orienté) des distances de M aux points d'intersection avec le cercle d'une droite passant par M.",
+          "example": "tout point commun aux deux cercles, quand ils se coupent",
+          "card": "aleph1"
+        },
+        {
+          "id": "CX16_AX",
+          "label": "Axe radical des deux cercles",
+          "domain": "géométrie euclidienne",
+          "property": "\\{\\, \\text{la droite perpendiculaire à la ligne des centres, lieu des puissances égales} \\,\\}",
+          "description": "La droite qui porte le lieu des puissances égales : perpendiculaire à la ligne des centres, passant par les points communs s'il y en a.",
+          "example": "pour deux cercles sécants, la droite des points communs (la corde commune prolongée)",
+          "card": "fini:1"
+        }
+      ],
+      "edges": [
+        {
+          "id": "CX16_e1",
+          "from": "CX16_PR",
+          "to": "CX16_AX",
+          "kind": "equivalence",
+          "theorem": "Théorème de l'axe radical (chordal)",
+          "statement": "L'ensemble des points du plan dont les puissances par rapport à deux cercles distincts sont égales est une droite : l'axe radical, perpendiculaire à la ligne des centres. Si les cercles se coupent, c'est la droite qui joint leurs points communs, d'où le nom de théorème chordal (les cordes communes). Cas exclus : cercles concentriques, où les puissances ne s'équilibrent jamais.",
+          "depth": "classique",
+          "domain": "géométrie euclidienne"
+        }
+      ]
+    },
+    {
+      "id": "CX17",
+      "label": "Un cercle et un point du plan",
+      "requires": [
+        "CER"
+      ],
+      "description": "Un cercle C de centre O et de rayon R, un point P du plan : les milieux des segments issus de P.",
+      "variables": [
+        {
+          "nom": "C, P",
+          "domaine": "C cercle de centre O et de rayon R > 0, P point du plan"
+        }
+      ],
+      "objects": [
+        {
+          "id": "CX17_MN",
+          "label": "Milieux des segments [P, Q] pour Q sur C",
+          "domain": "géométrie euclidienne",
+          "property": "\\{\\, \\frac{P + Q}{2} \\mid Q \\in C \\,\\}",
+          "description": "Le lieu des milieux des segments qui joignent P aux points du cercle : l'image du cercle par l'homothétie de centre P et de rapport 1/2.",
+          "example": "pour P = O : le cercle concentrique de rayon R/2",
+          "card": "aleph1"
+        },
+        {
+          "id": "CX17_CI",
+          "label": "Cercle de centre le milieu de [P, O] et de rayon R/2",
+          "domain": "géométrie euclidienne",
+          "property": "\\{\\, \\text{le cercle de centre } \\frac{P + O}{2} \\text{ et de rayon } \\frac{R}{2} \\,\\}",
+          "description": "Le cercle homothétique : centre au milieu de P et du centre O du cercle, rayon réduit de moitié.",
+          "example": "pour P = O : le cercle concentrique de rayon R/2",
+          "card": "fini:1"
+        }
+      ],
+      "edges": [
+        {
+          "id": "CX17_e1",
+          "from": "CX17_MN",
+          "to": "CX17_CI",
+          "kind": "equivalence",
+          "theorem": "Théorème du milieu cercle-point",
+          "statement": "Le lieu des milieux des segments joignant un point fixe P aux points d'un cercle de rayon R est le cercle de centre le milieu de [P, O] et de rayon R/2 (Johnson 1929, p. 17) ; tout simplement l'image du cercle par l'homothétie de centre P et de rapport 1/2.",
+          "depth": "immédiat",
+          "domain": "géométrie euclidienne"
+        }
+      ]
+    },
+    {
+      "id": "CX18",
+      "label": "Quadrilatère du plan",
+      "requires": [
+        "POLY"
+      ],
+      "description": "Quatre sommets A, B, C, D d'un quadrilatère non parallélogramme du plan : le lieu des points d'équilibre des aires, le segment des milieux des diagonales.",
+      "variables": [
+        {
+          "nom": "A, B, C, D",
+          "domaine": "sommets, dans cet ordre, d'un quadrilatère non parallélogramme du plan"
+        }
+      ],
+      "objects": [
+        {
+          "id": "CX18_AN1",
+          "label": "Points d'équilibre des aires opposées",
+          "domain": "géométrie euclidienne",
+          "property": "\\{\\, M \\mid S_{ABM} + S_{CDM} = S_{BCM} + S_{DAM} \\,\\}",
+          "description": "Les points du plan dont la somme des aires des deux triangles opposés (ABM et CDM) égale celle des deux autres : la moitié de l'aire du quadrilatère, l'équilibre de Léon Anne.",
+          "example": "le milieu de chaque diagonale, qui équilibre les deux triangles adjacents",
+          "card": "aleph1"
+        },
+        {
+          "id": "CX18_AN2",
+          "label": "Segment joignant les milieux des diagonales",
+          "domain": "géométrie euclidienne",
+          "property": "\\{\\, \\text{le segment qui joint le milieu de } AC \\text{ au milieu de } BD \\,\\}",
+          "description": "Le segment qui rejoint les milieux des deux diagonales : le lieu des points d'équilibre, exactement ce que le théorème de Léon Anne identifie.",
+          "example": "le segment qui joint les milieux des diagonales AC et BD",
+          "card": "fini:1"
+        }
+      ],
+      "edges": [
+        {
+          "id": "CX18_e1",
+          "from": "CX18_AN1",
+          "to": "CX18_AN2",
+          "kind": "equivalence",
+          "theorem": "Théorème de Léon Anne",
+          "statement": "Le lieu des points M tels que la somme des aires des triangles ABM et CDM égale la somme des aires des triangles BCM et DAM — chacune la moitié de l'aire du quadrilatère ABCD — est exactement le segment joignant les milieux des diagonales. Chaque point du segment répartit les aires en deux moitiés ; chaque point d'équilibre est sur le segment. Le cas limite du parallélogramme est exclu : les milieux des diagonales fusionnent et tout le plan intérieur équilibre.",
+          "depth": "classique",
+          "domain": "géométrie euclidienne"
+        }
+      ]
+    },
+    {
+      "id": "CX19",
+      "label": "Trissectrices d'un triangle",
+      "requires": [
+        "GTR"
+      ],
+      "description": "Un triangle du plan et les six trissectrices de ses angles : les intersections des trissectrices adjacentes dessinent toujours un triangle équilatéral.",
+      "variables": [
+        {
+          "nom": "A, B, C",
+          "domaine": "sommets d'un triangle du plan"
+        }
+      ],
+      "objects": [
+        {
+          "id": "CX19_AN1",
+          "label": "Triangle des trissectrices de Morley",
+          "domain": "géométrie euclidienne",
+          "property": "\\{\\, \\text{le triangle } XYZ, X, Y, Z \\text{ intersections des trissectrices adjacentes de } ABC \\,\\}",
+          "description": "Le triangle dont les sommets sont les croisements des trissectrices voisines, une près de chaque côté du triangle : le premier triangle de Morley, une seule valeur par triangle de départ.",
+          "example": "le triangle équilatéral qui niche au milieu de n'importe quel scalène",
+          "card": "fini:1"
+        },
+        {
+          "id": "CX19_AN2",
+          "label": "Triangles équilatéraux du plan",
+          "domain": "géométrie euclidienne",
+          "property": "\\{\\, T \\mid \\text{les trois côtés de } T \\text{ ont même longueur} \\,\\}",
+          "description": "L'ensemble constant des triangles équilatéraux du plan, à toute échelle et sous toute orientation.",
+          "example": "le triangle de sommets (0, 0), (1, 0) et (1/2, √3/2)",
+          "card": "aleph1"
+        }
+      ],
+      "edges": [
+        {
+          "id": "CX19_e1",
+          "from": "CX19_AN1",
+          "to": "CX19_AN2",
+          "kind": "inclusion",
+          "theorem": "Théorème de Morley (1899)",
+          "statement": "Les intersections des trissectrices adjacentes des angles d'un triangle quelconque sont les sommets d'un triangle équilatéral, le premier triangle de Morley : une régularité parfaite cachée au tiers des angles, pour chaque triangle du plan sans exception ; la généralisation pousse à 27 points d'intersection alignés six par six sur neuf droites, en trois familles de parallèles.",
+          "depth": "fondamental",
+          "domain": "géométrie euclidienne"
         }
       ]
     }
