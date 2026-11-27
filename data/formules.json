@@ -1,7 +1,7 @@
 {
   "meta": {
     "name": "Graphe des formules",
-    "version": "0.51.0",
+    "version": "0.64.0",
     "created": "2026-11-24",
     "language": "fr",
     "description": "Le pendant du graphe des théorèmes pour les identités : chaque nœud-quantité est une valeur ou un objet bien défini, chaque nœud-formule (losange) une identité qui les relie, chaque arête « terme » disant quelle quantité intervient dans quelle formule.",
@@ -2443,6 +2443,955 @@
       "source": "https://mathworld.wolfram.com/PtolemysTheorem.html",
       "origin": "Ptolemy's Theorem (MathWorld)",
       "notes": "Fiche Ptolemy's Theorem (lettre P de la pioche) ; les quadrilatères cycliques (BRG1) recevaient déjà Brahmagupta."
+    },
+    {
+      "id": "qRNN",
+      "kind": "quantité",
+      "label": "Nullités (dimensions des noyaux)",
+      "domain": "algèbre générale",
+      "property": "\\{\\, \\dim \\ker f \\mid f : E \\to F \\text{ linéaire}, \\dim E < \\infty \\,\\}",
+      "description": "Les dimensions des noyaux des applications linéaires, la nullité.",
+      "example": "pour la projection (x, y) ↦ x : nullité 1"
+    },
+    {
+      "id": "qRNR",
+      "kind": "quantité",
+      "label": "Rangs (dimensions des images)",
+      "domain": "algèbre générale",
+      "property": "\\{\\, \\dim \\operatorname{im} f \\mid f : E \\to F \\text{ linéaire}, \\dim E < \\infty \\,\\}",
+      "description": "Les dimensions des images des applications linéaires, le rang.",
+      "example": "pour (x, y) ↦ x : rang 1"
+    },
+    {
+      "id": "qRND",
+      "kind": "quantité",
+      "label": "Dimensions de l'espace de départ",
+      "domain": "algèbre générale",
+      "property": "\\{\\, \\dim E \\mid E \\text{ espace vectoriel de dimension finie} \\,\\}",
+      "description": "Les dimensions des espaces de départ des applications linéaires.",
+      "example": "dim ℝ² = 2"
+    },
+    {
+      "id": "f78",
+      "kind": "formule",
+      "label": "Théorème du rang-nullité (1867)",
+      "domain": "algèbre générale",
+      "objets": [
+        "ALIN"
+      ],
+      "statement": "Pour toute application linéaire f d'un espace de dimension finie : dim ker f + dim im f = dim E. Ce qui disparaît dans le noyau est exactement ce qui manque à l'image ; la comptabilité exacte des dimensions, la reine de la théorie des systèmes linéaires.",
+      "source": "https://mathworld.wolfram.com/Rank-NullityTheorem.html",
+      "origin": "Rank-Nullity Theorem (MathWorld)",
+      "notes": "Fiche Rank-Nullity Theorem (lettre R de la pioche)."
+    },
+    {
+      "id": "qRBV",
+      "kind": "quantité",
+      "label": "Variances des estimateurs",
+      "domain": "théorie de la mesure",
+      "property": "\\{\\, \\operatorname{Var}(\\delta) \\mid \\delta \\text{ estimateur sans biais} \\,\\}",
+      "description": "Les variances des estimateurs sans biais d'un paramètre.",
+      "example": "la variance de la moyenne empirique : σ²/n"
+    },
+    {
+      "id": "qRBE",
+      "kind": "quantité",
+      "label": "Variances des estimateurs Rao-Blackwellisés",
+      "domain": "théorie de la mesure",
+      "property": "\\{\\, \\operatorname{Var}(\\mathbb{E}[\\delta \\mid T]) \\mid \\delta \\text{ estimateur},\\ T \\text{ statistique suffisante} \\,\\}",
+      "description": "Les variances des estimateurs conditionnés par une statistique suffisante.",
+      "example": "la moyenne empirique, Rao-Blackwellisée par elle-même, restant σ²/n"
+    },
+    {
+      "id": "f79",
+      "kind": "formule",
+      "label": "Théorème de Rao-Blackwell (1947)",
+      "domain": "théorie de la mesure",
+      "objets": [
+        "ALE1"
+      ],
+      "statement": "Conditionner un estimateur sans biais par une statistique suffisante ne l'aggrave jamais : Var(E[δ | T]) ⩽ Var(δ), l'inégalité stricte hors des cas triviaux. La tour de contrôle : ne garder de la donnée que la statistique qui porte toute l'information sur le paramètre, et l'estimateur s'améliore de lui-même (pour une perte convexe quelconque).",
+      "source": "https://mathworld.wolfram.com/Rao-BlackwellTheorem.html",
+      "origin": "Rao-Blackwell Theorem (MathWorld)",
+      "notes": "Fiche Rao-Blackwell Theorem (lettre R de la pioche)."
+    },
+    {
+      "id": "qRCI",
+      "kind": "quantité",
+      "label": "Intégrales de contour des fonctions holomorphes",
+      "domain": "analyse de séries",
+      "property": "\\{\\, \\oint_{\\gamma} f(z)\\, dz \\mid f \\text{ holomorphe épointée},\\ \\gamma \\text{ lacet} \\,\\}",
+      "description": "Les intégrales de contour, sur des lacets fermés, des fonctions holomorphes au voisinage du lacet épointé.",
+      "example": "∮ du cercle unité de dz/z : 2iπ"
+    },
+    {
+      "id": "qRCR",
+      "kind": "quantité",
+      "label": "Sommes des résidus intérieurs (2iπ · Res)",
+      "domain": "analyse de séries",
+      "property": "\\{\\, 2 i \\pi \\sum_{a} \\operatorname{Res}(f, a) \\mid \\text{résidus des pôles dans le lacet} \\,\\}",
+      "description": "Les sommes des résidus des pôles emprisonnés par le lacet, comptés à 2iπ près.",
+      "example": "pour f = 1/z autour de 0 : le résidu 1, la somme 2iπ"
+    },
+    {
+      "id": "f80",
+      "kind": "formule",
+      "label": "Théorème des résidus (Cauchy, 1826)",
+      "domain": "analyse de séries",
+      "objets": [
+        "HOL"
+      ],
+      "statement": "L'intégrale d'une fonction holomorphe épointée le long d'un lacet vaut 2iπ fois la somme des résidus des pôles qu'il emprisonne : ∮_γ f dz = 2iπ Σ Res(f, a). Le résidu, coefficient de (z − a)⁻¹ dans la série de Laurent, concentre tout ce que le lacet capte de la singularité ; la somme de contour du terme à terme est l'acte de naissance de l'analyse complexe, de la formule intégrale de Cauchy à la transformée de Fourier inverse.",
+      "source": "https://mathworld.wolfram.com/ResidueTheorem.html",
+      "origin": "Residue Theorem (MathWorld)",
+      "notes": "Fiche Residue Theorem (lettre R de la pioche)."
+    },
+    {
+      "id": "qRTA",
+      "kind": "quantité",
+      "label": "Taux de changement des intégrales transportées",
+      "domain": "analyse réelle",
+      "property": "\\{\\, \\frac{d}{dt} \\int_{V(t)} f \\, dV \\mid V(t) \\text{ volume emporté par le flot de } v \\,\\}",
+      "description": "Les dérivées temporelles des intégrales sur un volume qui suit le fluide.",
+      "example": "la masse d'une goutte qui suit le courant, invariante : dérivée nulle"
+    },
+    {
+      "id": "qRTB",
+      "kind": "quantité",
+      "label": "Flux des contributions locales",
+      "domain": "analyse réelle",
+      "property": "\\{\\, \\int_{V(t)} \\left( \\frac{\\partial f}{\\partial t} + \\nabla \\cdot (f v) \\right) dV \\,\\}",
+      "description": "Les intégrales du taux local : la dérivée partielle de f plus la divergence du courant de f.",
+      "example": "pour f = 1 (volume d'un ballon qui suit le flot) : ∫ ∇·v dV"
+    },
+    {
+      "id": "f81",
+      "kind": "formule",
+      "label": "Théorème du transport de Reynolds (1903)",
+      "domain": "analyse réelle",
+      "objets": [
+        "FRN"
+      ],
+      "statement": "Le taux de changement d'une quantité intégrée sur un volume qui suit le flot vaut l'intégrale du flux local : d/dt ∫_{V(t)} f dV = ∫_{V(t)} (∂f/∂t + ∇·(f v)) dV. La sœur volumique de la règle de Leibniz et la voix de la mécanique des fluides : la dérivée qui suit le mouvement, la divergence (f27) qui construit ce qui traverse.",
+      "source": "https://mathworld.wolfram.com/ReynoldsTransportTheorem.html",
+      "origin": "Reynolds Transport Theorem (MathWorld)",
+      "notes": "Fiche Reynolds Transport Theorem (lettre R de la pioche)."
+    },
+    {
+      "id": "qRLS",
+      "kind": "quantité",
+      "label": "Sommes des inverses des racines",
+      "domain": "théorie des anneaux",
+      "property": "\\{\\, \\sum_{i=1}^{n} \\frac{1}{\\lambda_{i}} \\mid \\lambda_{1}, \\ldots, \\lambda_{n} \\text{ racines non nulles de } P \\,\\}",
+      "description": "Les sommes des inverses des racines d'un polynôme, comptées avec multiplicité.",
+      "example": "pour x² − 3x + 2 (racines 1 et 2) : 1 + 1/2 = 3/2"
+    },
+    {
+      "id": "qRLC",
+      "kind": "quantité",
+      "label": "Coefficients linéaires normalisés (−a₁/a₀)",
+      "domain": "théorie des anneaux",
+      "property": "\\{\\, -a_{1}/a_{0} \\mid P = a_{n} X^{n} + \\cdots + a_{1} X + a_{0},\\ a_{0} \\neq 0 \\,\\}",
+      "description": "Les quotients du coefficient de X par le coefficient constant, changés de signe.",
+      "example": "pour x² − 3x + 2 : −(−3)/2 = 3/2"
+    },
+    {
+      "id": "f82",
+      "kind": "formule",
+      "label": "Théorème du coefficient linéaire (Viète, 1615)",
+      "domain": "théorie des anneaux",
+      "objets": [
+        "PRX1"
+      ],
+      "statement": "Pour un polynôme dont les racines sont toutes non nulles, la somme des inverses des racines vaut l'opposé du quotient du coefficient linéaire par le coefficient constant : Σ 1/λᵢ = −a₁/a₀. La lecture inversée des formules de Viète : là-bas les racines se somment, ici ce sont leurs inverses, sous l'hypothèse a₀ ≠ 0 qui garantit des racines non nulles.",
+      "source": "https://mathworld.wolfram.com/RootLinearCoefficientTheorem.html",
+      "origin": "Root Linear Coefficient Theorem (MathWorld)",
+      "notes": "Fiche Root Linear Coefficient Theorem (lettre R de la pioche), conséquence des formules de Viète."
+    },
+    {
+      "id": "qPNN",
+      "kind": "quantité",
+      "label": "n-ièmes nombres premiers",
+      "domain": "théorie des nombres",
+      "property": "\\{\\, p_{n} \\mid n \\geq 1 \\,\\}",
+      "description": "Le n-ième nombre premier dans l'ordre.",
+      "example": "p₁ = 2, p₅ = 11, p₁₀₀ = 541"
+    },
+    {
+      "id": "qNLN",
+      "kind": "quantité",
+      "label": "Bornes n ln n de Rosser",
+      "domain": "théorie des nombres",
+      "property": "\\{\\, n \\ln n \\mid n \\geq 1 \\,\\}",
+      "description": "Les bornes inférieures de Rosser : le n-ième premier dépasse n ln n pour tout n.",
+      "example": "10 ln 10 ≈ 23 : p₁₀ = 29 le dépasse"
+    },
+    {
+      "id": "f83",
+      "kind": "formule",
+      "label": "Théorème de Rosser (1938)",
+      "domain": "théorie des nombres",
+      "objets": [
+        "A2"
+      ],
+      "statement": "Le n-ième nombre premier vérifie pₙ > n ln n pour tout n ⩾ 1 : le théorème des nombres premiers (f75) en borne effective, sans l'asymptotique. Affiné depuis : n(ln n + ln ln n − 1) pour n ⩾ 2 (Rosser-Schoenfeld), la constante réduite jusqu'à Dusart ; la borne qui rend le crible concret.",
+      "source": "https://mathworld.wolfram.com/RossersTheorem.html",
+      "origin": "Rossers Theorem (MathWorld)",
+      "notes": "Fiche Rossers Theorem (lettre R de la pioche)."
+    },
+    {
+      "id": "qRTU",
+      "kind": "quantité",
+      "label": "Aires des triangles de Routh",
+      "domain": "géométrie euclidienne",
+      "property": "\\{\\, [XYZ] \\mid X, Y, Z \\text{ intersections des céviennes aux rapports } x, y, z \\,\\}",
+      "description": "Les aires des triangles de Routh : les enclos que les trois céviennes aux pieds imposés laissent au centre.",
+      "example": "pour x = y = z = 2 : le triangle de Routh, d'aire 1/7 du grand (le triangle de Steinhaus)"
+    },
+    {
+      "id": "qRTT",
+      "kind": "quantité",
+      "label": "Aires des triangles de départ",
+      "domain": "géométrie euclidienne",
+      "property": "\\{\\, S \\mid S \\text{ aire du triangle coupé en } \\frac{x}{1}, \\frac{y}{1}, \\frac{z}{1} \\,\\}",
+      "description": "Les aires des triangles de départ, avant le partage aux rapports x, y et z.",
+      "example": "le triangle de Steinhaus : l'aire du grand triangle"
+    },
+    {
+      "id": "f84",
+      "kind": "formule",
+      "label": "Théorème de Routh (1896)",
+      "domain": "géométrie euclidienne",
+      "objets": [
+        "GTR"
+      ],
+      "statement": "Si les côtés d'un triangle sont coupés aux rapports x, y et z, les trois céviennes enveloppent un triangle central d'aire [XYZ] = ((xyz − 1)² / ((xy + y + 1)(yz + z + 1)(zx + x + 1))) · S. Le cas x = y = z = 1 donne une aire nulle : les céviennes concourent au point de Céva (e202) ; le cas x = y = z = 2 est le triangle de Steinhaus, d'aire 1/7 du grand triangle : le trio concourt de Sept.",
+      "source": "https://mathworld.wolfram.com/RouthsTheorem.html",
+      "origin": "Rouths Theorem (MathWorld)",
+      "notes": "Fiche Rouths Theorem (lettre R de la pioche)."
+    },
+    {
+      "id": "qSH1",
+      "kind": "quantité",
+      "label": "séries hypergéométriques ₃F₂ terminées en 1",
+      "domain": "analyse de séries",
+      "property": "\\{\\, {}_3F_2\\!\\left[\\, \\overset{a,\\ b,\\ -n}{\\underset{c,\\ 1+a+b-c-n}{}} \\,; 1 \\right] \\mid n \\in \\mathbb{N} \\,\\}",
+      "description": "Les séries hypergéométriques ₃F₂ terminées par un paramètre −n, évaluées en 1 : celles de Saalschütz, dites équilibrées.",
+      "example": "la série de Gauss (f38) en est la parente directe, avec un étage de moins."
+    },
+    {
+      "id": "qSPC",
+      "kind": "quantité",
+      "label": "produits de symboles de Pochhammer (c−a)ₙ(c−b)ₙ / (c)ₙ(c−a−b)ₙ",
+      "domain": "analyse de séries",
+      "property": "\\{\\, \\frac{(c-a)_{n}(c-b)_{n}}{(c)_{n}(c-a-b)_{n}} \\mid n \\in \\mathbb{N} \\,\\}",
+      "description": "Les produits de factorielles montantes qui ferment la somme de Saalschütz.",
+      "example": "le symbole montant (x)ₙ = x(x+1)⋯(x+n−1), la brique de la maison hypergéométrique."
+    },
+    {
+      "id": "f85",
+      "kind": "formule",
+      "label": "Théorème de Saalschütz (1890)",
+      "domain": "analyse de séries",
+      "statement": "L'identité ₃F₂(a, b, −n ; c, 1+a+b−c−n ; 1) = (c−a)ₙ(c−b)ₙ / ((c)ₙ(c−a−b)ₙ) : la sommation en 1 des séries hypergéométriques équilibrées, due à Saalschütz (1890), qui porte la somme de Vandermonde un étage plus haut ; Gauss (f38) et Kummer (f48) en sont les cousins directs en z = 1 et z = −1. De la famille de Dougall-Ramanujan, la pièce par laquelle les sommes dites « de Pfaff-Saalschütz » entrent en machine.",
+      "source": "https://mathworld.wolfram.com/SaalschuetzsTheorem.html",
+      "origin": "Saalschuetzs Theorem (MathWorld)",
+      "objets": [
+        "GAM2"
+      ],
+      "notes": "Fiche Saalschuetzs Theorem (lettre S de la pioche)."
+    },
+    {
+      "id": "qS6P",
+      "kind": "quantité",
+      "label": "partitions en parties ±1 modulo 6",
+      "domain": "arithmétique",
+      "property": "\\{\\, \\text{partitions de } n \\text{ en parts} \\equiv \\pm 1 \\pmod 6 \\,\\}",
+      "description": "Les partitions de n dont les parts sont congruentes à 1 ou 5 modulo 6.",
+      "example": "n = 5 : {5} et 1+1+1+1+1, deux partitions (A003105 : 1, 1, 1, 1, 2, ...)."
+    },
+    {
+      "id": "qSD3",
+      "kind": "quantité",
+      "label": "partitions en parts distinctes ≡ ±1 modulo 3",
+      "domain": "arithmétique",
+      "property": "\\{\\, \\text{partitions distinctes de } n \\text{ en parts} \\equiv \\pm 1 \\pmod 3 \\,\\}",
+      "description": "Les partitions de n dont les parts, toutes différentes, sont congruentes à 1 ou 2 modulo 3.",
+      "example": "n = 5 : {5} et {4, 1}, deux partitions encore."
+    },
+    {
+      "id": "qSDM",
+      "kind": "quantité",
+      "label": "partitions en parts distantes d'au moins 3 (multiples de 3 distants de 6)",
+      "domain": "arithmétique",
+      "property": "\\{\\, \\text{partitions de } n \\text{ avec parts espacées de plus de 3, les multiples de 3 de plus de 6} \\,\\}",
+      "description": "Les partitions de n dont deux parts diffèrent d'au moins 3, les multiples de 3 d'au moins 6 : la troisième famille de Schur.",
+      "example": "n = 15 : neuf partitions, de 15 seul jusqu'à 15 = 14+1, 13+2, ... (Andrews 1986)."
+    },
+    {
+      "id": "f86",
+      "kind": "formule",
+      "label": "Théorème de Schur (1926, partitions)",
+      "domain": "arithmétique",
+      "statement": "Trois décomptes coïncident : les partitions de n en parts ≡ ±1 (mod 6), les partitions en parts distinctes ≡ ±1 (mod 3), et les partitions dont les parts diffèrent d'au moins 3 (les multiples de 3 d'au moins 6). Le théorème de Schur (1926), dans la lignée des Rogers-Ramanujan, avec la série génératrice en q-Pochhammer pour acte de naissance ; Bressoud en a donné la preuve combinatoire pure.",
+      "source": "https://mathworld.wolfram.com/SchursPartitionTheorem.html",
+      "origin": "Schurs Partition Theorem (MathWorld)",
+      "objets": [
+        "A1"
+      ],
+      "notes": "Fiche Schurs Partition Theorem (lettre S de la pioche)."
+    },
+    {
+      "id": "qSAC",
+      "kind": "quantité",
+      "label": "tailles d'antichaînes de 𝒫([n])",
+      "domain": "géométrie combinatoire",
+      "property": "\\{\\, |\\mathcal{A}| \\mid \\mathcal{A} \\subset \\mathcal{P}([n]),\\ A \\not\\subset B \\,\\}",
+      "description": "Les tailles des familles de parties de [n] dont aucune n'en contient une autre : les antichaînes du treillis booléen.",
+      "example": "les parties à k éléments d'un côté : une antichaîne de la couche k."
+    },
+    {
+      "id": "qBCC",
+      "kind": "quantité",
+      "label": "coefficients binomiaux centraux C(n, ⌊n/2⌋)",
+      "domain": "géométrie combinatoire",
+      "property": "\\{\\, \\binom{n}{\\lfloor n/2 \\rfloor} \\mid n \\in \\mathbb{N} \\,\\}",
+      "description": "Les plus gros coefficients de chaque ligne du triangle de Pascal : la couche médiane.",
+      "example": "C(4, 2) = 6, C(5, 2) = 10, C(6, 3) = 20 : les crêtes du triangle, n = 4, 5, 6, ..."
+    },
+    {
+      "id": "f87",
+      "kind": "formule",
+      "label": "Théorème de Sperner (1928)",
+      "domain": "géométrie combinatoire",
+      "statement": "La plus grande antichaîne du treillis booléen des parties de [n] a pour taille le coefficient binomial central C(n, ⌊n/2⌋) : les couches médianes l'emportent, seules pour n pair, par paires pour n impair. Le résultat fondamental de la théorie des ensembles extrémaux ; Sperner (1928), renforcé par Lubell-Yamamoto-Meshalkin, et à ne pas confondre avec le lemme de Sperner sur les coloriages de simplexes.",
+      "source": "https://mathworld.wolfram.com/SpernersTheorem.html",
+      "origin": "Sperners Theorem (MathWorld)",
+      "objets": [
+        "ZRM1"
+      ],
+      "notes": "Fiche Sperners Theorem (lettre S de la pioche)."
+    },
+    {
+      "id": "qSU1",
+      "kind": "quantité",
+      "label": "occurrences des 1 dans les partitions de n",
+      "domain": "arithmétique",
+      "property": "\\{\\, \\sum_{\\lambda \\vdash n} \\#\\{\\text{parts } = 1 \\text{ dans } \\lambda\\} \\,\\}",
+      "description": "Le nombre total de 1 portés par toutes les partitions de n.",
+      "example": "n = 5 : douze 1 en tout (A000070 : 1, 2, 4, 7, 12, ...)."
+    },
+    {
+      "id": "qUDM",
+      "kind": "quantité",
+      "label": "sommes des nombres de parts distinctes des partitions de n",
+      "domain": "arithmétique",
+      "property": "\\{\\, \\sum_{\\lambda \\vdash n} \\#\\{\\text{valeurs distinctes de parts dans } \\lambda\\} \\,\\}",
+      "description": "La somme, sur toutes les partitions de n, du nombre de tailles de parts différentes.",
+      "example": "n = 5 : 1+2+2+2+2+2+1 = 12, les sept partitions totalisent douze parts distinctes."
+    },
+    {
+      "id": "f88",
+      "kind": "formule",
+      "label": "Théorème de Stanley (1972)",
+      "domain": "arithmétique",
+      "statement": "Le nombre total de 1 dans toutes les partitions de n égale la somme, sur ces mêmes partitions, du nombre de parts distinctes : douze pour n = 5, des deux côtés. Refusé par l'American Mathematical Monthly en 1972 comme « un peu facile », le cas général d'Elder fut redécouvert par Stanley ; la suite A000070, cumulative de la fonction de partition P, compte ces 1.",
+      "source": "https://mathworld.wolfram.com/StanleysTheorem.html",
+      "origin": "Stanleys Theorem (MathWorld)",
+      "objets": [
+        "A1"
+      ],
+      "notes": "Fiche Stanleys Theorem (lettre S de la pioche)."
+    },
+    {
+      "id": "qSGA",
+      "kind": "quantité",
+      "label": "pgcd des six voisins de C(n, k) dans le triangle de Pascal",
+      "domain": "arithmétique",
+      "property": "\\{\\, \\gcd\\left[ \\binom{n-1}{k-1}, \\binom{n-1}{k}, \\binom{n}{k-1}, \\binom{n}{k+1}, \\binom{n+1}{k}, \\binom{n+1}{k+1} \\right] \\,\\}",
+      "description": "Le pgcd des six coefficients qui entourent un coefficient du triangle de Pascal : l'étoile de David de Gould.",
+      "example": "autour de C(4, 2) = 6 : les voisins 1, 3, 4, 4, 5, 10 ont pour pgcd 1."
+    },
+    {
+      "id": "qSGB",
+      "kind": "quantité",
+      "label": "pgcd du second anneau de voisins",
+      "domain": "arithmétique",
+      "property": "\\{\\, \\gcd\\left[ \\text{six voisins d'ordre deux} \\right] \\,\\}",
+      "description": "Le pgcd des six coefficients à un cran de plus, selon la permutation de Singmaster-Sato.",
+      "example": "le même pgcd que celui du premier anneau : c'est le théorème."
+    },
+    {
+      "id": "f89",
+      "kind": "formule",
+      "label": "Théorème de l'étoile de David (Gould, 1972)",
+      "domain": "arithmétique",
+      "statement": "Les six coefficients qui entourent un élément du triangle de Pascal ont un pgcd commun, égal à celui des six voisins d'un cran de plus (Singmaster, Sato 1975 ; Hitotumatu et Sato 1975 en poussent le cercle à douze coefficients). L'étoile de David de Gould (1972) ; sa seconde version, produit des trois pointes de chaque étoile, tient aussi pour les q-binômes.",
+      "source": "https://mathworld.wolfram.com/StarofDavidTheorem.html",
+      "origin": "StarofDavidTheorem (MathWorld)",
+      "objets": [
+        "A1"
+      ],
+      "notes": "Fiche StarofDavid Theorem (lettre S de la pioche)."
+    },
+    {
+      "id": "qSQS",
+      "kind": "quantité",
+      "label": "sommes b²m + c²n le long d'une cévienne",
+      "domain": "géométrie euclidienne",
+      "property": "\\{\\, b^{2}m + c^{2}n \\mid \\text{cévienne coupant } a \\text{ en } m + n \\,\\}",
+      "description": "La combinaison des carrés des côtés adjacents pondérée par les deux morceaux du côté coupé.",
+      "example": "b = 13, c = 14, la cévienne coupant a en m + n : 169m + 196n à additionner."
+    },
+    {
+      "id": "qSQP",
+      "kind": "quantité",
+      "label": "produits a(d² + mn) de la cévienne",
+      "domain": "géométrie euclidienne",
+      "property": "\\{\\, a(d^{2} + mn) \\mid d \\text{ longueur de la cévienne} \\,\\}",
+      "description": "Le produit du côté coupé par la somme du carré de la cévienne et du produit des morceaux.",
+      "example": "pour la médiane, m = n : l'identité d'Apollonius b² + c² = 2d² + a²/2 en découle."
+    },
+    {
+      "id": "f90",
+      "kind": "formule",
+      "label": "Théorème de Stewart (1746, d'Apollonius aux céviennes)",
+      "domain": "géométrie euclidienne",
+      "statement": "Pour une cévienne de longueur d découpant le côté a en m + n : b²m + c²n = a(d² + mn). Le pont entre la loi des cosinus et le théorème des médianes d'Apollonius, dans la famille des céviennes dont Céva règle la concurrence (le cas xyz = 1 de Routh f84) ; Bottema l'a poussée aux simplexes et au tétraèdre.",
+      "source": "https://mathworld.wolfram.com/StewartsTheorem.html",
+      "origin": "Stewarts Theorem (MathWorld)",
+      "objets": [
+        "GTR"
+      ],
+      "notes": "Fiche Stewarts Theorem (lettre S de la pioche)."
+    },
+    {
+      "id": "qSVV",
+      "kind": "quantité",
+      "label": "variations V(a) − V(b) de la chaîne de Sturm",
+      "domain": "théorie des anneaux",
+      "property": "\\{\\, V(a) - V(b) \\mid V \\text{ changements de signe de la chaîne de Sturm} \\,\\}",
+      "description": "La chute du nombre de changements de signe de la chaîne de Sturm entre a et b.",
+      "example": "pour x² − 2 sur [0, 2] : la chaîne x²−2, 2x, 2 perd un changement de signe, V(0) − V(2) = 1."
+    },
+    {
+      "id": "qSRR",
+      "kind": "quantité",
+      "label": "nombres de racines réelles distinctes dans ]a, b[",
+      "domain": "théorie des anneaux",
+      "property": "\\{\\, \\#\\{ x \\in \\, ]a, b[ \\mid P(x) = 0 \\} \\mid P \\text{ à racines simples} \\,\\}",
+      "description": "Le compte exact des zéros réels distincts d'un polynôme dans un intervalle ouvert.",
+      "example": "x² − 2 a exactement une racine dans ]0, 2[ : √2."
+    },
+    {
+      "id": "f91",
+      "kind": "formule",
+      "label": "Théorème de Sturm (1829)",
+      "domain": "théorie des anneaux",
+      "statement": "Le nombre de racines réelles distinctes d'un polynôme à racines simples dans ]a, b[ vaut V(a) − V(b), la chute des changements de signe dans la chaîne de Sturm. L'outil exact de localisation des racines (Descartes ne donne qu'une borne), le premier algorithme de découpage des zéros réels, et le prototype des suites de Sturm encore en usage en théorie des nombres réels algébriques.",
+      "source": "https://mathworld.wolfram.com/SturmTheorem.html",
+      "origin": "SturmTheorem (MathWorld)",
+      "objets": [
+        "PRX1"
+      ],
+      "notes": "Fiche Sturm Theorem (lettre S de la pioche)."
+    },
+    {
+      "id": "qTAY1",
+      "kind": "quantité",
+      "label": "restes de Lagrange f⁽ⁿ⁺¹⁾(ξ)(x−a)ⁿ⁺¹/(n+1)!",
+      "domain": "analyse réelle",
+      "property": "\\{\\, \\frac{f^{(n+1)}(\\xi)}{(n+1)!}(x-a)^{n+1} \\mid \\xi \\text{ entre } a \\text{ et } x \\,\\}",
+      "description": "L'écart exact entre la fonction et son polynôme de Taylor, porté par un point intermédiaire.",
+      "example": "pour e^x sur [0, x] : e^ξ xⁿ⁺¹/(n+1)!."
+    },
+    {
+      "id": "qTAY2",
+      "kind": "quantité",
+      "label": "sommes de Taylor à l'ordre n",
+      "domain": "analyse réelle",
+      "property": "\\{\\, \\sum_{k=0}^{n} \\frac{f^{(k)}(a)}{k!}(x-a)^k \\,\\}",
+      "description": "Le polynôme qui imite la fonction jusque dans ses dérivées n-ièmes.",
+      "example": "e^a(1 + h + h²/2 + ... + hⁿ/n!) autour de a, h = x − a."
+    },
+    {
+      "id": "qTHB1",
+      "kind": "quantité",
+      "label": "sommes AC² + BC² des carrés des côtés",
+      "domain": "géométrie euclidienne",
+      "property": "\\{\\, AC^2 + BC^2 \\mid ABC \\text{ triangle} \\,\\}",
+      "description": "La somme des carrés des deux côtés issus du sommet C.",
+      "example": "triangle isocèle 5-5-6 : 25 + 25 = 50."
+    },
+    {
+      "id": "qTHB2",
+      "kind": "quantité",
+      "label": "produits AB·(AD + BE) de la construction de Thābit",
+      "domain": "géométrie euclidienne",
+      "property": "\\{\\, AB \\cdot (AD + BE) \\mid D, E \\text{ sur } (AB), \\; \\angle ACD = \\angle ABC, \\; \\angle BCE = \\angle BAC \\,\\}",
+      "description": "Le produit du côté de base par la somme des deux reportations des triangles semblables.",
+      "example": "angle C droit : D et E se confondent au pied de la hauteur, AD + BE = AB."
+    },
+    {
+      "id": "qTPT1",
+      "kind": "quantité",
+      "label": "probabilités P(A) d'un événement",
+      "domain": "théorie de la mesure",
+      "property": "\\{\\, \\mathbb{P}(A) \\mid A \\text{ événement} \\,\\}",
+      "description": "La masse totale d'un événement.",
+      "example": "un dé équilibré : P(pair) = 1/2."
+    },
+    {
+      "id": "qTPT2",
+      "kind": "quantité",
+      "label": "sommes Σ P(A|Bᵢ)·P(Bᵢ) sur les partitions",
+      "domain": "théorie de la mesure",
+      "property": "\\{\\, \\sum_{i} \\mathbb{P}(A \\mid B_i)\\,\\mathbb{P}(B_i) \\mid (B_i) \\text{ système complet} \\,\\}",
+      "description": "Le même total, pesé condition par condition de la partition.",
+      "example": "P(pair) = Σᵢ P(pair|face i)·P(face i) = 1/2."
+    },
+    {
+      "id": "f92",
+      "kind": "formule",
+      "label": "Théorème de Taylor (1712, 1715)",
+      "domain": "analyse réelle",
+      "objets": [
+        "D2"
+      ],
+      "statement": "Pour une fonction de classe C^{n+1} sur le segment entre a et x : f(x) = Σ_{k=0}^{n} f⁽ᵏ⁾(a)(x−a)ᵏ/k! + f⁽ⁿ⁺¹⁾(ξ)(x−a)^{n+1}/(n+1)! pour un ξ entre a et x, le reste de Lagrange. Gregory l'avait dix-sept ans plus tôt dans une lettre à Collins (1671) ; Lagrange et Cauchy ont fondé la théorie du reste un siècle après. La formule qui met le calcul différentiel en polynôme : les accroissements finis en sont le cas n = 0, et la série de Taylor la limite quand le reste fond.",
+      "source": "https://mathworld.wolfram.com/TaylorsTheorem.html",
+      "origin": "Taylors Theorem (MathWorld)",
+      "notes": "Fiche Taylors Theorem (lettre T de la pioche)."
+    },
+    {
+      "id": "f93",
+      "kind": "formule",
+      "label": "Théorème de Thābit ibn Qurra (IXᵉ siècle)",
+      "domain": "géométrie euclidienne",
+      "objets": [
+        "GTR"
+      ],
+      "statement": "Dans un triangle ABC, points D et E sur la droite (AB) tels que ∠ACD = ∠ABC et ∠BCE = ∠BAC (triangles semblables ACD ~ ABC et BCE ~ BCA) : AC² = AB·AD et BC² = AB·BE, donc AC² + BC² = AB·(AD + BE). Quand l'angle en C devient droit, D et E se confondent au pied de la hauteur issue de C, AD + BE = AB, et le théorème se réduit exactement à Pythagore (e1214). La généralisation du neuvième siècle, donnée dans le traité attribuant la preuve à Socrate, mille ans avant Stewart (f90).",
+      "source": "https://mathworld.wolfram.com/ThabitibnQurrasTheorem.html",
+      "origin": "Thabitibn Qurras Theorem (MathWorld)",
+      "notes": "Fiche Thabitibn Qurras Theorem (lettre T de la pioche)."
+    },
+    {
+      "id": "f94",
+      "kind": "formule",
+      "label": "Loi des probabilités totales",
+      "domain": "théorie de la mesure",
+      "objets": [
+        "PROB"
+      ],
+      "statement": "Pour un système complet d'événements incompatibles B₁, ..., Bₙ (fini ou dénombrable) et un événement A : P(A) = Σᵢ P(A ∩ Bᵢ) = Σᵢ P(A|Bᵢ)·P(Bᵢ). Toute partition arbitre le calcul des probabilités : Bayes (f03) retourne la condition condition par condition, et les arbres de décision n'en sont que la mise en forme.",
+      "source": "https://mathworld.wolfram.com/TotalProbabilityTheorem.html",
+      "origin": "Total Probability Theorem (MathWorld)",
+      "notes": "Fiche Total Probability Theorem (lettre T de la pioche)."
+    },
+    {
+      "id": "qVIV1",
+      "kind": "quantité",
+      "label": "Sommes des distances d'un point intérieur aux trois côtés",
+      "domain": "géométrie euclidienne",
+      "property": "\\{\\, d(P, AB) + d(P, BC) + d(P, CA) \\mid P \\text{ intérieur d'un triangle équilatéral } ABC \\,\\}",
+      "description": "Les trois morceaux de hauteur découpés par un point intérieur : chaque distance compte de l'aire de son petit triangle.",
+      "example": "côté 2, P au centre : trois distances de \\( \\sqrt{3}/3 \\), somme \\( \\sqrt{3} \\)."
+    },
+    {
+      "id": "qVIV2",
+      "kind": "quantité",
+      "label": "Hauteurs des triangles équilatéraux",
+      "domain": "géométrie euclidienne",
+      "property": "\\{\\, h(ABC) \\mid ABC \\text{ triangle équilatéral} \\,\\}",
+      "description": "La hauteur du triangle équilatéral, la seule ligne verticale que la symétrie autorise.",
+      "example": "côté 2 : \\( h = \\sqrt{3} \\)."
+    },
+    {
+      "id": "f95",
+      "kind": "formule",
+      "label": "Théorème de Viviani",
+      "domain": "géométrie euclidienne",
+      "objets": [
+        "GTR"
+      ],
+      "statement": "Dans un triangle équilatéral ABC de hauteur h, pour tout point P intérieur, la somme des distances aux trois côtés vaut exactement la hauteur : d(P, AB) + d(P, BC) + d(P, CA) = h (Viviani). Les trois morceaux se partagent la hauteur quel que soit P : l'aire se découpe en trois triangles de mêmes bases, et la conservation des aires force la somme. Le point peut même errer sur toute la hauteur centrale.",
+      "source": "https://mathworld.wolfram.com/VivianisTheorem.html",
+      "origin": "Vivianis Theorem (MathWorld)",
+      "notes": "Fiche Vivianis Theorem (lettre V de la pioche)."
+    },
+    {
+      "id": "qAUB1",
+      "kind": "quantité",
+      "label": "Longueurs des segments entre centres de carrés opposés",
+      "domain": "géométrie euclidienne",
+      "property": "\\{\\, |PR| \\mid P, R \\text{ centres des carrés construits sur deux côtés opposés } AB, CD \\text{ d'un quadrilatère} \\,\\}",
+      "description": "La diagonale des centres qui traverse le quadrilatère : la longueur du segment joignant les carrés opposés.",
+      "example": "carré ABCD de côté 1 : PR = 2 (centres des carrés portés par AB et CD)."
+    },
+    {
+      "id": "qAUB2",
+      "kind": "quantité",
+      "label": "Longueurs des segments entre les autres centres",
+      "domain": "géométrie euclidienne",
+      "property": "\\{\\, |QS| \\mid Q, S \\text{ centres des carrés construits sur les deux autres côtés } BC, DA \\text{ du même quadrilatère} \\,\\}",
+      "description": "L'autre diagonale des centres, celle qui croise la première : la même longueur, tour d'un quart de tour.",
+      "example": "carré ABCD de côté 1 : QS = 2 (centres des carrés portés par BC et DA)."
+    },
+    {
+      "id": "f96",
+      "kind": "formule",
+      "label": "Théorème de van Aubel (centres des carrés)",
+      "domain": "géométrie euclidienne",
+      "objets": [
+        "VRG1"
+      ],
+      "statement": "Sur les côtés d'un quadrilatère quelconque ABCD, on construit extérieurement quatre carrés ; si P, Q, R, S sont les centres des carrés portés par AB, BC, CD, DA, alors |PR| = |QS| et les deux segments se croisent à angle droit : les diagonales des centres sont égales et perpendiculaires (van Aubel). La rotation d'un quart de tour échange les deux segments — le cousin des centres des équilatéraux de Napoléon, et le cas des quadrilatères du théorème de Petr-Neumann-Douglas (e1201).",
+      "source": "https://mathworld.wolfram.com/vanAubelsTheorem.html",
+      "origin": "van Aubels Theorem (MathWorld)",
+      "notes": "Fiche van Aubels Theorem (lettre V de la pioche)."
+    },
+    {
+      "id": "qWTS1",
+      "kind": "quantité",
+      "label": "Le ₃F₂ de Watson en 1 : valeur de la série",
+      "domain": "analyse réelle",
+      "property": "\\,{}_3F_2\\!\\left[\\,\\begin{matrix} a,\\, b,\\, c \\\\ \\tfrac{a+b+1}{2},\\; 2c \\end{matrix}\\,;\\, 1 \\,\\right]",
+      "description": "La série hypergéométrique équilibrée de Watson, sommée en forme close au point 1 : la limite des tergiversations de la série, convergente pour Re(2c − a − b) > −1.",
+      "example": "a = 0.6, b = 0.8, c = 1.1 : la série plafonne à 1.5153972…"
+    },
+    {
+      "id": "qWTS2",
+      "kind": "quantité",
+      "label": "Le produit de Gamma du théorème de Watson",
+      "domain": "analyse réelle",
+      "property": "\\frac{\\Gamma(\\tfrac{1}{2})\\,\\Gamma(c + \\tfrac{1}{2})\\,\\Gamma(\\tfrac{a+b+1}{2})\\,\\Gamma(c + \\tfrac{1-a-b}{2})}{\\Gamma(\\tfrac{a+1}{2})\\,\\Gamma(\\tfrac{b+1}{2})\\,\\Gamma(c + \\tfrac{1-a}{2})\\,\\Gamma(c + \\tfrac{1-b}{2})}",
+      "description": "La valeur fermée : quatre Gamma en haut, quatre en bas, le demi-entier prescrit par la symétrie de Watson — un réseau de reflets de la fonction Gamma d'Euler (GAM2).",
+      "example": "a = 0.6, b = 0.8, c = 1.1 : le produit vaut 1.5153972…, la série rendue à l'identique."
+    },
+    {
+      "id": "qWLD1",
+      "kind": "quantité",
+      "label": "Les modules des valeurs propres d'une matrice bornée par une Perron-Frobenius",
+      "domain": "algèbre générale",
+      "property": "\\{\\, |\\lambda| \\mid \\lambda \\in \\mathrm{Spec}(B), \\; |b_{ij}| \\le m_{ij} \\;\\forall (i,j) \\,\\}",
+      "description": "Les affixes du spectre d'une matrice complexe dominée coefficient à coefficient par une matrice irréductible à spectral positif : à quelle distance du cercle peuvent-ils vivre ?",
+      "example": "la matrice de Fourier 4 × 4, coefficients de module 1, bornée par la matrice tout à 1 : |λ| = 2 ≤ ρ = 4."
+    },
+    {
+      "id": "qWLD2",
+      "kind": "quantité",
+      "label": "Le rayon spectral de la majorante de Perron-Frobenius",
+      "domain": "algèbre générale",
+      "property": "\\rho(M) = \\max \\{\\, |\\lambda| \\mid \\lambda \\in \\mathrm{Spec}(M) \\,\\}",
+      "description": "La valeur propre de Perron de la matrice majorante, positive, simple, dominante : le plafond que Wielandt pose sur tout spectre dominé.",
+      "example": "la matrice tout à 1 : ρ = 4, valeur propre simple de vecteur (1, 1, 1, 1)."
+    },
+    {
+      "id": "qWTB1",
+      "kind": "quantité",
+      "label": "Le centroïde de la lamina quadrilatérale",
+      "domain": "géométrie euclidienne",
+      "property": "\\frac{1}{A}\\iint_Q (x, y)\\,dx\\,dy",
+      "description": "Le centre de masse d'une plaque homogène en forme de quadrilatère quelconque : la moyenne des positions, pesée par l'aire.",
+      "example": "le rectangle 4 × 3 : centroïde au croisement des médianes, (2, 1.5)."
+    },
+    {
+      "id": "qWTB2",
+      "kind": "quantité",
+      "label": "Le centre du parallélogramme de Wittenbauer",
+      "domain": "géométrie euclidienne",
+      "property": "\\tfrac{1}{2}(C_0 + C_2), \\text{ centre du parallélogramme des droites de trisection}",
+      "description": "Le croisement des diagonales du parallélogramme dessiné par les huit points de trisection des côtés, reliés deux à deux autour de chaque sommet : le centre de la construction de Wittenbauer.",
+      "example": "le même rectangle 4 × 3 : les droites de trisection s'y croisent aussi en (2, 1.5)."
+    },
+    {
+      "id": "qWSL1",
+      "kind": "quantité",
+      "label": "Les binomiaux du milieu aux rangs premiers p ≥ 5",
+      "domain": "arithmétique",
+      "property": "\\binom{2p-1}{p-1} \\quad (p \\text{ premier}, \\; p \\ge 5)",
+      "description": "Les coefficients du milieu des rangs impairs premiers : la colonne vertébrale des congruences de Wolstenholme, choisi pour son allure de nombre universel.",
+      "example": "p = 5 : C(9, 4) = 126 ; p = 7 : C(13, 6) = 1716."
+    },
+    {
+      "id": "qWSL2",
+      "kind": "quantité",
+      "label": "Les restes modulo p³ du binomial du milieu",
+      "domain": "arithmétique",
+      "property": "\\binom{2p-1}{p-1} \\pmod{p^3} \\quad (p \\ge 5)",
+      "description": "Ce qui reste du binomial du milieu après l'élévation au cube du module premier : la surprise de Wolstenholme, c'est qu'il reste exactement 1.",
+      "example": "p = 5 : 126 − 1 = 125 = 5³ ; p = 7 : 1716 − 1 = 1715 = 5 × 7³."
+    },
+    {
+      "id": "qZBR1",
+      "kind": "quantité",
+      "label": "Le terme constant du produit de Dyson q-analogue",
+      "domain": "théorie des nombres",
+      "property": "\\mathrm{CT}\\;\\prod_{1 \\le i < j \\le n} (x_i/x_j;\\,q)_{a_i}\\,(q\\,x_j/x_i;\\,q)_{a_j}",
+      "description": "La partie indépendante des variables du grand produit q-Dyson : ce qui survit quand toutes les puissances de x s'annulent, la somme que Zeilberger et Bressoud ont traquée par q-ième intermédiaire.",
+      "example": "n = 2, a = (1, 1), q = 1/2 : le terme constant vaut 1 + q = 3/2."
+    },
+    {
+      "id": "qZBR2",
+      "kind": "quantité",
+      "label": "Le multinomial de Gauss, quotient de q-symboles",
+      "domain": "théorie des nombres",
+      "property": "\\frac{(q;\\,q)_{a_1 + \\cdots + a_n}}{(q;\\,q)_{a_1} \\cdots (q;\\,q)_{a_n}}",
+      "description": "Le q-analogue du coefficient multinomial : les q-symboles de Pochhammer comptant les partitions en pavés, la valeur fermée du terme constant du produit.",
+      "example": "n = 2, a = (1, 1), q = 1/2 : le quotient vaut 1 + q = 3/2."
+    },
+    {
+      "id": "f97",
+      "kind": "formule",
+      "label": "Théorème de Watson (sommation du ₃F₂)",
+      "domain": "analyse réelle",
+      "objets": [
+        "GAM2"
+      ],
+      "statement": "La série hypergéométrique équilibrée se ferme en un produit de Gamma : ₃F₂[a, b, c ; (a+b+1)/2, 2c ; 1] = Γ(1/2)Γ(c+1/2)Γ((a+b+1)/2)Γ(c+(1−a−b)/2) / [Γ((a+1)/2)Γ((b+1)/2)Γ(c+(1−a)/2)Γ(c+(1−b)/2)], la série non terminée convergeant pour Re(2c − a − b) > −1 (Watson, Bailey 1935, p. 16 ; Koepf 1998, p. 32). Deux moitiés de Gamma échangent leurs rôles : la symétrie (a, b) et le doublement de c sont la clef — la cousine des sommations de Dixon et de Whipple, l'une des pièces maîtresses du sommet des ₃F₂(1).",
+      "source": "https://mathworld.wolfram.com/WatsonsTheorem.html",
+      "origin": "Watsons Theorem (MathWorld)",
+      "notes": "Fiche Watsons Theorem (lettre W de la pioche)."
+    },
+    {
+      "id": "f98",
+      "kind": "formule",
+      "label": "Théorème de Wielandt (rayon spectral d'une majorée)",
+      "domain": "algèbre générale",
+      "objets": [
+        "L1"
+      ],
+      "statement": "Si M vérifie les hypothèses de Perron-Frobenius, de rayon spectral ρ, et si |b_ij| ≤ m_ij coefficient par coefficient, alors toute valeur propre λ de B vérifie |λ| ≤ ρ(M), l'égalité n'ayant lieu que lorsque B se ramène à M par une matrice diagonale de phases unitaires : b_ij = d_i m_ij / d_j avec |d_i| = 1 (Wielandt, Gradshteyn-Ryzhik 2000, p. 1121). La domination coefficient par coefficient force la domination spectrale : le parsemé de phases ne saurait faire croître le rayon — un pont net entre la théorie de Perron-Frobenius et la localisation des valeurs propres, loin derrière les frontières circulaires de Gershgorin.",
+      "source": "https://mathworld.wolfram.com/WielandtsTheorem.html",
+      "origin": "Wielandts Theorem (MathWorld)",
+      "notes": "Fiche Wielandts Theorem (lettre W de la pioche) ; à ne pas confondre avec les trois Wielandt du graphe (nilpotence e237, sous-groupes e238, tour des automorphismes e239)."
+    },
+    {
+      "id": "f99",
+      "kind": "formule",
+      "label": "Théorème de Wittenbauer (centroïde et parallélogramme)",
+      "domain": "géométrie euclidienne",
+      "objets": [
+        "VRG1"
+      ],
+      "statement": "Le centroïde d'une lamina quadrilatérale est le centre du parallélogramme de Wittenbauer : on divise chaque côté en trois parties égales, et la figure formée par les droites qui joignent les deux points de trisection adjacents à chaque sommet (donc inclinées comme la diagonale opposée) est un parallélogramme — dont le centre tombe exactement sur le centre de masse de la plaque (Wittenbauer). Les aires signées le prouvent : la construction exfiltre du quadrilatère la même moyenne que l'intégrale ; nul besoin de couper la plaque en tranches, la trisection des côtés contient déjà le compte — le cousin géométrique du parallélogramme de Varignon (e254), qui lit le centre sur les milieux, là où Wittenbauer le lit sur les tiers.",
+      "source": "https://mathworld.wolfram.com/WittenbauersTheorem.html",
+      "origin": "Wittenbauers Theorem (MathWorld)",
+      "notes": "Fiche Wittenbauers Theorem (lettre W de la pioche) ; le parallélogramme vit sur la page MathWorld du même nom."
+    },
+    {
+      "id": "f100",
+      "kind": "formule",
+      "label": "Théorème de Wolstenholme (binomial du milieu modulo p³)",
+      "domain": "arithmétique",
+      "objets": [
+        "A2"
+      ],
+      "statement": "Pour tout premier p ≥ 5, le coefficient binomial du milieu est congru à 1 modulo le cube du module : C(2p−1, p−1) ≡ 1 (mod p³) (Wolstenholme 1862). En lectures sœurs : le numérateur de la somme harmonique H_{p−1} est divisible par p² ; et les nombres premiers de Wolstenholme, rares (16843 le premier), sont ceux où la congruence monte d'un cran à p⁴.",
+      "source": "https://mathworld.wolfram.com/WolstenholmesTheorem.html",
+      "origin": "Wolstenholmes Theorem (MathWorld)",
+      "notes": "Fiche Wolstenholmes Theorem (lettre W de la pioche) ; la discrète puissance des q-harmoniques de la lettre T, du côté des premiers."
+    },
+    {
+      "id": "f101",
+      "kind": "formule",
+      "label": "Théorème de Zeilberger-Bressoud (terme constant du q-Dyson)",
+      "domain": "théorie des nombres",
+      "objets": [
+        "A1"
+      ],
+      "statement": "Le terme constant du grand produit q-Dyson est le multinomial de Gauss : CT ∏_{1≤i<j≤n} (x_i/x_j ; q)_{a_i} (q x_j/x_i ; q)_{a_j} = (q ; q)_{a₁+⋯+aₙ} / [(q ; q)_{a₁} ⋯ (q ; q)_{aₙ}] (Zeilberger-Bressoud, la conjecture q-Dyson posée en 1980, l'histoire commencée par Dyson en 1962 et close par Zeilberger et Bressoud). Quand q → 1, la formule dégénère en le théorème de Dyson originel prouvé par Good (1970) : le multinomial ordinaire — la même égalité de deux dénombrements, en les symboles q-Pochhammer.",
+      "source": "https://mathworld.wolfram.com/Zeilberger-BressoudTheorem.html",
+      "origin": "Zeilberger-Bressoud Theorem (MathWorld)",
+      "notes": "Fiche Zeilberger-Bressoud Theorem (lettre Z de la pioche)."
+    },
+    {
+      "id": "qBRM1",
+      "kind": "quantité",
+      "label": "Les valeurs de g réexprimées aux puissances de x − φ(a)",
+      "domain": "analyse réelle",
+      "property": "g(\\zeta) \\quad \\text{où } \\varphi(\\zeta) = x,\\ \\varphi'(a) \\ne 0",
+      "description": "La fonction réécrite dans la monnaie de φ : la valeur de g au point que φ envoie sur x, développée aux puissances de l'écart x − φ(a).",
+      "example": "φ(z) = eᶻ, a = 0, g = sin : la série en x = e^ζ − 1 redonne sin(ζ) (validation numérique, erreur < 10⁻¹⁶)."
+    },
+    {
+      "id": "qBRM2",
+      "kind": "quantité",
+      "label": "Les coefficients de Bürmann : les dérivées n−1-ièmes de g′·ψⁿ en a",
+      "domain": "analyse réelle",
+      "property": "\\frac{1}{n!}\\,\\frac{d^{\\,n-1}}{dz^{\\,n-1}}\\left[\\, g'(z)\\left(\\frac{z-a}{\\varphi(z)-\\varphi(a)}\\right)^{\\!n}\\,\\right]_{z=a}",
+      "description": "Le coefficient de (x − φ(a))ⁿ dans le développement : la dérivée n−1-ième de g′ portée par la n-ième puissance de la jauge ψ.",
+      "example": "n = 1 : le coefficient de tête vaut g′(a)/φ′(a)."
+    },
+    {
+      "id": "f102",
+      "kind": "formule",
+      "label": "Théorème de Bürmann (développement en puissances d'une autre fonction)",
+      "domain": "analyse réelle",
+      "objets": [
+        "ANR1"
+      ],
+      "statement": "Si φ est analytique de dérivée non nulle en a et φ(ζ) = x, alors toute fonction analytique g se développe aux puissances de x − φ(a) : g(ζ) = g(a) + Σ_{n≥1} (x − φ(a))ⁿ/n! · [d^{n−1}/dz^{n−1} (g′(z)·ψ(z)ⁿ)]_{z=a}, avec ψ(z) = (z − a)/(φ(z) − φ(a)) (Whittaker-Watson, p. 129). La jumelle de l'inversion de Lagrange f49, qui choisit la monnaie de change quand Lagrange ne suit que la réciproque.",
+      "source": "https://mathworld.wolfram.com/BuermannsTheorem.html",
+      "origin": "Buermanns Theorem (MathWorld)",
+      "notes": "Fiche Buermanns Theorem (lettre B de la pioche). Validée numériquement : quatre jeux de couples (φ, g), a = 0 et a ≠ 0, erreurs de 10⁻¹⁶ à 10⁻¹²."
+    },
+    {
+      "id": "qASM1",
+      "kind": "quantité",
+      "label": "Le nombre A(n) d’alternating sign matrices d’ordre n",
+      "domain": "géométrie combinatoire",
+      "property": "\\#\\{\\text{matrices } n\\times n \\text{ à signes alternés}\\}",
+      "description": "Le nombre de matrices à signes alternés d’ordre n : les entrées 0, ±1, chaque ligne et colonne démarrant et finissant par des +1 en alternance stricte : la généralisation des carrés latins (les entrées non nulles de chaque ligne et colonne, relues, forment une permutation).",
+      "example": "A(1) = 1, A(2) = 2, A(3) = 7, A(4) = 42, A(5) = 429 (OEIS A005130)."
+    },
+    {
+      "id": "qASM2",
+      "kind": "quantité",
+      "label": "Le produit d’Izergin-Korepin : Π (3k+1)!/(n+k)!",
+      "domain": "géométrie combinatoire",
+      "property": "\\prod_{k=0}^{n-1} \\frac{(3k+1)!}{(n+k)!}",
+      "description": "Le produit fractionnaire des factorielles décalées : la forme close née des déterminants izerginiens, qui compte les alternating sign matrices.",
+      "example": "n = 3 : (1!·4!·7!)/(3!·4!·5!) = 5040/720 = 7."
+    },
+    {
+      "id": "f103",
+      "kind": "formule",
+      "label": "Conjecture des alternating sign matrices (Zeilberger, 1996)",
+      "domain": "géométrie combinatoire",
+      "objets": [
+        "MAT"
+      ],
+      "statement": "A(n) = Π_{k=0}^{n−1} (3k+1)!/(n+k)! : le nombre d’alternating sign matrices d’ordre n (1, 2, 7, 42, 429, 7436, …) est donné par le produit d’Izergin-Korepin. Prouvée par Zeilberger (1995, avec quatre-vingt-huit référees et de lourds calculs), puis par Kuperberg (1996, plus courte, par les izerginiens) ; la version raffinée est tombée la même année (Zeilberger, q-calcul et polynômes orthogonaux).",
+      "source": "https://mathworld.wolfram.com/AlternatingSignMatrixConjecture.html",
+      "origin": "Alternating Sign Matrix Conjecture (MathWorld)",
+      "notes": "Fiche Alternating Sign Matrix Conjecture (lettre A du panier conjecture)."
+    },
+    {
+      "id": "qBAR1",
+      "kind": "quantité",
+      "label": "Intégrales de contour de Barnes (premier lemme)",
+      "domain": "analyse réelle",
+      "property": "\\{\\, \\frac{1}{2\\pi i}\\int_{-i\\infty}^{i\\infty} \\Gamma(\\alpha+s)\\Gamma(\\beta+s)\\Gamma(\\gamma-s)\\Gamma(\\delta-s)\\, ds \\mid \\alpha, \\beta, \\gamma, \\delta > 0 \\,\\}",
+      "description": "L'intégrale de Mellin-Barnes du premier lemme : le contour vertical sépare la suite croissante des pôles de Γ(α+s)Γ(β+s) de la suite décroissante de Γ(γ−s)Γ(δ−s).",
+      "example": "α = β = γ = δ = 1 : l'intégrale vaut Γ(2)⁴/Γ(4) = 1/6."
+    },
+    {
+      "id": "qBAR2",
+      "kind": "quantité",
+      "label": "Rapports gamma du premier lemme de Barnes",
+      "domain": "analyse réelle",
+      "property": "\\{\\, \\frac{\\Gamma(\\alpha+\\gamma)\\Gamma(\\alpha+\\delta)\\Gamma(\\beta+\\gamma)\\Gamma(\\beta+\\delta)}{\\Gamma(\\alpha+\\beta+\\gamma+\\delta)} \\mid \\alpha, \\beta, \\gamma, \\delta > 0 \\,\\}",
+      "description": "La forme close du premier lemme de Barnes : le rapport produit de quatre gamma sur un gamma, valeur exacte de l'intégrale de contour.",
+      "example": "Γ(2)⁴/Γ(4) = 1/6."
+    },
+    {
+      "id": "f104",
+      "kind": "formule",
+      "label": "Lemme de Barnes (1908)",
+      "domain": "analyse réelle",
+      "objets": [
+        "GAM2"
+      ],
+      "statement": "\\( \\frac{1}{2\\pi i}\\int_{-i\\infty}^{i\\infty} \\Gamma(\\alpha+s)\\Gamma(\\beta+s)\\Gamma(\\gamma-s)\\Gamma(\\delta-s)\\, ds = \\frac{\\Gamma(\\alpha+\\gamma)\\Gamma(\\alpha+\\delta)\\Gamma(\\beta+\\gamma)\\Gamma(\\beta+\\delta)}{\\Gamma(\\alpha+\\beta+\\gamma+\\delta)} \\) quand le contour sépare les suites de pôles (Bailey 1935, p. 7). Le second lemme de Barnes figure sur la même fiche : l'intégrale de cinq gamma sur Γ(β₂+s) vaut un rapport de six gamma, sous la condition β₁+β₂ = α₁+α₂+α₃+1 (Bailey 1935, pp. 42-43).",
+      "source": "https://mathworld.wolfram.com/BarnesLemma.html",
+      "origin": "Barnes' Lemma (MathWorld)",
+      "notes": "Fiche Barnes' Lemma (lettre B du panier lemme)."
+    },
+    {
+      "id": "qCFR1",
+      "kind": "quantité",
+      "label": "Moyennes de points fixes d'actions de groupes finis",
+      "domain": "algèbre générale",
+      "property": "\\(\\, \\frac{1}{|R(J)|} \\sum_{p \\in R(J)} \\left| \\{ x \\in X \\mid p(x) = x \\} \\right| \\,\\)",
+      "description": "Le nombre moyen de points fixes des permutations d'une action d'un groupe fini J sur un ensemble X (une représentation de J dans le groupe symétrique S(X)) : la moitié gauche de l'identité de Cauchy-Frobenius, dite lemme de Burnside.",
+      "example": "l'action triviale sur n points : chaque permutation fixe tout, la moyenne vaut n."
+    },
+    {
+      "id": "qCFR2",
+      "kind": "quantité",
+      "label": "Nombres d'orbites d'actions de groupes finis",
+      "domain": "algèbre générale",
+      "property": "\\(\\, |X / R(J)| \\,\\)",
+      "description": "Le nombre d'orbites de l'action — les classes d'équivalence x ∼ y dès que p(x) = y pour un p de l'action : la moitié droite de l'identité de Cauchy-Frobenius, et le nœud BSL1 du graphe des théorèmes.",
+      "example": "l'action triviale sur n points : n orbites, les singletons."
+    },
+    {
+      "id": "qDL1",
+      "kind": "quantité",
+      "label": "Transformées discrètes de Fourier à N points",
+      "domain": "analyse réelle",
+      "property": "\\(\\, F_n = \\sum_{k=0}^{N-1} f_k\\, e^{-2\\pi i n k / N} \\mid n = 0, \\dots, N - 1 \\,\\)",
+      "description": "La transformée discrète d'une suite de N nombres complexes f₀, …, f_{N−1} : les N coefficients F_n, brique de l'analyse harmonique discrète.",
+      "example": "la transformée de (1, 0, 0, 0) : (1, 1, 1, 1)."
+    },
+    {
+      "id": "qDL2",
+      "kind": "quantité",
+      "label": "Transformées des composantes paire et impaire (F_n^e, F_n^o, W^n)",
+      "domain": "analyse réelle",
+      "property": "\\(\\, \\left( F_n^{e},\\; F_n^{o},\\; W^{n} \\right) \\mid W = e^{-2\\pi i / N} \\,\\)",
+      "description": "Les transformées de demi-taille des sous-suites de rang pair (f_{2k}) et de rang impair (f_{2k+1}), et le facteur tournant W^n qui les combine : le couple de sous-transformées du lemme de Danielson-Lanczos.",
+      "example": "pour N = 4, la composante paire se calcule sur (f₀, f₂), l'impaire sur (f₁, f₃)."
+    },
+    {
+      "id": "qDIR1",
+      "kind": "quantité",
+      "label": "Intégrales du noyau de Dirichlet sur [0, π]",
+      "domain": "analyse réelle",
+      "property": "\\(\\, \\int_{0}^{\\pi} \\frac{\\sin\\left( \\left( n + \\tfrac{1}{2} \\right) x \\right)}{2 \\sin\\left( \\tfrac{1}{2} x \\right)}\\, dx \\mid n \\ge 0 \\,\\)",
+      "description": "L'intégrale de la moitié du noyau de Dirichlet D_n(x) = sin((n + ½)x)/sin(x/2) sur un demi-tour : le lemme de Dirichlet dit qu'elle ne dépend pas du degré n.",
+      "example": "pour n = 0 : ∫₀^π ½ dx = π/2."
+    },
+    {
+      "id": "qDIR2",
+      "kind": "quantité",
+      "label": "Demi-tours constants π/2",
+      "domain": "analyse réelle",
+      "property": "\\(\\, \\pi / 2 \\,\\)",
+      "description": "La constante à laquelle le noyau de Dirichlet intégré se réduit : π/2, quel que soit le degré n — la valeur invariante du lemme de Dirichlet.",
+      "example": "π/2 ≈ 1,5708, le quart de tour."
+    },
+    {
+      "id": "f105",
+      "kind": "formule",
+      "label": "Lemme de Cauchy-Frobenius (1845/1887)",
+      "domain": "algèbre générale",
+      "objets": [
+        "BSL1",
+        "BSL2"
+      ],
+      "statement": "\\( \\frac{1}{|R(J)|} \\sum_{p \\in R(J)} \\left| \\{ x \\in X \\mid p(x) = x \\} \\right| = |X / R(J)| \\) : la moyenne arithmétique du nombre de points fixes des permutations d'une action d'un groupe fini J sur un ensemble X égale le nombre d'orbites de l'action. Connu obscurément de Cauchy (1845), Frobenius (1887) avant la redécouverte de Burnside (1900) — d'où le surnom « le lemme qui n'est pas de Burnside » — puis étendu par Pólya (1937) en théorème d'énumération, l'outil du comptage de configurations à symétries près.",
+      "source": "https://mathworld.wolfram.com/Cauchy-FrobeniusLemma.html",
+      "origin": "Cauchy-Frobenius Lemma (MathWorld)",
+      "notes": "Fiche Cauchy-Frobenius Lemma (lettre C du panier lemme). Déjà tracé au graphe des théorèmes sous le nom de lemme de Burnside (e181, BSL1 → BSL2) ; les deux moitiés de l'identité sont là des nœuds, ici des quantités."
+    },
+    {
+      "id": "f106",
+      "kind": "formule",
+      "label": "Lemme de Danielson-Lanczos (1942)",
+      "domain": "analyse réelle",
+      "objets": [
+        "CPER"
+      ],
+      "statement": "\\( F_n = F_n^{e} + W^{n} F_n^{o} \\), avec \\( W = e^{-2\\pi i / N} \\) et n = 0, …, N − 1 : la transformée de Fourier discrète à N points se reconstitue depuis les transformées de demi-taille des sous-suites de rang pair et impair, F_n^e sur les f_{2k} et F_n^o sur les f_{2k+1}. Appliquée récursivement jusqu'aux singletons, la décomposition réduit le coût de O(N²) à O(N ln N) : l'inversion des bits de la transformée de Fourier rapide (Cooley-Tukey 1965) est cette récursion mise en ordre.",
+      "source": "https://mathworld.wolfram.com/Danielson-LanczosLemma.html",
+      "origin": "Danielson-Lanczos Lemma (MathWorld)",
+      "notes": "Fiche Danielson-Lanczos Lemma (lettre D du panier lemme) ; les fonctions 2π-périodiques échantillonnées (CPER, maison de Fejér) sont le terrain naturel de la FFT."
+    },
+    {
+      "id": "f107",
+      "kind": "formule",
+      "label": "Lemme de Dirichlet (noyau de Dirichlet)",
+      "domain": "analyse réelle",
+      "objets": [
+        "CPER"
+      ],
+      "statement": "\\( \\int_{0}^{\\pi} \\dfrac{\\sin\\left( \\left( n + \\tfrac{1}{2} \\right) x \\right)}{2 \\sin\\left( \\tfrac{1}{2} x \\right)}\\, dx = \\dfrac{1}{2} \\pi \\) pour tout entier n ≥ 0, où le rapport intégré est la moitié du noyau de Dirichlet (Cohn 1980 ; Gradshteyn et Ryzhik 2000) : le noyau intégré sur un demi-tour vaut toujours π/2, indépendamment du degré — la pierre de touche des sommes partielles des séries de Fourier.",
+      "source": "https://mathworld.wolfram.com/DirichletsLemma.html",
+      "origin": "Dirichlet's Lemma (MathWorld)",
+      "notes": "Fiche Dirichlets Lemma (lettre D du panier lemme) ; le noyau de Dirichlet opère sur les fonctions 2π-périodiques continues (CPER), déjà maison de Fejér (e748)."
     }
   ],
   "edges": [
@@ -3440,6 +4389,378 @@
       "id": "t166",
       "from": "qPTS",
       "to": "f77",
+      "kind": "terme"
+    },
+    {
+      "id": "t167",
+      "from": "qRNN",
+      "to": "f78",
+      "kind": "terme"
+    },
+    {
+      "id": "t168",
+      "from": "qRNR",
+      "to": "f78",
+      "kind": "terme"
+    },
+    {
+      "id": "t169",
+      "from": "qRND",
+      "to": "f78",
+      "kind": "terme"
+    },
+    {
+      "id": "t170",
+      "from": "qRBV",
+      "to": "f79",
+      "kind": "terme"
+    },
+    {
+      "id": "t171",
+      "from": "qRBE",
+      "to": "f79",
+      "kind": "terme"
+    },
+    {
+      "id": "t172",
+      "from": "qRCI",
+      "to": "f80",
+      "kind": "terme"
+    },
+    {
+      "id": "t173",
+      "from": "qRCR",
+      "to": "f80",
+      "kind": "terme"
+    },
+    {
+      "id": "t174",
+      "from": "qRTA",
+      "to": "f81",
+      "kind": "terme"
+    },
+    {
+      "id": "t175",
+      "from": "qRTB",
+      "to": "f81",
+      "kind": "terme"
+    },
+    {
+      "id": "t176",
+      "from": "qRLS",
+      "to": "f82",
+      "kind": "terme"
+    },
+    {
+      "id": "t177",
+      "from": "qRLC",
+      "to": "f82",
+      "kind": "terme"
+    },
+    {
+      "id": "t178",
+      "from": "qPNN",
+      "to": "f83",
+      "kind": "terme"
+    },
+    {
+      "id": "t179",
+      "from": "qNLN",
+      "to": "f83",
+      "kind": "terme"
+    },
+    {
+      "id": "t180",
+      "from": "qRTU",
+      "to": "f84",
+      "kind": "terme"
+    },
+    {
+      "id": "t181",
+      "from": "qRTT",
+      "to": "f84",
+      "kind": "terme"
+    },
+    {
+      "id": "t182",
+      "from": "qSH1",
+      "to": "f85",
+      "kind": "terme"
+    },
+    {
+      "id": "t183",
+      "from": "qSPC",
+      "to": "f85",
+      "kind": "terme"
+    },
+    {
+      "id": "t184",
+      "from": "qS6P",
+      "to": "f86",
+      "kind": "terme"
+    },
+    {
+      "id": "t185",
+      "from": "qSD3",
+      "to": "f86",
+      "kind": "terme"
+    },
+    {
+      "id": "t186",
+      "from": "qSDM",
+      "to": "f86",
+      "kind": "terme"
+    },
+    {
+      "id": "t187",
+      "from": "qSAC",
+      "to": "f87",
+      "kind": "terme"
+    },
+    {
+      "id": "t188",
+      "from": "qBCC",
+      "to": "f87",
+      "kind": "terme"
+    },
+    {
+      "id": "t189",
+      "from": "qSU1",
+      "to": "f88",
+      "kind": "terme"
+    },
+    {
+      "id": "t190",
+      "from": "qUDM",
+      "to": "f88",
+      "kind": "terme"
+    },
+    {
+      "id": "t191",
+      "from": "qSGA",
+      "to": "f89",
+      "kind": "terme"
+    },
+    {
+      "id": "t192",
+      "from": "qSGB",
+      "to": "f89",
+      "kind": "terme"
+    },
+    {
+      "id": "t193",
+      "from": "qSQS",
+      "to": "f90",
+      "kind": "terme"
+    },
+    {
+      "id": "t194",
+      "from": "qSQP",
+      "to": "f90",
+      "kind": "terme"
+    },
+    {
+      "id": "t195",
+      "from": "qSVV",
+      "to": "f91",
+      "kind": "terme"
+    },
+    {
+      "id": "t196",
+      "from": "qSRR",
+      "to": "f91",
+      "kind": "terme"
+    },
+    {
+      "id": "t197",
+      "from": "qTAY2",
+      "to": "f92",
+      "kind": "terme"
+    },
+    {
+      "id": "t198",
+      "from": "qTAY1",
+      "to": "f92",
+      "kind": "terme"
+    },
+    {
+      "id": "t199",
+      "from": "qTHB1",
+      "to": "f93",
+      "kind": "terme"
+    },
+    {
+      "id": "t200",
+      "from": "qTHB2",
+      "to": "f93",
+      "kind": "terme"
+    },
+    {
+      "id": "t201",
+      "from": "qTPT1",
+      "to": "f94",
+      "kind": "terme"
+    },
+    {
+      "id": "t202",
+      "from": "qTPT2",
+      "to": "f94",
+      "kind": "terme"
+    },
+    {
+      "id": "t203",
+      "from": "qVIV1",
+      "to": "f95",
+      "kind": "terme"
+    },
+    {
+      "id": "t204",
+      "from": "qVIV2",
+      "to": "f95",
+      "kind": "terme"
+    },
+    {
+      "id": "t205",
+      "from": "qAUB1",
+      "to": "f96",
+      "kind": "terme"
+    },
+    {
+      "id": "t206",
+      "from": "qAUB2",
+      "to": "f96",
+      "kind": "terme"
+    },
+    {
+      "id": "t207",
+      "from": "qWTS1",
+      "to": "f97",
+      "kind": "terme"
+    },
+    {
+      "id": "t208",
+      "from": "qWTS2",
+      "to": "f97",
+      "kind": "terme"
+    },
+    {
+      "id": "t209",
+      "from": "qWLD1",
+      "to": "f98",
+      "kind": "terme"
+    },
+    {
+      "id": "t210",
+      "from": "qWLD2",
+      "to": "f98",
+      "kind": "terme"
+    },
+    {
+      "id": "t211",
+      "from": "qWTB1",
+      "to": "f99",
+      "kind": "terme"
+    },
+    {
+      "id": "t212",
+      "from": "qWTB2",
+      "to": "f99",
+      "kind": "terme"
+    },
+    {
+      "id": "t213",
+      "from": "qWSL1",
+      "to": "f100",
+      "kind": "terme"
+    },
+    {
+      "id": "t214",
+      "from": "qWSL2",
+      "to": "f100",
+      "kind": "terme"
+    },
+    {
+      "id": "t215",
+      "from": "qZBR1",
+      "to": "f101",
+      "kind": "terme"
+    },
+    {
+      "id": "t216",
+      "from": "qZBR2",
+      "to": "f101",
+      "kind": "terme"
+    },
+    {
+      "id": "t217",
+      "from": "qBRM1",
+      "to": "f102",
+      "kind": "terme"
+    },
+    {
+      "id": "t218",
+      "from": "qBRM2",
+      "to": "f102",
+      "kind": "terme"
+    },
+    {
+      "id": "t219",
+      "from": "qASM1",
+      "to": "f103",
+      "kind": "terme"
+    },
+    {
+      "id": "t220",
+      "from": "qASM2",
+      "to": "f103",
+      "kind": "terme"
+    },
+    {
+      "id": "t221",
+      "from": "qBAR1",
+      "to": "f104",
+      "kind": "terme"
+    },
+    {
+      "id": "t222",
+      "from": "qBAR2",
+      "to": "f104",
+      "kind": "terme"
+    },
+    {
+      "id": "t223",
+      "from": "qCFR1",
+      "to": "f105",
+      "kind": "terme"
+    },
+    {
+      "id": "t224",
+      "from": "qCFR2",
+      "to": "f105",
+      "kind": "terme"
+    },
+    {
+      "id": "t225",
+      "from": "qDL1",
+      "to": "f106",
+      "kind": "terme"
+    },
+    {
+      "id": "t226",
+      "from": "qDL2",
+      "to": "f106",
+      "kind": "terme"
+    },
+    {
+      "id": "t227",
+      "from": "qDIR1",
+      "to": "f107",
+      "kind": "terme"
+    },
+    {
+      "id": "t228",
+      "from": "qDIR2",
+      "to": "f107",
       "kind": "terme"
     }
   ]

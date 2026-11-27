@@ -1,7 +1,7 @@
 {
   "meta": {
     "name": "Graphe des théorèmes",
-    "version": "0.71.0",
+    "version": "0.78.0",
     "created": "2026-11-23",
     "language": "fr",
     "description": "Chaque nœud est un ensemble (de fonctions, d'entiers, de matrices…), chaque arête est un théorème : inclusion (A ⊆ B) ou non-inclusion avec contre-exemple (A ⊄ B).",
@@ -13511,6 +13511,421 @@
       "description": "Les groupes de Galois de la clôture séparable d'un corps : profinis.",
       "example": "Gal(ℚ̄/ℚ), Gal(𝔽̄_p/𝔽_p) ≃ \\hat{ℤ}.",
       "notes": ""
+    },
+    {
+      "id": "GSIM",
+      "label": "Groupes simples",
+      "family": "ensembles",
+      "domain": "théorie des groupes",
+      "property": "\\{\\, G \\ne \\{e\\} \\mid \\text{les seuls sous-groupes normaux de } G \\text{ sont } \\{e\\} \\text{ et } G \\,\\}",
+      "description": "Groupes sans sous-groupe normal propre, finis ou infinis : les briques élémentaires de la théorie des groupes.",
+      "example": "A₅ (plus petit simple non abélien, d'ordre 60), le groupe alterné à support fini des permutations de ℕ, PSL(2,ℝ)",
+      "notes": "Généralise les simples finis (GFSI) au cas infini."
+    },
+    {
+      "id": "GTFE",
+      "label": "Groupes exempts de torsion",
+      "family": "ensembles",
+      "domain": "théorie des groupes",
+      "property": "\\{\\, G \\mid \\forall x \\ne e,\\ \\forall n \\ge 1,\\ x^n \\ne e \\,\\}",
+      "description": "Groupes dont aucun élément non neutre n'est d'ordre fini.",
+      "example": "ℤ, ℤ², les groupes libres, ℚ, les groupes abéliens libres",
+      "notes": "Pendant des groupes de torsion (GTOR) : les deux collections ne se recouvrent que sur le groupe trivial."
+    },
+    {
+      "id": "GRF",
+      "label": "Groupes résiduellement finis",
+      "family": "ensembles",
+      "domain": "théorie des groupes",
+      "property": "\\{\\, G \\mid \\forall x \\ne e,\\ \\exists \\varphi : G \\to F \\text{ vers un groupe fini } F \\text{ tel que } \\varphi(x) \\ne e \\,\\}",
+      "description": "Groupes dont chaque élément non neutre survit dans un quotient fini : le groupe se plonge dans un produit de groupes finis.",
+      "example": "ℤ (réduction modulo n), les groupes libres, les groupes abéliens de type fini",
+      "notes": "Sans hypothèse de type fini la propriété s'effondre : ℚ n'a aucun quotient fini non trivial."
+    },
+    {
+      "id": "GAB",
+      "label": "Groupes abéliens libres",
+      "family": "ensembles",
+      "domain": "théorie des groupes",
+      "property": "\\{\\, G \\mid G \\cong \\bigoplus_{i \\in I} \\mathbb{Z} \\,\\}",
+      "description": "Sommes directes de copies de ℤ : chaque élément s'écrit de façon unique comme combinaison finie d'éléments d'une base.",
+      "example": "ℤⁿ pour n ≥ 0, le groupe des fonctions à support fini d'un ensemble E dans ℤ",
+      "notes": "Les « espaces vectoriels » à coefficients entiers ; tout groupe abélien est un quotient d'un abélien libre."
+    },
+    {
+      "id": "GPOL",
+      "label": "Groupes de type fini à croissance polynomiale",
+      "family": "ensembles",
+      "domain": "théorie des groupes",
+      "card": "aleph0",
+      "property": "\\{\\, G \\text{ de type fini} \\mid \\text{pour une partie génératrice finie } S,\\ |B_S(n)| \\le C\\,n^d \\,\\}",
+      "description": "Groupes engendrés par une partie finie dont les boules de Cayley croissent au plus polynomialement (la borne ne dépend pas du choix de S, à constantes près).",
+      "example": "ℤᵈ (croissance ~ nᵈ), le groupe de Heisenberg (~ n³)",
+      "notes": "Gromov les identifie exactement aux virtuellement nilpotents de type fini."
+    },
+    {
+      "id": "GVN",
+      "label": "Groupes de type fini virtuellement nilpotents",
+      "family": "ensembles",
+      "domain": "théorie des groupes",
+      "card": "aleph0",
+      "property": "\\{\\, G \\text{ de type fini} \\mid \\exists H \\le G \\text{ nilpotent d'indice fini} \\,\\}",
+      "description": "Groupes de type fini contenant un sous-groupe nilpotent d'indice fini.",
+      "example": "ℤᵈ, le groupe de Heisenberg, tout nilpotent de type fini, tout groupe fini",
+      "notes": "Autre face de la caractérisation de Gromov."
+    },
+    {
+      "id": "VARTOP",
+      "label": "Variétés topologiques",
+      "family": "variétés",
+      "domain": "topologie différentielle",
+      "property": "\\{\\, M \\mid \\text{séparée, à base dénombrable, tout point a un voisinage homéomorphe à un ouvert de } \\mathbb{R}^n \\,\\}",
+      "description": "Espaces topologiques localement euclidiens, séparés et à base dénombrable, sans bord : le hub du monde des variétés.",
+      "example": "le cercle, la sphère S³, le tore, le plan projectif ℝP²",
+      "notes": "Nœud ambiant des variétés (sans bord) ; les variétés à bord (VARBOR) forment une collection sœur, non incluse ici."
+    },
+    {
+      "id": "VARLIS",
+      "label": "Variétés lisses",
+      "family": "variétés",
+      "domain": "topologie différentielle",
+      "property": "\\{\\, M \\mid \\text{variété topologique munie d'un atlas à changements de cartes } C^\\infty \\,\\}",
+      "description": "Variétés topologiques portant une structure différentiable : on peut y dériver, dans toutes les dimensions.",
+      "example": "le cercle, la sphère S², le tore, les groupes de Lie",
+      "notes": "Généralise « Variétés lisses de dimension n » (WTN1) à dimension quelconque."
+    },
+    {
+      "id": "VARBOR",
+      "label": "Variétés à bord",
+      "family": "variétés",
+      "domain": "topologie différentielle",
+      "property": "\\{\\, M \\mid \\text{tout point a un voisinage homéomorphe à un ouvert de } \\mathbb{R}^n \\text{ ou du demi-espace } \\mathbb{R}^n_+ \\,\\}",
+      "description": "Espaces localement modelés sur ℝⁿ ou sur un demi-espace : les points du bord sont repérés par leurs demi-voisinages.",
+      "example": "le segment [0, 1], le disque fermé, le ruban de Möbius, les produits V × [0, 1]",
+      "notes": "Une variété à bord n'est pas une variété : le bord n'a pas de voisinage localement euclidien."
+    },
+    {
+      "id": "VORI",
+      "label": "Variétés orientables",
+      "family": "variétés",
+      "domain": "topologie différentielle",
+      "property": "\\{\\, M \\mid \\text{le revêtement d'orientation de } M \\text{ est trivial} \\,\\}",
+      "description": "Variétés dont l'orientation locale se propage de façon cohérente d'un point à l'autre, sans jamais se retourner.",
+      "example": "la sphère Sⁿ, le tore, toute variété simplement connexe",
+      "notes": "Le revêtement d'orientation est à deux feuillets : il est trivial exactement quand la variété est orientable."
+    },
+    {
+      "id": "VARKMP",
+      "label": "Variétés topologiques compactes",
+      "family": "variétés",
+      "domain": "topologie différentielle",
+      "property": "\\{\\, M \\mid \\text{variété topologique et espace compact} \\,\\}",
+      "description": "Variétés topologiques dont tout recouvrement ouvert admet un sous-recouvrement fini.",
+      "example": "la sphère Sⁿ, le tore, le plan projectif ℝP²",
+      "notes": "La compacité passe aux homéomorphismes : tout homéomorphe d'une variété compacte est compact."
+    },
+    {
+      "id": "SURF",
+      "label": "Surfaces (variétés de dimension 2)",
+      "family": "variétés",
+      "domain": "topologie différentielle",
+      "property": "\\{\\, M \\mid \\text{variété topologique de dimension } 2 \\,\\}",
+      "description": "Variétés dont chaque point a un voisinage homéomorphe à un ouvert du plan : le théâtre de la classification par le genre.",
+      "example": "la sphère S², le tore, la bouteille de Klein, le plan projectif ℝP²",
+      "notes": "Les surfaces de Riemann (complexes) sont des surfaces réelles de dimension 2."
+    },
+    {
+      "id": "VCONN",
+      "label": "Variétés connexes",
+      "family": "variétés",
+      "domain": "topologie différentielle",
+      "property": "\\{\\, M \\mid \\text{variété topologique et espace connexe} \\,\\}",
+      "description": "Variétés topologiques d'un seul tenant.",
+      "example": "le cercle, la sphère S², le tore, ℝⁿ",
+      "notes": "Sur une variété connexe, la dimension est la même en tout point (invariance de la dimension de Brouwer, déjà tracée en e962)."
+    },
+    {
+      "id": "VSIMP",
+      "label": "Variétés simplement connexes",
+      "family": "variétés",
+      "domain": "topologie différentielle",
+      "property": "\\{\\, M \\mid \\text{connexe par arcs et } \\pi_1(M) = 0 \\,\\}",
+      "description": "Variétés connexes où tout lacet se contracte en un point.",
+      "example": "la sphère Sⁿ (n ≥ 2), ℝⁿ, les surfaces de Riemann simplement connexes",
+      "notes": "Le revêtement universel d'une telle variété est elle-même ; toute variété simplement connexe est orientable."
+    },
+    {
+      "id": "VPAR",
+      "label": "Variétés parallélisables",
+      "family": "variétés",
+      "domain": "topologie différentielle",
+      "property": "\\{\\, M \\mid \\text{le fibré tangent de } M \\text{ est trivial} \\,\\}",
+      "description": "Variétés lisses dont le fibré tangent admet un repère global : on peut y choisir une base continue de vecteurs en tout point.",
+      "example": "les groupes de Lie, le cercle, S³ et S⁷ (théorème d'Adams)",
+      "notes": "Seules S¹, S³ et S⁷ sont parallélisables parmi les sphères (Adams, 1958-1962)."
+    },
+    {
+      "id": "VFRM",
+      "label": "Variétés fermées (compactes sans bord)",
+      "family": "variétés",
+      "domain": "topologie différentielle",
+      "property": "\\{\\, M \\mid \\text{variété topologique compacte et sans bord} \\,\\}",
+      "description": "Variétés compactes et sans bord : le cadre des théorèmes de dualité.",
+      "example": "la sphère Sⁿ, le tore, les 3-variétés fermées",
+      "notes": "« Fermée » au sens des variétés : compacte ET sans bord, pas seulement un fermé d'un espace ambiant."
+    },
+    {
+      "id": "VTRI",
+      "label": "Variétés triangulables",
+      "family": "variétés",
+      "domain": "topologie différentielle",
+      "property": "\\{\\, M \\mid \\text{homéomorphe au support d'un complexe simplicial fini} \\,\\}",
+      "description": "Variétés topologiques que l'on peut découper en simplexes : la passerelle vers la PL et les invariants combinatoires.",
+      "example": "les variétés lisses (Cairns-Whitehead), les surfaces, les 3-variétés (Moïse)",
+      "notes": "Toute variété lisse est triangulable ; en dimension 3 toute variété topologique l'est (Moïse) ; en dimension 4, certaines ne le sont pas."
+    },
+    {
+      "id": "VBORD",
+      "label": "Bords de variétés à bord",
+      "family": "variétés",
+      "domain": "topologie différentielle",
+      "property": "\\{\\, \\partial M \\mid M \\text{ variété à bord} \\,\\}",
+      "description": "Les bords ∂M des variétés à bord : une famille de variétés sans bord.",
+      "example": "le cercle S¹ (bord du disque), la sphère S² (bord de la boule), le bord d'un ruban de Möbius",
+      "notes": "Le bord d'une variété à bord est une variété (sans bord) : ∂∂M = ∅."
+    },
+    {
+      "id": "VDIMI",
+      "label": "Variétés fermées lisses de dimension impaire",
+      "family": "variétés",
+      "domain": "topologie différentielle",
+      "property": "\\{\\, M \\mid \\text{variété lisse compacte sans bord, de dimension } 2k+1 \\,\\}",
+      "description": "Variétés fermées dont la dimension est impaire : leur caractéristique d'Euler s'annule toujours.",
+      "example": "le cercle S¹, toute 3-variété fermée, les espaces projectifs impairs",
+      "notes": "Corollaire de la dualité de Poincaré ; la réciproque est fausse (le tore)."
+    },
+    {
+      "id": "TDIX",
+      "label": "Espaces discrets",
+      "family": "espaces topologiques",
+      "domain": "topologie",
+      "property": "\\{\\, (X, \\mathcal{T}) \\mid \\mathcal{T} = \\mathcal{P}(X) \\,\\}",
+      "description": "Espaces où toute partie est ouverte : la topologie la plus fine possible. Toute fonction définie sur un tel espace est continue, et l'espace est compact si et seulement s'il est fini.",
+      "example": "ℕ, tout ensemble muni de la topologie discrète",
+      "notes": "Chaînon discret ⊆ métrique ⊆ séparé ⊆ T1 ⊆ topologique : la distance discrète fait tout le travail."
+    },
+    {
+      "id": "TSEP",
+      "label": "Espaces T1 (points fermés)",
+      "family": "espaces topologiques",
+      "domain": "topologie",
+      "property": "\\{\\, (X, \\mathcal{T}) \\mid \\forall x \\in X,\\ \\{x\\} \\text{ est fermé} \\,\\}",
+      "description": "Espaces où les singletons sont fermés : les suites convergentes y ont au plus une limite. Première marche de l'échelle de séparation, entre les espaces topologiques bruts et les espaces séparés.",
+      "example": "ℝ avec la topologie cofinie, tout espace séparé, tout espace discret"
+    },
+    {
+      "id": "TREG",
+      "label": "Espaces réguliers (T3)",
+      "family": "espaces topologiques",
+      "domain": "topologie",
+      "property": "\\{\\, X \\mid X \\text{ } T_1 \\text{ et } \\forall x \\notin F \\text{ fermé},\\ \\exists U, V \\text{ ouverts disjoints},\\ x \\in U,\\ F \\subseteq V \\,\\}",
+      "description": "On peut séparer un point d'un fermé qui ne le contient pas. Échelle de séparation : séparé ⊆ régulier ⊆ normal, chaque étage strict.",
+      "example": "les espaces métriques, les compacts séparés, le plan de Sorgenfrey"
+    },
+    {
+      "id": "TSC2",
+      "label": "Espaces à base dénombrable",
+      "family": "espaces topologiques",
+      "domain": "topologie",
+      "property": "\\{\\, X \\mid \\exists (B_n)_{n \\in \\mathbb{N}} \\text{ dénombrable, base d'ouverts de } X \\,\\}",
+      "description": "La topologie est engendrée par une famille dénombrable d'ouverts ; hypothèse clé du théorème de métisation d'Urysohn. Impose la séparabilité, mais pas réciproquement.",
+      "example": "ℝ, le cube de Hilbert, les variétés à base dénombrable"
+    },
+    {
+      "id": "TSPT",
+      "label": "Espaces séparables",
+      "family": "espaces topologiques",
+      "domain": "topologie",
+      "property": "\\{\\, X \\mid \\exists D \\subseteq X \\text{ dénombrable et dense dans } X \\,\\}",
+      "description": "Une partie dénombrable suffit à approcher tous les points. Dans le monde métrique, équivalent à une base dénombrable ; hors du monde métrique, strictement plus faible.",
+      "example": "ℝ (ℚ est dense), les espaces polonais, la droite de Sorgenfrey"
+    },
+    {
+      "id": "TKCH",
+      "label": "Espaces compacts séparés",
+      "family": "espaces topologiques",
+      "domain": "topologie",
+      "property": "\\{\\, X \\mid X \\text{ compact et de Hausdorff} \\,\\}",
+      "description": "Le cadre roi de la topologie générale : normaux (donc Tietze et Urysohn s'appliquent), de Baire, et plongeables dans un produit de segments (Tychonov).",
+      "example": "[0,1], le cercle, le cube de Hilbert"
+    },
+    {
+      "id": "PCMP",
+      "label": "Espaces complètement métrisables",
+      "family": "espaces métriques",
+      "domain": "topologie métrique",
+      "property": "\\{\\, X \\mid \\exists d \\text{ distance complète compatible avec la topologie de } X \\,\\}",
+      "description": "Métrisables par une distance complète : la moitié « complétude » de la définition des polonais, sans la séparabilité. Un espace métrique complet est complètement métrisable, un espace discret l'est toujours (distance d = 1).",
+      "example": "ℕ^ℕ, les compacts métriques, tout espace discret (distance d = 1)"
+    },
+    {
+      "id": "PKPM",
+      "label": "Espaces compacts métriques",
+      "family": "espaces topologiques",
+      "domain": "topologie",
+      "property": "\\{\\, X \\mid X \\text{ compact et métrisable} \\,\\}",
+      "description": "Compacts et métriques : automatiquement séparés, séparables, et polonais (toute distance compatible sur un compact est complète). Le cadre des ensembles de Cantor et du cube de Hilbert.",
+      "example": "[0,1], l'ensemble de Cantor, le cube de Hilbert [0,1]^ℕ"
+    },
+    {
+      "id": "PGDL",
+      "label": "Espaces homéomorphes à un Gδ du cube de Hilbert",
+      "family": "espaces topologiques",
+      "domain": "topologie",
+      "property": "\\{\\, X \\mid \\exists G \\subseteq [0,1]^\\mathbb{N} \\text{ un } G_\\delta,\\ X \\cong G \\,\\}",
+      "description": "Le portrait d'Alexandrov des espaces polonais : exactement les Gδ du cube de Hilbert. Un Borel qui n'est pas Gδ (ℚ) n'est jamais polonais.",
+      "example": "les irrationnels (Gδ de ℝ), tout espace polonais, ℕ^ℕ"
+    },
+    {
+      "id": "PBAN",
+      "label": "Espaces homéomorphes à l'espace de Baire ℕ^ℕ",
+      "family": "espaces topologiques",
+      "domain": "topologie",
+      "property": "\\{\\, X \\mid X \\cong \\mathbb{N}^\\mathbb{N} \\,\\}",
+      "description": "L'espace des suites d'entiers, homéomorphe aux irrationnels via les fractions continues : polonais, sans point isolé, non compact.",
+      "example": "ℕ^ℕ, les irrationnels ℝ\\ℚ"
+    },
+    {
+      "id": "PPAR",
+      "label": "Espaces polonais sans points isolés",
+      "family": "espaces topologiques",
+      "domain": "topologie",
+      "property": "\\{\\, X \\mid X \\text{ polonais et sans point isolé} \\,\\}",
+      "description": "Les polonais parfaits. Cantor-Bendixson : tout polonais s'écrit comme réunion d'un ouvert dénombrable et d'un parfait ; chacun contient une copie de l'ensemble de Cantor.",
+      "example": "ℝ, les irrationnels, l'ensemble de Cantor, ℕ^ℕ"
+    },
+    {
+      "id": "PDEN",
+      "label": "Espaces polonais dénombrables",
+      "family": "espaces topologiques",
+      "domain": "topologie",
+      "property": "\\{\\, X \\mid X \\text{ polonais et dénombrable} \\,\\}",
+      "description": "Par le lemme de Baire, ils ont toujours un point isolé : ℚ, dénombrable et sans point isolé, n'est jamais polonais.",
+      "example": "ℕ discret, {0} ∪ {1/n : n ≥ 1}"
+    },
+    {
+      "id": "FLIP",
+      "label": "Fonctions lipschitziennes entre espaces métriques",
+      "family": "continuité",
+      "domain": "topologie métrique",
+      "property": "\\{\\, f : (X, d_X) \\to (Y, d_Y) \\mid \\exists k \\ge 0,\\ \\forall x, y : d_Y(f(x), f(y)) \\le k\\, d_X(x, y) \\,\\}",
+      "description": "Le module de continuité est linéaire : la distance des images est contrôlée à constante k près. Généralisent au monde métrique les lipschitziennes réelles (L) et vectorielles (VLP).",
+      "example": "x ↦ 2x, les applications affines, toute application depuis un espace muni de la distance discrète d = 1"
+    },
+    {
+      "id": "FHOE",
+      "label": "Fonctions höldériennes entre espaces métriques",
+      "family": "continuité",
+      "domain": "topologie métrique",
+      "property": "\\{\\, f : (X, d_X) \\to (Y, d_Y) \\mid \\exists \\alpha \\in (0, 1],\\ \\exists C : d_Y(f(x), f(y)) \\le C\\, d_X(x, y)^{\\alpha} \\,\\}",
+      "description": "Le module de continuité est sous-linéaire : d^α avec α ≤ 1. Étage intermédiaire entre lipschitz (α = 1) et uniformément continue ; prolonge au monde métrique l'échelle de Hölder réelle (H12, H13, H14, H15).",
+      "example": "√x (α = 1/2), x ↦ x^{1/3} (α = 1/3), les lipschitziennes (α = 1)"
+    },
+    {
+      "id": "FUCM",
+      "label": "Fonctions uniformément continues entre espaces métriques",
+      "family": "continuité",
+      "domain": "topologie métrique",
+      "property": "\\{\\, f : (X, d_X) \\to (Y, d_Y) \\mid \\forall \\varepsilon > 0,\\ \\exists \\delta > 0,\\ \\forall x, y : d_X(x, y) < \\delta \\Rightarrow d_Y(f(x), f(y)) < \\varepsilon \\,\\}",
+      "description": "La continuité avec un δ indépendant du point ; version métrique du nœud UC. Sur un compact, continue implique uniformément continue (Heine-Cantor).",
+      "example": "√x sur [0,1], toute application lipschitzienne, toute application continue sur un compact"
+    },
+    {
+      "id": "FISO",
+      "label": "Isométries entre espaces métriques",
+      "family": "continuité",
+      "domain": "topologie métrique",
+      "property": "\\{\\, f : (X, d_X) \\to (Y, d_Y) \\mid \\forall x, y : d_Y(f(x), f(y)) = d_X(x, y) \\,\\}",
+      "description": "Préservent la distance à l'identique : injectives, 1-lipschitziennes, sans perte d'information géométrique. Les isomorphismes du monde métrique strict.",
+      "example": "les translations, les rotations, x ↦ −x"
+    },
+    {
+      "id": "FDIL",
+      "label": "Fonctions bilipschitziennes entre espaces métriques",
+      "family": "continuité",
+      "domain": "topologie métrique",
+      "property": "\\{\\, f : (X, d_X) \\to (Y, d_Y) \\mid f \\text{ bijective},\\ f \\text{ et } f^{-1} \\text{ lipschitziennes} \\,\\}",
+      "description": "Lipschitziennes, bijectives, d'inverse lipschitzien : les isomorphismes du monde métrique, à déformation bornée près. Strictement plus larges que les isométries.",
+      "example": "x ↦ 2x (constante 2), les similitudes, les isométries"
+    },
+    {
+      "id": "FHOME",
+      "label": "Homéomorphismes entre espaces métriques",
+      "family": "continuité",
+      "domain": "topologie métrique",
+      "property": "\\{\\, f : (X, d_X) \\to (Y, d_Y) \\mid f \\text{ bijective},\\ f \\text{ et } f^{-1} \\text{ continues} \\,\\}",
+      "description": "Bijections continues à réciproque continue : les isomorphismes du monde topologique restreints aux espaces métriques. Ils préservent les propriétés topologiques, mais pas la géométrie.",
+      "example": "√x : [0,1] → [0,1], x ↦ x³, l'exponentielle de ℝ sur ℝ"
+    },
+    {
+      "id": "EVDF",
+      "label": "Espaces vectoriels de dimension finie",
+      "family": "ensembles",
+      "domain": "algèbre linéaire",
+      "property": "\\{\\, (E, +, \\cdot) \\mid \\exists n \\in \\mathbb{N} \\text{, } E \\text{ admet une base de cardinal } n \\,\\}",
+      "description": "Les espaces vectoriels engendrés par un nombre fini de vecteurs. C'est le royaume de l'algèbre linéaire concrète : le rang est une dimension, les systèmes se résolvent, toutes les normes sont équivalentes et la boule unité est compacte. Aucun phénomène pathologique n'y survient.",
+      "example": "ℝⁿ, ℝₙ[X] (polynômes de degré ≤ n), Mₙ(ℝ).",
+      "notes": "Hub de l'algèbre linéaire : EVDF ⊆ EV, EVDF ≃ EVCN (théorème de la base) ; côté topologie, EVNF ≡ BOC1 (Riesz) et toutes les normes y sont équivalentes (EQN1)."
+    },
+    {
+      "id": "EVCN",
+      "label": "Espaces vectoriels isomorphes à un Kⁿ",
+      "family": "ensembles",
+      "domain": "algèbre linéaire",
+      "property": "\\{\\, E \\mid \\exists n \\in \\mathbb{N}, \\ \\exists \\varphi : E \\to K^n \\text{ isomorphisme linéaire} \\,\\}",
+      "description": "Les espaces entièrement décrits par n coordonnées : le choix d'une base envoie chaque vecteur sur ses composantes. Deux espaces isomorphes à un même Kⁿ sont isomorphes entre eux, la dimension est un invariant complet.",
+      "example": "ℝₙ[X] ≅ ℝⁿ⁺¹ via la base 1, X, …, Xⁿ.",
+      "notes": "Le théorème de la base (EVDF ↔ EVCN) dit que « de dimension finie » et « isomorphe à un Kⁿ » sont la même chose."
+    },
+    {
+      "id": "EQN1",
+      "label": "Espaces vectoriels dont toutes les normes sont équivalentes",
+      "family": "ensembles",
+      "domain": "topologie vectorielle",
+      "property": "\\{\\, (E, +, \\cdot) \\mid \\forall \\|\\cdot\\|_1, \\|\\cdot\\|_2 \\text{ normes sur } E, \\ \\exists c, C > 0 : c\\|x\\|_1 \\leq \\|x\\|_2 \\leq C\\|x\\|_1 \\,\\}",
+      "description": "Les espaces où le choix de la norme est indifférent : deux normes quelconques y définissent la même topologie, les mêmes suites convergentes, les mêmes applications continues. C'est exactement la signature de la dimension finie.",
+      "example": "Sur ℝ², ‖·‖₁, ‖·‖₂ et ‖·‖∞ sont équivalentes ; sur ℝ[P] au contraire, ‖P‖∞,[0,1] et ‖P‖₁ = ∫₀¹|P| ne le sont pas (‖Xⁿ‖∞ = 1 mais ‖Xⁿ‖₁ = 1/(n+1)).",
+      "notes": "Théorème des normes équivalentes : EQN1 ≡ EVDF. En dimension infinie, il existe toujours des normes non équivalentes."
+    },
+    {
+      "id": "EVNF",
+      "label": "Espaces vectoriels normés de dimension finie",
+      "family": "ensembles",
+      "domain": "topologie vectorielle",
+      "property": "\\{\\, (E, \\|\\cdot\\|) \\mid \\dim E < \\infty \\,\\}",
+      "description": "Le meilleur des mondes vectoriels : complets (Banach), séparables (polonais), à boule unité compacte (Heine-Borel : fermé borné = compact), et toutes les normes y sont équivalentes. La topologie ne dépend que de la dimension.",
+      "example": "(ℝⁿ, ‖·‖∞).",
+      "notes": "Caractérisé par le théorème de Riesz : EVNF ≡ BOC1. La compacité de la boule unité est le critère topologique de la dimension finie."
+    },
+    {
+      "id": "BOC1",
+      "label": "Espaces vectoriels normés à boule unité compacte",
+      "family": "ensembles",
+      "domain": "topologie vectorielle",
+      "property": "\\{\\, (E, \\|\\cdot\\|) \\mid \\overline{B}(0,1) \\text{ compacte} \\,\\}",
+      "description": "Les normés dont la boule unité fermée est compacte : la version intrinsèque de Heine-Borel. En dimension finie tout fermé borné est compact ; en dimension infinie la boule n'est jamais compacte (Riesz). Ces espaces sont automatiquement complets.",
+      "example": "(ℝⁿ, ‖·‖₂) : la boule fermée est compacte.",
+      "notes": "Théorème de Riesz : BOC1 ≡ EVNF. La compacité de la boule est le critère topologique de la dimension finie."
+    },
+    {
+      "id": "FLIN",
+      "label": "Formes linéaires",
+      "family": "applications linéaires",
+      "domain": "algèbre linéaire",
+      "property": "\\{\\, \\varphi : E \\to K \\mid \\varphi(\\lambda x + \\mu y) = \\lambda \\varphi(x) + \\mu \\varphi(y) \\,\\}",
+      "description": "Les applications linéaires à valeurs scalaires : le dual. Elles mesurent l'espace depuis K — hyperplans comme noyaux, coefficients comme coordonnées. En dimension infinie une forme peut être discontinue, c'est toute la différence entre dual algébrique et dual topologique.",
+      "example": "Sur ℝ², φ(x, y) = 2x + 3y ; sur ℝ[P], P ↦ coefficient de X³.",
+      "notes": "Hub du dual : BM1, RZH1, RZH2 et DIST s'y raccordent. Le noyau d'une forme non nulle est un hyperplan."
     }
   ],
   "edges": [
@@ -16154,16 +16569,6 @@
       "id": "e426"
     },
     {
-      "from": "MT1",
-      "to": "METR",
-      "kind": "inclusion",
-      "theorem": "La complétude présuppose une distance",
-      "statement": "Être complet parle de suites de Cauchy : c'est le fait d'un espace métrique.",
-      "depth": "définitoire",
-      "domain": "topologie métrique",
-      "id": "e428"
-    },
-    {
       "from": "MT2",
       "to": "TOPO",
       "kind": "inclusion",
@@ -16905,16 +17310,6 @@
       "id": "e559"
     },
     {
-      "from": "WTN2",
-      "to": "TOPO",
-      "kind": "inclusion",
-      "theorem": "« Variétés plongeables dans R^{2n} » : toujours un espace topologique",
-      "statement": "« Variétés plongeables dans R^{2n} » est habité par des objets qui sont un espace topologique : chaînon du lot J, qui remplace le fourre-tout « Ensembles » par une hiérarchie lisible.",
-      "depth": "définitoire",
-      "domain": "topologie",
-      "id": "e560"
-    },
-    {
       "from": "MV2",
       "to": "EVN",
       "kind": "inclusion",
@@ -17543,16 +17938,6 @@
       "depth": "définitoire",
       "domain": "analyse réelle",
       "id": "e645"
-    },
-    {
-      "from": "BJ4",
-      "to": "FMC",
-      "kind": "inclusion",
-      "theorem": "« Homéomorphismes monotones sur leur image » ⊆ « Fonctions métriques continues »",
-      "statement": "Tout élément de « Homéomorphismes monotones sur leur image » est un élément de « Fonctions métriques continues » : inclusion définitoire (v0.16.0).",
-      "depth": "définitoire",
-      "domain": "analyse réelle",
-      "id": "e646"
     },
     {
       "from": "BI2",
@@ -20092,16 +20477,6 @@
       "depth": "profond",
       "domain": "topologie différentielle",
       "id": "e911"
-    },
-    {
-      "from": "BNG2",
-      "to": "TOPO",
-      "kind": "inclusion",
-      "theorem": "« Variétés homéomorphes à la sphère S³ » : toujours un espace topologique",
-      "statement": "Un ensemble de variétés de dimension trois : chacune porte une topologie. Inclusion définitoire (v0.30.0).",
-      "depth": "définitoire",
-      "domain": "topologie",
-      "id": "e912"
     },
     {
       "from": "DGD",
@@ -23837,16 +24212,6 @@
       "domain": "topologie différentielle"
     },
     {
-      "id": "e1275",
-      "from": "SMO2",
-      "to": "TOPO",
-      "kind": "inclusion",
-      "theorem": "« Variétés homéomorphes à une sphère » : toujours des espaces topologiques",
-      "statement": "Une variété porte sa topologie : chaînon vers le hub des espaces topologiques, en miroir de celui des sphères de dimension 3 (e912).",
-      "depth": "définitoire",
-      "domain": "topologie"
-    },
-    {
       "id": "e1276",
       "from": "A1",
       "to": "SQTR",
@@ -24175,16 +24540,6 @@
       "statement": "Pour tout couplage non nul et toute fréquence irrationnelle, le spectre du presque Mathieu est un ensemble de Cantor : une poussière parfaite, indépendamment de la phase. La conjecture que Barry Simon avait baptisée des dix martinis promis par Mark Kac au solveur, restée ouverte un quart de siècle, fermée en 2009 ; la quasi-périodicité fabrique exactement la poussière du triadique.",
       "depth": "profond",
       "domain": "analyse harmonique"
-    },
-    {
-      "id": "e1314",
-      "from": "TMX2",
-      "to": "KP1",
-      "kind": "inclusion",
-      "theorem": "« Ensembles de Cantor » : toujours compacts",
-      "statement": "Un ensemble de Cantor est en particulier un espace compact : chaînon vers la maison des compacts.",
-      "depth": "définitoire",
-      "domain": "topologie"
     },
     {
       "id": "e1315",
@@ -26740,16 +27095,6 @@
       "domain": "algèbre générale"
     },
     {
-      "id": "e1561",
-      "from": "NFA2",
-      "to": "EV",
-      "kind": "inclusion",
-      "theorem": "Définition",
-      "statement": "Un élément de « Espaces vectoriels de dimension exactement n! » est un espace vectoriel : chaînon vers le hub « Espaces vectoriels ».",
-      "depth": "définitoire",
-      "domain": "algèbre générale"
-    },
-    {
       "id": "e1562",
       "from": "BLL1",
       "to": "GRAP",
@@ -28380,16 +28725,6 @@
       "domain": "topologie différentielle"
     },
     {
-      "id": "e1725",
-      "from": "HCB2",
-      "to": "TOPO",
-      "kind": "inclusion",
-      "theorem": "Définition",
-      "statement": "Un élément de « Produits V × [0, 1] entre variétés » est un espace topologique : chaînon vers le hub « Espaces topologiques ».",
-      "depth": "définitoire",
-      "domain": "topologie différentielle"
-    },
-    {
       "id": "e1726",
       "from": "SFT1",
       "to": "FMET",
@@ -28448,16 +28783,6 @@
       "statement": "Un élément de « Applications à point fixe » est une application : chaînon vers le hub « Applications ».",
       "depth": "définitoire",
       "domain": "topologie vectorielle"
-    },
-    {
-      "id": "e1732",
-      "from": "VCPX",
-      "to": "ZRM1",
-      "kind": "inclusion",
-      "theorem": "Définition",
-      "statement": "Tout élément de « Variétés complexes » est un ensemble : chaînon définitoire vers « Ensembles ».",
-      "depth": "définitoire",
-      "domain": "géométrie complexe"
     },
     {
       "id": "e1733",
@@ -29436,16 +29761,6 @@
       "kind": "inclusion",
       "theorem": "Définition",
       "statement": "Un élément de « Fibrés à dimension de Kodaira égale à dim Y » est une application : chaînon vers le hub « Applications ».",
-      "depth": "définitoire",
-      "domain": "géométrie complexe"
-    },
-    {
-      "id": "e1831",
-      "from": "UNI1",
-      "to": "TOPO",
-      "kind": "inclusion",
-      "theorem": "Définition",
-      "statement": "Un élément de « Surfaces de Riemann simplement connexes » est un espace topologique : chaînon vers le hub « Espaces topologiques ».",
       "depth": "définitoire",
       "domain": "géométrie complexe"
     },
@@ -30438,16 +30753,6 @@
       "domain": "topologie métrique"
     },
     {
-      "from": "HAUS",
-      "to": "TOPO",
-      "kind": "inclusion",
-      "theorem": "Un séparé est un espace topologique",
-      "statement": "On oublie l'axiome de séparation : un espace séparé est un espace topologique.",
-      "depth": "définitoire",
-      "id": "e1930",
-      "domain": "topologie"
-    },
-    {
       "from": "TOPO",
       "to": "HAUS",
       "kind": "anti",
@@ -30510,16 +30815,6 @@
       "id": "e1936",
       "domain": "topologie",
       "counterexample": "un espace à deux points muni de la topologie discrète : réunion de deux ouverts disjoints."
-    },
-    {
-      "from": "POLN",
-      "to": "TOPO",
-      "kind": "inclusion",
-      "theorem": "Un polonais est un espace topologique",
-      "statement": "On oublie la complétion : un espace polonais est un espace topologique (séparable et complètement métrisable).",
-      "depth": "définitoire",
-      "id": "e1937",
-      "domain": "topologie"
     },
     {
       "from": "TOPO",
@@ -31769,16 +32064,6 @@
       "statement": "Un groupe abélien de type fini est somme directe finie de ℤ et de cycliques : il est donné par un nombre fini de relations de commutation.",
       "depth": "classique",
       "id": "e2062",
-      "domain": "théorie des groupes"
-    },
-    {
-      "from": "LIBR",
-      "to": "CYL1",
-      "kind": "inclusion",
-      "theorem": "Un groupe libre est un groupe",
-      "statement": "Les groupes libres sont des groupes particuliers.",
-      "depth": "définitoire",
-      "id": "e2063",
       "domain": "théorie des groupes"
     },
     {
@@ -33042,6 +33327,1720 @@
       "depth": "facile",
       "id": "e2184",
       "domain": "théorie des corps"
+    },
+    {
+      "from": "GSIM",
+      "to": "CYL1",
+      "kind": "inclusion",
+      "theorem": "« Groupes simples » : toujours un groupe",
+      "statement": "Un groupe simple est en particulier un groupe : chaînon vers le hub « Groupes ».",
+      "depth": "définitoire",
+      "domain": "théorie des groupes",
+      "id": "e2185"
+    },
+    {
+      "from": "GFSI",
+      "to": "GSIM",
+      "kind": "inclusion",
+      "theorem": "« Groupes finis simples » : toujours simples",
+      "statement": "Un groupe fini simple est un groupe simple.",
+      "depth": "définitoire",
+      "domain": "théorie des groupes",
+      "id": "e2186"
+    },
+    {
+      "from": "CYL1",
+      "to": "GSIM",
+      "kind": "anti",
+      "theorem": "ℤ",
+      "statement": "Un groupe n'est pas toujours simple.",
+      "depth": "classique",
+      "domain": "théorie des groupes",
+      "id": "e2187",
+      "counterexample": "ℤ : 2ℤ est un sous-groupe normal propre (le quotient ℤ/2ℤ est non trivial)."
+    },
+    {
+      "from": "ABG1",
+      "to": "GSIM",
+      "kind": "anti",
+      "theorem": "ℤ/4ℤ",
+      "statement": "Un groupe abélien n'est pas toujours simple.",
+      "depth": "classique",
+      "domain": "théorie des groupes",
+      "id": "e2188",
+      "counterexample": "ℤ/4ℤ : son sous-groupe ℤ/2ℤ est normal propre."
+    },
+    {
+      "from": "GTFE",
+      "to": "CYL1",
+      "kind": "inclusion",
+      "theorem": "« Groupes exempts de torsion » : toujours des groupes",
+      "statement": "Un groupe exempt de torsion est en particulier un groupe : chaînon vers le hub « Groupes ».",
+      "depth": "définitoire",
+      "domain": "théorie des groupes",
+      "id": "e2189"
+    },
+    {
+      "from": "LIBR",
+      "to": "GTFE",
+      "kind": "inclusion",
+      "theorem": "Un groupe libre est sans torsion",
+      "statement": "Dans un groupe libre, un mot réduit non vide ne peut pas revenir au mot vide : tout élément non neutre est d'ordre infini.",
+      "depth": "classique",
+      "domain": "théorie des groupes",
+      "id": "e2190"
+    },
+    {
+      "from": "CYL1",
+      "to": "GTFE",
+      "kind": "anti",
+      "theorem": "ℤ/2ℤ",
+      "statement": "Un groupe n'est pas toujours exempt de torsion.",
+      "depth": "facile",
+      "domain": "théorie des groupes",
+      "id": "e2191",
+      "counterexample": "ℤ/2ℤ : son élément non neutre est d'ordre 2."
+    },
+    {
+      "from": "GDIV",
+      "to": "GTFE",
+      "kind": "anti",
+      "theorem": "ℚ/ℤ",
+      "statement": "Un groupe abélien divisible n'est pas toujours exempt de torsion.",
+      "depth": "classique",
+      "domain": "théorie des groupes",
+      "id": "e2192",
+      "counterexample": "ℚ/ℤ : l'image de 1/n est d'ordre n (torsion), et le groupe est divisible car ℚ l'est."
+    },
+    {
+      "from": "GRF",
+      "to": "CYL1",
+      "kind": "inclusion",
+      "theorem": "« Groupes résiduellement finis » : toujours des groupes",
+      "statement": "Un groupe résiduellement fini est en particulier un groupe : chaînon vers le hub « Groupes ».",
+      "depth": "définitoire",
+      "domain": "théorie des groupes",
+      "id": "e2193"
+    },
+    {
+      "from": "LIBR",
+      "to": "GRF",
+      "kind": "inclusion",
+      "theorem": "Les groupes libres sont résiduellement finis",
+      "statement": "Dans un groupe libre, chaque mot réduit non vide reste non nul dans un quotient fini (on sépare ses lettres par une action sur les classes d'un sous-groupe d'indice fini, puis on réduit modulo l'indice).",
+      "depth": "classique",
+      "domain": "théorie des groupes",
+      "id": "e2194"
+    },
+    {
+      "from": "KRB1",
+      "to": "GRF",
+      "kind": "inclusion",
+      "theorem": "Réduction modulo n",
+      "statement": "Un groupe abélien de type fini est résiduellement fini : la projection produit des ℤ/nℤ sépare tout élément non nul du neutre.",
+      "depth": "classique",
+      "domain": "théorie des groupes",
+      "id": "e2195"
+    },
+    {
+      "from": "CYL1",
+      "to": "GRF",
+      "kind": "anti",
+      "theorem": "ℚ",
+      "statement": "Un groupe n'est pas toujours résiduellement fini.",
+      "depth": "classique",
+      "domain": "théorie des groupes",
+      "id": "e2196",
+      "counterexample": "ℚ : l'image d'un groupe divisible dans un groupe fini reste divisible, et un groupe fini divisible est trivial ; donc tout morphisme de ℚ vers un groupe fini est nul."
+    },
+    {
+      "from": "GNIL",
+      "to": "GRF",
+      "kind": "anti",
+      "theorem": "ℚ",
+      "statement": "Un groupe nilpotent n'est pas toujours résiduellement fini : l'hypothèse de type fini (théorème de Mal'cev) est nécessaire.",
+      "depth": "classique",
+      "domain": "théorie des groupes",
+      "id": "e2197",
+      "counterexample": "ℚ : abélien donc nilpotent, mais sans aucun quotient fini non trivial."
+    },
+    {
+      "from": "GPOL",
+      "to": "GTF",
+      "kind": "inclusion",
+      "theorem": "« Croissance polynomiale » : type fini requis",
+      "statement": "La croissance se mesure sur une partie génératrice finie : un groupe à croissance polynomiale est de type fini.",
+      "depth": "définitoire",
+      "domain": "théorie des groupes",
+      "id": "e2198"
+    },
+    {
+      "from": "GVN",
+      "to": "GTF",
+      "kind": "inclusion",
+      "theorem": "« Virtuellement nilpotent » de type fini",
+      "statement": "Un groupe virtuellement nilpotent de type fini est, en particulier, de type fini.",
+      "depth": "définitoire",
+      "domain": "théorie des groupes",
+      "id": "e2199"
+    },
+    {
+      "from": "GPOL",
+      "to": "GVN",
+      "kind": "equivalence",
+      "theorem": "Théorème de Gromov (1981)",
+      "statement": "Un groupe de type fini est à croissance polynomiale si et seulement s'il est virtuellement nilpotent.",
+      "depth": "profond",
+      "domain": "théorie des groupes",
+      "id": "e2200"
+    },
+    {
+      "from": "CYL1",
+      "to": "GPOL",
+      "kind": "anti",
+      "theorem": "F₂",
+      "statement": "Un groupe n'est pas toujours à croissance polynomiale.",
+      "depth": "classique",
+      "domain": "théorie des groupes",
+      "id": "e2201",
+      "counterexample": "Le groupe libre F₂ : la boule de rayon n contient 4·3ⁿ⁻¹ éléments (son arbre de Cayley est 4-régulier), croissance exponentielle."
+    },
+    {
+      "from": "GAB",
+      "to": "ABG1",
+      "kind": "inclusion",
+      "theorem": "« Groupes abéliens libres » : toujours abéliens",
+      "statement": "Une somme directe de copies de ℤ est un groupe abélien.",
+      "depth": "définitoire",
+      "domain": "théorie des groupes",
+      "id": "e2202"
+    },
+    {
+      "from": "GAB",
+      "to": "GTFE",
+      "kind": "inclusion",
+      "theorem": "ℤ^{(I)} est sans torsion",
+      "statement": "Une somme directe de copies de ℤ, plongée dans l'espace vectoriel ℚ^{(I)}, n'a aucun élément d'ordre fini.",
+      "depth": "facile",
+      "domain": "théorie des groupes",
+      "id": "e2203"
+    },
+    {
+      "from": "ABG1",
+      "to": "GAB",
+      "kind": "anti",
+      "theorem": "ℤ/2ℤ",
+      "statement": "Un groupe abélien n'est pas toujours libre.",
+      "depth": "classique",
+      "domain": "théorie des groupes",
+      "id": "e2204",
+      "counterexample": "ℤ/2ℤ : tout sous-groupe d'un abélien libre est exempt de torsion, or ℤ/2ℤ est de torsion."
+    },
+    {
+      "from": "GAB",
+      "to": "LIBR",
+      "kind": "anti",
+      "theorem": "ℤ²",
+      "statement": "Un groupe abélien libre n'est pas toujours un groupe libre.",
+      "depth": "classique",
+      "domain": "théorie des groupes",
+      "id": "e2205",
+      "counterexample": "ℤ² : un groupe libre de rang ≥ 2 est non abélien, or ℤ² est abélien (seuls le groupe trivial et ℤ sont à la fois libres et abéliens libres)."
+    },
+    {
+      "from": "VARTOP",
+      "to": "TOPO",
+      "kind": "inclusion",
+      "theorem": "« Variétés topologiques » : toujours des espaces topologiques",
+      "statement": "Une variété topologique est en particulier un espace topologique : chaînon vers le hub des espaces topologiques.",
+      "depth": "définitoire",
+      "domain": "topologie",
+      "id": "e2206"
+    },
+    {
+      "from": "WTN1",
+      "to": "VARLIS",
+      "kind": "inclusion",
+      "theorem": "« Variétés lisses de dimension n » : toujours lisses",
+      "statement": "Les variétés lisses de dimension fixée n sont des variétés lisses, parmi toutes les dimensions.",
+      "depth": "définitoire",
+      "domain": "topologie différentielle",
+      "id": "e2208"
+    },
+    {
+      "from": "VARTOP",
+      "to": "VARLIS",
+      "kind": "anti",
+      "theorem": "Kervaire (1960)",
+      "statement": "Une variété topologique n'admet pas toujours de structure lisse.",
+      "depth": "profond",
+      "domain": "topologie différentielle",
+      "id": "e2209",
+      "counterexample": "La 10-variété de Kervaire (1960), première variété topologique ne portant aucune structure différentiable ; en dimension 4, la variété E8 de Freedman (1982) n'est pas lissable non plus."
+    },
+    {
+      "from": "VARBOR",
+      "to": "TOPO",
+      "kind": "inclusion",
+      "theorem": "« Variétés à bord » : toujours des espaces topologiques",
+      "statement": "Une variété à bord est en particulier un espace topologique : chaînon vers le hub des espaces topologiques.",
+      "depth": "définitoire",
+      "domain": "topologie",
+      "id": "e2210"
+    },
+    {
+      "from": "HCB2",
+      "to": "VARBOR",
+      "kind": "inclusion",
+      "theorem": "V × [0,1] est une variété à bord",
+      "statement": "Le produit d'une variété par un segment est une variété à bord, de bord V × {0} ∪ V × {1} : le cadre des cobordismes.",
+      "depth": "définitoire",
+      "domain": "topologie différentielle",
+      "id": "e2211"
+    },
+    {
+      "from": "VARBOR",
+      "to": "VARTOP",
+      "kind": "anti",
+      "theorem": "[0, 1]",
+      "statement": "Une variété à bord n'est pas toujours une variété (sans bord).",
+      "depth": "classique",
+      "domain": "topologie différentielle",
+      "id": "e2212",
+      "counterexample": "[0, 1] : un voisinage de 1 s'écrit [1−ε, 1] ≅ [0, 1[. Or [0, 1[ est connexe et privé du point 0 il reste connexe, alors qu'aucun intervalle ouvert de ℝ privé d'un point intérieur ne le reste : le bord n'a pas de voisinage localement euclidien."
+    },
+    {
+      "from": "VORI",
+      "to": "VARTOP",
+      "kind": "inclusion",
+      "theorem": "« Variétés orientables » : toujours des variétés",
+      "statement": "Une variété orientable est en particulier une variété topologique.",
+      "depth": "définitoire",
+      "domain": "topologie différentielle",
+      "id": "e2213"
+    },
+    {
+      "from": "VARTOP",
+      "to": "VORI",
+      "kind": "anti",
+      "theorem": "ℝP²",
+      "statement": "Une variété n'est pas toujours orientable.",
+      "depth": "classique",
+      "domain": "topologie différentielle",
+      "id": "e2214",
+      "counterexample": "Le plan projectif ℝP² : le voisinage d'une droite projective est un ruban de Möbius, et en le parcourant l'orientation locale se retourne (la bouteille de Klein fait de même)."
+    },
+    {
+      "from": "VARKMP",
+      "to": "VARTOP",
+      "kind": "inclusion",
+      "theorem": "« Variétés topologiques compactes » : toujours des variétés",
+      "statement": "Une variété topologique compacte est en particulier une variété topologique.",
+      "depth": "définitoire",
+      "domain": "topologie différentielle",
+      "id": "e2216"
+    },
+    {
+      "from": "VARTOP",
+      "to": "VARKMP",
+      "kind": "anti",
+      "theorem": "ℝ",
+      "statement": "Une variété n'est pas toujours compacte.",
+      "depth": "facile",
+      "domain": "topologie différentielle",
+      "id": "e2217",
+      "counterexample": "ℝ lui-même : le recouvrement par les intervalles ]−n, n[ n'admet aucun sous-recouvrement fini."
+    },
+    {
+      "from": "SMO2",
+      "to": "VARKMP",
+      "kind": "inclusion",
+      "theorem": "La compacité passe aux homéomorphismes",
+      "statement": "Une variété homéomorphe à une sphère est compacte : la compacité est préservée par homéomorphisme.",
+      "depth": "classique",
+      "domain": "topologie différentielle",
+      "id": "e2218"
+    },
+    {
+      "from": "BNG2",
+      "to": "VARKMP",
+      "kind": "inclusion",
+      "theorem": "S³ est compacte",
+      "statement": "Une variété homéomorphe à la sphère S³ est compacte.",
+      "depth": "classique",
+      "domain": "topologie différentielle",
+      "id": "e2219"
+    },
+    {
+      "from": "MRC1",
+      "to": "VARKMP",
+      "kind": "inclusion",
+      "theorem": "« Compactes à caractéristique d'Euler nulle » : compactes",
+      "statement": "Une variété compacte à caractéristique d'Euler nulle est en particulier une variété topologique compacte.",
+      "depth": "définitoire",
+      "domain": "topologie différentielle",
+      "id": "e2220"
+    },
+    {
+      "from": "SURF",
+      "to": "VARTOP",
+      "kind": "inclusion",
+      "theorem": "« Surfaces » : toujours des variétés",
+      "statement": "Une surface (variété de dimension 2) est en particulier une variété topologique.",
+      "depth": "définitoire",
+      "domain": "topologie différentielle",
+      "id": "e2221"
+    },
+    {
+      "from": "VARTOP",
+      "to": "SURF",
+      "kind": "anti",
+      "theorem": "ℝ³",
+      "statement": "Une variété n'est pas toujours de dimension 2.",
+      "depth": "facile",
+      "domain": "topologie différentielle",
+      "id": "e2222",
+      "counterexample": "ℝ³ : chaque point a des voisinages homéomorphes à des ouverts de ℝ³, jamais de ℝ², par invariance de la dimension (Brouwer, déjà tracée en e962)."
+    },
+    {
+      "from": "UNI1",
+      "to": "SURF",
+      "kind": "inclusion",
+      "theorem": "Une surface de Riemann est une surface",
+      "statement": "Une surface de Riemann (complexe, de dimension 1) est une surface réelle de dimension 2.",
+      "depth": "définitoire",
+      "domain": "géométrie complexe",
+      "id": "e2223"
+    },
+    {
+      "from": "WTN2",
+      "to": "VARTOP",
+      "kind": "inclusion",
+      "theorem": "« Variétés plongeables dans R^{2n} » : toujours des variétés",
+      "statement": "Une variété plongeable dans ℝ^{2n} est en particulier une variété topologique.",
+      "depth": "définitoire",
+      "domain": "topologie",
+      "id": "e2224"
+    },
+    {
+      "from": "VCONN",
+      "to": "VARTOP",
+      "kind": "inclusion",
+      "theorem": "« Variétés connexes » : toujours des variétés",
+      "statement": "Une variété connexe est en particulier une variété topologique.",
+      "depth": "définitoire",
+      "domain": "topologie différentielle",
+      "id": "e2225"
+    },
+    {
+      "from": "VARTOP",
+      "to": "VCONN",
+      "kind": "anti",
+      "theorem": "Deux cercles disjoints",
+      "statement": "Une variété n'est pas toujours connexe.",
+      "depth": "facile",
+      "domain": "topologie différentielle",
+      "id": "e2226",
+      "counterexample": "La réunion de deux cercles disjoints : une variété à deux composantes connexes."
+    },
+    {
+      "from": "VCONN",
+      "to": "CONN",
+      "kind": "inclusion",
+      "theorem": "« Variétés connexes » : toujours des espaces connexes",
+      "statement": "Une variété connexe est en particulier un espace topologique connexe.",
+      "depth": "définitoire",
+      "domain": "topologie",
+      "id": "e2227"
+    },
+    {
+      "from": "VSIMP",
+      "to": "VCONN",
+      "kind": "inclusion",
+      "theorem": "« Simplement connexe » : en particulier connexe",
+      "statement": "Une variété simplement connexe est en particulier connexe : la simple connexité exige la connexité par arcs.",
+      "depth": "définitoire",
+      "domain": "topologie différentielle",
+      "id": "e2228"
+    },
+    {
+      "from": "VCONN",
+      "to": "VSIMP",
+      "kind": "anti",
+      "theorem": "S¹",
+      "statement": "Une variété connexe n'est pas toujours simplement connexe.",
+      "depth": "classique",
+      "domain": "topologie différentielle",
+      "id": "e2229",
+      "counterexample": "Le cercle S¹ : son lacet générateur ne se contracte pas (π₁(S¹) = ℤ), par exemple parce que son revêtement ℝ → S¹ est non trivial."
+    },
+    {
+      "from": "BGR1",
+      "to": "VSIMP",
+      "kind": "inclusion",
+      "theorem": "« Simplement connexes à géodésiques toutes fermées » : simplement connexes",
+      "statement": "Les variétés simplement connexes à géodésiques toutes fermées sont en particulier simplement connexes.",
+      "depth": "définitoire",
+      "domain": "topologie différentielle",
+      "id": "e2230"
+    },
+    {
+      "from": "VSIMP",
+      "to": "VORI",
+      "kind": "inclusion",
+      "theorem": "Toute variété simplement connexe est orientable",
+      "statement": "Le revêtement d'orientation, à deux feuillets, est nécessairement trivial dès que la variété est simplement connexe.",
+      "depth": "classique",
+      "domain": "topologie différentielle",
+      "id": "e2231"
+    },
+    {
+      "from": "BNG2",
+      "to": "VSIMP",
+      "kind": "inclusion",
+      "theorem": "S³ est simplement connexe",
+      "statement": "Toute variété homéomorphe à S³ est simplement connexe : π₁(Sⁿ) = 0 pour n ≥ 2.",
+      "depth": "classique",
+      "domain": "topologie différentielle",
+      "id": "e2232"
+    },
+    {
+      "from": "UNI1",
+      "to": "VSIMP",
+      "kind": "inclusion",
+      "theorem": "« Surfaces de Riemann simplement connexes » : simplement connexes",
+      "statement": "Une surface de Riemann simplement connexe est en particulier une variété simplement connexe.",
+      "depth": "définitoire",
+      "domain": "géométrie complexe",
+      "id": "e2233"
+    },
+    {
+      "from": "VPAR",
+      "to": "VARLIS",
+      "kind": "inclusion",
+      "theorem": "« Variétés parallélisables » : toujours lisses",
+      "statement": "Le fibré tangent n'est défini que sur une variété lisse : une variété parallélisable est en particulier lisse.",
+      "depth": "définitoire",
+      "domain": "topologie différentielle",
+      "id": "e2234"
+    },
+    {
+      "from": "LGRP",
+      "to": "VPAR",
+      "kind": "inclusion",
+      "theorem": "Un groupe de Lie est parallélisable",
+      "statement": "Les translations à gauche transportent un repère de l'identité en un repère en tout point : le fibré tangent d'un groupe de Lie est trivial.",
+      "depth": "classique",
+      "domain": "théorie des groupes",
+      "id": "e2235"
+    },
+    {
+      "from": "VARLIS",
+      "to": "VPAR",
+      "kind": "anti",
+      "theorem": "S²",
+      "statement": "Une variété lisse n'est pas toujours parallélisable.",
+      "depth": "classique",
+      "domain": "topologie différentielle",
+      "id": "e2236",
+      "counterexample": "S² : la boule chevelue interdit tout champ de vecteurs tangent sans zéro, donc aucun repère global du fibré tangent (théorème déjà tracé pour les sphères paires)."
+    },
+    {
+      "from": "VFRM",
+      "to": "VARKMP",
+      "kind": "inclusion",
+      "theorem": "« Fermées » : compactes",
+      "statement": "Une variété fermée est compacte : sans bord et compacte sont les deux moitiés de la définition.",
+      "depth": "définitoire",
+      "domain": "topologie différentielle",
+      "id": "e2238"
+    },
+    {
+      "from": "VARKMP",
+      "to": "VFRM",
+      "kind": "anti",
+      "theorem": "Le disque fermé",
+      "statement": "Une variété compacte n'est pas toujours fermée (sans bord).",
+      "depth": "facile",
+      "domain": "topologie différentielle",
+      "id": "e2239",
+      "counterexample": "Le disque fermé D² : compact, mais son bord S¹ l'empêche d'être fermée au sens des variétés."
+    },
+    {
+      "from": "BNG1",
+      "to": "VFRM",
+      "kind": "inclusion",
+      "theorem": "« 3-variétés fermées » : fermées",
+      "statement": "Les 3-variétés fermées où toute courbe tient dans une boule sont en particulier des variétés fermées.",
+      "depth": "définitoire",
+      "domain": "topologie différentielle",
+      "id": "e2240"
+    },
+    {
+      "from": "VTRI",
+      "to": "VARTOP",
+      "kind": "inclusion",
+      "theorem": "« Variétés triangulables » : toujours des variétés",
+      "statement": "Une variété triangulable est en particulier une variété topologique.",
+      "depth": "définitoire",
+      "domain": "topologie différentielle",
+      "id": "e2241"
+    },
+    {
+      "from": "VARLIS",
+      "to": "VTRI",
+      "kind": "inclusion",
+      "theorem": "Cairns-Whitehead",
+      "statement": "Toute variété lisse admet une triangulation compatible avec sa structure différentiable.",
+      "depth": "classique",
+      "domain": "topologie différentielle",
+      "id": "e2242"
+    },
+    {
+      "from": "VARTOP",
+      "to": "VTRI",
+      "kind": "anti",
+      "theorem": "E8 (Freedman-Casson)",
+      "statement": "Une variété topologique n'est pas toujours triangulable.",
+      "depth": "profond",
+      "domain": "topologie différentielle",
+      "id": "e2243",
+      "counterexample": "La variété E8 de Freedman (1982), en dimension 4, n'admet aucune triangulation : Casson a montré que sa forme d'intersection contredit tout complexe simplicial."
+    },
+    {
+      "from": "VBORD",
+      "to": "VARTOP",
+      "kind": "inclusion",
+      "theorem": "Le bord d'une variété à bord est une variété",
+      "statement": "Le bord ∂M d'une variété à bord est une variété sans bord : les points du bord, vus depuis un collier, retrouvent des cartes euclidiennes une dimension en dessous.",
+      "depth": "classique",
+      "domain": "topologie différentielle",
+      "id": "e2244"
+    },
+    {
+      "from": "VDIMI",
+      "to": "VFRM",
+      "kind": "inclusion",
+      "theorem": "« Fermées lisses de dimension impaire » : fermées",
+      "statement": "Une variété fermée lisse de dimension impaire est en particulier une variété fermée.",
+      "depth": "définitoire",
+      "domain": "topologie différentielle",
+      "id": "e2245"
+    },
+    {
+      "from": "VDIMI",
+      "to": "MRC1",
+      "kind": "inclusion",
+      "theorem": "Dualité de Poincaré",
+      "statement": "Sur une variété fermée de dimension impaire, la dualité de Poincaré appaire les nombres de Betti d'indices complémentaires : la caractéristique d'Euler est nulle.",
+      "depth": "classique",
+      "domain": "topologie algébrique",
+      "id": "e2247"
+    },
+    {
+      "from": "MRC1",
+      "to": "VDIMI",
+      "kind": "anti",
+      "theorem": "Le tore",
+      "statement": "Une variété compacte à caractéristique d'Euler nulle n'est pas toujours de dimension impaire.",
+      "depth": "facile",
+      "domain": "topologie différentielle",
+      "id": "e2248",
+      "counterexample": "Le tore S¹ × S¹ : dimension 2 (paire) et caractéristique d'Euler nulle (1 - 2 + 1 = 0)."
+    },
+    {
+      "from": "VCPX",
+      "to": "VARLIS",
+      "kind": "inclusion",
+      "theorem": "Une variété complexe est une variété lisse",
+      "statement": "Une variété complexe de dimension complexe n est une variété lisse réelle de dimension 2n : l'atlas holomorphe est en particulier un atlas lisse.",
+      "depth": "définitoire",
+      "domain": "géométrie complexe",
+      "id": "e2249"
+    },
+    {
+      "from": "UNI1",
+      "to": "VCPX",
+      "kind": "inclusion",
+      "theorem": "« Surfaces de Riemann » : variétés complexes",
+      "statement": "Une surface de Riemann est une variété complexe de dimension 1.",
+      "depth": "définitoire",
+      "domain": "géométrie complexe",
+      "id": "e2250"
+    },
+    {
+      "from": "TDIX",
+      "to": "METR",
+      "kind": "inclusion",
+      "theorem": "Distance discrète",
+      "statement": "Tout espace discret est métrisable : d(x,y) = 1 si x ≠ y et 0 sinon est une distance qui induit exactement la topologie discrète.",
+      "depth": "immédiat",
+      "domain": "topologie",
+      "id": "e2251"
+    },
+    {
+      "from": "HAUS",
+      "to": "TSEP",
+      "kind": "inclusion",
+      "theorem": "Séparé ⇒ points fermés",
+      "statement": "Tout espace séparé est T1 : pour y ≠ x, un voisinage de y disjoint d'un voisinage de x évite x, donc le complémentaire de {x} est ouvert.",
+      "depth": "facile",
+      "domain": "topologie",
+      "id": "e2252"
+    },
+    {
+      "from": "TSEP",
+      "to": "TOPO",
+      "kind": "inclusion",
+      "theorem": "« Espaces T1 » : toujours des espaces topologiques",
+      "statement": "Un espace T1 est en particulier un espace topologique : chaînon vers le hub « Espaces topologiques ».",
+      "depth": "définitoire",
+      "domain": "topologie",
+      "id": "e2253"
+    },
+    {
+      "from": "TSPT",
+      "to": "TOPO",
+      "kind": "inclusion",
+      "theorem": "« Espaces séparables » : toujours des espaces topologiques",
+      "statement": "Un espace séparable est en particulier un espace topologique : chaînon vers le hub « Espaces topologiques ».",
+      "depth": "définitoire",
+      "domain": "topologie",
+      "id": "e2254"
+    },
+    {
+      "from": "TSC2",
+      "to": "TSPT",
+      "kind": "inclusion",
+      "theorem": "Choisir un point par ouvert de base",
+      "statement": "Tout espace à base dénombrable est séparable : un point choisi dans chaque ouvert de base forme une partie dénombrable dense.",
+      "depth": "facile",
+      "domain": "topologie",
+      "id": "e2255"
+    },
+    {
+      "from": "URM1",
+      "to": "TSC2",
+      "kind": "inclusion",
+      "theorem": "Définition",
+      "statement": "« Régulier à base dénombrable » inclut la base dénombrable : chaînon vers le nouveau nœud des bases dénombrables.",
+      "depth": "définitoire",
+      "domain": "topologie",
+      "id": "e2256"
+    },
+    {
+      "from": "URM2",
+      "to": "TSPT",
+      "kind": "inclusion",
+      "theorem": "Définition",
+      "statement": "« Séparable métrisable » inclut la séparabilité : chaînon vers le nouveau nœud des séparables.",
+      "depth": "définitoire",
+      "domain": "topologie",
+      "id": "e2257"
+    },
+    {
+      "from": "TREG",
+      "to": "HAUS",
+      "kind": "inclusion",
+      "theorem": "Séparer un point du fermé singleton",
+      "statement": "Tout espace régulier est séparé : pour x ≠ y, le singleton {y} est fermé (T1) et ne contient pas x, donc x et {y} se séparent par des ouverts disjoints.",
+      "depth": "facile",
+      "domain": "topologie",
+      "id": "e2258"
+    },
+    {
+      "from": "TKCH",
+      "to": "KP1",
+      "kind": "inclusion",
+      "theorem": "Définition",
+      "statement": "Un compact séparé est en particulier compact.",
+      "depth": "définitoire",
+      "domain": "topologie",
+      "id": "e2259"
+    },
+    {
+      "from": "TKCH",
+      "to": "HAUS",
+      "kind": "inclusion",
+      "theorem": "Définition",
+      "statement": "Un compact séparé est en particulier séparé.",
+      "depth": "définitoire",
+      "domain": "topologie",
+      "id": "e2260"
+    },
+    {
+      "from": "TKCH",
+      "to": "NRM1",
+      "kind": "inclusion",
+      "theorem": "Un compact séparé est normal",
+      "statement": "Deux fermés disjoints d'un compact séparé sont séparés par des ouverts disjoints : la compacité permet d'itérer la séparation point par point.",
+      "depth": "classique",
+      "domain": "topologie",
+      "id": "e2261"
+    },
+    {
+      "from": "TKCH",
+      "to": "MT2",
+      "kind": "inclusion",
+      "theorem": "Baire compact",
+      "statement": "Tout compact séparé est de Baire : une intersection dénombrable d'ouverts denses y est dense (lemme de Baire, version compacité).",
+      "depth": "classique",
+      "domain": "topologie",
+      "id": "e2262"
+    },
+    {
+      "from": "POLN",
+      "to": "MT2",
+      "kind": "inclusion",
+      "theorem": "Un polonais est de Baire",
+      "statement": "Tout espace polonais est de Baire : métrisable par une distance complète, le lemme de Baire s'applique.",
+      "depth": "classique",
+      "domain": "topologie",
+      "id": "e2263"
+    },
+    {
+      "from": "TOPO",
+      "to": "TDIX",
+      "kind": "anti",
+      "theorem": "{0} n'est pas ouvert",
+      "statement": "Un espace topologique n'est pas toujours discret.",
+      "counterexample": "ℝ avec sa topologie usuelle : le singleton {0} n'est pas ouvert.",
+      "depth": "immédiat",
+      "domain": "topologie",
+      "id": "e2264"
+    },
+    {
+      "from": "TDIX",
+      "to": "KP1",
+      "kind": "anti",
+      "theorem": "ℕ discret",
+      "statement": "Un espace discret n'est pas toujours compact.",
+      "counterexample": "ℕ discret : le recouvrement par singletons n'admet aucun sous-recouvrement fini.",
+      "depth": "facile",
+      "domain": "topologie",
+      "id": "e2265"
+    },
+    {
+      "from": "TDIX",
+      "to": "CONN",
+      "kind": "anti",
+      "theorem": "Deux points isolés",
+      "statement": "Un espace discret n'est pas toujours connexe.",
+      "counterexample": "{0,1} muni de la topologie discrète : {0} et {1} sont ouverts, disjoints et non vides.",
+      "depth": "facile",
+      "domain": "topologie",
+      "id": "e2266"
+    },
+    {
+      "from": "TOPO",
+      "to": "TSEP",
+      "kind": "anti",
+      "theorem": "Topologie grossière",
+      "statement": "Un espace topologique n'est pas toujours T1.",
+      "counterexample": "{a,b} muni de la topologie grossière : le singleton {a} n'est pas fermé, car son complémentaire {b} n'est pas ouvert.",
+      "depth": "immédiat",
+      "domain": "topologie",
+      "id": "e2267"
+    },
+    {
+      "from": "TSEP",
+      "to": "HAUS",
+      "kind": "anti",
+      "theorem": "Topologie cofinie",
+      "statement": "T1 n'implique pas séparé.",
+      "counterexample": "ℝ muni de la topologie cofinie (ouverts = complémentaires de parties finies) : chaque singleton est fermé, mais deux ouverts non vides se rencontrent toujours.",
+      "depth": "classique",
+      "domain": "topologie",
+      "id": "e2268"
+    },
+    {
+      "from": "HAUS",
+      "to": "TREG",
+      "kind": "anti",
+      "theorem": "Droite de K (Munkres)",
+      "statement": "Séparé n'implique pas régulier.",
+      "counterexample": "ℝ_K, engendrée par les ouverts usuels et les ]a,b[ privés de K = {1/n : n ≥ 1} : séparée, mais le point 0 et le fermé K ne peuvent pas être séparés par des ouverts disjoints.",
+      "depth": "classique",
+      "domain": "topologie",
+      "id": "e2269"
+    },
+    {
+      "from": "TREG",
+      "to": "NRM1",
+      "kind": "anti",
+      "theorem": "Plan de Sorgenfrey",
+      "statement": "Régulier n'implique pas normal.",
+      "counterexample": "le plan de Sorgenfrey (produit de deux droites de Sorgenfrey) : régulier, mais pas normal (lemme de Jones : la diagonale D = {(x, −x)} est un fermé discret de cardinal 2^ℵ₀, incompatible avec la séparabilité d'un espace normal).",
+      "depth": "profond",
+      "domain": "topologie",
+      "id": "e2270"
+    },
+    {
+      "from": "KP1",
+      "to": "TKCH",
+      "kind": "anti",
+      "theorem": "Compact grossier",
+      "statement": "Un compact n'est pas toujours séparé.",
+      "counterexample": "{a,b} muni de la topologie grossière : compact (tout espace fini l'est), mais a et b ne peuvent pas être séparés par des ouverts disjoints.",
+      "depth": "immédiat",
+      "domain": "topologie",
+      "id": "e2271"
+    },
+    {
+      "from": "HAUS",
+      "to": "TKCH",
+      "kind": "anti",
+      "theorem": "ℝ",
+      "statement": "Un espace séparé n'est pas toujours compact.",
+      "counterexample": "ℝ usuel : séparé, mais le recouvrement ]−n, n[ n'admet aucun sous-recouvrement fini.",
+      "depth": "facile",
+      "domain": "topologie",
+      "id": "e2272"
+    },
+    {
+      "from": "TSPT",
+      "to": "TSC2",
+      "kind": "anti",
+      "theorem": "Droite de Sorgenfrey",
+      "statement": "Séparable n'implique pas base dénombrable.",
+      "counterexample": "la droite de Sorgenfrey (demi-droites [a, b[) : ℚ y est dense, mais toute base doit contenir un ouvert distinct pour chaque x ∈ ℝ, car aucun [x, x+ε[ n'en contient un autre issu d'un point différent.",
+      "depth": "classique",
+      "domain": "topologie",
+      "id": "e2273"
+    },
+    {
+      "from": "TSPT",
+      "to": "METR",
+      "kind": "anti",
+      "theorem": "Sorgenfrey non métrisable",
+      "statement": "Séparable n'implique pas métrisable.",
+      "counterexample": "la droite de Sorgenfrey : séparable, mais non métrisable (un espace métrique séparable est à base dénombrable, et elle n'en a pas).",
+      "depth": "classique",
+      "domain": "topologie",
+      "id": "e2274"
+    },
+    {
+      "from": "METR",
+      "to": "TSPT",
+      "kind": "anti",
+      "theorem": "Distance discrète non dénombrable",
+      "statement": "Métrisable n'implique pas séparable.",
+      "counterexample": "un ensemble non dénombrable muni de la distance discrète d(x,y) = 1 : la seule partie dense est l'espace entier, non dénombrable.",
+      "depth": "facile",
+      "domain": "topologie",
+      "id": "e2275"
+    },
+    {
+      "from": "TOPO",
+      "to": "TSPT",
+      "kind": "anti",
+      "theorem": "ℝ discret",
+      "statement": "Un espace topologique n'est pas toujours séparable.",
+      "counterexample": "ℝ muni de la topologie discrète : chaque singleton est ouvert, donc aucune partie dénombrable n'est dense.",
+      "depth": "facile",
+      "domain": "topologie",
+      "id": "e2276"
+    },
+    {
+      "from": "TOPO",
+      "to": "TSC2",
+      "kind": "anti",
+      "theorem": "Base non dénombrable",
+      "statement": "Un espace topologique n'a pas toujours une base dénombrable.",
+      "counterexample": "ℝ muni de la topologie discrète : toute base doit contenir chaque singleton {x}, donc au moins un ouvert par point de ℝ.",
+      "depth": "facile",
+      "domain": "topologie",
+      "id": "e2277"
+    },
+    {
+      "from": "PCMP",
+      "to": "METR",
+      "kind": "inclusion",
+      "theorem": "« Complètement métrisable » présuppose métrisable",
+      "statement": "Un espace complètement métrisable est en particulier métrisable : la distance complète est une distance.",
+      "depth": "définitoire",
+      "domain": "topologie métrique",
+      "id": "e2278"
+    },
+    {
+      "from": "POLN",
+      "to": "PCMP",
+      "kind": "inclusion",
+      "theorem": "Définition",
+      "statement": "Un espace polonais est métrisable par une distance complète : la moitié « complétude » de sa définition.",
+      "depth": "définitoire",
+      "domain": "topologie",
+      "id": "e2279"
+    },
+    {
+      "from": "MT1",
+      "to": "PCMP",
+      "kind": "inclusion",
+      "theorem": "La distance donnée fait l'affaire",
+      "statement": "Un espace métrique complet est complètement métrisable : sa distance est déjà complète.",
+      "depth": "définitoire",
+      "domain": "topologie métrique",
+      "id": "e2280"
+    },
+    {
+      "from": "PKPM",
+      "to": "URM2",
+      "kind": "inclusion",
+      "theorem": "Compact ⇒ totalement borné ⇒ séparable",
+      "statement": "Tout compact métrique est séparable (pour chaque ε, une partie finie ε-dense ; les ε = 1/n forment une partie dénombrable dense) et métrisable.",
+      "depth": "classique",
+      "domain": "topologie",
+      "id": "e2282"
+    },
+    {
+      "from": "PKPM",
+      "to": "POLN",
+      "kind": "inclusion",
+      "theorem": "Tout compact métrique est polonais",
+      "statement": "Toute distance compatible sur un compact est complète : une suite de Cauchy y a une valeur d'adhérence (compacité), et une suite de Cauchy avec une valeur d'adhérence converge.",
+      "depth": "classique",
+      "domain": "topologie",
+      "id": "e2283"
+    },
+    {
+      "from": "TMX2",
+      "to": "PKPM",
+      "kind": "inclusion",
+      "theorem": "Définition",
+      "statement": "Un ensemble de Cantor est un compact de ℝ, donc métrique (distance induite).",
+      "depth": "définitoire",
+      "domain": "topologie métrique",
+      "id": "e2284"
+    },
+    {
+      "from": "PKPM",
+      "to": "TKCH",
+      "kind": "inclusion",
+      "theorem": "Métrique ⇒ séparé",
+      "statement": "Un compact métrique est un compact séparé : la distance sépare les points par des boules disjointes.",
+      "depth": "facile",
+      "domain": "topologie",
+      "id": "e2285"
+    },
+    {
+      "from": "PGDL",
+      "to": "URM3",
+      "kind": "inclusion",
+      "theorem": "Définition",
+      "statement": "Un Gδ du cube de Hilbert est en particulier une partie du cube : homéomorphe à un sous-espace.",
+      "depth": "définitoire",
+      "domain": "topologie",
+      "id": "e2286"
+    },
+    {
+      "from": "PBAN",
+      "to": "PPAR",
+      "kind": "inclusion",
+      "theorem": "L'espace de Baire est polonais parfait",
+      "statement": "ℕ^ℕ est polonais (distance produit d(σ,τ) = 2^{-min{n : σ(n) ≠ τ(n)}} complète, suites finies dénombrables denses) et sans point isolé (tout cylindre se subdivise).",
+      "depth": "classique",
+      "domain": "topologie",
+      "id": "e2287"
+    },
+    {
+      "from": "PBAN",
+      "to": "PGDL",
+      "kind": "inclusion",
+      "theorem": "ℕ^ℕ ≅ les irrationnels",
+      "statement": "L'espace de Baire est homéomorphe aux irrationnels (fractions continues), qui forment un Gδ de ℝ, donc un Gδ du cube de Hilbert.",
+      "depth": "classique",
+      "domain": "topologie",
+      "id": "e2288"
+    },
+    {
+      "from": "PPAR",
+      "to": "POLN",
+      "kind": "inclusion",
+      "theorem": "Définition",
+      "statement": "Un polonais sans point isolé est en particulier polonais.",
+      "depth": "définitoire",
+      "domain": "topologie",
+      "id": "e2289"
+    },
+    {
+      "from": "PDEN",
+      "to": "POLN",
+      "kind": "inclusion",
+      "theorem": "Définition",
+      "statement": "Un polonais dénombrable est en particulier polonais.",
+      "depth": "définitoire",
+      "domain": "topologie",
+      "id": "e2290"
+    },
+    {
+      "from": "POLN",
+      "to": "TSPT",
+      "kind": "inclusion",
+      "theorem": "Définition",
+      "statement": "Un espace polonais est séparable : la moitié « séparabilité » de sa définition.",
+      "depth": "définitoire",
+      "domain": "topologie",
+      "id": "e2291"
+    },
+    {
+      "from": "PGDL",
+      "to": "POLN",
+      "kind": "equivalence",
+      "theorem": "Théorème d'Alexandrov (1915)",
+      "statement": "Un espace est polonais si et seulement s'il est homéomorphe à un Gδ du cube de Hilbert : un Gδ d'un polonais est polonais (distance complète modifiée), et tout polonais se plonge comme Gδ dans son complété, plongé dans le cube.",
+      "depth": "classique",
+      "domain": "topologie",
+      "id": "e2292"
+    },
+    {
+      "from": "PCMP",
+      "to": "POLN",
+      "kind": "anti",
+      "theorem": "Complètement métrisable sans être séparable",
+      "statement": "Complètement métrisable n'implique pas polonais.",
+      "counterexample": "un ensemble non dénombrable muni de la distance discrète d = 1 : complète, mais non séparable.",
+      "depth": "facile",
+      "domain": "topologie métrique",
+      "id": "e2293"
+    },
+    {
+      "from": "KP1",
+      "to": "PKPM",
+      "kind": "anti",
+      "theorem": "Produit non dénombrable",
+      "statement": "Un compact n'est pas toujours métrique.",
+      "counterexample": "le produit [0,1]^ℝ : compact (Tychonov), mais non métrisable (aucune famille dénombrable de voisinages du point 0 n'en engendre tous : chaque voisinage ne contraint qu'un nombre fini de coordonnées).",
+      "depth": "classique",
+      "domain": "topologie",
+      "id": "e2294"
+    },
+    {
+      "from": "METR",
+      "to": "PKPM",
+      "kind": "anti",
+      "theorem": "ℝ",
+      "statement": "Un espace métrique n'est pas toujours compact.",
+      "counterexample": "ℝ : métrique, non compact (le recouvrement ]−n, n[ n'a pas de sous-recouvrement fini).",
+      "depth": "facile",
+      "domain": "topologie",
+      "id": "e2295"
+    },
+    {
+      "from": "URM3",
+      "to": "PGDL",
+      "kind": "anti",
+      "theorem": "ℚ n'est pas un Gδ",
+      "statement": "Une partie du cube de Hilbert n'est pas toujours un Gδ.",
+      "counterexample": "ℚ, plongé dans une tranche du cube : si c'était un Gδ, ℚ serait polonais (Alexandrov) et, dénombrable sans point isolé, contredirait Baire.",
+      "depth": "classique",
+      "domain": "topologie",
+      "id": "e2296"
+    },
+    {
+      "from": "POLN",
+      "to": "PPAR",
+      "kind": "anti",
+      "theorem": "ℕ discret",
+      "statement": "Un espace polonais n'est pas toujours sans point isolé.",
+      "counterexample": "ℕ discret : polonais, mais tout point y est isolé.",
+      "depth": "facile",
+      "domain": "topologie",
+      "id": "e2297"
+    },
+    {
+      "from": "POLN",
+      "to": "PDEN",
+      "kind": "anti",
+      "theorem": "ℝ",
+      "statement": "Un espace polonais n'est pas toujours dénombrable.",
+      "counterexample": "ℝ : polonais non dénombrable.",
+      "depth": "immédiat",
+      "domain": "topologie",
+      "id": "e2298"
+    },
+    {
+      "from": "PPAR",
+      "to": "CONN",
+      "kind": "anti",
+      "theorem": "Le Cantor n'est pas connexe",
+      "statement": "Un polonais sans point isolé n'est pas toujours connexe.",
+      "counterexample": "l'ensemble de Cantor : polonais sans point isolé, totalement discontinu.",
+      "depth": "classique",
+      "domain": "topologie",
+      "id": "e2299"
+    },
+    {
+      "from": "PPAR",
+      "to": "PKPM",
+      "kind": "anti",
+      "theorem": "ℝ",
+      "statement": "Un polonais sans point isolé n'est pas toujours compact.",
+      "counterexample": "ℝ : polonais sans point isolé, non compact.",
+      "depth": "facile",
+      "domain": "topologie",
+      "id": "e2300"
+    },
+    {
+      "from": "PBAN",
+      "to": "PKPM",
+      "kind": "anti",
+      "theorem": "Recouvrement par cylindres",
+      "statement": "Une copie de l'espace de Baire n'est pas toujours compacte.",
+      "counterexample": "ℕ^ℕ : le recouvrement ouvert {σ : σ(0) < n} n'a aucun sous-recouvrement fini.",
+      "depth": "facile",
+      "domain": "topologie",
+      "id": "e2301"
+    },
+    {
+      "from": "PBAN",
+      "to": "CONN",
+      "kind": "anti",
+      "theorem": "Cylindres clopens",
+      "statement": "Une copie de l'espace de Baire n'est pas toujours connexe.",
+      "counterexample": "ℕ^ℕ : les cylindres {σ : σ(0) = n} sont ouverts, fermés, disjoints et non vides.",
+      "depth": "facile",
+      "domain": "topologie",
+      "id": "e2302"
+    },
+    {
+      "from": "PDEN",
+      "to": "TDIX",
+      "kind": "anti",
+      "theorem": "La suite qui converge",
+      "statement": "Un polonais dénombrable n'est pas toujours discret.",
+      "counterexample": "{0} ∪ {1/n : n ≥ 1} : polonais dénombrable (compact de ℝ), mais 0 n'est pas isolé.",
+      "depth": "facile",
+      "domain": "topologie",
+      "id": "e2303"
+    },
+    {
+      "from": "PDEN",
+      "to": "PPAR",
+      "kind": "disjoint",
+      "theorem": "Baire interdit les parfaits dénombrables",
+      "statement": "Aucun espace polonais dénombrable n'est sans point isolé : sinon chaque singleton serait nulle part dense et l'espace serait une réunion dénombrable de nulle part denses, contredisant le lemme de Baire. Les deux ensembles sont disjoints.",
+      "depth": "classique",
+      "domain": "topologie",
+      "id": "e2304"
+    },
+    {
+      "from": "TMX2",
+      "to": "PDEN",
+      "kind": "disjoint",
+      "theorem": "Parfait ⇒ non dénombrable",
+      "statement": "Un fermé parfait non vide de ℝ est non dénombrable (il contient une copie de l'ensemble de Cantor) : les Cantor ne côtoient jamais les polonais dénombrables. Les deux ensembles sont disjoints.",
+      "depth": "classique",
+      "domain": "topologie métrique",
+      "id": "e2305"
+    },
+    {
+      "from": "FISO",
+      "to": "FDIL",
+      "kind": "inclusion",
+      "theorem": "Définition",
+      "statement": "Une isométrie est bilipschitzienne : ses constantes valent 1 dans les deux sens (et elle est bijective sur son image, donc inverse isométrique).",
+      "depth": "définitoire",
+      "domain": "topologie métrique",
+      "id": "e2306"
+    },
+    {
+      "from": "FDIL",
+      "to": "FLIP",
+      "kind": "inclusion",
+      "theorem": "Définition",
+      "statement": "Une fonction bilipschitzienne est en particulier lipschitzienne.",
+      "depth": "définitoire",
+      "domain": "topologie métrique",
+      "id": "e2307"
+    },
+    {
+      "from": "FDIL",
+      "to": "FHOME",
+      "kind": "inclusion",
+      "theorem": "Lipschitz dans les deux sens",
+      "statement": "Une bilipschitzienne est un homéomorphisme : f et f⁻¹ lipschitziennes donc continues.",
+      "depth": "facile",
+      "domain": "topologie métrique",
+      "id": "e2308"
+    },
+    {
+      "from": "FLIP",
+      "to": "FHOE",
+      "kind": "inclusion",
+      "theorem": "Lipschitz = Hölder α = 1",
+      "statement": "Toute fonction lipschitzienne est höldérienne : c'est le cas α = 1 de la définition, avec C = k.",
+      "depth": "définitoire",
+      "domain": "topologie métrique",
+      "id": "e2309"
+    },
+    {
+      "from": "FHOE",
+      "to": "FUCM",
+      "kind": "inclusion",
+      "theorem": "Module sous-linéaire uniforme",
+      "statement": "Toute fonction höldérienne est uniformément continue : δ = (ε/C)^{1/α} convient en tout point.",
+      "depth": "facile",
+      "domain": "topologie métrique",
+      "id": "e2310"
+    },
+    {
+      "from": "FUCM",
+      "to": "FMC",
+      "kind": "inclusion",
+      "theorem": "Définition",
+      "statement": "Une fonction uniformément continue est continue : le même δ travaille en chaque point.",
+      "depth": "immédiat",
+      "domain": "topologie métrique",
+      "id": "e2311"
+    },
+    {
+      "from": "FHOME",
+      "to": "FMC",
+      "kind": "inclusion",
+      "theorem": "« Homéomorphismes » : toujours continues",
+      "statement": "Un homéomorphisme entre espaces métriques est en particulier une fonction métrique continue.",
+      "depth": "définitoire",
+      "domain": "topologie métrique",
+      "id": "e2312"
+    },
+    {
+      "from": "BJ4",
+      "to": "FHOME",
+      "kind": "inclusion",
+      "theorem": "Définition",
+      "statement": "Un homéomorphisme monotone sur son image (intervalle de ℝ) est un homéomorphisme entre espaces métriques.",
+      "depth": "définitoire",
+      "domain": "topologie métrique",
+      "id": "e2313"
+    },
+    {
+      "from": "CNT",
+      "to": "FLIP",
+      "kind": "inclusion",
+      "theorem": "k < 1 est une constante de Lipschitz",
+      "statement": "Toute contraction est lipschitzienne : le k < 1 de la contraction est une constante de Lipschitz.",
+      "depth": "immédiat",
+      "domain": "topologie métrique",
+      "id": "e2314"
+    },
+    {
+      "from": "L",
+      "to": "FLIP",
+      "kind": "inclusion",
+      "theorem": "Définition",
+      "statement": "Une lipschitzienne réelle est une lipschitzienne entre espaces métriques : ℝ porte sa distance usuelle.",
+      "depth": "définitoire",
+      "domain": "topologie métrique",
+      "id": "e2315"
+    },
+    {
+      "from": "VLP",
+      "to": "FLIP",
+      "kind": "inclusion",
+      "theorem": "Normes et distances",
+      "statement": "Une lipschitzienne vectorielle est lipschitzienne entre espaces métriques : la norme induit une distance.",
+      "depth": "définitoire",
+      "domain": "topologie métrique",
+      "id": "e2316"
+    },
+    {
+      "from": "H15",
+      "to": "FHOE",
+      "kind": "inclusion",
+      "theorem": "Définition",
+      "statement": "Une höldérienne réelle d'exposant 1/5 est höldérienne entre espaces métriques. Par l'échelle (H12 ⊆ H13 ⊆ H14 ⊆ H15), toute l'échelle de Hölder réelle se raccorde ici par transitivité.",
+      "depth": "définitoire",
+      "domain": "topologie métrique",
+      "id": "e2317"
+    },
+    {
+      "from": "UC",
+      "to": "FUCM",
+      "kind": "inclusion",
+      "theorem": "Définition",
+      "statement": "Une uniformément continue réelle est uniformément continue entre espaces métriques.",
+      "depth": "définitoire",
+      "domain": "topologie métrique",
+      "id": "e2318"
+    },
+    {
+      "from": "FMC",
+      "to": "FLIP",
+      "kind": "anti",
+      "theorem": "Sinus de 1/x",
+      "statement": "Une fonction métrique continue n'est pas toujours lipschitzienne.",
+      "counterexample": "sin(1/x) sur (0,1) : continue, mais le rapport |f(x) − f(y)|/|x − y| est non borné (dérivée non bornée).",
+      "depth": "classique",
+      "domain": "topologie métrique",
+      "id": "e2319"
+    },
+    {
+      "from": "FMC",
+      "to": "FHOE",
+      "kind": "anti",
+      "theorem": "Oscillations infinies",
+      "statement": "Une fonction métrique continue n'est pas toujours höldérienne.",
+      "counterexample": "sin(1/x) sur (0,1) : aux points xₙ = 1/(2πn + π/2) et yₙ = 1/(2πn), l'écart des images vaut 1 alors que |xₙ − yₙ| décroît comme 1/n² : aucun exposant α ne peut compenser.",
+      "depth": "classique",
+      "domain": "topologie métrique",
+      "id": "e2320"
+    },
+    {
+      "from": "FMC",
+      "to": "FUCM",
+      "kind": "anti",
+      "theorem": "Le carré",
+      "statement": "Une fonction métrique continue n'est pas toujours uniformément continue.",
+      "counterexample": "x ↦ x² sur ℝ : au point n, l'écart des images |(n + δ)² − n²| ≈ 2nδ n'est contrôlable par aucun δ indépendant du point.",
+      "depth": "classique",
+      "domain": "topologie métrique",
+      "id": "e2321"
+    },
+    {
+      "from": "FMC",
+      "to": "FHOME",
+      "kind": "anti",
+      "theorem": "Topologie discrète",
+      "statement": "Une fonction métrique continue et bijective n'a pas toujours une réciproque continue.",
+      "counterexample": "l'identité de (ℝ, discret) vers (ℝ, usuel) : bijective et continue (tout est ouvert au départ), mais la réciproque n'est pas continue ({0} n'est pas ouvert dans ℝ usuel).",
+      "depth": "classique",
+      "domain": "topologie métrique",
+      "id": "e2322"
+    },
+    {
+      "from": "FHOE",
+      "to": "FLIP",
+      "kind": "anti",
+      "theorem": "La racine carrée",
+      "statement": "Une fonction höldérienne n'est pas toujours lipschitzienne.",
+      "counterexample": "√x sur [0,1] : höldérienne d'exposant 1/2, mais |√x − √y|/|x − y| = 1/(√x + √y) explose en 0.",
+      "depth": "classique",
+      "domain": "topologie métrique",
+      "id": "e2323"
+    },
+    {
+      "from": "FUCM",
+      "to": "FLIP",
+      "kind": "anti",
+      "theorem": "La racine carrée",
+      "statement": "Une fonction uniformément continue n'est pas toujours lipschitzienne.",
+      "counterexample": "√x sur [0,1] : uniformément continue (höldérienne), mais non lipschitzienne en 0.",
+      "depth": "classique",
+      "domain": "topologie métrique",
+      "id": "e2324"
+    },
+    {
+      "from": "FHOME",
+      "to": "FLIP",
+      "kind": "anti",
+      "theorem": "La racine cubique",
+      "statement": "Un homéomorphisme n'est pas toujours lipschitzien.",
+      "counterexample": "x ↦ x^{1/3} de [0,1] sur [0,1] : homéomorphisme (réciproque x³ lipschitzienne), mais la dérivée 1/(3x^{2/3}) explose en 0.",
+      "depth": "classique",
+      "domain": "topologie métrique",
+      "id": "e2325"
+    },
+    {
+      "from": "FLIP",
+      "to": "FISO",
+      "kind": "anti",
+      "theorem": "Le doublement",
+      "statement": "Une fonction lipschitzienne n'est pas toujours une isométrie.",
+      "counterexample": "x ↦ 2x sur ℝ : 2-lipschitzienne, mais |2x − 2y| = 2|x − y| ≠ |x − y| dès que x ≠ y.",
+      "depth": "facile",
+      "domain": "topologie métrique",
+      "id": "e2326"
+    },
+    {
+      "from": "FLIP",
+      "to": "CNT",
+      "kind": "anti",
+      "theorem": "Le doublement",
+      "statement": "Une fonction lipschitzienne n'est pas toujours contractante.",
+      "counterexample": "x ↦ 2x sur ℝ : lipschitzienne de constante 2, jamais k < 1.",
+      "depth": "facile",
+      "domain": "topologie métrique",
+      "id": "e2327"
+    },
+    {
+      "from": "FLIP",
+      "to": "FHOME",
+      "kind": "anti",
+      "theorem": "La constante",
+      "statement": "Une fonction lipschitzienne n'est pas toujours un homéomorphisme.",
+      "counterexample": "la fonction nulle sur [0,1] : 0-lipschitzienne, mais ni injective ni surjective.",
+      "depth": "facile",
+      "domain": "topologie métrique",
+      "id": "e2328"
+    },
+    {
+      "from": "FLIP",
+      "to": "FDIL",
+      "kind": "anti",
+      "theorem": "Le carré",
+      "statement": "Une fonction lipschitzienne et bijective n'a pas toujours un inverse lipschitzien.",
+      "counterexample": "x ↦ x² de [0,1] sur [0,1] : bijective et 2-lipschitzienne, mais la réciproque √x n'est pas lipschitzienne.",
+      "depth": "facile",
+      "domain": "topologie métrique",
+      "id": "e2329"
+    },
+    {
+      "from": "FHOME",
+      "to": "FDIL",
+      "kind": "anti",
+      "theorem": "La racine carrée",
+      "statement": "Un homéomorphisme n'est pas toujours bilipschitzien.",
+      "counterexample": "√x : [0,1] → [0,1] : homéomorphisme, mais √x n'est pas lipschitzienne en 0, donc pas bilipschitzienne.",
+      "depth": "classique",
+      "domain": "topologie métrique",
+      "id": "e2330"
+    },
+    {
+      "from": "FISO",
+      "to": "CNT",
+      "kind": "anti",
+      "theorem": "L'identité",
+      "statement": "Une isométrie n'est pas toujours contractante.",
+      "counterexample": "l'identité sur [0,1] : isométrie (k = 1 exactement), mais jamais d(k < 1).",
+      "depth": "facile",
+      "domain": "topologie métrique",
+      "id": "e2331"
+    },
+    {
+      "id": "e2332",
+      "from": "EVDF",
+      "to": "EV",
+      "kind": "inclusion",
+      "theorem": "Dimension finie",
+      "statement": "Un espace vectoriel de dimension finie est un espace vectoriel.",
+      "depth": "définitoire",
+      "domain": "algèbre linéaire"
+    },
+    {
+      "id": "e2333",
+      "from": "EVCN",
+      "to": "EVDF",
+      "kind": "inclusion",
+      "theorem": "Kⁿ est de dimension n",
+      "statement": "Un espace isomorphe à un Kⁿ est de dimension finie : l'image réciproque de la base canonique de Kⁿ est une base de cardinal n.",
+      "depth": "immédiat",
+      "domain": "algèbre linéaire"
+    },
+    {
+      "id": "e2334",
+      "from": "EVNF",
+      "to": "EVDF",
+      "kind": "inclusion",
+      "theorem": "Dimension finie",
+      "statement": "L'espace vectoriel sous-jacent à un normé de dimension finie est de dimension finie.",
+      "depth": "définitoire",
+      "domain": "algèbre linéaire"
+    },
+    {
+      "id": "e2335",
+      "from": "BOC1",
+      "to": "BAN",
+      "kind": "inclusion",
+      "theorem": "Compacité et complétude",
+      "statement": "Boule unité compacte ⇒ complet : une suite de Cauchy est bornée, donc vit dans une boule fermée compacte où elle admet une sous-suite convergente ; or une suite de Cauchy avec une sous-suite convergente converge.",
+      "depth": "classique",
+      "domain": "topologie vectorielle"
+    },
+    {
+      "id": "e2336",
+      "from": "EVNF",
+      "to": "BAN",
+      "kind": "inclusion",
+      "theorem": "Toute norme y est complète",
+      "statement": "Toute norme sur un espace de dimension finie est complète : une base donne un isomorphisme avec Kⁿ qui est un homéomorphisme (les normes y sont équivalentes), et Kⁿ est complet.",
+      "depth": "classique",
+      "domain": "topologie vectorielle"
+    },
+    {
+      "id": "e2337",
+      "from": "EVNF",
+      "to": "URM2",
+      "kind": "inclusion",
+      "theorem": "Séparabilité de Kⁿ",
+      "statement": "Un normé de dimension finie est séparable et métrisable : (ℚ + iℚ)ⁿ est dénombrable et dense dans Kⁿ, et les coordonnées se transportent par l'isomorphisme de base.",
+      "depth": "classique",
+      "domain": "topologie vectorielle"
+    },
+    {
+      "id": "e2338",
+      "from": "EVNF",
+      "to": "POLN",
+      "kind": "inclusion",
+      "theorem": "Kⁿ est polonais",
+      "statement": "Un normé de dimension finie est polonais : métrisable, complet (toute norme y est complète) et séparable.",
+      "depth": "classique",
+      "domain": "topologie vectorielle"
+    },
+    {
+      "id": "e2339",
+      "from": "EQN1",
+      "to": "EV",
+      "kind": "inclusion",
+      "theorem": "Normes équivalentes",
+      "statement": "Un espace dont toutes les normes sont équivalentes est un espace vectoriel.",
+      "depth": "définitoire",
+      "domain": "topologie vectorielle"
+    },
+    {
+      "id": "e2340",
+      "from": "FLIN",
+      "to": "ALIN",
+      "kind": "inclusion",
+      "theorem": "Formes",
+      "statement": "Une forme linéaire est une application linéaire, à valeurs dans le corps de base.",
+      "depth": "définitoire",
+      "domain": "algèbre linéaire"
+    },
+    {
+      "id": "e2341",
+      "from": "BM1",
+      "to": "FLIN",
+      "kind": "inclusion",
+      "theorem": "Formes continues sur H",
+      "statement": "Une forme linéaire continue sur un espace de Hilbert est une forme linéaire.",
+      "depth": "définitoire",
+      "domain": "topologie vectorielle"
+    },
+    {
+      "id": "e2342",
+      "from": "RZH1",
+      "to": "FLIN",
+      "kind": "inclusion",
+      "theorem": "Fonctionnelles",
+      "statement": "Une fonctionnelle linéaire continue sur un espace de Hilbert est une forme linéaire.",
+      "depth": "définitoire",
+      "domain": "topologie vectorielle"
+    },
+    {
+      "id": "e2343",
+      "from": "RZH2",
+      "to": "FLIN",
+      "kind": "inclusion",
+      "theorem": "Produit scalaire",
+      "statement": "Une fonctionnelle du produit scalaire x ↦ ⟨x, v⟩ est une forme linéaire.",
+      "depth": "définitoire",
+      "domain": "topologie vectorielle"
+    },
+    {
+      "id": "e2344",
+      "from": "DIST",
+      "to": "FLIN",
+      "kind": "inclusion",
+      "theorem": "Distributions",
+      "statement": "Une distribution est une forme linéaire (continue).",
+      "depth": "définitoire",
+      "domain": "topologie vectorielle"
+    },
+    {
+      "id": "e2345",
+      "from": "NFA2",
+      "to": "EVDF",
+      "kind": "inclusion",
+      "theorem": "n! est fini",
+      "statement": "Un espace de dimension exactement n! (n ≥ 1) est de dimension finie : n! est un entier.",
+      "depth": "immédiat",
+      "domain": "algèbre linéaire"
+    },
+    {
+      "id": "e2346",
+      "from": "EVDF",
+      "to": "EVCN",
+      "kind": "equivalence",
+      "theorem": "Théorème de la base",
+      "statement": "Un espace vectoriel est de dimension finie si et seulement s'il est isomorphe à un Kⁿ : une base (e₁, …, eₙ) donne l'isomorphisme x = Σ xᵢeᵢ ↦ (x₁, …, xₙ), et réciproquement l'image réciproque de la base canonique est une base finie. La dimension est un invariant complet : deux espaces de même dimension sont isomorphes.",
+      "depth": "classique",
+      "domain": "algèbre linéaire"
+    },
+    {
+      "id": "e2347",
+      "from": "EVDF",
+      "to": "EQN1",
+      "kind": "equivalence",
+      "theorem": "Théorème des normes équivalentes",
+      "statement": "Un espace vectoriel est de dimension finie si et seulement si toutes les normes qu'on peut y mettre sont équivalentes. Sens direct : la sphère unité de ‖·‖₁ est compacte et x ↦ ‖x‖₂ y atteint ses bornes c, C > 0. Réciproque : en dimension infinie, une famille libre infinie permet de pondérer les coordonnées et de construire deux normes non équivalentes.",
+      "depth": "classique",
+      "domain": "topologie vectorielle"
+    },
+    {
+      "id": "e2348",
+      "from": "EVNF",
+      "to": "BOC1",
+      "kind": "equivalence",
+      "theorem": "Théorème de Riesz (boule unité)",
+      "statement": "La boule unité fermée d'un espace vectoriel normé est compacte si et seulement si l'espace est de dimension finie. Sens direct : Heine-Borel dans Kⁿ, transporté par les coordonnées. Sens retour : en dimension infinie, la construction de Riesz produit une suite (xₙ) dans la demi-boule avec ‖xₙ − xₘ‖ ≥ 1/2, donc aucune sous-suite de Cauchy.",
+      "depth": "classique",
+      "domain": "topologie vectorielle"
+    },
+    {
+      "id": "e2349",
+      "from": "EV",
+      "to": "EVDF",
+      "kind": "anti",
+      "theorem": "ℝ[P] de dimension infinie",
+      "statement": "Un espace vectoriel n'est pas toujours de dimension finie.",
+      "counterexample": "ℝ[P] : les polynômes 1, X, X², … sont linéairement indépendants, aucune famille finie ne les engendre tous.",
+      "depth": "immédiat",
+      "domain": "algèbre linéaire"
+    },
+    {
+      "id": "e2350",
+      "from": "EVN",
+      "to": "EVNF",
+      "kind": "anti",
+      "theorem": "C([0,1])",
+      "statement": "Un espace vectoriel normé n'est pas toujours de dimension finie.",
+      "counterexample": "(C([0,1]), ‖·‖∞) contient tous les polynômes : 1, x, x², … y sont linéairement indépendants, donc sa dimension est infinie.",
+      "depth": "classique",
+      "domain": "topologie vectorielle"
+    },
+    {
+      "id": "e2351",
+      "from": "EVN",
+      "to": "BOC1",
+      "kind": "anti",
+      "theorem": "Boule de ℓ²",
+      "statement": "La boule unité d'un espace vectoriel normé n'est pas toujours compacte.",
+      "counterexample": "Dans ℓ², la suite canonique (eₙ) est dans la boule unité fermée mais ‖eₙ − eₘ‖₂ = √2 pour n ≠ m : aucune sous-suite n'est de Cauchy, la boule n'est pas compacte.",
+      "depth": "classique",
+      "domain": "topologie vectorielle"
+    },
+    {
+      "id": "e2352",
+      "from": "EVN",
+      "to": "EQN1",
+      "kind": "anti",
+      "theorem": "Sup et intégrale",
+      "statement": "Les normes d'un espace vectoriel normé ne sont pas toujours toutes équivalentes.",
+      "counterexample": "Sur C([0,1]), ‖f‖∞ et ‖f‖₁ = ∫₀¹|f| : les triangles fₙ de hauteur n et d'aire 1 donnent ‖fₙ‖₁ = 1 mais ‖fₙ‖∞ = n.",
+      "depth": "classique",
+      "domain": "topologie vectorielle"
+    },
+    {
+      "id": "e2353",
+      "from": "ALIN",
+      "to": "FLIN",
+      "kind": "anti",
+      "theorem": "L'identité de ℝ²",
+      "statement": "Une application linéaire n'est pas toujours une forme linéaire.",
+      "counterexample": "id : ℝ² → ℝ² est linéaire mais à valeurs dans ℝ², pas dans le corps de base K.",
+      "depth": "facile",
+      "domain": "algèbre linéaire"
+    },
+    {
+      "id": "e2354",
+      "from": "FLIN",
+      "to": "LN1",
+      "kind": "anti",
+      "theorem": "Forme discontinue",
+      "statement": "Une forme linéaire n'est pas toujours continue.",
+      "counterexample": "Sur les suites à support fini munies de ‖·‖∞, φ((xₙ)) = Σ n·xₙ est linéaire mais φ(eₙ) = n alors que ‖eₙ‖∞ = 1 : non bornée, donc non continue.",
+      "depth": "classique",
+      "domain": "topologie vectorielle"
     }
   ]
 }

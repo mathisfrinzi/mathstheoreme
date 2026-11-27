@@ -1,7 +1,7 @@
 {
   "meta": {
     "name": "Contextes",
-    "version": "0.51.0",
+    "version": "0.57.0",
     "created": "2026-11-24",
     "language": "fr",
     "description": "Un contexte est une liste de variables (champ variables), chacune avec son domaine : les ensembles du graphe des théorèmes qui déclenchent le contexte sont listés dans requires (l'ensemble requis, ou n'importe lequel de ses sous-ensembles par inclusions ou équivalences, suffit). Convention : les variables d'un contexte sont quelconques. Un énoncé du contexte vaut pour toutes les valeurs admissibles des variables à la fois (un seul quantificateur ∀ extérieur) ; les hypothèses du théorème sont entièrement dans les domaines des variables. Les objets contextuels sont des applications des variables vers des ensembles (les valeurs propres d'UNE matrice) ; un nœud du graphe y est un ensemble constant. Types d'arêtes : inclusion (∀ valeurs, A ⊆ B), équivalence (A = B), partie, anti (non-inclusion : il existe des valeurs, données par le contre-exemple, pour lesquelles A ⊄ B), disjoint (∀ valeurs, A ∩ B = ∅), isomorphisme (A ≃ B pour la structure indiquée), conjecture. Les identités, congruences et estimations ne sont pas des arêtes : elles vivent dans data/formules.json. Les arêtes ont le même format que celles de graphe.json ; from et to désignent un objet contextuel (id défini ici) ou un nœud de graphe.json."
@@ -1206,6 +1206,818 @@
           "theorem": "Théorème de Morley (1899)",
           "statement": "Les intersections des trissectrices adjacentes des angles d'un triangle quelconque sont les sommets d'un triangle équilatéral, le premier triangle de Morley : une régularité parfaite cachée au tiers des angles, pour chaque triangle du plan sans exception ; la généralisation pousse à 27 points d'intersection alignés six par six sur neuf droites, en trois familles de parallèles.",
           "depth": "fondamental",
+          "domain": "géométrie euclidienne"
+        }
+      ]
+    },
+    {
+      "id": "CX20",
+      "label": "Espace mesuré (X, 𝒜, μ)",
+      "requires": [
+        "MESU"
+      ],
+      "description": "Un espace mesuré σ-fini fixé : les mesures vivant sur sa tribu, leur dérivation l'une par l'autre.",
+      "variables": [
+        {
+          "nom": "(X, 𝒜, μ)",
+          "domaine": "espace mesuré, μ positive et σ-finie"
+        }
+      ],
+      "objects": [
+        {
+          "id": "RN1",
+          "label": "Mesures finies absolument continues par rapport à μ",
+          "domain": "théorie de la mesure",
+          "property": "\\{\\, \\nu \\mid \\nu(X) < \\infty,\\ \\nu \\ll \\mu \\,\\}",
+          "description": "Les mesures finies sur (X, 𝒜) que μ domine : chaque ensemble μ-négligeable est ν-négligeable.",
+          "example": "ν = f·μ pour f bornée intégrable ; sur ([0, 1], λ), la mesure 2x·dx",
+          "notes": "Fiche Radon-Nikodym Theorem (lettre R de la pioche)."
+        },
+        {
+          "id": "RN2",
+          "label": "Mesures à densité L¹ par rapport à μ",
+          "domain": "théorie de la mesure",
+          "property": "\\{\\, \\nu \\mid \\exists f \\in L^{1}(\\mu),\\ \\forall A \\in \\mathcal{A},\\ \\nu(A) = \\int_{A} f \\, d\\mu \\,\\}",
+          "description": "Les mesures finies qui sont l'intégrale d'une densité f ∈ L¹(μ) : ν = f dμ, la dérivée de ν par rapport à μ.",
+          "example": "sur ([0, 1], λ), la mesure à densité 2x : ν([a, b]) = b² − a²",
+          "notes": "La densité f est unique au sens μ-presque partout : dν/dμ."
+        }
+      ],
+      "edges": [
+        {
+          "id": "e1256",
+          "from": "RN1",
+          "to": "RN2",
+          "kind": "equivalence",
+          "theorem": "Théorème de Radon-Nikodym (1913, 1930)",
+          "statement": "Une mesure finie ν est absolument continue par rapport à μ si et seulement si elle admet une densité f ∈ L¹(μ) : ν = f dμ, avec dν/dμ = f unique μ-presque partout. La dérivation des mesures : la dérivée de Radon-Nikodym étend le théorème fondamental du calcul (f36) au monde de la mesure ; la décomposition de Lebesgue (ν = f dμ + ν_singulière) et le théorème de Lebesgue sur la dérivation des intégrales en sont les proches cousins.",
+          "depth": "fondamental",
+          "domain": "théorie de la mesure"
+        }
+      ]
+    },
+    {
+      "id": "CX21",
+      "label": "Polynôme à coefficients entiers",
+      "requires": [
+        "PRX1"
+      ],
+      "description": "Un polynôme P à coefficients entiers fixé, de coefficient dominant aₙ et de constantes a₀ toutes deux non nulles.",
+      "variables": [
+        {
+          "nom": "P",
+          "domaine": "polynôme aₙXⁿ + ⋯ + a₀ à coefficients entiers, aₙ ≠ 0 et a₀ ≠ 0"
+        }
+      ],
+      "objects": [
+        {
+          "id": "RZ1",
+          "label": "Racines rationnelles de P",
+          "domain": "arithmétique",
+          "property": "\\{\\, r \\in \\mathbb{Q} \\mid P(r) = 0 \\,\\}",
+          "description": "Les racines rationnelles du polynôme entier fixé P.",
+          "example": "pour x² − x − 2 : les racines 2 et −1",
+          "notes": "Fiche Rational Zero Theorem (lettre R de la pioche)."
+        },
+        {
+          "id": "RZ2",
+          "label": "Fractions de diviseurs (p | a₀, q | aₙ)",
+          "domain": "arithmétique",
+          "property": "\\{\\, \\frac{p}{q} \\mid \\gcd(p, q) = 1,\\ p \\mid a_{0},\\ q \\mid a_{n} \\,\\}",
+          "description": "Les fractions irréductibles dont le numérateur divise le coefficient constant a₀ et le dénominateur divise le coefficient dominant aₙ de P.",
+          "example": "pour x² − x − 2 : ±1, ±2, donc quatre fractions candidates",
+          "notes": "Un ensemble fini : les diviseurs de a₀ sont en nombre fini."
+        }
+      ],
+      "edges": [
+        {
+          "id": "e1257",
+          "from": "RZ1",
+          "to": "RZ2",
+          "kind": "inclusion",
+          "strict": true,
+          "theorem": "Théorème des zéros rationnels (rational root theorem)",
+          "statement": "Toute racine rationnelle de P, écrite sous forme irréductible p/q, a son numérateur qui divise le coefficient constant a₀ et son dénominateur qui divise le coefficient dominant aₙ : un crible exact, qui réduit la recherche des racines rationnelles à l'inspection d'un nombre fini de fractions ; le lemme de Gauss (e1030) sur les polynômes en fait un sport de divisibilité.",
+          "depth": "classique",
+          "domain": "arithmétique",
+          "strictnessExample": "pour x² − 3 : les fractions candidates ±1, ±3 ne sont aucune racine (les vraies racines ±√3 sont irrationnelles)"
+        }
+      ]
+    },
+    {
+      "id": "CX22",
+      "label": "Groupe fini et nombre premier (Sylow)",
+      "requires": [
+        "GFN1"
+      ],
+      "description": "Un groupe fini G et un nombre premier p divisant l'ordre de G : les p-Sylow et leur conjugaison.",
+      "variables": [
+        {
+          "nom": "(G, p)",
+          "domaine": "groupe fini G, nombre premier p avec p | |G|"
+        }
+      ],
+      "objects": [
+        {
+          "id": "SYL1",
+          "label": "Ensemble des p-Sylow de G",
+          "domain": "théorie des groupes",
+          "property": "\\{\\, P \\leq G \\mid |P| = p^{v_{p}(|G|)} \\,\\}",
+          "description": "Les sous-groupes de G dont l'ordre est la plus grande puissance de p divisant |G|.",
+          "example": "G = S₃, p = 2 : les trois sous-groupes ⟨(12)⟩, ⟨(13)⟩, ⟨(23)⟩ ; p = 3 : le seul ⟨(123)⟩.",
+          "notes": "Fiche Sylow Theorems (lettre S de la pioche)."
+        },
+        {
+          "id": "SYL2",
+          "label": "Orbite de conjugaison d'un p-Sylow P₀ fixé",
+          "domain": "théorie des groupes",
+          "property": "\\{\\, g P_{0} g^{-1} \\mid g \\in G \\,\\}",
+          "description": "Les conjugués d'un p-Sylow donné par l'action de conjugaison de G.",
+          "example": "S₃, P₀ = ⟨(12)⟩ : les trois transpositions conjuguées, toute l'orbite.",
+          "notes": "Le théorème dit que cette orbite est tout l'ensemble des p-Sylow."
+        }
+      ],
+      "edges": [
+        {
+          "id": "e1299",
+          "from": "SYL1",
+          "to": "SYL2",
+          "kind": "equivalence",
+          "theorem": "Théorème de Sylow (1872, conjugaison)",
+          "statement": "Tous les p-Sylow de G sont conjugués : l'ensemble des p-Sylow est exactement l'orbite de n'importe lequel d'entre eux. Avec l'existence (Sylow I : au moins un p-Sylow) et le comptage (Sylow III : n_p ≡ 1 mod p et n_p | |G|/p^a), la théorie des groupes finis tient sa première pierre d'angle, celle qui arme Lagrange en sens inverse.",
+          "depth": "fondamental",
+          "domain": "théorie des groupes"
+        }
+      ]
+    },
+    {
+      "id": "CX23",
+      "label": "Groupe, sous-groupe et distingué (deuxième isomorphisme)",
+      "requires": [
+        "CYL1"
+      ],
+      "description": "Un groupe G, un sous-groupe H et un sous-groupe distingué N : le théorème du losange.",
+      "variables": [
+        {
+          "nom": "G",
+          "domaine": "groupe"
+        },
+        {
+          "nom": "H",
+          "domaine": "sous-groupe de G"
+        },
+        {
+          "nom": "N",
+          "domaine": "sous-groupe distingué de G"
+        }
+      ],
+      "objects": [
+        {
+          "id": "GTI1",
+          "label": "Le quotient HN/N",
+          "domain": "théorie des groupes",
+          "property": "HN/N = \\{\\, hN \\mid h \\in H \\,\\}",
+          "description": "Le quotient du produit HN (le plus petit sous-groupe contenant H et N) par N.",
+          "example": "G = S₃, H = ⟨(12)⟩, N = A₃ : HN = S₃, et HN/N ≅ Z/2.",
+          "notes": "Fiche Second Group Isomorphism Theorem (lettre S de la pioche)."
+        },
+        {
+          "id": "GTI2",
+          "label": "Le quotient H/(H∩N)",
+          "domain": "théorie des groupes",
+          "property": "H/(H \\cap N)",
+          "description": "Le quotient de H par l'intersection des deux sous-groupes, distinguée dans H.",
+          "example": "même exemple : H∩A₃ = {e}, donc H/(H∩N) = H ≅ Z/2.",
+          "notes": "Le théorème du losange : HN/N ≅ H/(H∩N), les yeux fermés."
+        }
+      ],
+      "edges": [
+        {
+          "id": "e1300",
+          "from": "GTI1",
+          "to": "GTI2",
+          "kind": "isomorphisme",
+          "theorem": "Deuxième théorème d'isomorphisme (losange)",
+          "statement": "HN/N ≅ H/(H∩N) : le produit élargit H jusqu'à avaler N, et le quotient remet les livres en place. La formule du losange, qui va de pair avec le premier théorème (N distingué donne G/N) et le troisième (Jordan-Hölder) : les trois lettres de crédit de la théorie des quotients.",
+          "depth": "classique",
+          "domain": "théorie des groupes",
+          "structure": "groupes"
+        }
+      ]
+    },
+    {
+      "id": "CX24",
+      "label": "Anneau, sous-anneau et idéal (deuxième isomorphisme)",
+      "requires": [
+        "ANR1"
+      ],
+      "description": "Un anneau commutatif, un sous-anneau et un idéal : le losange côté anneaux.",
+      "variables": [
+        {
+          "nom": "A",
+          "domaine": "anneau commutatif (unitaire)"
+        },
+        {
+          "nom": "S",
+          "domaine": "sous-anneau de A"
+        },
+        {
+          "nom": "I",
+          "domaine": "idéal de A"
+        }
+      ],
+      "objects": [
+        {
+          "id": "RTI1",
+          "label": "Le quotient (S+I)/I",
+          "domain": "théorie des anneaux",
+          "property": "(S + I)/I = \\{\\, s + I \\mid s \\in S \\,\\}",
+          "description": "Le quotient du sous-anneau élargi S+I par l'idéal I.",
+          "example": "A = ℤ[X], S = ℤ (les constantes), I = (X) : (S+I)/I ≅ ℤ[X]/(X) ≅ ℤ.",
+          "notes": "Fiche Second Ring Isomorphism Theorem (lettre S de la pioche)."
+        },
+        {
+          "id": "RTI2",
+          "label": "Le quotient S/(S∩I)",
+          "domain": "théorie des anneaux",
+          "property": "S/(S \\cap I)",
+          "description": "Le quotient du sous-anneau par l'idéal intersection.",
+          "example": "même exemple : S∩I = S∩(X) = {0}, donc S/(S∩I) ≅ ℤ.",
+          "notes": "Le losange des anneaux : même une équation, autre décor."
+        }
+      ],
+      "edges": [
+        {
+          "id": "e1301",
+          "from": "RTI1",
+          "to": "RTI2",
+          "kind": "isomorphisme",
+          "theorem": "Deuxième théorème d'isomorphisme des anneaux",
+          "statement": "(S+I)/I ≅ S/(S∩I) : le même losange que pour les groupes, l'idéal jouant le rôle du distingué. La comptabilité exacte des quotients d'anneaux, clef des localisations et des quotients d'idéaux en théorie algébrique des nombres.",
+          "depth": "classique",
+          "domain": "théorie des anneaux",
+          "structure": "anneaux"
+        }
+      ]
+    },
+    {
+      "id": "CX25",
+      "label": "Chaîne de cercles dans un triangle (les six cercles)",
+      "requires": [
+        "GTR"
+      ],
+      "description": "Un triangle du plan et une chaîne de cercles tangents issue d'un sommet : le théorème des six cercles d'Evelyn, Money-Coutts et Tyrrell.",
+      "variables": [
+        {
+          "nom": "(T, A, C₁)",
+          "domaine": "triangle T, sommet A, premier cercle C₁ tangent aux deux côtés de A"
+        }
+      ],
+      "objects": [
+        {
+          "id": "SXC1",
+          "label": "Cercles de la chaîne tangents au cercle initial C₁",
+          "domain": "géométrie euclidienne",
+          "property": "\\{\\, C \\mid C \\text{ tangent à } C_{1} \\text{ dans le triangle} \\,\\}",
+          "description": "Les cercles de la chaîne, engendrés de proche en proche depuis C₁, qui touchent le cercle initial.",
+          "example": "dans un triangle équilatéral à chaîne régulière, la chaîne se referme en six crans exactement.",
+          "notes": "Fiche Six Circles Theorem (lettre S de la pioche)."
+        },
+        {
+          "id": "SXC2",
+          "label": "Sixièmes cercles des chaînes",
+          "domain": "géométrie euclidienne",
+          "property": "\\{\\, C_{6} \\mid (C_{n}) \\text{ chaîne issue de } C_{1} \\,\\}",
+          "description": "Le cercle obtenu au sixième cran de la chaîne de cercles tangents deux à deux, chacun inscrit entre deux côtés.",
+          "example": "quel que soit le cercle initial tangent aux deux côtés de A, le sixième cran retombe sur le premier.",
+          "notes": "Le théorème : toujours, C₆ revient toucher C₁."
+        }
+      ],
+      "edges": [
+        {
+          "id": "e1302",
+          "from": "SXC2",
+          "to": "SXC1",
+          "kind": "inclusion",
+          "theorem": "Théorème des six cercles (Evelyn, Money-Coutts et Tyrrell, 1974)",
+          "statement": "Le sixième cercle d'une chaîne de cercles insérés dans un triangle, chacun tangent au précédent et aux deux côtés d'un même sommet, est toujours tangent au premier : la chaîne se referme en six crans, quelle que soit la taille du cercle initial. Le cousin circulaire du théorème de Miquel et des chaînes de Steiner, propres à la géométrie du triangle.",
+          "depth": "classique",
+          "domain": "géométrie euclidienne"
+        }
+      ]
+    },
+    {
+      "id": "CX26",
+      "label": "Couple de variables aléatoires à marges continues (copules)",
+      "requires": [
+        "PROB"
+      ],
+      "description": "Un couple (X, Y) de variables aléatoires réelles de lois marginales continues F et G : le théorème de Sklar.",
+      "variables": [
+        {
+          "nom": "(X, Y)",
+          "domaine": "couple réel à marginales F et G continues"
+        }
+      ],
+      "objects": [
+        {
+          "id": "SKL1",
+          "label": "Lois jointes du couple (X, Y)",
+          "domain": "théorie de la mesure",
+          "property": "\\{\\, H(x, y) = \\mathbb{P}(X \\leq x, Y \\leq y) \\mid \\text{marges } F, G \\,\\}",
+          "description": "Les fonctions de répartition jointes à marges F et G données.",
+          "example": "la loi du couple gaussien corrélé, de marges gaussiennes standard.",
+          "notes": "Fiche Sklars Theorem (lettre S de la pioche)."
+        },
+        {
+          "id": "SKL2",
+          "label": "Lois composées C(F, G) d'une copule C",
+          "domain": "théorie de la mesure",
+          "property": "\\{\\, H(x, y) = C(F(x), G(y)) \\mid C \\text{ copule} \\,\\}",
+          "description": "Les lois jointes obtenues en visitant les marges F et G à travers une copule : une fonction de dépendance à marges uniformes.",
+          "example": "la copule de Gauss : C(u, v) = Φ_ρ(Φ⁻¹(u), Φ⁻¹(v)) recompose le couple gaussien.",
+          "notes": "La copule épouse exactement la loi jointe quand les marges sont continues."
+        }
+      ],
+      "edges": [
+        {
+          "id": "e1303",
+          "from": "SKL1",
+          "to": "SKL2",
+          "kind": "equivalence",
+          "theorem": "Théorème de Sklar (1959)",
+          "statement": "Toute loi jointe à marges continues s'écrit H(x, y) = C(F(x), G(y)) pour une copule C unique : la dépendance se factorise des marges, et la copule la capture toute seule. Le socle des mesures de dépendance (tau de Kendall, rho de Spearman), des valeurs extrêmes et de la finance du risque ; sans marges continues, l'unicité tombe et le théorème survit à un presque partout près.",
+          "depth": "classique",
+          "domain": "théorie de la mesure"
+        }
+      ]
+    },
+    {
+      "id": "CX27",
+      "label": "Quotients par deux distingués (troisième isomorphisme des groupes)",
+      "requires": [
+        "CYL1"
+      ],
+      "description": "Un groupe G et deux sous-groupes distingués emboîtés N ⊆ M : quotienter par le grand ou par le petit, la transitivité des quotients.",
+      "variables": [
+        {
+          "nom": "G",
+          "domaine": "groupe"
+        },
+        {
+          "nom": "N",
+          "domaine": "sous-groupe distingué de G"
+        },
+        {
+          "nom": "M",
+          "domaine": "sous-groupe distingué de G contenant N"
+        }
+      ],
+      "objects": [
+        {
+          "id": "TGI1",
+          "label": "Le quotient (G/N)/(M/N)",
+          "domain": "théorie des groupes",
+          "property": "(G/N)\\,\\big/\\,(M/N)",
+          "description": "Le quotient du quotient : M/N est distingué dans G/N, l'étagement se referme.",
+          "example": "G = ℤ/12, N = ⟨4⟩ = {0, 4, 8}, M = ⟨2⟩ = {0, 2, 4, 6, 8, 10} : G/N = ℤ/4, M/N = ℤ/2, quotient ℤ/2.",
+          "notes": "Fiche Third Group Isomorphism Theorem (lettre T de la pioche)."
+        },
+        {
+          "id": "TGI2",
+          "label": "Le quotient G/M",
+          "domain": "théorie des groupes",
+          "property": "G/M",
+          "description": "Le quotient de G directement par le grand distingué.",
+          "example": "même exemple : ℤ/12 quotienté par ⟨2⟩, encore ℤ/2.",
+          "notes": "Les deux chemins de quotients donnent le même groupe : la transitivité."
+        }
+      ],
+      "edges": [
+        {
+          "id": "e1335",
+          "from": "TGI1",
+          "to": "TGI2",
+          "kind": "isomorphisme",
+          "theorem": "Troisième théorème d'isomorphisme (groupes)",
+          "statement": "(G/N)/(M/N) ≅ G/M : avoir déjà quotienté par N ne change rien au quotient final par M, les deux étages se remplacent par un seul. Le troisième volet de la famille, avec les quotients du premier (N distingué donne G/N) et le losange du deuxième (e1300 du tour précédent) ; la comptabilité qui rend les quotients de quotients lisibles d'un seul coup d'œil.",
+          "depth": "classique",
+          "domain": "théorie des groupes",
+          "structure": "groupes"
+        }
+      ]
+    },
+    {
+      "id": "CX28",
+      "label": "Quotients par deux idéaux (troisième isomorphisme des anneaux)",
+      "requires": [
+        "ANR1"
+      ],
+      "description": "Un anneau commutatif et deux idéaux emboîtés I ⊆ J : la transitivité des quotients, côté anneaux.",
+      "variables": [
+        {
+          "nom": "A",
+          "domaine": "anneau commutatif (unitaire)"
+        },
+        {
+          "nom": "I",
+          "domaine": "idéal de A"
+        },
+        {
+          "nom": "J",
+          "domaine": "idéal de A contenant I"
+        }
+      ],
+      "objects": [
+        {
+          "id": "TRI1",
+          "label": "Le quotient (A/I)/(J/I)",
+          "domain": "théorie des anneaux",
+          "property": "(A/I)\\,\\big/\\,(J/I)",
+          "description": "Le quotient du quotient : J/I est un idéal de A/I, l'emboîtement se referme.",
+          "example": "A = ℤ[X], I = (X), J = (X, 2) : A/I = ℤ, J/I = (2), le quotient ℤ/2.",
+          "notes": "Fiche Third Ring Isomorphism Theorem (lettre T de la pioche)."
+        },
+        {
+          "id": "TRI2",
+          "label": "Le quotient A/J",
+          "domain": "théorie des anneaux",
+          "property": "A/J",
+          "description": "Le quotient de A directement par le grand idéal.",
+          "example": "même exemple : ℤ[X]/(X, 2) ≅ ℤ/2.",
+          "notes": "Les deux chemins de quotients donnent le même anneau."
+        }
+      ],
+      "edges": [
+        {
+          "id": "e1336",
+          "from": "TRI1",
+          "to": "TRI2",
+          "kind": "isomorphisme",
+          "theorem": "Troisième théorème d'isomorphisme des anneaux",
+          "statement": "(A/I)/(J/I) ≅ A/J : l'idéal intermédiaire ne compte pas, un seul étage suffit. Le même losange transitif que pour les groupes (e1335), l'idéal jouant le rôle du distingué ; la comptabilité des quotients d'anneaux qui ouvre les localisations, les quotients d'idéaux et les tours de corps de la théorie algébrique des nombres.",
+          "depth": "classique",
+          "domain": "théorie des anneaux",
+          "structure": "anneaux"
+        }
+      ]
+    },
+    {
+      "id": "CX29",
+      "label": "Groupe fondamental d'une réunion (van Kampen)",
+      "requires": [
+        "TOPO"
+      ],
+      "description": "Un espace, deux ouverts connexes par arcs, l'intersection connexe par arcs : les boucles de la réunion se lisent dans le produit amalgamé, le théorème de van Kampen.",
+      "variables": [
+        {
+          "nom": "E",
+          "domaine": "espace topologique"
+        },
+        {
+          "nom": "X",
+          "domaine": "ouvert de E connexe par arcs, contenant le point base"
+        },
+        {
+          "nom": "Y",
+          "domaine": "ouvert de E connexe par arcs, contenant le point base, d'intersection X ∩ Y connexe par arcs"
+        }
+      ],
+      "objects": [
+        {
+          "id": "VKA1",
+          "label": "Le produit amalgamé π1(X) ∗_{π1(X∩Y)} π1(Y)",
+          "domain": "topologie algébrique",
+          "property": "\\pi_1(X) \\,\\underset{\\pi_1(X \\cap Y)}{\\ast}\\, \\pi_1(Y)",
+          "description": "Le produit libre des groupes des deux ouverts, où les boucles de l'intersection sont identifiées de part et d'autre : chaque relation de l'intersection se paye deux fois.",
+          "example": "le huit (bouquet de deux cercles) : X et Y recouvrent chaque cercle, l'intersection se rétracte en un point, le produit amalgamé est le produit libre ℤ ∗ ℤ.",
+          "notes": "Fiche van Kampens Theorem (lettre V de la pioche)."
+        },
+        {
+          "id": "VKA2",
+          "label": "Le groupe fondamental π1(X ∪ Y)",
+          "domain": "topologie algébrique",
+          "property": "\\pi_1(X \\cup Y)",
+          "description": "Les boucles de la réunion entière : la surjection depuis le produit libre des π1 des ouverts, dont le noyau est engendré par les identifications de l'intersection.",
+          "example": "le huit : π1 du bouquet de deux cercles, exactement ℤ ∗ ℤ.",
+          "notes": "La formule (3) de la fiche : l'isomorphisme amalgamé."
+        }
+      ],
+      "edges": [
+        {
+          "id": "e1361",
+          "from": "VKA1",
+          "to": "VKA2",
+          "kind": "isomorphisme",
+          "theorem": "Théorème de van Kampen",
+          "statement": "π1(X ∪ Y) est isomorphe au produit amalgamé de π1(X) et π1(Y) au-dessus de π1(X ∩ Y) : l'inclusion des ouverts surjecte d'abord le produit libre sur les boucles de la réunion (formule 1 de la fiche), et le noyau normal est engendré par les éléments venus de l'intersection (formule 2), d'où l'isomorphisme amalgamé (formule 3). Le calcul de groupes fondamentaux devient un calcul de présentations : le groupe d'un nœud (le Knot Group de la fiche), les surfaces et les bouquets s'y lisent d'un seul coup (van Kampen 1933, Hatcher 2001, p. 43).",
+          "depth": "classique",
+          "domain": "topologie algébrique",
+          "structure": "groupes"
+        }
+      ]
+    },
+    {
+      "id": "CX30",
+      "label": "Groupes définis par générateurs et relations (von Dyck)",
+      "requires": [
+        "CYL1"
+      ],
+      "description": "Un alphabet, des relations, un groupe qui les satisfait : la présentation est le plus gros, tous les autres sont des quotients.",
+      "variables": [
+        {
+          "nom": "S",
+          "domaine": "alphabet fini"
+        },
+        {
+          "nom": "R",
+          "domaine": "famille finie de mots-relations sur S"
+        },
+        {
+          "nom": "H",
+          "domaine": "groupe engendré par une famille (h_s) satisfaisant r(h) = 1 pour tout r ∈ R"
+        }
+      ],
+      "objects": [
+        {
+          "id": "VDY1",
+          "label": "Le groupe présenté ⟨S | R⟩",
+          "domain": "théorie des groupes",
+          "property": "\\langle S \\mid R \\rangle = F(S)\\,\\big/\\,\\langle\\!\\langle R \\rangle\\!\\rangle",
+          "description": "Le plus gros groupe engendré par S et satisfaisant R : le groupe libre quotienté par le sous-groupe normal des relations.",
+          "example": "⟨a | aⁿ⟩ = ℤ/n.",
+          "notes": "Fiche von Dycks Theorem (lettre V de la pioche)."
+        },
+        {
+          "id": "VDY2",
+          "label": "Le noyau de la surjection canonique sur H",
+          "domain": "théorie des groupes",
+          "property": "K = \\ker\\big( \\langle S \\mid R \\rangle \\twoheadrightarrow H \\big)",
+          "description": "Ce que H fait subir de plus aux relations : les mots qui valent 1 dans H sans valoir 1 dans la présentation.",
+          "example": "H trivial : K est tout ⟨S | R⟩.",
+          "notes": "La surjection existe dès que H vérifie les relations : c'est le critère de von Dyck."
+        },
+        {
+          "id": "VDY3",
+          "label": "Le quotient ⟨S | R⟩ / K",
+          "domain": "théorie des groupes",
+          "property": "\\langle S \\mid R \\rangle \\,\\big/\\, K",
+          "description": "La présentation corrigée par tout ce que H sait de plus : l'extension exacte se referme.",
+          "example": "⟨a | a⁶⟩ quotienté par ⟨a²⟩ : ℤ/2."
+        },
+        {
+          "id": "VDY4",
+          "label": "H, muni des images des générateurs",
+          "domain": "théorie des groupes",
+          "property": "H = \\langle h_s : s \\in S \\rangle \\quad (r(h) = 1 \\ \\forall r \\in R)",
+          "description": "Le groupe donné, vu comme une image de la présentation : chaque générateur s'est fixé une valeur.",
+          "example": "ℤ/6 vu par ⟨a | a⁶⟩ : les générateurs valent 1."
+        }
+      ],
+      "edges": [
+        {
+          "id": "e1362",
+          "from": "VDY2",
+          "to": "VDY1",
+          "kind": "inclusion",
+          "theorem": "Le noyau d'un morphisme est un sous-groupe distingué",
+          "statement": "Le noyau de la surjection canonique ⟨S | R⟩ → H est un sous-groupe distingué du groupe présenté : la première strate du théorème de von Dyck, la surjection elle-même existe dès que H satisfait les relations (le critère de la fiche : si g_i satisfait les r_i, la surjection existe).",
+          "depth": "définitoire",
+          "domain": "théorie des groupes"
+        },
+        {
+          "id": "e1363",
+          "from": "VDY3",
+          "to": "VDY4",
+          "kind": "isomorphisme",
+          "theorem": "Théorème de von Dyck (1882)",
+          "statement": "H est isomorphe au quotient ⟨S | R⟩ / K : toute famille d'éléments (h_s) vérifiant les relations s'étend en une surjection depuis la présentation (Dyck 1882, Rotman 1995, p. 346). La présentation est le plus gros groupe satisfaisant les relations, tous les autres en sont des quotients — avec le deuxième théorème d'isomorphisme, la brique de toutes les présentations : les quotients des groupes libres de la lettre K et les tours de quotients des isomorphismes se lisent ici.",
+          "depth": "classique",
+          "domain": "théorie des groupes",
+          "structure": "groupes"
+        }
+      ]
+    },
+    {
+      "id": "CX31",
+      "label": "Intersections de courbes et d'asymptotes (Waring)",
+      "requires": [
+        "NTR1"
+      ],
+      "description": "Deux courbes algébriques se croisent en un nombre fini de points, mentalement complétées de leurs points à l'infini : la partie finie et la partie à l'infini du théorème de Bézout se balancent autour du même centre.",
+      "variables": [
+        {
+          "nom": "C",
+          "domaine": "courbe algébrique plane irréductible"
+        },
+        {
+          "nom": "C′",
+          "domaine": "courbe algébrique plane irréductible rencontrant C en un nombre fini de points, points à l'infini distincts et non singuliers"
+        }
+      ],
+      "objects": [
+        {
+          "id": "WRG1",
+          "label": "Le centroïde pondéré des points d'intersection de C et C′",
+          "domain": "géométrie complexe",
+          "property": "\\frac{\\sum_i m_i P_i}{\\sum_i m_i} \\quad (P_i \\text{ points communs}, \\; m_i \\text{ multiplicités})",
+          "description": "La moyenne des points d'intersection, chaque point compté autant de fois que sa multiplicité d'intersection : le centre de gravité de la configuration finie.",
+          "example": "deux coniques en quatre points simples : le croisement des diagonales communes.",
+          "notes": "Fiche Warings Theorem (lettre W de la pioche)."
+        },
+        {
+          "id": "WRG2",
+          "label": "Le centre de gravité des intersections des asymptotes homologues",
+          "domain": "géométrie complexe",
+          "property": "\\text{centre de gravité des croisements des asymptotes homologues de } C \\text{ et } C'",
+          "description": "La même moyenne, mais jouée à l'infini : les croisements des asymptotes qui se répondent d'une courbe à l'autre, pondérés pareillement.",
+          "example": "deux hyperboles de mêmes directions d'asymptotes : le centre commun du réseau des directions.",
+          "notes": "La version courbes du théorème de Waring, à ne pas confondre avec le problème de Waring (sommes de puissances)."
+        }
+      ],
+      "edges": [
+        {
+          "id": "e1377",
+          "from": "WRG1",
+          "to": "WRG2",
+          "kind": "equivalence",
+          "theorem": "Théorème de Waring (courbes et asymptotes)",
+          "statement": "Le centroïde des points d'intersection de deux courbes algébriques (pondéré par les multiplicités) est aussi le centre de gravité des intersections de leurs asymptotes homologues : la partie finie et la partie à l'infini de l'intersection de Bézout pèsent exactement le même poids (Waring, via Coolidge, p. 166) — le théorème d'équilibre du passage à l'infini, la balance du théorème de Bézout où les points à l'infini basculent comme des points finis.",
+          "depth": "classique",
+          "domain": "géométrie complexe"
+        }
+      ]
+    },
+    {
+      "id": "CX32",
+      "label": "Polygones bicentriques entre deux cercles (Weill)",
+      "requires": [
+        "CER"
+      ],
+      "description": "Un polygone à n ≥ 3 côtés inscrit dans un cercle Γ et tangent à un cercle intérieur C : le porisme de Poncelet garantit l'infinité de tels polygones, et Weill y lit un point fixe.",
+      "variables": [
+        {
+          "nom": "C",
+          "domaine": "cercle intérieur du plan"
+        },
+        {
+          "nom": "Γ",
+          "domaine": "cercle contenant strictement C"
+        },
+        {
+          "nom": "n",
+          "domaine": "entier ≥ 3"
+        },
+        {
+          "nom": "P",
+          "domaine": "polygone à n côtés inscrit dans Γ et tangent à C (bicentrique)"
+        }
+      ],
+      "objects": [
+        {
+          "id": "WEL1",
+          "label": "Le centroïde des points de tangence de P sur C",
+          "domain": "géométrie euclidienne",
+          "property": "\\frac{1}{n}\\sum_{k=1}^{n} T_k \\quad (T_k \\text{ points de tangence des côtés de } P)",
+          "description": "La moyenne des points où le polygone touche le cercle intérieur : a priori une quantité qui dépend du polygone choisi.",
+          "example": "le triangle équilatérique entre deux cercles concentriques : centroïde au centre commun.",
+          "notes": "Fiche Weills Theorem (lettre W de la pioche)."
+        },
+        {
+          "id": "WEL2",
+          "label": "Le point de Weill du couple de cercles (C, Γ)",
+          "domain": "géométrie euclidienne",
+          "property": "W(C, \\Gamma) \\; \\text{indépendant du polygone } P",
+          "description": "Un point qui ne dépend que du couple de cercles : la trace fixe que tout polygone bicentrique laisse à l'intérieur de la danse de Poncelet.",
+          "example": "le centre commun quand les cercles sont concentriques.",
+          "notes": "La descendance : le lieu du centroïde de tout sous-ensemble des points de tangence est un cercle (Casey 1888)."
+        }
+      ],
+      "edges": [
+        {
+          "id": "e1378",
+          "from": "WEL1",
+          "to": "WEL2",
+          "kind": "equivalence",
+          "theorem": "Théorème de Weill (1878)",
+          "statement": "Pour tout polygone bicentrique entre C et Γ, le centroïde des points de tangence est le même point : le point de Weill du couple de cercles, indépendant du polygone choisi (Weill 1878) — et mieux : le lieu du centroïde de tout sous-ensemble des points de tangence est un cercle (Casey 1888), le porisme de Poncelet distribuant ses centres sur des cercles entiers.",
+          "depth": "classique",
+          "domain": "géométrie euclidienne"
+        }
+      ]
+    },
+    {
+      "id": "CX33",
+      "label": "La coupe de la série canonique (Brill-Noether)",
+      "requires": [
+        "NTR1"
+      ],
+      "description": "La série canonique d'une courbe, découpée par une série linéaire de degré g − 1 en deux parties complémentaires : les deux moitiés portent le même invariant deg − 2·dim, la balance que le théorème de Riemann-Roch tient en réserve.",
+      "variables": [
+        {
+          "nom": "C",
+          "domaine": "courbe algébrique plane irréductible de genre g"
+        },
+        {
+          "nom": "D",
+          "domaine": "diviseur effectif de degré g − 1 sur C, dont la série linéaire découpe la canonique"
+        },
+        {
+          "nom": "D′",
+          "domaine": "le restant K − D de la coupe de la série canonique"
+        }
+      ],
+      "objects": [
+        {
+          "id": "BN1",
+          "label": "L'invariant deg − 2·dim de la première partie",
+          "domain": "géométrie complexe",
+          "property": "\\deg D - 2\\,\\dim|D|",
+          "description": "Le degré de la première moitié, diminué du double de la dimension de sa série linéaire complète.",
+          "example": "une part de coupe de degré 3 et dimension 1 : l'invariant vaut 1.",
+          "notes": "Fiche Brill-Noether Theorem (lettre B de la pioche)."
+        },
+        {
+          "id": "BN2",
+          "label": "L'invariant deg − 2·dim de la seconde partie",
+          "domain": "géométrie complexe",
+          "property": "\\deg D' - 2\\,\\dim|D'|",
+          "description": "Le même invariant, pesé sur la moitié complémentaire de la coupe de la série canonique.",
+          "example": "le restant de la coupe : même degré moins deux dimensions, même valeur.",
+          "notes": "Fiche Brill-Noether Theorem (lettre B de la pioche)."
+        }
+      ],
+      "edges": [
+        {
+          "id": "e1385",
+          "from": "BN1",
+          "to": "BN2",
+          "kind": "equivalence",
+          "theorem": "Théorème de Brill-Noether (la coupe de la série canonique)",
+          "statement": "Quand une série linéaire de degré g − 1 découpe la série canonique d'une courbe en deux parties complémentaires, la quantité deg − 2·dim est la même pour chaque partie (Coolidge, p. 263) : c'est la page assemblée de MathWorld, avant le théorème moderne des g^r_d de Griffiths-Harris sur les dimensions des séries spéciales.",
+          "depth": "classique",
+          "domain": "géométrie complexe"
+        }
+      ]
+    },
+    {
+      "id": "CX34",
+      "label": "Le papillon dans le cercle (butterfly)",
+      "requires": [
+        "CER"
+      ],
+      "description": "Un point M milieu d'une corde PQ d'un cercle, deux autres cordes AB et CD passant par M : les intersections X et Y qu'elles découpent sur PQ s'équilibrent autour de M, les ailes du papillon battant au milieu du corps.",
+      "variables": [
+        {
+          "nom": "C",
+          "domaine": "cercle du plan"
+        },
+        {
+          "nom": "M",
+          "domaine": "point intérieur du disque de C"
+        },
+        {
+          "nom": "PQ",
+          "domaine": "corde de C dont M est le milieu"
+        },
+        {
+          "nom": "AB",
+          "domaine": "corde de C passant par M"
+        },
+        {
+          "nom": "CD",
+          "domaine": "autre corde de C passant par M"
+        }
+      ],
+      "objects": [
+        {
+          "id": "BTR1",
+          "label": "Le milieu de la corde PQ",
+          "domain": "géométrie euclidienne",
+          "property": "M \\quad \\text{tel que} \\quad MP = MQ",
+          "description": "Le point donné du théorème : le centre d'équilibre de la corde équilibrée.",
+          "example": "le centre du cercle, quand PQ est un diamètre.",
+          "notes": "Fiche Butterfly Theorem (lettre B de la pioche)."
+        },
+        {
+          "id": "BTR2",
+          "label": "Le milieu du segment XY des intersections",
+          "domain": "géométrie euclidienne",
+          "property": "\\frac{X + Y}{2} \\quad (X = AB \\cap PQ,\\ Y = CD \\cap PQ)",
+          "description": "Le centre du segment que les deux cordes passant par M découpent sur PQ : a priori une quantité qui dépend des cordes choisies.",
+          "example": "le centre du cercle, quand les deux cordes sont des diamètres.",
+          "notes": "Fiche Butterfly Theorem (lettre B de la pioche) ; les preuves classiques par les aires, la version courte projective de Coxeter."
+        }
+      ],
+      "edges": [
+        {
+          "id": "e1386",
+          "from": "BTR1",
+          "to": "BTR2",
+          "kind": "equivalence",
+          "theorem": "Théorème du papillon",
+          "statement": "Si M est le milieu de la corde PQ, alors M est aussi le milieu du segment XY que les deux cordes AB et CD passant par M découpent sur PQ : les intersections s'équilibrent autour de M, quelle que soit la paire de cordes (les preuves classiques par les aires, la version courte projective de Coxeter).",
+          "depth": "classique",
           "domain": "géométrie euclidienne"
         }
       ]
