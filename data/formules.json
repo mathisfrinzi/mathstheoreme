@@ -1,7 +1,7 @@
 {
   "meta": {
     "name": "Graphe des formules",
-    "version": "0.64.0",
+    "version": "0.65.0",
     "created": "2026-11-24",
     "language": "fr",
     "description": "Le pendant du graphe des théorèmes pour les identités : chaque nœud-quantité est une valeur ou un objet bien défini, chaque nœud-formule (losange) une identité qui les relie, chaque arête « terme » disant quelle quantité intervient dans quelle formule.",
@@ -10,12 +10,14 @@
       "formule": "nœud losange : une identité ou formule fermée, avec ses conditions de validité, sa fiche MathWorld d'origine et son domaine (réutilise le code couleur du graphe des théorèmes)",
       "terme": "arête : la quantité intervient dans la formule ; une formule est en général n-aire (Bayes relie quatre quantités en tout)",
       "notes": "Né en v0.32.0 après la typologie des non-tenues de la pioche MathWorld : les identités sont des égalités de chemins de calcul, pas des inclusions entre familles réutilisables ; elles vivent ici (discussion Banach–Saks, lauréat du filtre de réutilisabilité, étant resté au graphe des théorèmes).",
-      "objets": "champ d'une formule : les ensembles de data/graphe.json auxquels elle se rattache. Un clic sur l'un d'eux, ou sur l'un de ses sous-ensembles (inclusions et équivalences), ouvre la formule dans la fenêtre de gauche de la page."
+      "objets": "champ d'une formule : les ensembles de data/graphe.json auxquels elle se rattache. Un clic sur l'un d'eux, ou sur l'un de ses sous-ensembles (inclusions et équivalences), ouvre la formule dans la fenêtre de gauche de la page.",
+      "nature": "Champ nature par nœud depuis la v0.65.0 : « ensemble » pour une quantité dont la collection est un ensemble (valeurs dans ℝ, ℂ, ℕ, ou structures de taille bornée) ; « classe » quand la collection reste propre même à isomorphismes près (valeurs indexées par des structures de cardinalité non bornée : tous les digraphes, tous les anneaux commutatifs…) ; « identité » pour les nœuds-formules."
     }
   },
   "nodes": [
     {
       "id": "qSOM",
+      "nature": "classe",
       "kind": "quantité",
       "label": "Puissances d'une somme",
       "domain": "algèbre générale",
@@ -25,6 +27,7 @@
     },
     {
       "id": "qBIN",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Sommes binomiales",
       "domain": "algèbre générale",
@@ -34,6 +37,7 @@
     },
     {
       "id": "qSER",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Séries binomiales",
       "domain": "analyse de séries",
@@ -43,6 +47,7 @@
     },
     {
       "id": "qDEC",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Sommes à décalage d'Abel",
       "domain": "algèbre générale",
@@ -52,6 +57,7 @@
     },
     {
       "id": "qCOND",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Probabilités conditionnelles",
       "domain": "théorie de la mesure",
@@ -61,6 +67,7 @@
     },
     {
       "id": "qMARG",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Probabilités marginales (a priori)",
       "domain": "théorie de la mesure",
@@ -70,6 +77,7 @@
     },
     {
       "id": "qPER",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Périmètres de courbes planes convexes",
       "domain": "géométrie euclidienne",
@@ -79,6 +87,7 @@
     },
     {
       "id": "qLAR",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Largeurs des courbes convexes",
       "domain": "géométrie euclidienne",
@@ -88,6 +97,7 @@
     },
     {
       "id": "qLCO",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Courbes de largeur constante",
       "domain": "géométrie euclidienne",
@@ -97,6 +107,7 @@
     },
     {
       "id": "qEUL",
+      "nature": "classe",
       "kind": "quantité",
       "label": "Nombres de circuits eulériens",
       "domain": "théorie des graphes",
@@ -106,6 +117,7 @@
     },
     {
       "id": "qARB",
+      "nature": "classe",
       "kind": "quantité",
       "label": "Nombres d'arborescences",
       "domain": "théorie des graphes",
@@ -115,6 +127,7 @@
     },
     {
       "id": "qDEG",
+      "nature": "classe",
       "kind": "quantité",
       "label": "Produits des factorielles de degrés",
       "domain": "théorie des graphes",
@@ -124,6 +137,7 @@
     },
     {
       "id": "qINT",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Nombres de points d'intersection",
       "domain": "algèbre générale",
@@ -133,6 +147,7 @@
     },
     {
       "id": "qPRD",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Produits des degrés",
       "domain": "algèbre générale",
@@ -142,6 +157,7 @@
     },
     {
       "id": "qGAM",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Rapports de gamma aux demi-entiers",
       "domain": "analyse réelle",
@@ -151,6 +167,7 @@
     },
     {
       "id": "qDBF",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Double factorielles normalisées",
       "domain": "analyse réelle",
@@ -160,6 +177,7 @@
     },
     {
       "id": "qTRB",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Tronquées de Bailey",
       "domain": "analyse réelle",
@@ -169,6 +187,7 @@
     },
     {
       "id": "qKUN",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Hypergraphes complets k-uniformes",
       "domain": "théorie des graphes",
@@ -178,6 +197,7 @@
     },
     {
       "id": "qUNF",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Factorisations en 1-facteurs",
       "domain": "théorie des graphes",
@@ -187,6 +207,7 @@
     },
     {
       "id": "qTRI",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Triples de somme nulle",
       "domain": "arithmétique",
@@ -196,6 +217,7 @@
     },
     {
       "id": "qQUA",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Sommes de quatrièmes puissances",
       "domain": "arithmétique",
@@ -205,6 +227,7 @@
     },
     {
       "id": "qBOX",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Ensembles de boîtes",
       "domain": "géométrie combinatoire",
@@ -214,6 +237,7 @@
     },
     {
       "id": "qPREM",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Boîtes premières",
       "domain": "géométrie combinatoire",
@@ -223,6 +247,7 @@
     },
     {
       "id": "qPCH",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Symboles de Pochhammer",
       "domain": "analyse réelle",
@@ -232,6 +257,7 @@
     },
     {
       "id": "qSRJ",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Séries gamma de Ramanujan",
       "domain": "analyse réelle",
@@ -241,6 +267,7 @@
     },
     {
       "id": "f01",
+      "nature": "identité",
       "kind": "formule",
       "label": "Binôme de Newton",
       "domain": "algèbre générale",
@@ -254,6 +281,7 @@
     },
     {
       "id": "f02",
+      "nature": "identité",
       "kind": "formule",
       "label": "Binôme d'Abel (1826)",
       "domain": "algèbre générale",
@@ -266,6 +294,7 @@
     },
     {
       "id": "f03",
+      "nature": "identité",
       "kind": "formule",
       "label": "Théorème de Bayes (1763)",
       "domain": "théorie de la mesure",
@@ -278,6 +307,7 @@
     },
     {
       "id": "f04",
+      "nature": "identité",
       "kind": "formule",
       "label": "Théorème de Barbier (1860)",
       "domain": "géométrie euclidienne",
@@ -291,6 +321,7 @@
     },
     {
       "id": "f05",
+      "nature": "identité",
       "kind": "formule",
       "label": "Théorème BEST (de Bruijn, van Aardenne-Ehrenfest, Smith, Tutte)",
       "domain": "théorie des graphes",
@@ -303,6 +334,7 @@
     },
     {
       "id": "f06",
+      "nature": "identité",
       "kind": "formule",
       "label": "Théorème de Bézout (courbes)",
       "domain": "algèbre générale",
@@ -315,6 +347,7 @@
     },
     {
       "id": "f07",
+      "nature": "identité",
       "kind": "formule",
       "label": "Théorème de Bailey (1931)",
       "domain": "analyse réelle",
@@ -327,6 +360,7 @@
     },
     {
       "id": "f08",
+      "nature": "identité",
       "kind": "formule",
       "label": "Théorème de Baranyai (1975)",
       "domain": "théorie des graphes",
@@ -339,6 +373,7 @@
     },
     {
       "id": "f09",
+      "nature": "identité",
       "kind": "formule",
       "label": "Théorème de Bhargava (1992, d'après Ramanujan)",
       "domain": "arithmétique",
@@ -352,6 +387,7 @@
     },
     {
       "id": "f10",
+      "nature": "identité",
       "kind": "formule",
       "label": "Théorème des boîtes premières (Box-Packing)",
       "domain": "géométrie combinatoire",
@@ -365,6 +401,7 @@
     },
     {
       "id": "f11",
+      "nature": "identité",
       "kind": "formule",
       "label": "Théorème de Bradley (1994)",
       "domain": "analyse réelle",
@@ -377,6 +414,7 @@
     },
     {
       "id": "qBMP",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Coefficients binomiaux modulo p",
       "domain": "arithmétique",
@@ -386,6 +424,7 @@
     },
     {
       "id": "qBCH",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Produits de binomiaux des chiffres",
       "domain": "arithmétique",
@@ -395,6 +434,7 @@
     },
     {
       "id": "qFPR",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Produits de deux formes x² + ny²",
       "domain": "arithmétique",
@@ -404,6 +444,7 @@
     },
     {
       "id": "qFCP",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Forme X² + nY² en (ac − nbd, ad + bc)",
       "domain": "arithmétique",
@@ -413,6 +454,7 @@
     },
     {
       "id": "qPGC",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Plus grand commun diviseur",
       "domain": "arithmétique",
@@ -422,6 +464,7 @@
     },
     {
       "id": "qCMB",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Combinaisons entières au + bv",
       "domain": "arithmétique",
@@ -431,6 +474,7 @@
     },
     {
       "id": "f12",
+      "nature": "identité",
       "kind": "formule",
       "label": "Théorème de Lucas (1878)",
       "domain": "arithmétique",
@@ -444,6 +488,7 @@
     },
     {
       "id": "f13",
+      "nature": "identité",
       "kind": "formule",
       "label": "Identité de Brahmagupta",
       "domain": "arithmétique",
@@ -457,6 +502,7 @@
     },
     {
       "id": "f14",
+      "nature": "identité",
       "kind": "formule",
       "label": "Identité de Bézout",
       "domain": "arithmétique",
@@ -470,6 +516,7 @@
     },
     {
       "id": "qSPH",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Aires des bandes sphériques",
       "domain": "géométrie euclidienne",
@@ -479,6 +526,7 @@
     },
     {
       "id": "qCYL",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Aires des bandes du cylindre circonscrit",
       "domain": "géométrie euclidienne",
@@ -488,6 +536,7 @@
     },
     {
       "id": "qCO1",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Longueurs du pied au sommet (corde brisée d'Archimède)",
       "domain": "géométrie euclidienne",
@@ -497,6 +546,7 @@
     },
     {
       "id": "qCO2",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Restes de la corde brisée (|XP| + |PB|)",
       "domain": "géométrie euclidienne",
@@ -506,6 +556,7 @@
     },
     {
       "id": "qBEE",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Écarts de Kolmogorov à la répartition normale",
       "domain": "théorie de la mesure",
@@ -515,6 +566,7 @@
     },
     {
       "id": "qBEB",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Bornes de Berry-Esseen",
       "domain": "théorie de la mesure",
@@ -524,6 +576,7 @@
     },
     {
       "id": "qREX",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Rayons des cercles circonscrits aux triangles excentraux",
       "domain": "géométrie euclidienne",
@@ -533,6 +586,7 @@
     },
     {
       "id": "qRD2",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Doubles des rayons circonscrits",
       "domain": "géométrie euclidienne",
@@ -542,6 +596,7 @@
     },
     {
       "id": "f15",
+      "nature": "identité",
       "kind": "formule",
       "label": "Théorème du chapeau d'Archimède",
       "domain": "géométrie euclidienne",
@@ -555,6 +610,7 @@
     },
     {
       "id": "f16",
+      "nature": "identité",
       "kind": "formule",
       "label": "Théorème de la corde brisée d'Archimède",
       "domain": "géométrie euclidienne",
@@ -568,6 +624,7 @@
     },
     {
       "id": "f17",
+      "nature": "identité",
       "kind": "formule",
       "label": "Théorème de Berry-Esseen (erreur du théorème central limite)",
       "domain": "théorie de la mesure",
@@ -581,6 +638,7 @@
     },
     {
       "id": "f18",
+      "nature": "identité",
       "kind": "formule",
       "label": "Rayon du triangle excentral (moitié de Bevan)",
       "domain": "géométrie euclidienne",
@@ -594,6 +652,7 @@
     },
     {
       "id": "qLAM",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Indicatrices de Carmichael",
       "domain": "arithmétique",
@@ -603,6 +662,7 @@
     },
     {
       "id": "qRMS",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Restes des puissances λ(n)-ièmes",
       "domain": "arithmétique",
@@ -612,6 +672,7 @@
     },
     {
       "id": "qCAR",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Sommes des distances signées du circoncentre aux côtés",
       "domain": "géométrie euclidienne",
@@ -621,6 +682,7 @@
     },
     {
       "id": "qRIR",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Sommes du rayon circonscrit et du rayon inscrit",
       "domain": "géométrie euclidienne",
@@ -630,6 +692,7 @@
     },
     {
       "id": "qHOK",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Diagonales du triangle de Pascal",
       "domain": "arithmétique",
@@ -639,6 +702,7 @@
     },
     {
       "id": "qTRP",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Binomiaux pris au rang suivant",
       "domain": "arithmétique",
@@ -648,6 +712,7 @@
     },
     {
       "id": "qJAC",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Intégrales composées avec jacobien",
       "domain": "théorie de la mesure",
@@ -657,6 +722,7 @@
     },
     {
       "id": "qIMT",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Intégrales transportées sur l'image",
       "domain": "théorie de la mesure",
@@ -666,6 +732,7 @@
     },
     {
       "id": "qCNV",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Transformées de Fourier de convolutions",
       "domain": "analyse réelle",
@@ -675,6 +742,7 @@
     },
     {
       "id": "qPFT",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Produits de transformées de Fourier",
       "domain": "analyse réelle",
@@ -684,6 +752,7 @@
     },
     {
       "id": "qQBP",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Produits de Cauchy en 1 + qᵏx",
       "domain": "algèbre générale",
@@ -693,6 +762,7 @@
     },
     {
       "id": "qQGB",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Sommes q-binomiales pondérées",
       "domain": "algèbre générale",
@@ -702,6 +772,7 @@
     },
     {
       "id": "qCRC",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Circulations des champs sur les bords",
       "domain": "analyse réelle",
@@ -711,6 +782,7 @@
     },
     {
       "id": "qFLX",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Flux des rotationnels à travers les surfaces",
       "domain": "analyse réelle",
@@ -720,6 +792,7 @@
     },
     {
       "id": "f19",
+      "nature": "identité",
       "kind": "formule",
       "label": "Théorème de Carmichael (1910)",
       "domain": "arithmétique",
@@ -732,6 +805,7 @@
     },
     {
       "id": "f20",
+      "nature": "identité",
       "kind": "formule",
       "label": "Théorème de Carnot (1803)",
       "domain": "géométrie euclidienne",
@@ -744,6 +818,7 @@
     },
     {
       "id": "f21",
+      "nature": "identité",
       "kind": "formule",
       "label": "Théorème de la crosse de hockey (chaussette de Noël)",
       "domain": "arithmétique",
@@ -756,6 +831,7 @@
     },
     {
       "id": "f22",
+      "nature": "identité",
       "kind": "formule",
       "label": "Théorème de changement de variables",
       "domain": "théorie de la mesure",
@@ -768,6 +844,7 @@
     },
     {
       "id": "f23",
+      "nature": "identité",
       "kind": "formule",
       "label": "Théorème de la convolution (produit des transformées)",
       "domain": "analyse réelle",
@@ -781,6 +858,7 @@
     },
     {
       "id": "f24",
+      "nature": "identité",
       "kind": "formule",
       "label": "Binôme de Cauchy (q-binôme)",
       "domain": "algèbre générale",
@@ -793,6 +871,7 @@
     },
     {
       "id": "f25",
+      "nature": "identité",
       "kind": "formule",
       "label": "Théorème du rotationnel (Stokes)",
       "domain": "analyse réelle",
@@ -806,6 +885,7 @@
     },
     {
       "id": "qSDC1",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Sommes des courbures de Descartes",
       "domain": "géométrie euclidienne",
@@ -815,6 +895,7 @@
     },
     {
       "id": "qSDC2",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Sommes des carrés de ces courbures",
       "domain": "géométrie euclidienne",
@@ -824,6 +905,7 @@
     },
     {
       "id": "qDIV",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Intégrales volumiques des divergences",
       "domain": "analyse réelle",
@@ -833,6 +915,7 @@
     },
     {
       "id": "qFFL",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Flux sortants des surfaces fermées",
       "domain": "analyse réelle",
@@ -842,6 +925,7 @@
     },
     {
       "id": "qAPX",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Distances d'un réel à un rationnel",
       "domain": "arithmétique",
@@ -851,6 +935,7 @@
     },
     {
       "id": "qIQ2",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Inverses des carrés des dénominateurs",
       "domain": "arithmétique",
@@ -860,6 +945,7 @@
     },
     {
       "id": "qGUA",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Aires des faces opposées au trièdre rectangle",
       "domain": "géométrie euclidienne",
@@ -869,6 +955,7 @@
     },
     {
       "id": "qGUL",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Aires des trois faces du trièdre rectangle",
       "domain": "géométrie euclidienne",
@@ -878,6 +965,7 @@
     },
     {
       "id": "f26",
+      "nature": "identité",
       "kind": "formule",
       "label": "Théorème de Descartes sur les cercles (1643)",
       "domain": "géométrie euclidienne",
@@ -891,6 +979,7 @@
     },
     {
       "id": "f27",
+      "nature": "identité",
       "kind": "formule",
       "label": "Théorème de la divergence (Gauss-Ostrogradsky)",
       "domain": "analyse réelle",
@@ -904,6 +993,7 @@
     },
     {
       "id": "f28",
+      "nature": "identité",
       "kind": "formule",
       "label": "Théorème d'approximation de Dirichlet (1842)",
       "domain": "arithmétique",
@@ -917,6 +1007,7 @@
     },
     {
       "id": "f29",
+      "nature": "identité",
       "kind": "formule",
       "label": "Théorème de de Gua (1783)",
       "domain": "géométrie euclidienne",
@@ -930,6 +1021,7 @@
     },
     {
       "id": "qTRC",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Erreurs de troncature de rang k",
       "domain": "algèbre générale",
@@ -939,6 +1031,7 @@
     },
     {
       "id": "qSGV",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "(k+1)-ièmes valeurs singulières",
       "domain": "algèbre générale",
@@ -948,6 +1041,7 @@
     },
     {
       "id": "qIND",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Indicatrices d'Euler",
       "domain": "arithmétique",
@@ -957,6 +1051,7 @@
     },
     {
       "id": "qRPH",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Restes des puissances φ(n)-ièmes",
       "domain": "arithmétique",
@@ -966,6 +1061,7 @@
     },
     {
       "id": "qOCC",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Occurrences d'une taille dans les partitions de n",
       "domain": "arithmétique",
@@ -975,6 +1071,7 @@
     },
     {
       "id": "qDIS",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Tailles aux multiplicités au moins k dans les partitions de n",
       "domain": "arithmétique",
@@ -984,6 +1081,7 @@
     },
     {
       "id": "qHEC",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Combinaisons d'Euler \\( \\sum x_i \\, \\partial_i f \\)",
       "domain": "analyse réelle",
@@ -993,6 +1091,7 @@
     },
     {
       "id": "qHOM",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Multiples k·f des homogènes de degré k",
       "domain": "analyse réelle",
@@ -1002,6 +1101,7 @@
     },
     {
       "id": "qEMD",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Sommes des distances d'un point intérieur aux trois sommets",
       "domain": "géométrie euclidienne",
@@ -1011,6 +1111,7 @@
     },
     {
       "id": "qEMP",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Sommes des distances d'un point intérieur aux trois côtés",
       "domain": "géométrie euclidienne",
@@ -1020,6 +1121,7 @@
     },
     {
       "id": "f30",
+      "nature": "identité",
       "kind": "formule",
       "label": "Théorème d'Eckart-Young (1936)",
       "domain": "algèbre générale",
@@ -1033,6 +1135,7 @@
     },
     {
       "id": "f31",
+      "nature": "identité",
       "kind": "formule",
       "label": "Théorème d'Euler (1736)",
       "domain": "arithmétique",
@@ -1046,6 +1149,7 @@
     },
     {
       "id": "f32",
+      "nature": "identité",
       "kind": "formule",
       "label": "Théorème d'Elder",
       "domain": "arithmétique",
@@ -1059,6 +1163,7 @@
     },
     {
       "id": "f33",
+      "nature": "identité",
       "kind": "formule",
       "label": "Théorème d'Euler sur les fonctions homogènes",
       "domain": "analyse réelle",
@@ -1072,6 +1177,7 @@
     },
     {
       "id": "f34",
+      "nature": "identité",
       "kind": "formule",
       "label": "Théorème d'Erdős-Mordell (1935)",
       "domain": "géométrie euclidienne",
@@ -1085,6 +1191,7 @@
     },
     {
       "id": "qRPF",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Restes des puissances p-ièmes",
       "domain": "arithmétique",
@@ -1094,6 +1201,7 @@
     },
     {
       "id": "qRPE",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Restes des puissances (p−1)-ièmes pour a premier à p",
       "domain": "arithmétique",
@@ -1103,6 +1211,7 @@
     },
     {
       "id": "f35",
+      "nature": "identité",
       "kind": "formule",
       "label": "Petit théorème de Fermat (1640)",
       "domain": "arithmétique",
@@ -1116,6 +1225,7 @@
     },
     {
       "id": "qIDE",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Intégrales définies de fonctions continues",
       "domain": "analyse réelle",
@@ -1125,6 +1235,7 @@
     },
     {
       "id": "qDVA",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Accroissements d'une primitive entre les bornes",
       "domain": "analyse réelle",
@@ -1134,6 +1245,7 @@
     },
     {
       "id": "f36",
+      "nature": "identité",
       "kind": "formule",
       "label": "Théorème fondamental de l'analyse (partie 2, évaluation)",
       "domain": "analyse réelle",
@@ -1148,6 +1260,7 @@
     },
     {
       "id": "qDGA",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Valeurs de la digamma aux rationnels",
       "domain": "analyse réelle",
@@ -1157,6 +1270,7 @@
     },
     {
       "id": "qHRT",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Nombres harmoniques",
       "domain": "analyse réelle",
@@ -1166,6 +1280,7 @@
     },
     {
       "id": "f37",
+      "nature": "identité",
       "kind": "formule",
       "label": "Théorème de la digamma de Gauss (1813)",
       "domain": "analyse réelle",
@@ -1179,6 +1294,7 @@
     },
     {
       "id": "qHYP",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Valeurs de ₂F₁(a, b; c; 1)",
       "domain": "analyse réelle",
@@ -1188,6 +1304,7 @@
     },
     {
       "id": "qRGH",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Rapports de gamma de l'hypergéométrique",
       "domain": "analyse réelle",
@@ -1197,6 +1314,7 @@
     },
     {
       "id": "f38",
+      "nature": "identité",
       "kind": "formule",
       "label": "Théorème hypergéométrique de Gauss (1812)",
       "domain": "analyse réelle",
@@ -1210,6 +1328,7 @@
     },
     {
       "id": "qGWL",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Quotients de Gronwall σ(n)/(n ln ln n)",
       "domain": "théorie des nombres",
@@ -1219,6 +1338,7 @@
     },
     {
       "id": "qEMC",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Constante d'Euler-Mascheroni",
       "domain": "théorie des nombres",
@@ -1228,6 +1348,7 @@
     },
     {
       "id": "f39",
+      "nature": "identité",
       "kind": "formule",
       "label": "Théorème de Gronwall (1913)",
       "domain": "théorie des nombres",
@@ -1241,6 +1362,7 @@
     },
     {
       "id": "f40",
+      "nature": "identité",
       "kind": "formule",
       "label": "Théorème d'approximation de Hurwitz (1891)",
       "domain": "arithmétique",
@@ -1254,6 +1376,7 @@
     },
     {
       "id": "qDET",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Déterminants des matrices carrées complexes",
       "domain": "algèbre générale",
@@ -1263,6 +1386,7 @@
     },
     {
       "id": "qPRC",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Produits des normes des colonnes",
       "domain": "algèbre générale",
@@ -1272,6 +1396,7 @@
     },
     {
       "id": "f41",
+      "nature": "identité",
       "kind": "formule",
       "label": "Inégalité de Hadamard (1893)",
       "domain": "algèbre générale",
@@ -1285,6 +1410,7 @@
     },
     {
       "id": "f42",
+      "nature": "identité",
       "kind": "formule",
       "label": "Théorème d'Isserlis (1918)",
       "domain": "théorie de la mesure",
@@ -1298,6 +1424,7 @@
     },
     {
       "id": "qGSM",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Moments joints des gaussiennes centrées",
       "domain": "théorie de la mesure",
@@ -1307,6 +1434,7 @@
     },
     {
       "id": "qGCO",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Covariances deux à deux",
       "domain": "théorie de la mesure",
@@ -1316,6 +1444,7 @@
     },
     {
       "id": "f43",
+      "nature": "identité",
       "kind": "formule",
       "label": "Théorème des cordes sécantes",
       "domain": "géométrie euclidienne",
@@ -1329,6 +1458,7 @@
     },
     {
       "id": "qCOR",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Produits des segments des cordes",
       "domain": "géométrie euclidienne",
@@ -1338,6 +1468,7 @@
     },
     {
       "id": "qPUI",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Puissances d'un point par rapport au cercle",
       "domain": "géométrie euclidienne",
@@ -1347,6 +1478,7 @@
     },
     {
       "id": "f44",
+      "nature": "identité",
       "kind": "formule",
       "label": "Théorème de Jacobi (identité des mineurs, 1835)",
       "domain": "algèbre générale",
@@ -1360,6 +1492,7 @@
     },
     {
       "id": "qJMA",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Mineurs de la comatrice",
       "domain": "algèbre générale",
@@ -1369,6 +1502,7 @@
     },
     {
       "id": "qJMC",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Mineurs complémentaires signés, portés par le déterminant",
       "domain": "algèbre générale",
@@ -1378,6 +1512,7 @@
     },
     {
       "id": "f45",
+      "nature": "identité",
       "kind": "formule",
       "label": "Théorème japonais (polygones cycliques)",
       "domain": "géométrie euclidienne",
@@ -1391,6 +1526,7 @@
     },
     {
       "id": "qJTR",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Rayons des cercles inscrits des triangles",
       "domain": "géométrie euclidienne",
@@ -1400,6 +1536,7 @@
     },
     {
       "id": "qJSR",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Sommes des rayons inscrits des triangulations",
       "domain": "géométrie euclidienne",
@@ -1409,6 +1546,7 @@
     },
     {
       "id": "f46",
+      "nature": "identité",
       "kind": "formule",
       "label": "Théorème de König-Egerváry (1931)",
       "domain": "théorie des graphes",
@@ -1422,6 +1560,7 @@
     },
     {
       "id": "qKVC",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Tailles des couvertures minimales de sommets",
       "domain": "théorie des graphes",
@@ -1431,6 +1570,7 @@
     },
     {
       "id": "qKVM",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Tailles des couplages maximums",
       "domain": "théorie des graphes",
@@ -1440,6 +1580,7 @@
     },
     {
       "id": "f47",
+      "nature": "identité",
       "kind": "formule",
       "label": "Théorème de coloration d'arêtes de König (1916)",
       "domain": "théorie des graphes",
@@ -1453,6 +1594,7 @@
     },
     {
       "id": "qKDM",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Degrés maximums des graphes finis",
       "domain": "théorie des graphes",
@@ -1462,6 +1604,7 @@
     },
     {
       "id": "qKEC",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Indices chromatiques d'arêtes",
       "domain": "théorie des graphes",
@@ -1471,6 +1614,7 @@
     },
     {
       "id": "f48",
+      "nature": "identité",
       "kind": "formule",
       "label": "Théorème de Kummer (1836, hypergéométrique en −1)",
       "domain": "analyse réelle",
@@ -1484,6 +1628,7 @@
     },
     {
       "id": "qKU1",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Valeurs de ₂F₁(a, b; 1 + a − b; −1)",
       "domain": "analyse réelle",
@@ -1493,6 +1638,7 @@
     },
     {
       "id": "qKU2",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Rapports de gamma de Kummer",
       "domain": "analyse réelle",
@@ -1502,6 +1648,7 @@
     },
     {
       "id": "qLGA",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Coefficients de Taylor des réciproques",
       "domain": "analyse de séries",
@@ -1511,6 +1658,7 @@
     },
     {
       "id": "qLGB",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Coefficients de Lagrange",
       "domain": "analyse de séries",
@@ -1520,6 +1668,7 @@
     },
     {
       "id": "f49",
+      "nature": "identité",
       "kind": "formule",
       "label": "Inversion de Lagrange (1770)",
       "domain": "analyse de séries",
@@ -1533,6 +1682,7 @@
     },
     {
       "id": "qEUC",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Divisions de l'algorithme d'Euclide",
       "domain": "arithmétique",
@@ -1542,6 +1692,7 @@
     },
     {
       "id": "qFIB",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Nombres de Fibonacci (bornes dorées)",
       "domain": "arithmétique",
@@ -1551,6 +1702,7 @@
     },
     {
       "id": "f50",
+      "nature": "identité",
       "kind": "formule",
       "label": "Théorème de Lamé (1844)",
       "domain": "arithmétique",
@@ -1564,6 +1716,7 @@
     },
     {
       "id": "qLIU",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Minorations de Liouville des algébriques",
       "domain": "théorie des nombres",
@@ -1573,6 +1726,7 @@
     },
     {
       "id": "f51",
+      "nature": "identité",
       "kind": "formule",
       "label": "Théorème d'approximation de Liouville (1844)",
       "domain": "théorie des nombres",
@@ -1586,6 +1740,7 @@
     },
     {
       "id": "qLCB",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Coefficients binomiaux modulo p",
       "domain": "théorie des nombres",
@@ -1595,6 +1750,7 @@
     },
     {
       "id": "qLCD",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Produits des binomiaux des chiffres base p",
       "domain": "théorie des nombres",
@@ -1604,6 +1760,7 @@
     },
     {
       "id": "f52",
+      "nature": "identité",
       "kind": "formule",
       "label": "Congruence de Lucas (1878)",
       "domain": "théorie des nombres",
@@ -1617,6 +1774,7 @@
     },
     {
       "id": "qLHT",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Tangentes de l'excès sphérique",
       "domain": "géométrie euclidienne",
@@ -1626,6 +1784,7 @@
     },
     {
       "id": "qLHP",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Produits des tangentes des demi-longueurs",
       "domain": "géométrie euclidienne",
@@ -1635,6 +1794,7 @@
     },
     {
       "id": "f53",
+      "nature": "identité",
       "kind": "formule",
       "label": "Théorème de L'Huilier (1798)",
       "domain": "géométrie euclidienne",
@@ -1648,6 +1808,7 @@
     },
     {
       "id": "qLQC",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Nombres de quotients partiels d'une fraction continue",
       "domain": "théorie des nombres",
@@ -1657,6 +1818,7 @@
     },
     {
       "id": "qLQD",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Nombres de chiffres décimaux convertis",
       "domain": "théorie des nombres",
@@ -1666,6 +1828,7 @@
     },
     {
       "id": "f54",
+      "nature": "identité",
       "kind": "formule",
       "label": "Théorème de Lochs (1964)",
       "domain": "théorie des nombres",
@@ -1679,6 +1842,7 @@
     },
     {
       "id": "qATR",
+      "nature": "classe",
       "kind": "quantité",
       "label": "Nombres d'arbres couvrants",
       "domain": "théorie des graphes",
@@ -1688,6 +1852,7 @@
     },
     {
       "id": "qLAC",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Cofacteurs du laplacien",
       "domain": "théorie des graphes",
@@ -1697,6 +1862,7 @@
     },
     {
       "id": "qFLM",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Valeurs des flots maximaux",
       "domain": "théorie des graphes",
@@ -1706,6 +1872,7 @@
     },
     {
       "id": "qCTM",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Capacités des coupes minimales",
       "domain": "théorie des graphes",
@@ -1715,6 +1882,7 @@
     },
     {
       "id": "qPEP",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Produits eulériens tronqués des premiers",
       "domain": "théorie des nombres",
@@ -1724,6 +1892,7 @@
     },
     {
       "id": "qEPN",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Quotients e^{−γ}/ln x",
       "domain": "théorie des nombres",
@@ -1733,6 +1902,7 @@
     },
     {
       "id": "qSIP",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Sommes d'inverses des premiers",
       "domain": "théorie des nombres",
@@ -1742,6 +1912,7 @@
     },
     {
       "id": "qLLB",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Termes ln ln x + B₁",
       "domain": "théorie des nombres",
@@ -1751,6 +1922,7 @@
     },
     {
       "id": "qMDY",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Sommes des moitiés des périodes",
       "domain": "arithmétique",
@@ -1760,6 +1932,7 @@
     },
     {
       "id": "qNNE",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Neuvaines 10^k − 1",
       "domain": "arithmétique",
@@ -1769,6 +1942,7 @@
     },
     {
       "id": "qRDP",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Paires de racines de la dérivée du cubique",
       "domain": "géométrie euclidienne",
@@ -1778,6 +1952,7 @@
     },
     {
       "id": "qFST",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Paires de foyers de l'ellipse de Steiner",
       "domain": "géométrie euclidienne",
@@ -1787,6 +1962,7 @@
     },
     {
       "id": "qMUA",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Moyennes symétriques de type α",
       "domain": "algèbre générale",
@@ -1796,6 +1972,7 @@
     },
     {
       "id": "qMUB",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Moyennes symétriques des types majorisés",
       "domain": "algèbre générale",
@@ -1805,6 +1982,7 @@
     },
     {
       "id": "f55",
+      "nature": "identité",
       "kind": "formule",
       "label": "Théorème de Matrix-Tree (Kirchhoff, 1847)",
       "domain": "théorie des graphes",
@@ -1818,6 +1996,7 @@
     },
     {
       "id": "f56",
+      "nature": "identité",
       "kind": "formule",
       "label": "Théorème du flot maximal et de la coupe minimale (Ford-Fulkerson, 1956)",
       "domain": "théorie des graphes",
@@ -1831,6 +2010,7 @@
     },
     {
       "id": "f57",
+      "nature": "identité",
       "kind": "formule",
       "label": "Théorème de Mertens (1874, produit eulérien)",
       "domain": "théorie des nombres",
@@ -1844,6 +2024,7 @@
     },
     {
       "id": "f58",
+      "nature": "identité",
       "kind": "formule",
       "label": "Second théorème de Mertens (1874)",
       "domain": "théorie des nombres",
@@ -1857,6 +2038,7 @@
     },
     {
       "id": "f59",
+      "nature": "identité",
       "kind": "formule",
       "label": "Théorème de Midy (1836)",
       "domain": "arithmétique",
@@ -1870,6 +2052,7 @@
     },
     {
       "id": "f60",
+      "nature": "identité",
       "kind": "formule",
       "label": "Théorème de Marden (1966)",
       "domain": "géométrie euclidienne",
@@ -1883,6 +2066,7 @@
     },
     {
       "id": "f61",
+      "nature": "identité",
       "kind": "formule",
       "label": "Théorème de Muirhead (1903)",
       "domain": "algèbre générale",
@@ -1896,6 +2080,7 @@
     },
     {
       "id": "qSCB",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Sommes des cubes des n premiers entiers",
       "domain": "arithmétique",
@@ -1905,6 +2090,7 @@
     },
     {
       "id": "qCSN",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Carrés des sommes des n premiers entiers",
       "domain": "arithmétique",
@@ -1914,6 +2100,7 @@
     },
     {
       "id": "qNEA",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Aires des triangles de Napoléon externes",
       "domain": "géométrie euclidienne",
@@ -1923,6 +2110,7 @@
     },
     {
       "id": "qNIA",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Aires des triangles de Napoléon internes",
       "domain": "géométrie euclidienne",
@@ -1932,6 +2120,7 @@
     },
     {
       "id": "qABT",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Aires des triangles de départ",
       "domain": "géométrie euclidienne",
@@ -1941,6 +2130,7 @@
     },
     {
       "id": "f62",
+      "nature": "identité",
       "kind": "formule",
       "label": "Théorème de Nicomaque (le carré de la somme)",
       "domain": "arithmétique",
@@ -1954,6 +2144,7 @@
     },
     {
       "id": "f63",
+      "nature": "identité",
       "kind": "formule",
       "label": "Théorème de Napoléon (aires)",
       "domain": "géométrie euclidienne",
@@ -1967,6 +2158,7 @@
     },
     {
       "id": "qODN",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Sommes des premiers nombres impairs",
       "domain": "arithmétique",
@@ -1976,6 +2168,7 @@
     },
     {
       "id": "qSQN",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Carrés de rang n",
       "domain": "arithmétique",
@@ -1985,6 +2178,7 @@
     },
     {
       "id": "qODP",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Points dissemblables des arbres",
       "domain": "théorie des graphes",
@@ -1994,6 +2188,7 @@
     },
     {
       "id": "qODL",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Lignes dissemblables des arbres",
       "domain": "théorie des graphes",
@@ -2003,6 +2198,7 @@
     },
     {
       "id": "qODS",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Lignes de symétrie des arbres",
       "domain": "théorie des graphes",
@@ -2012,6 +2208,7 @@
     },
     {
       "id": "qPCS",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Aires des surfaces de révolution",
       "domain": "géométrie euclidienne",
@@ -2021,6 +2218,7 @@
     },
     {
       "id": "qPCD",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Chemins des centroïdes (révolution)",
       "domain": "géométrie euclidienne",
@@ -2030,6 +2228,7 @@
     },
     {
       "id": "qPCV",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Volumes des solides de révolution",
       "domain": "géométrie euclidienne",
@@ -2039,6 +2238,7 @@
     },
     {
       "id": "qPCA",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Aires des génératrices",
       "domain": "géométrie euclidienne",
@@ -2048,6 +2248,7 @@
     },
     {
       "id": "qPSE",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Énergie du signal (∫|f|²)",
       "domain": "théorie de la mesure",
@@ -2057,6 +2258,7 @@
     },
     {
       "id": "qPSI",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Sommes des carrés des coefficients",
       "domain": "théorie de la mesure",
@@ -2066,6 +2268,7 @@
     },
     {
       "id": "qPEF",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Produits eulériens ∏(1 − xⁿ)",
       "domain": "arithmétique",
@@ -2075,6 +2278,7 @@
     },
     {
       "id": "qPEG",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Exposants pentagonaux généralisés",
       "domain": "arithmétique",
@@ -2084,6 +2288,7 @@
     },
     {
       "id": "qPKA",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Aires des polygones du réseau",
       "domain": "géométrie euclidienne",
@@ -2093,6 +2298,7 @@
     },
     {
       "id": "qPKI",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Comptages des points intérieurs du réseau",
       "domain": "géométrie euclidienne",
@@ -2102,6 +2308,7 @@
     },
     {
       "id": "qPKB",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Comptages des points du bord",
       "domain": "géométrie euclidienne",
@@ -2111,6 +2318,7 @@
     },
     {
       "id": "qPZA",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Sommes alternées des aires de parts",
       "domain": "géométrie euclidienne",
@@ -2120,6 +2328,7 @@
     },
     {
       "id": "qPZB",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Sommes des aires des parts complémentaires",
       "domain": "géométrie euclidienne",
@@ -2129,6 +2338,7 @@
     },
     {
       "id": "qPLF",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Normes des transformées de Fourier",
       "domain": "théorie de la mesure",
@@ -2138,6 +2348,7 @@
     },
     {
       "id": "qPLM",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Normes L² des fonctions",
       "domain": "théorie de la mesure",
@@ -2147,6 +2358,7 @@
     },
     {
       "id": "qPHI",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Sommes des indices des zéros",
       "domain": "géométrie combinatoire",
@@ -2156,6 +2368,7 @@
     },
     {
       "id": "qPHC",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Caractéristiques d'Euler",
       "domain": "géométrie combinatoire",
@@ -2165,6 +2378,7 @@
     },
     {
       "id": "qPXR",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Restes euclidiens par (x − a)",
       "domain": "théorie des anneaux",
@@ -2174,6 +2388,7 @@
     },
     {
       "id": "qPXE",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Valeurs f(a) des polynômes",
       "domain": "théorie des anneaux",
@@ -2183,6 +2398,7 @@
     },
     {
       "id": "qPOR",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Orbites de coloriages",
       "domain": "géométrie combinatoire",
@@ -2192,6 +2408,7 @@
     },
     {
       "id": "qPFX",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Moyennes des points fixes",
       "domain": "géométrie combinatoire",
@@ -2201,6 +2418,7 @@
     },
     {
       "id": "qPN1",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Comptages π(x) des nombres premiers",
       "domain": "théorie des nombres",
@@ -2210,6 +2428,7 @@
     },
     {
       "id": "qPLX",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Quasi-inverses du logarithme (x/ln x)",
       "domain": "théorie des nombres",
@@ -2219,6 +2438,7 @@
     },
     {
       "id": "qPRV",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Volumes des prismatoïdes",
       "domain": "géométrie euclidienne",
@@ -2228,6 +2448,7 @@
     },
     {
       "id": "qPRH",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Hauteurs entre les bases",
       "domain": "géométrie euclidienne",
@@ -2237,6 +2458,7 @@
     },
     {
       "id": "qPRS",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Sommes pondérées des aires (B₁ + 4M + B₂)",
       "domain": "géométrie euclidienne",
@@ -2246,6 +2468,7 @@
     },
     {
       "id": "qPTD",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Produits des diagonales",
       "domain": "géométrie euclidienne",
@@ -2255,6 +2478,7 @@
     },
     {
       "id": "qPTS",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Sommes des produits des côtés opposés",
       "domain": "géométrie euclidienne",
@@ -2264,6 +2488,7 @@
     },
     {
       "id": "f64",
+      "nature": "identité",
       "kind": "formule",
       "label": "Théorème du nombre impair (somme des impairs)",
       "domain": "arithmétique",
@@ -2277,6 +2502,7 @@
     },
     {
       "id": "f65",
+      "nature": "identité",
       "kind": "formule",
       "label": "Théorème d'Otter (caractéristique de dissimilarité, 1948)",
       "domain": "théorie des graphes",
@@ -2290,6 +2516,7 @@
     },
     {
       "id": "f66",
+      "nature": "identité",
       "kind": "formule",
       "label": "Théorème du centroïde de Pappus (surfaces et solides de révolution)",
       "domain": "géométrie euclidienne",
@@ -2303,6 +2530,7 @@
     },
     {
       "id": "f67",
+      "nature": "identité",
       "kind": "formule",
       "label": "Théorème de Parseval (1799)",
       "domain": "théorie de la mesure",
@@ -2316,6 +2544,7 @@
     },
     {
       "id": "f68",
+      "nature": "identité",
       "kind": "formule",
       "label": "Théorème du nombre pentagonal (Euler, 1774-1781)",
       "domain": "arithmétique",
@@ -2329,6 +2558,7 @@
     },
     {
       "id": "f69",
+      "nature": "identité",
       "kind": "formule",
       "label": "Théorème de Pick (1899)",
       "domain": "géométrie euclidienne",
@@ -2342,6 +2572,7 @@
     },
     {
       "id": "f70",
+      "nature": "identité",
       "kind": "formule",
       "label": "Théorème de la pizza (1968)",
       "domain": "géométrie euclidienne",
@@ -2355,6 +2586,7 @@
     },
     {
       "id": "f71",
+      "nature": "identité",
       "kind": "formule",
       "label": "Théorème de Plancherel (1910)",
       "domain": "théorie de la mesure",
@@ -2368,6 +2600,7 @@
     },
     {
       "id": "f72",
+      "nature": "identité",
       "kind": "formule",
       "label": "Théorème de Poincaré-Hopf (indices)",
       "domain": "géométrie combinatoire",
@@ -2381,6 +2614,7 @@
     },
     {
       "id": "f73",
+      "nature": "identité",
       "kind": "formule",
       "label": "Théorème du reste (polynômes)",
       "domain": "théorie des anneaux",
@@ -2394,6 +2628,7 @@
     },
     {
       "id": "f74",
+      "nature": "identité",
       "kind": "formule",
       "label": "Théorème d'énumération de Pólya (1937)",
       "domain": "géométrie combinatoire",
@@ -2407,6 +2642,7 @@
     },
     {
       "id": "f75",
+      "nature": "identité",
       "kind": "formule",
       "label": "Théorème des nombres premiers (Hadamard et de la Vallée Poussin, 1896)",
       "domain": "théorie des nombres",
@@ -2420,6 +2656,7 @@
     },
     {
       "id": "f76",
+      "nature": "identité",
       "kind": "formule",
       "label": "Théorème du prismatoïde (règle des aires combinées)",
       "domain": "géométrie euclidienne",
@@ -2433,6 +2670,7 @@
     },
     {
       "id": "f77",
+      "nature": "identité",
       "kind": "formule",
       "label": "Théorème de Ptolémée (vers 150)",
       "domain": "géométrie euclidienne",
@@ -2446,6 +2684,7 @@
     },
     {
       "id": "qRNN",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Nullités (dimensions des noyaux)",
       "domain": "algèbre générale",
@@ -2455,6 +2694,7 @@
     },
     {
       "id": "qRNR",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Rangs (dimensions des images)",
       "domain": "algèbre générale",
@@ -2464,6 +2704,7 @@
     },
     {
       "id": "qRND",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Dimensions de l'espace de départ",
       "domain": "algèbre générale",
@@ -2473,6 +2714,7 @@
     },
     {
       "id": "f78",
+      "nature": "identité",
       "kind": "formule",
       "label": "Théorème du rang-nullité (1867)",
       "domain": "algèbre générale",
@@ -2486,6 +2728,7 @@
     },
     {
       "id": "qRBV",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Variances des estimateurs",
       "domain": "théorie de la mesure",
@@ -2495,6 +2738,7 @@
     },
     {
       "id": "qRBE",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Variances des estimateurs Rao-Blackwellisés",
       "domain": "théorie de la mesure",
@@ -2504,6 +2748,7 @@
     },
     {
       "id": "f79",
+      "nature": "identité",
       "kind": "formule",
       "label": "Théorème de Rao-Blackwell (1947)",
       "domain": "théorie de la mesure",
@@ -2517,6 +2762,7 @@
     },
     {
       "id": "qRCI",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Intégrales de contour des fonctions holomorphes",
       "domain": "analyse de séries",
@@ -2526,6 +2772,7 @@
     },
     {
       "id": "qRCR",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Sommes des résidus intérieurs (2iπ · Res)",
       "domain": "analyse de séries",
@@ -2535,6 +2782,7 @@
     },
     {
       "id": "f80",
+      "nature": "identité",
       "kind": "formule",
       "label": "Théorème des résidus (Cauchy, 1826)",
       "domain": "analyse de séries",
@@ -2548,6 +2796,7 @@
     },
     {
       "id": "qRTA",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Taux de changement des intégrales transportées",
       "domain": "analyse réelle",
@@ -2557,6 +2806,7 @@
     },
     {
       "id": "qRTB",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Flux des contributions locales",
       "domain": "analyse réelle",
@@ -2566,6 +2816,7 @@
     },
     {
       "id": "f81",
+      "nature": "identité",
       "kind": "formule",
       "label": "Théorème du transport de Reynolds (1903)",
       "domain": "analyse réelle",
@@ -2579,6 +2830,7 @@
     },
     {
       "id": "qRLS",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Sommes des inverses des racines",
       "domain": "théorie des anneaux",
@@ -2588,6 +2840,7 @@
     },
     {
       "id": "qRLC",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Coefficients linéaires normalisés (−a₁/a₀)",
       "domain": "théorie des anneaux",
@@ -2597,6 +2850,7 @@
     },
     {
       "id": "f82",
+      "nature": "identité",
       "kind": "formule",
       "label": "Théorème du coefficient linéaire (Viète, 1615)",
       "domain": "théorie des anneaux",
@@ -2610,6 +2864,7 @@
     },
     {
       "id": "qPNN",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "n-ièmes nombres premiers",
       "domain": "théorie des nombres",
@@ -2619,6 +2874,7 @@
     },
     {
       "id": "qNLN",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Bornes n ln n de Rosser",
       "domain": "théorie des nombres",
@@ -2628,6 +2884,7 @@
     },
     {
       "id": "f83",
+      "nature": "identité",
       "kind": "formule",
       "label": "Théorème de Rosser (1938)",
       "domain": "théorie des nombres",
@@ -2641,6 +2898,7 @@
     },
     {
       "id": "qRTU",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Aires des triangles de Routh",
       "domain": "géométrie euclidienne",
@@ -2650,6 +2908,7 @@
     },
     {
       "id": "qRTT",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Aires des triangles de départ",
       "domain": "géométrie euclidienne",
@@ -2659,6 +2918,7 @@
     },
     {
       "id": "f84",
+      "nature": "identité",
       "kind": "formule",
       "label": "Théorème de Routh (1896)",
       "domain": "géométrie euclidienne",
@@ -2672,6 +2932,7 @@
     },
     {
       "id": "qSH1",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "séries hypergéométriques ₃F₂ terminées en 1",
       "domain": "analyse de séries",
@@ -2681,6 +2942,7 @@
     },
     {
       "id": "qSPC",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "produits de symboles de Pochhammer (c−a)ₙ(c−b)ₙ / (c)ₙ(c−a−b)ₙ",
       "domain": "analyse de séries",
@@ -2690,6 +2952,7 @@
     },
     {
       "id": "f85",
+      "nature": "identité",
       "kind": "formule",
       "label": "Théorème de Saalschütz (1890)",
       "domain": "analyse de séries",
@@ -2703,6 +2966,7 @@
     },
     {
       "id": "qS6P",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "partitions en parties ±1 modulo 6",
       "domain": "arithmétique",
@@ -2712,6 +2976,7 @@
     },
     {
       "id": "qSD3",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "partitions en parts distinctes ≡ ±1 modulo 3",
       "domain": "arithmétique",
@@ -2721,6 +2986,7 @@
     },
     {
       "id": "qSDM",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "partitions en parts distantes d'au moins 3 (multiples de 3 distants de 6)",
       "domain": "arithmétique",
@@ -2730,6 +2996,7 @@
     },
     {
       "id": "f86",
+      "nature": "identité",
       "kind": "formule",
       "label": "Théorème de Schur (1926, partitions)",
       "domain": "arithmétique",
@@ -2743,6 +3010,7 @@
     },
     {
       "id": "qSAC",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "tailles d'antichaînes de 𝒫([n])",
       "domain": "géométrie combinatoire",
@@ -2752,6 +3020,7 @@
     },
     {
       "id": "qBCC",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "coefficients binomiaux centraux C(n, ⌊n/2⌋)",
       "domain": "géométrie combinatoire",
@@ -2761,6 +3030,7 @@
     },
     {
       "id": "f87",
+      "nature": "identité",
       "kind": "formule",
       "label": "Théorème de Sperner (1928)",
       "domain": "géométrie combinatoire",
@@ -2774,6 +3044,7 @@
     },
     {
       "id": "qSU1",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "occurrences des 1 dans les partitions de n",
       "domain": "arithmétique",
@@ -2783,6 +3054,7 @@
     },
     {
       "id": "qUDM",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "sommes des nombres de parts distinctes des partitions de n",
       "domain": "arithmétique",
@@ -2792,6 +3064,7 @@
     },
     {
       "id": "f88",
+      "nature": "identité",
       "kind": "formule",
       "label": "Théorème de Stanley (1972)",
       "domain": "arithmétique",
@@ -2805,6 +3078,7 @@
     },
     {
       "id": "qSGA",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "pgcd des six voisins de C(n, k) dans le triangle de Pascal",
       "domain": "arithmétique",
@@ -2814,6 +3088,7 @@
     },
     {
       "id": "qSGB",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "pgcd du second anneau de voisins",
       "domain": "arithmétique",
@@ -2823,6 +3098,7 @@
     },
     {
       "id": "f89",
+      "nature": "identité",
       "kind": "formule",
       "label": "Théorème de l'étoile de David (Gould, 1972)",
       "domain": "arithmétique",
@@ -2836,6 +3112,7 @@
     },
     {
       "id": "qSQS",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "sommes b²m + c²n le long d'une cévienne",
       "domain": "géométrie euclidienne",
@@ -2845,6 +3122,7 @@
     },
     {
       "id": "qSQP",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "produits a(d² + mn) de la cévienne",
       "domain": "géométrie euclidienne",
@@ -2854,6 +3132,7 @@
     },
     {
       "id": "f90",
+      "nature": "identité",
       "kind": "formule",
       "label": "Théorème de Stewart (1746, d'Apollonius aux céviennes)",
       "domain": "géométrie euclidienne",
@@ -2867,6 +3146,7 @@
     },
     {
       "id": "qSVV",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "variations V(a) − V(b) de la chaîne de Sturm",
       "domain": "théorie des anneaux",
@@ -2876,6 +3156,7 @@
     },
     {
       "id": "qSRR",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "nombres de racines réelles distinctes dans ]a, b[",
       "domain": "théorie des anneaux",
@@ -2885,6 +3166,7 @@
     },
     {
       "id": "f91",
+      "nature": "identité",
       "kind": "formule",
       "label": "Théorème de Sturm (1829)",
       "domain": "théorie des anneaux",
@@ -2898,6 +3180,7 @@
     },
     {
       "id": "qTAY1",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "restes de Lagrange f⁽ⁿ⁺¹⁾(ξ)(x−a)ⁿ⁺¹/(n+1)!",
       "domain": "analyse réelle",
@@ -2907,6 +3190,7 @@
     },
     {
       "id": "qTAY2",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "sommes de Taylor à l'ordre n",
       "domain": "analyse réelle",
@@ -2916,6 +3200,7 @@
     },
     {
       "id": "qTHB1",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "sommes AC² + BC² des carrés des côtés",
       "domain": "géométrie euclidienne",
@@ -2925,6 +3210,7 @@
     },
     {
       "id": "qTHB2",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "produits AB·(AD + BE) de la construction de Thābit",
       "domain": "géométrie euclidienne",
@@ -2934,6 +3220,7 @@
     },
     {
       "id": "qTPT1",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "probabilités P(A) d'un événement",
       "domain": "théorie de la mesure",
@@ -2943,6 +3230,7 @@
     },
     {
       "id": "qTPT2",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "sommes Σ P(A|Bᵢ)·P(Bᵢ) sur les partitions",
       "domain": "théorie de la mesure",
@@ -2952,6 +3240,7 @@
     },
     {
       "id": "f92",
+      "nature": "identité",
       "kind": "formule",
       "label": "Théorème de Taylor (1712, 1715)",
       "domain": "analyse réelle",
@@ -2965,6 +3254,7 @@
     },
     {
       "id": "f93",
+      "nature": "identité",
       "kind": "formule",
       "label": "Théorème de Thābit ibn Qurra (IXᵉ siècle)",
       "domain": "géométrie euclidienne",
@@ -2978,6 +3268,7 @@
     },
     {
       "id": "f94",
+      "nature": "identité",
       "kind": "formule",
       "label": "Loi des probabilités totales",
       "domain": "théorie de la mesure",
@@ -2991,6 +3282,7 @@
     },
     {
       "id": "qVIV1",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Sommes des distances d'un point intérieur aux trois côtés",
       "domain": "géométrie euclidienne",
@@ -3000,6 +3292,7 @@
     },
     {
       "id": "qVIV2",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Hauteurs des triangles équilatéraux",
       "domain": "géométrie euclidienne",
@@ -3009,6 +3302,7 @@
     },
     {
       "id": "f95",
+      "nature": "identité",
       "kind": "formule",
       "label": "Théorème de Viviani",
       "domain": "géométrie euclidienne",
@@ -3022,6 +3316,7 @@
     },
     {
       "id": "qAUB1",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Longueurs des segments entre centres de carrés opposés",
       "domain": "géométrie euclidienne",
@@ -3031,6 +3326,7 @@
     },
     {
       "id": "qAUB2",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Longueurs des segments entre les autres centres",
       "domain": "géométrie euclidienne",
@@ -3040,6 +3336,7 @@
     },
     {
       "id": "f96",
+      "nature": "identité",
       "kind": "formule",
       "label": "Théorème de van Aubel (centres des carrés)",
       "domain": "géométrie euclidienne",
@@ -3053,6 +3350,7 @@
     },
     {
       "id": "qWTS1",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Le ₃F₂ de Watson en 1 : valeur de la série",
       "domain": "analyse réelle",
@@ -3062,6 +3360,7 @@
     },
     {
       "id": "qWTS2",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Le produit de Gamma du théorème de Watson",
       "domain": "analyse réelle",
@@ -3071,6 +3370,7 @@
     },
     {
       "id": "qWLD1",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Les modules des valeurs propres d'une matrice bornée par une Perron-Frobenius",
       "domain": "algèbre générale",
@@ -3080,6 +3380,7 @@
     },
     {
       "id": "qWLD2",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Le rayon spectral de la majorante de Perron-Frobenius",
       "domain": "algèbre générale",
@@ -3089,6 +3390,7 @@
     },
     {
       "id": "qWTB1",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Le centroïde de la lamina quadrilatérale",
       "domain": "géométrie euclidienne",
@@ -3098,6 +3400,7 @@
     },
     {
       "id": "qWTB2",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Le centre du parallélogramme de Wittenbauer",
       "domain": "géométrie euclidienne",
@@ -3107,6 +3410,7 @@
     },
     {
       "id": "qWSL1",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Les binomiaux du milieu aux rangs premiers p ≥ 5",
       "domain": "arithmétique",
@@ -3116,6 +3420,7 @@
     },
     {
       "id": "qWSL2",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Les restes modulo p³ du binomial du milieu",
       "domain": "arithmétique",
@@ -3125,6 +3430,7 @@
     },
     {
       "id": "qZBR1",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Le terme constant du produit de Dyson q-analogue",
       "domain": "théorie des nombres",
@@ -3134,6 +3440,7 @@
     },
     {
       "id": "qZBR2",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Le multinomial de Gauss, quotient de q-symboles",
       "domain": "théorie des nombres",
@@ -3143,6 +3450,7 @@
     },
     {
       "id": "f97",
+      "nature": "identité",
       "kind": "formule",
       "label": "Théorème de Watson (sommation du ₃F₂)",
       "domain": "analyse réelle",
@@ -3156,6 +3464,7 @@
     },
     {
       "id": "f98",
+      "nature": "identité",
       "kind": "formule",
       "label": "Théorème de Wielandt (rayon spectral d'une majorée)",
       "domain": "algèbre générale",
@@ -3169,6 +3478,7 @@
     },
     {
       "id": "f99",
+      "nature": "identité",
       "kind": "formule",
       "label": "Théorème de Wittenbauer (centroïde et parallélogramme)",
       "domain": "géométrie euclidienne",
@@ -3182,6 +3492,7 @@
     },
     {
       "id": "f100",
+      "nature": "identité",
       "kind": "formule",
       "label": "Théorème de Wolstenholme (binomial du milieu modulo p³)",
       "domain": "arithmétique",
@@ -3195,6 +3506,7 @@
     },
     {
       "id": "f101",
+      "nature": "identité",
       "kind": "formule",
       "label": "Théorème de Zeilberger-Bressoud (terme constant du q-Dyson)",
       "domain": "théorie des nombres",
@@ -3208,6 +3520,7 @@
     },
     {
       "id": "qBRM1",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Les valeurs de g réexprimées aux puissances de x − φ(a)",
       "domain": "analyse réelle",
@@ -3217,6 +3530,7 @@
     },
     {
       "id": "qBRM2",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Les coefficients de Bürmann : les dérivées n−1-ièmes de g′·ψⁿ en a",
       "domain": "analyse réelle",
@@ -3226,6 +3540,7 @@
     },
     {
       "id": "f102",
+      "nature": "identité",
       "kind": "formule",
       "label": "Théorème de Bürmann (développement en puissances d'une autre fonction)",
       "domain": "analyse réelle",
@@ -3239,6 +3554,7 @@
     },
     {
       "id": "qASM1",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Le nombre A(n) d’alternating sign matrices d’ordre n",
       "domain": "géométrie combinatoire",
@@ -3248,6 +3564,7 @@
     },
     {
       "id": "qASM2",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Le produit d’Izergin-Korepin : Π (3k+1)!/(n+k)!",
       "domain": "géométrie combinatoire",
@@ -3257,6 +3574,7 @@
     },
     {
       "id": "f103",
+      "nature": "identité",
       "kind": "formule",
       "label": "Conjecture des alternating sign matrices (Zeilberger, 1996)",
       "domain": "géométrie combinatoire",
@@ -3270,6 +3588,7 @@
     },
     {
       "id": "qBAR1",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Intégrales de contour de Barnes (premier lemme)",
       "domain": "analyse réelle",
@@ -3279,6 +3598,7 @@
     },
     {
       "id": "qBAR2",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Rapports gamma du premier lemme de Barnes",
       "domain": "analyse réelle",
@@ -3288,6 +3608,7 @@
     },
     {
       "id": "f104",
+      "nature": "identité",
       "kind": "formule",
       "label": "Lemme de Barnes (1908)",
       "domain": "analyse réelle",
@@ -3301,60 +3622,67 @@
     },
     {
       "id": "qCFR1",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Moyennes de points fixes d'actions de groupes finis",
       "domain": "algèbre générale",
-      "property": "\\(\\, \\frac{1}{|R(J)|} \\sum_{p \\in R(J)} \\left| \\{ x \\in X \\mid p(x) = x \\} \\right| \\,\\)",
+      "property": "\\, \\frac{1}{|R(J)|} \\sum_{p \\in R(J)} \\left| \\{ x \\in X \\mid p(x) = x \\} \\right| \\,",
       "description": "Le nombre moyen de points fixes des permutations d'une action d'un groupe fini J sur un ensemble X (une représentation de J dans le groupe symétrique S(X)) : la moitié gauche de l'identité de Cauchy-Frobenius, dite lemme de Burnside.",
       "example": "l'action triviale sur n points : chaque permutation fixe tout, la moyenne vaut n."
     },
     {
       "id": "qCFR2",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Nombres d'orbites d'actions de groupes finis",
       "domain": "algèbre générale",
-      "property": "\\(\\, |X / R(J)| \\,\\)",
+      "property": "\\, |X / R(J)| \\,",
       "description": "Le nombre d'orbites de l'action — les classes d'équivalence x ∼ y dès que p(x) = y pour un p de l'action : la moitié droite de l'identité de Cauchy-Frobenius, et le nœud BSL1 du graphe des théorèmes.",
       "example": "l'action triviale sur n points : n orbites, les singletons."
     },
     {
       "id": "qDL1",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Transformées discrètes de Fourier à N points",
       "domain": "analyse réelle",
-      "property": "\\(\\, F_n = \\sum_{k=0}^{N-1} f_k\\, e^{-2\\pi i n k / N} \\mid n = 0, \\dots, N - 1 \\,\\)",
+      "property": "\\, F_n = \\sum_{k=0}^{N-1} f_k\\, e^{-2\\pi i n k / N} \\mid n = 0, \\dots, N - 1 \\,",
       "description": "La transformée discrète d'une suite de N nombres complexes f₀, …, f_{N−1} : les N coefficients F_n, brique de l'analyse harmonique discrète.",
       "example": "la transformée de (1, 0, 0, 0) : (1, 1, 1, 1)."
     },
     {
       "id": "qDL2",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Transformées des composantes paire et impaire (F_n^e, F_n^o, W^n)",
       "domain": "analyse réelle",
-      "property": "\\(\\, \\left( F_n^{e},\\; F_n^{o},\\; W^{n} \\right) \\mid W = e^{-2\\pi i / N} \\,\\)",
+      "property": "\\, \\left( F_n^{e},\\; F_n^{o},\\; W^{n} \\right) \\mid W = e^{-2\\pi i / N} \\,",
       "description": "Les transformées de demi-taille des sous-suites de rang pair (f_{2k}) et de rang impair (f_{2k+1}), et le facteur tournant W^n qui les combine : le couple de sous-transformées du lemme de Danielson-Lanczos.",
       "example": "pour N = 4, la composante paire se calcule sur (f₀, f₂), l'impaire sur (f₁, f₃)."
     },
     {
       "id": "qDIR1",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Intégrales du noyau de Dirichlet sur [0, π]",
       "domain": "analyse réelle",
-      "property": "\\(\\, \\int_{0}^{\\pi} \\frac{\\sin\\left( \\left( n + \\tfrac{1}{2} \\right) x \\right)}{2 \\sin\\left( \\tfrac{1}{2} x \\right)}\\, dx \\mid n \\ge 0 \\,\\)",
+      "property": "\\, \\int_{0}^{\\pi} \\frac{\\sin\\left( \\left( n + \\tfrac{1}{2} \\right) x \\right)}{2 \\sin\\left( \\tfrac{1}{2} x \\right)}\\, dx \\mid n \\ge 0 \\,",
       "description": "L'intégrale de la moitié du noyau de Dirichlet D_n(x) = sin((n + ½)x)/sin(x/2) sur un demi-tour : le lemme de Dirichlet dit qu'elle ne dépend pas du degré n.",
       "example": "pour n = 0 : ∫₀^π ½ dx = π/2."
     },
     {
       "id": "qDIR2",
+      "nature": "ensemble",
       "kind": "quantité",
       "label": "Demi-tours constants π/2",
       "domain": "analyse réelle",
-      "property": "\\(\\, \\pi / 2 \\,\\)",
+      "property": "\\, \\pi / 2 \\,",
       "description": "La constante à laquelle le noyau de Dirichlet intégré se réduit : π/2, quel que soit le degré n — la valeur invariante du lemme de Dirichlet.",
       "example": "π/2 ≈ 1,5708, le quart de tour."
     },
     {
       "id": "f105",
+      "nature": "identité",
       "kind": "formule",
       "label": "Lemme de Cauchy-Frobenius (1845/1887)",
       "domain": "algèbre générale",
@@ -3369,6 +3697,7 @@
     },
     {
       "id": "f106",
+      "nature": "identité",
       "kind": "formule",
       "label": "Lemme de Danielson-Lanczos (1942)",
       "domain": "analyse réelle",
@@ -3382,6 +3711,7 @@
     },
     {
       "id": "f107",
+      "nature": "identité",
       "kind": "formule",
       "label": "Lemme de Dirichlet (noyau de Dirichlet)",
       "domain": "analyse réelle",
