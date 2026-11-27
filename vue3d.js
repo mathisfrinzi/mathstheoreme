@@ -10,8 +10,8 @@
   var MIN_LABEL_PX = 130;     // largeur écran minimale du libellé pour qu'il soit affiché
   var EDGE_COL = { definition: "#d8dde6", theoreme: "#52c98f", equivalence: "#5aa9e6", partie: "#f29a4e",
     anti: "#ee5c85", conjecture: "#f2c14e", disjoint: "#d9487a", isomorphisme: "#b07cf0" };
-  var G = null, active = false, loading = false, host, btn, hud, selId = null, keep = null, showNeg = false;
-  var nodesById = {}, graphData = null, raf = 0;
+  var G = null, active = false, loading = false, host, btn, hud, selId = null, keep = null, showNeg = true, hoverIds = {};
+  var nodesById = {}, graphData = null, raf = 0, preset = false;
 
   function edgeKeyOf(l) {
     if (l.kind === "inclusion") { return l.depth === "définitoire" ? "definition" : "theoreme"; }
@@ -35,14 +35,27 @@
       if (c.hasClass("ctxobj") || c.data("subCount") === undefined) { return; }
       var n = { id: c.id(), label: c.data("label"), domain: c.data("domain"), sub: c.data("subCount") || 0,
         color: c.style("background-color") };
+      var P3 = window.POSITIONS_EMBEDDED && POSITIONS_EMBEDDED.p3 && !/[?&]nopos\b/.test(location.search) ? POSITIONS_EMBEDDED.p3[n.id] : null;
+      if (P3) { n.x = P3[0]; n.y = P3[1]; n.z = P3[2]; n.__pos = true; }
       nodesById[n.id] = n; nodes.push(n);
     });
+    preset = nodes.length > 0 && nodes.filter(function (n) { return n.__pos; }).length >= 0.9 * nodes.length;
     var links = [];
     GRAPH.edges.forEach(function (e) {
       if (nodesById[e.from] && nodesById[e.to]) {
         links.push({ id: e.id, source: e.from, target: e.to, kind: e.kind, depth: e.depth });
       }
     });
+    if (preset) {   // ensembles absents du fichier de positions : placés près d'un voisin déjà positionné
+      links.forEach(function (l) {
+        var a = nodesById[l.source], b = nodesById[l.target];
+        if (a && b) {
+          if (a.__pos && !b.__pos) { b.x = a.x + (Math.random() - 0.5) * 12; b.y = a.y + (Math.random() - 0.5) * 12; b.z = a.z + (Math.random() - 0.5) * 12; b.__pos = true; }
+          else if (b.__pos && !a.__pos) { a.x = b.x + (Math.random() - 0.5) * 12; a.y = b.y + (Math.random() - 0.5) * 12; a.z = b.z + (Math.random() - 0.5) * 12; a.__pos = true; }
+        }
+      });
+      nodes.forEach(function (n) { if (!n.__pos) { n.x = 0; n.y = 0; n.z = 0; } });
+    }
     graphData = { nodes: nodes, links: links };
   }
 
@@ -79,7 +92,7 @@
       var dx = cp.x - n.x, dy = cp.y - n.y, dz = cp.z - n.z, d = Math.sqrt(dx * dx + dy * dy + dz * dz) || 1;
       var w = 1.55 * radius(n);
       var near = (w * H) / (2 * d * tf) >= MIN_LABEL_PX && d > radius(n);
-      var show = (near || n.id === selId) && !(window.DOM_OFF && DOM_OFF[n.domain]) && (!keep || keep[n.id]);
+      var show = (near || n.id === selId || hoverIds[n.id]) && !(window.DOM_OFF && DOM_OFF[n.domain]) && (!keep || keep[n.id] || hoverIds[n.id]);
       if (show && !grp.children.length) { grp.add(makeLabel(n)); }
       var sp = grp.children[0];
       if (sp) {
@@ -104,7 +117,7 @@
   }
   function refreshStyle() {
     if (!G) { return; }
-    G.nodeColor(function (n) { return rgba(n.color, keep && !keep[n.id] ? 0.06 : baseAlpha(n)); });
+    G.nodeColor(function (n) { return hoverIds[n.id] ? "rgba(238,92,133,1)" : rgba(n.color, keep && !keep[n.id] ? 0.06 : baseAlpha(n)); });
     G.linkColor(linkColor).linkWidth(function (l) { return keep && endpointsKept(l) ? 1.6 : 0.5; });
     G.nodeVisibility(nodeVisible).linkVisibility(linkVisible);
   }
@@ -124,6 +137,7 @@
   }
   function select(n, fly) {
     selId = n.id; keep = focusSet(n.id);
+    if (window.markNav) { markNav("n", n.id); }
     refreshStyle();
     showPanel(nodeHtml(cy.getElementById(n.id).data()));
     showFormulas(n.id);
@@ -134,7 +148,7 @@
       G.cameraPosition({ x: n.x + dx * k, y: n.y + dy * k, z: n.z + dz * k }, { x: n.x, y: n.y, z: n.z }, 900);
     }
   }
-  function clearSel() { selId = null; keep = null; refreshStyle(); showPanel(defaultPanel()); hideFormulas(); }
+  function clearSel() { selId = null; keep = null; refreshStyle(); showPanel(defaultPanel()); hideFormulas(); if (window.clearNav) { clearNav(); } }
 
   // ---------- forces ----------
   function collideForce() {
@@ -186,9 +200,9 @@
       .linkDirectionalArrowColor(linkColor)
       .linkOpacity(1)
       .onNodeClick(function (n) { select(n, true); })
-      .onLinkClick(function (l) { showPanel(edgeHtml(cy.getElementById(l.id).data())); hideFormulas(); })
+      .onLinkClick(function (l) { showPanel(edgeHtml(cy.getElementById(l.id).data())); hideFormulas(); if (window.markNav) { markNav("e", l.id); } })
       .onBackgroundClick(clearSel)
-      .cooldownTicks(260).warmupTicks(60)
+      .cooldownTicks(preset ? 0 : 260).warmupTicks(preset ? 0 : 60)
       .onEngineStop(function () { G.linkDirectionalArrowRelPos(arrowPos); });
     G.d3Force("link").distance(function (l) { return radius(l.source) + radius(l.target) + 8; });
     G.d3Force("charge").strength(function (n) { return -10 - 3 * radius(n); });
@@ -196,7 +210,7 @@
     G.d3Force("gravity", gravityForce(0.12));
     refreshStyle();
     resize();
-    setTimeout(function () { G.zoomToFit(800, 30); }, 2500);
+    setTimeout(function () { G.zoomToFit(800, 30); }, preset ? 300 : 2500);
   }
   function resize() { if (G) { G.width(host.clientWidth).height(host.clientHeight); } }
 
@@ -221,14 +235,14 @@
         loading = false;
         active = true;
         document.getElementById("cy").style.display = "none";
-        host.style.display = "block"; hud.style.display = "flex"; if (window.__zoom3d) { window.__zoom3d.box.style.display = "flex"; }
+        host.style.display = "block"; if (window.__zoom3d) { window.__zoom3d.box.style.display = "flex"; window.__zoom3d.rot.style.display = "flex"; }
         btn.textContent = "2D"; btn.classList.add("on");
         if (!G) { create(); } else { rebuildData(); }
         resize(); loop();
       });
     } else {
       active = false; cancelAnimationFrame(raf);
-      host.style.display = "none"; hud.style.display = "none"; if (window.__zoom3d) { window.__zoom3d.box.style.display = "none"; }
+      host.style.display = "none"; if (window.__zoom3d) { window.__zoom3d.box.style.display = "none"; window.__zoom3d.rot.style.display = "none"; }
       document.getElementById("cy").style.display = "";
       btn.textContent = "3D"; btn.classList.remove("on");
       if (cy) { cy.resize(); }
@@ -244,12 +258,6 @@
     host.style.cssText = "position:absolute;inset:0;display:none;background:#0f1216;z-index:1";
     wrap.insertBefore(host, wrap.firstChild);
     var hudEl = document.getElementById("hud"); if (hudEl) { hudEl.style.zIndex = 5; }
-    hud = document.createElement("div");
-    hud.style.cssText = "position:absolute;left:14px;bottom:10px;z-index:4;display:none;flex-direction:column;gap:4px;font:12px Inter,system-ui,sans-serif;color:#9aa4b2;pointer-events:auto";
-    hud.innerHTML = "<label style='display:flex;gap:6px;align-items:center;cursor:pointer'><input type='checkbox' id='neg3d' style='accent-color:#ee5c85;margin:0'/> contre-exemples et conjectures</label>" +
-      "<span>Volume ∝ nombre de sous-ensembles · clic : fiche et sous-ensembles · approchez-vous pour lire les noms</span>";
-    wrap.appendChild(hud);
-    hud.querySelector("#neg3d").addEventListener("change", function () { showNeg = this.checked; refreshStyle(); });
     btn = document.createElement("button");
     btn.id = "mode3d"; btn.textContent = "3D"; btn.title = "Basculer entre la vue 2D et la vue 3D";
     var ctrl = document.querySelector("header .controls");
@@ -266,16 +274,14 @@
     document.addEventListener("click", function (ev) {
       if (active && ev.target.closest && ev.target.closest("#fall, #fnone")) { setTimeout(refreshStyle, 50); }
     });
-    var sb = document.getElementById("search");
-    sb.addEventListener("keydown", function (ev) {
-      if (!active || ev.key !== "Enter") { return; }
-      var q = sb.value.trim().toLowerCase(); if (!q) { return; }
-      var hit = graphData.nodes.filter(function (n) { return n.label.toLowerCase().indexOf(q) >= 0; })
-        .sort(function (a, b) { return b.sub - a.sub; })[0];
-      if (hit) { select(hit, true); }
-    });
     // navigation depuis les liens de la fiche
     var g2d = window.goToNode;
+    var ge2d = window.goToEdge;
+    window.goToEdge = function (id) {
+      if (!(active && G)) { ge2d(id); return; }
+      var ed = cy.getElementById(id).data(), n = nodesById[ed.source] || nodesById[ed.from];
+      if (n) { var sv = NAV_SILENT; NAV_SILENT = true; try { select(n, true); } finally { NAV_SILENT = sv; } showPanel(edgeHtml(ed)); hideFormulas(); markNav("e", id); }
+    };
     window.goToNode = function (id) {
       if (active && G && nodesById[id]) { select(nodesById[id], true); } else { g2d(id); }
     };
@@ -286,6 +292,11 @@
     zb.innerHTML = "<button type='button' id='zout' title='Dézoomer' style='width:24px;height:24px;border-radius:6px;cursor:pointer'>−</button>" +
       "<input id='zrange' type='range' min='0' max='100' step='0.5' value='50' style='width:120px;accent-color:#ee5c85'/>" +
       "<button type='button' id='zin' title='Zoomer' style='width:24px;height:24px;border-radius:6px;cursor:pointer'>+</button>";
+    var rbx = document.createElement("div");
+    rbx.id = "rot3d";
+    rbx.style.cssText = "display:none;flex-direction:column;gap:4px;background:rgba(26,30,37,.95);border:1px solid #2a313b;border-radius:12px;padding:6px 10px;color:#e6e9ee;font:12px Inter,system-ui,sans-serif;align-items:stretch";
+    rbx.innerHTML = "<label style='display:flex;align-items:center;gap:6px;justify-content:space-between' title='Rotation autour de l axe vertical'>↻ cap<input id='razi' type='range' min='-180' max='180' step='1' value='0' style='width:120px;accent-color:#ee5c85'/></label>" +
+      "<label style='display:flex;align-items:center;gap:6px;justify-content:space-between' title='Inclinaison de la vue (haut / bas)'>⤒ inclinaison<input id='rele' type='range' min='-89' max='89' step='1' value='0' style='width:120px;accent-color:#ee5c85'/></label>";
     if (hudEl) { hudEl.appendChild(zb); } else { wrap.appendChild(zb); }
     var zr = zb.querySelector("#zrange"), ZMIN = 8, ZMAX = 4000;
     function camDist() { var c = G.camera().position, t = G.controls().target; return Math.hypot(c.x - t.x, c.y - t.y, c.z - t.z) || 1; }
@@ -298,10 +309,28 @@
     zr.addEventListener("input", function () { setDist(ZMIN * Math.pow(ZMAX / ZMIN, 1 - zr.value / 100)); });
     zb.querySelector("#zin").addEventListener("click", function () { if (G) { setDist(camDist() / 1.4); syncZoom(); } });
     zb.querySelector("#zout").addEventListener("click", function () { if (G) { setDist(camDist() * 1.4); syncZoom(); } });
-    window.__zoom3d = { box: zb, sync: syncZoom };
-    setInterval(function () { if (active && G && document.activeElement !== zr) { syncZoom(); } }, 300);
+    if (hudEl) { hudEl.appendChild(rbx); } else { wrap.appendChild(rbx); }
+    var ra = rbx.querySelector("#razi"), re = rbx.querySelector("#rele");
+    function orient() {   // angles de la caméra autour du point visé : cap (azimut) et inclinaison
+      var c = G.camera().position, t = G.controls().target, dx = c.x - t.x, dy = c.y - t.y, dz = c.z - t.z, r = Math.hypot(dx, dy, dz) || 1;
+      return { r: r, a: Math.atan2(dx, dz) * 180 / Math.PI, e: Math.asin(Math.max(-1, Math.min(1, dy / r))) * 180 / Math.PI };
+    }
+    function setOrient(a, e) {
+      var o = orient(), t = G.controls().target, A = a * Math.PI / 180, E = e * Math.PI / 180;
+      G.cameraPosition({ x: t.x + o.r * Math.cos(E) * Math.sin(A), y: t.y + o.r * Math.sin(E), z: t.z + o.r * Math.cos(E) * Math.cos(A) }, { x: t.x, y: t.y, z: t.z }, 0);
+    }
+    function syncRot() { if (!G) { return; } var o = orient(); ra.value = o.a; re.value = o.e; }
+    ra.addEventListener("input", function () { setOrient(+ra.value, +re.value); });
+    re.addEventListener("input", function () { setOrient(+ra.value, +re.value); });
+    window.__zoom3d = { box: zb, rot: rbx, sync: syncZoom };
+    setInterval(function () { if (active && G) { if (document.activeElement !== zr) { syncZoom(); } if (document.activeElement !== ra && document.activeElement !== re) { syncRot(); } } }, 300);
     var rb = window.rebuild;
     window.rebuild = function () { rb.apply(this, arguments); if (active && G) { rebuildData(); } };
   }
+  window.__hover3d = { active: function () { return active && !!G; }, set: function (ids) { hoverIds = {}; ids.forEach(function (i) { hoverIds[i] = true; }); refreshStyle(); } };
+  var cs2d = window.clearSelection;
+  window.clearSelection = function () { if (active && G) { clearSel(); } else { cs2d(); } };
+  window.__g3d = function () { return graphData; };
+  window.__g3dReady = function () { return !!G; };
   init();
 })();
