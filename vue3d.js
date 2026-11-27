@@ -10,7 +10,7 @@
   var MIN_LABEL_PX = 130;     // largeur écran minimale du libellé pour qu'il soit affiché
   var EDGE_COL = { definition: "#d8dde6", theoreme: "#52c98f", equivalence: "#5aa9e6", partie: "#f29a4e",
     anti: "#ee5c85", conjecture: "#f2c14e", disjoint: "#d9487a", isomorphisme: "#b07cf0" };
-  var G = null, active = false, loading = false, host, btn, hud, selId = null, keep = null, showNeg = true, hoverIds = {};
+  var G = null, active = false, loading = false, host, btn, hud, selId = null, keep = null, showNeg = true, hoverIds = {}, cSelId = null, cKeep = null;
   var nodesById = {}, graphData = null, raf = 0, preset = false;
 
   function edgeKeyOf(l) {
@@ -136,7 +136,7 @@
     return nodeVisible(nodesById[idOf(l.source)]) && nodeVisible(nodesById[idOf(l.target)]);
   }
   function select(n, fly) {
-    selId = n.id; keep = focusSet(n.id);
+    selId = n.id; keep = focusSet(n.id); cSelId = selId; cKeep = keep;
     if (window.markNav) { markNav("n", n.id); }
     refreshStyle();
     showPanel(nodeHtml(cy.getElementById(n.id).data()));
@@ -148,7 +148,7 @@
       G.cameraPosition({ x: n.x + dx * k, y: n.y + dy * k, z: n.z + dz * k }, { x: n.x, y: n.y, z: n.z }, 900);
     }
   }
-  function clearSel() { selId = null; keep = null; refreshStyle(); showPanel(defaultPanel()); hideFormulas(); if (window.clearNav) { clearNav(); } }
+  function clearSel() { selId = null; keep = null; cSelId = null; cKeep = null; refreshStyle(); showPanel(defaultPanel()); hideFormulas(); if (window.clearNav) { clearNav(); } }
 
   // ---------- forces ----------
   function collideForce() {
@@ -200,6 +200,8 @@
       .linkDirectionalArrowColor(linkColor)
       .linkOpacity(1)
       .onNodeClick(function (n) { select(n, true); })
+      .onNodeHover(function (n) { if (n) { window.previewStart("n", n.id); } else { window.previewEnd(); } })
+      .onLinkHover(function (l) { if (l) { window.previewStart("e", l.id); } else { window.previewEnd(); } })
       .onLinkClick(function (l) { showPanel(edgeHtml(cy.getElementById(l.id).data())); hideFormulas(); if (window.markNav) { markNav("e", l.id); } })
       .onBackgroundClick(clearSel)
       .cooldownTicks(preset ? 0 : 260).warmupTicks(preset ? 0 : 60)
@@ -327,7 +329,7 @@
     var rb = window.rebuild;
     window.rebuild = function () { rb.apply(this, arguments); if (active && G) { rebuildData(); } };
   }
-  window.__hover3d = { active: function () { return active && !!G; }, set: function (ids) { hoverIds = {}; ids.forEach(function (i) { hoverIds[i] = true; }); refreshStyle(); } };
+  window.__hover3d = { screen: function (id) { var n = nodesById[id], c = G && n && G.graph2ScreenCoords(n.x, n.y, n.z), r = host.getBoundingClientRect(); return c ? [r.left + c.x, r.top + c.y] : null; }, focus: function (id) { selId = id; keep = focusSet(id); refreshStyle(); }, unfocus: function () { selId = cSelId; keep = cKeep; refreshStyle(); }, active: function () { return active && !!G; }, set: function (ids) { hoverIds = {}; ids.forEach(function (i) { hoverIds[i] = true; }); refreshStyle(); } };
   var cs2d = window.clearSelection;
   window.clearSelection = function () { if (active && G) { clearSel(); } else { cs2d(); } };
   window.__g3d = function () { return graphData; };
