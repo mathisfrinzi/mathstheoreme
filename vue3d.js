@@ -1,4 +1,4 @@
-/* Vue 3D du graphe (v0.65.0) — s'appuie sur 3d-force-graph (three.js), chargé à la première ouverture.
+/* Vue 3D du graphe (v0.66.0) — s'appuie sur 3d-force-graph (three.js), chargé à la première ouverture.
    Volume de chaque boule ∝ 1 + nombre de sous-ensembles contenus (même fermeture transitive que la vue 2D).
    Aucun texte sur les boules, sauf : ensemble sélectionné, ou caméra assez proche pour lire tout le nom. */
 (function () {
@@ -221,14 +221,14 @@
         loading = false;
         active = true;
         document.getElementById("cy").style.display = "none";
-        host.style.display = "block"; hud.style.display = "flex";
+        host.style.display = "block"; hud.style.display = "flex"; if (window.__zoom3d) { window.__zoom3d.box.style.display = "flex"; }
         btn.textContent = "2D"; btn.classList.add("on");
         if (!G) { create(); } else { rebuildData(); }
         resize(); loop();
       });
     } else {
       active = false; cancelAnimationFrame(raf);
-      host.style.display = "none"; hud.style.display = "none";
+      host.style.display = "none"; hud.style.display = "none"; if (window.__zoom3d) { window.__zoom3d.box.style.display = "none"; }
       document.getElementById("cy").style.display = "";
       btn.textContent = "3D"; btn.classList.remove("on");
       if (cy) { cy.resize(); }
@@ -274,6 +274,32 @@
         .sort(function (a, b) { return b.sub - a.sub; })[0];
       if (hit) { select(hit, true); }
     });
+    // navigation depuis les liens de la fiche
+    var g2d = window.goToNode;
+    window.goToNode = function (id) {
+      if (active && G && nodesById[id]) { select(nodesById[id], true); } else { g2d(id); }
+    };
+    // barre de zoom sous la légende
+    var zb = document.createElement("div");
+    zb.id = "zoom3d";
+    zb.style.cssText = "display:none;align-items:center;gap:6px;background:rgba(26,30,37,.95);border:1px solid #2a313b;border-radius:12px;padding:6px 10px;color:#e6e9ee;font:12px Inter,system-ui,sans-serif";
+    zb.innerHTML = "<button type='button' id='zout' title='Dézoomer' style='width:24px;height:24px;border-radius:6px;cursor:pointer'>−</button>" +
+      "<input id='zrange' type='range' min='0' max='100' step='0.5' value='50' style='width:120px;accent-color:#ee5c85'/>" +
+      "<button type='button' id='zin' title='Zoomer' style='width:24px;height:24px;border-radius:6px;cursor:pointer'>+</button>";
+    if (hudEl) { hudEl.appendChild(zb); } else { wrap.appendChild(zb); }
+    var zr = zb.querySelector("#zrange"), ZMIN = 8, ZMAX = 4000;
+    function camDist() { var c = G.camera().position, t = G.controls().target; return Math.hypot(c.x - t.x, c.y - t.y, c.z - t.z) || 1; }
+    function setDist(d) {
+      d = Math.max(ZMIN, Math.min(ZMAX, d));
+      var c = G.camera().position, t = G.controls().target, k = d / camDist();
+      G.cameraPosition({ x: t.x + (c.x - t.x) * k, y: t.y + (c.y - t.y) * k, z: t.z + (c.z - t.z) * k }, { x: t.x, y: t.y, z: t.z }, 0);
+    }
+    function syncZoom() { if (!G) { return; } var d = Math.max(ZMIN, Math.min(ZMAX, camDist())); zr.value = 100 * (1 - Math.log(d / ZMIN) / Math.log(ZMAX / ZMIN)); }
+    zr.addEventListener("input", function () { setDist(ZMIN * Math.pow(ZMAX / ZMIN, 1 - zr.value / 100)); });
+    zb.querySelector("#zin").addEventListener("click", function () { if (G) { setDist(camDist() / 1.4); syncZoom(); } });
+    zb.querySelector("#zout").addEventListener("click", function () { if (G) { setDist(camDist() * 1.4); syncZoom(); } });
+    window.__zoom3d = { box: zb, sync: syncZoom };
+    setInterval(function () { if (active && G && document.activeElement !== zr) { syncZoom(); } }, 300);
     var rb = window.rebuild;
     window.rebuild = function () { rb.apply(this, arguments); if (active && G) { rebuildData(); } };
   }
